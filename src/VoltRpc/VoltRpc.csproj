@@ -18,6 +18,7 @@
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>icon.png</PackageIcon>
         <PackageReleaseNotes>Inital Release.</PackageReleaseNotes>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
