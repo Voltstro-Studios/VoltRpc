@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using VoltRpc.Proxy;
 using VoltRpc.Types;
 
 namespace VoltRpc.Communication
@@ -12,7 +14,8 @@ namespace VoltRpc.Communication
         private BinaryReader binReader;
         private BinaryWriter binWriter;
 
-        private TypeReaderWriterManager typeReaderWriterManager;
+        private readonly TypeReaderWriterManager typeReaderWriterManager;
+        private readonly List<ServiceMethod> methods;
 
         /// <summary>
         ///     Creates a new <see cref="Client"/> instance
@@ -20,6 +23,7 @@ namespace VoltRpc.Communication
         protected Client()
         {
             typeReaderWriterManager = new TypeReaderWriterManager();
+            methods = new List<ServiceMethod>();
         }
 
         /// <summary>
@@ -38,6 +42,15 @@ namespace VoltRpc.Communication
         public abstract void Connect();
 
         /// <summary>
+        ///     Tells the <see cref="Client"/> that you are going to use <see cref="T"/>
+        /// </summary>
+        /// <typeparam name="T">The same interface that you are using on the server</typeparam>
+        public void AddService<T>()
+        {
+            methods.AddRange(ServiceHelper.GetAllServiceMethods<T>());
+        }
+
+        /// <summary>
         ///     Sends the init message to the server
         /// </summary>
         /// <param name="stream"></param>
@@ -53,14 +66,29 @@ namespace VoltRpc.Communication
         /// <param name="methodName"></param>
         /// <param name="parameters"></param>
         /// <exception cref="MissingMethodException"></exception>
+        /// <exception cref="NullReferenceException"></exception>
+        /// <exception cref="NoTypeReaderWriterException"></exception>
         public void InvokeMethod(string methodName, params object[] parameters)
         {
+            //Get the method
+            ServiceMethod method = null;
+            foreach (ServiceMethod serviceMethod in methods)
+            {
+                if (serviceMethod.MethodName != methodName) 
+                    continue;
+                method = serviceMethod;
+                break;
+            }
+
+            if (method == null)
+                throw new NullReferenceException($"The interface that {methodName} is from needs to be added first with AddService!");
+
             //Write the method name first
             binWriter.Write((int) MessageType.InvokeMethod);
-            binWriter.Write(methodName);
+            binWriter.Write(method.MethodName);
 
             //Now we need to write our parameters
-            WriteParams(parameters);
+            WriteParams(method, parameters);
 
             binWriter.Flush();
 
@@ -82,16 +110,24 @@ namespace VoltRpc.Communication
             }
         }
 
-        private void WriteParams(object[] parameters)
+        /// <summary>
+        ///     Writes the parameters
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="parameters"></param>
+        /// <exception cref="NoTypeReaderWriterException"></exception>
+        private void WriteParams(ServiceMethod method, IReadOnlyList<object> parameters)
         {
-            binWriter.Write(parameters.Length);
+            binWriter.Write(parameters.Count);
 
-            foreach (object parameter in parameters)
+            for (int i = 0; i < parameters.Count; i++)
             {
+                object parameter = parameters[i];
                 ITypeReadWriter writer = typeReaderWriterManager.GetType(parameter);
-                
-                //TODO: We should cache stuff like this
-                binWriter.Write(parameter.GetType().FullName);
+                if (writer == null)
+                    throw new NoTypeReaderWriterException();
+
+                binWriter.Write(method.ParametersTypeNames[i]);
                 writer.Write(binWriter, parameter);
             }
         }

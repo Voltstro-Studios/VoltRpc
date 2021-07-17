@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using VoltRpc.Communication.TCP;
+using VoltRpc.Demo.Shared;
 
 namespace VoltRpc.Demo.Client
 {
@@ -10,6 +11,7 @@ namespace VoltRpc.Demo.Client
         public static void Main(string[] args)
         {
             TCPClient client = new TCPClient(new IPEndPoint(IPAddress.Loopback, 7678));
+            client.AddService<ITest>();
             client.Connect();
             
             //Basic test
