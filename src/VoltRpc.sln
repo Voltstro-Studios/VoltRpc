@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Demo.Host", "Demo\V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Demo.Client", "Demo\VoltRpc.Demo.Client\VoltRpc.Demo.Client.csproj", "{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Demo.Shared", "Demo\VoltRpc.Demo.Shared\VoltRpc.Demo.Shared.csproj", "{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +28,14 @@ Global
 		{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B5D01A62-6921-49A0-B863-B453EF6CC4CE} = {CB85A35B-DEEB-49C8-846D-004E8A32576F}
 		{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE} = {CB85A35B-DEEB-49C8-846D-004E8A32576F}
+		{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A} = {CB85A35B-DEEB-49C8-846D-004E8A32576F}
 	EndGlobalSection
 EndGlobal

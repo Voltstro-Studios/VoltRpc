@@ -22,6 +22,7 @@ namespace VoltRpc.Communication.TCP
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
         /// <param name="timeout">The timeout for connection</param>
         public TCPClient(IPEndPoint endPoint, int timeout = 2000)
+        : base()
         {
             client = new TcpClient();
             this.endPoint = endPoint;
