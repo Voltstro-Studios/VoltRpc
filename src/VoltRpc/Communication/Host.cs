@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using VoltRpc.Logging;
 using VoltRpc.Proxy;
 using VoltRpc.Types;
 
@@ -14,15 +15,21 @@ namespace VoltRpc.Communication
     {
         private readonly Dictionary<object, ServiceMethod[]> methods =
             new Dictionary<object, ServiceMethod[]>();
-
         private readonly TypeReaderWriterManager readerWriterManager;
         private readonly object invokeLock;
+        
+        /// <summary>
+        ///     Logger
+        /// </summary>
+        protected readonly ILogger Logger;
 
         /// <summary>
         ///     Creates a new <see cref="Host"/> instance
         /// </summary>
-        protected Host()
+        protected Host(ILogger logger = null)
         {
+            Logger = logger ?? new NullLogger();
+
             readerWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
         }
@@ -135,6 +142,7 @@ namespace VoltRpc.Communication
                 {
                     writer.Write((int)MessageResponse.NoMethodFound);
                     writer.Flush();
+                    Logger.Warn("Client sent an invalid method request.");
                     return;
                 }
             
@@ -150,6 +158,7 @@ namespace VoltRpc.Communication
                     {
                         writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
                         writer.Flush();
+                        Logger.Error($"The client sent a method with a parameter type of '{type}' of which I don't have a type reader for some reason!");
                         return;
                     }
 
@@ -162,6 +171,7 @@ namespace VoltRpc.Communication
                         writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
                         writer.Write(ex.Message);
                         writer.Flush();
+                        Logger.Warn("Client sent invalid parameter data.");
                         return;
                     }
                 }
@@ -177,6 +187,7 @@ namespace VoltRpc.Communication
                     writer.Write((int)MessageResponse.ExecuteInvokeFailException);
                     writer.Write(ex.Message);
                     writer.Flush();
+                    Logger.Error($"Method invoke failed! {ex}");
                     return;
                 }
             
@@ -188,6 +199,7 @@ namespace VoltRpc.Communication
                     {
                         writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
                         writer.Flush();
+                        Logger.Error($"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
                 
@@ -203,6 +215,7 @@ namespace VoltRpc.Communication
                         writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
                         writer.Write(ex.Message);
                         writer.Flush();
+                        Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
                         return;
                     }
                 }

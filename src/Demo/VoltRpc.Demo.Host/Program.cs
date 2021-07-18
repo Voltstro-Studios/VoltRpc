@@ -2,6 +2,7 @@
 using System.Net;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
+using VoltRpc.Logging;
 
 namespace VoltRpc.Demo.Host
 {
@@ -11,7 +12,7 @@ namespace VoltRpc.Demo.Host
         {
             TestImp testImp = new TestImp();
             
-            TCPHost host = new TCPHost(new IPEndPoint(IPAddress.Loopback, 7678));
+            TCPHost host = new TCPHost(new IPEndPoint(IPAddress.Loopback, 7678), new ConsoleLogger(LogVerbosity.Debug));
             host.AddService<ITest>(testImp);
             host.StartListening();
             

@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using VoltRpc.Logging;
 
 namespace VoltRpc.Communication.TCP
 {
@@ -21,9 +21,11 @@ namespace VoltRpc.Communication.TCP
         ///     Creates a new <see cref="TCPHost"/> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on.</param>
+        /// <param name="logger"></param>
         /// <param name="receiveTimeout"></param>
         /// <param name="sendTimeout"></param>
-        public TCPHost(IPEndPoint endPoint, int receiveTimeout = 600000, int sendTimeout = 600000)
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = 600000, int sendTimeout = 600000)
+        : base(logger)
         {
             listener = new TcpListener(endPoint);
             this.receiveTimeout = receiveTimeout;
@@ -35,14 +37,15 @@ namespace VoltRpc.Communication.TCP
         {
             isRunning = true;
             listener.Start(8192);
+            Logger.Debug("TCP host now listening...");
             
             while (isRunning)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
                 client.ReceiveTimeout = receiveTimeout;
                 client.SendTimeout = sendTimeout;
-
-                Console.WriteLine("Accepted client...");
+                
+                Logger.Debug("Accepted client...");
 
                 _ = Task.Run(() => HandleClient(client));
             }
@@ -57,7 +60,7 @@ namespace VoltRpc.Communication.TCP
             //Connection was closed
             stream.Dispose();
             client.Dispose();
-            Console.WriteLine("Client disconnected.");
+            Logger.Debug("Client disconnected.");
             return Task.CompletedTask;
         }
 
