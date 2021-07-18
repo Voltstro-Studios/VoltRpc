@@ -14,5 +14,10 @@ namespace VoltRpc.Demo.Host
         {
             Console.WriteLine(message);
         }
+
+        public string ReturnTest()
+        {
+            return "Hello Back!";
+        }
     }
 }

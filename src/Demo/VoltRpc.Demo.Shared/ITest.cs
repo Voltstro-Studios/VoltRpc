@@ -5,5 +5,7 @@
         public void BasicTest();
 
         public void ParmTest(string message);
+
+        public string ReturnTest();
     }
 }

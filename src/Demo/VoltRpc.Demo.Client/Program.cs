@@ -27,6 +27,13 @@ namespace VoltRpc.Demo.Client
             
             Console.WriteLine("Parm test #2");
             ParmTest(client);
+            
+            //Return test
+            Console.WriteLine("Return test #1");
+            ReturnTest(client);
+            
+            Console.WriteLine("Return test #2");
+            ReturnTest(client);
 
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
@@ -48,6 +55,14 @@ namespace VoltRpc.Demo.Client
             client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", "Hello World!");
             sw.Stop();
             Console.WriteLine($"Parm test took: {sw.ElapsedMilliseconds}ms");
+        }
+        
+        private static void ReturnTest(Communication.Client client)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            Console.WriteLine($"Got response: {(string)client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ReturnTest")}");
+            sw.Stop();
+            Console.WriteLine($"Return test took: {sw.ElapsedMilliseconds}ms");
         }
     }
 }

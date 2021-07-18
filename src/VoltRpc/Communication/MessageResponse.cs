@@ -23,7 +23,7 @@
         /// <summary>
         ///     The type reader/writer failed for some reason
         /// </summary>
-        ExecuteTypeReaderFail,
+        ExecuteTypeReadWriteFail,
         
         /// <summary>
         ///     The method failed while being invoked

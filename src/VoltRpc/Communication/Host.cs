@@ -106,24 +106,24 @@ namespace VoltRpc.Communication
             string methodName = reader.ReadString();
 
             object obj = null;
-            MethodInfo methodInfo = null;
-            foreach (KeyValuePair<object, ServiceMethod[]> method in methods)
+            ServiceMethod method = null;
+            foreach (KeyValuePair<object, ServiceMethod[]> service in methods)
             {
-                if(methodInfo != null)
+                if(method != null)
                     break;
                 
-                foreach (ServiceMethod serviceMethod in method.Value)
+                foreach (ServiceMethod serviceMethod in service.Value)
                 {
                     if (serviceMethod.MethodName == methodName)
                     {
-                        obj = method.Key;
-                        methodInfo = serviceMethod.MethodInfo;
+                        obj = service.Key;
+                        method = serviceMethod;
                     }
                 }
             }
 
             //No method was found
-            if (methodInfo == null)
+            if (method == null)
             {
                 writer.Write((int)MessageResponse.NoMethodFound);
                 writer.Flush();
@@ -151,7 +151,7 @@ namespace VoltRpc.Communication
                 }
                 catch (Exception ex)
                 {
-                    writer.Write((int)MessageResponse.ExecuteTypeReaderFail);
+                    writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
                     writer.Write(ex.Message);
                     writer.Flush();
                     return;
@@ -159,9 +159,10 @@ namespace VoltRpc.Communication
             }
 
             //Invoke the method
+            object methodReturn;
             try
             {
-                methodInfo.Invoke(obj, parameters);
+                methodReturn = method.MethodInfo.Invoke(obj, parameters);
             }
             catch (Exception ex)
             {
@@ -169,6 +170,33 @@ namespace VoltRpc.Communication
                 writer.Write(ex.Message);
                 writer.Flush();
                 return;
+            }
+            
+            //If the method doesn't return void, write it back
+            if (!method.IsReturnVoid)
+            {
+                ITypeReadWriter typeWriter = readerWriterManager.GetType(method.ReturnTypeName);
+                if (typeWriter == null)
+                {
+                    writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
+                    writer.Flush();
+                    return;
+                }
+                
+                writer.Write((int)MessageResponse.ExecutedSuccessful);
+                try
+                {
+                    typeWriter.Write(writer, methodReturn);
+                    writer.Flush();
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
+                    writer.Write(ex.Message);
+                    writer.Flush();
+                    return;
+                }
             }
 
             writer.Write((int)MessageResponse.ExecutedSuccessful);

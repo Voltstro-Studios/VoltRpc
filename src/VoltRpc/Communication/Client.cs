@@ -68,7 +68,7 @@ namespace VoltRpc.Communication
         /// <exception cref="MissingMethodException"></exception>
         /// <exception cref="NullReferenceException"></exception>
         /// <exception cref="NoTypeReaderWriterException"></exception>
-        public void InvokeMethod(string methodName, params object[] parameters)
+        public object InvokeMethod(string methodName, params object[] parameters)
         {
             //Get the method
             ServiceMethod method = null;
@@ -94,20 +94,36 @@ namespace VoltRpc.Communication
 
             //Get response
             MessageResponse response = (MessageResponse) binReader.ReadInt32();
-            if (response == MessageResponse.NoMethodFound)
-                throw new MissingMethodException("The method does not exist on the server!");
-            if (response == MessageResponse.ExecuteFailNoTypeReader)
-                throw new NoTypeReaderWriterException();
-            if (response == MessageResponse.ExecuteTypeReaderFail)
+            switch (response)
             {
-                string reason = binReader.ReadString();
-                throw new Exception($"Type reader failed to read: {reason}");
+                case MessageResponse.NoMethodFound:
+                    throw new MissingMethodException("The method does not exist on the server!");
+                case MessageResponse.ExecuteFailNoTypeReader:
+                    throw new NoTypeReaderWriterException();
+                case MessageResponse.ExecuteTypeReadWriteFail:
+                {
+                    string reason = binReader.ReadString();
+                    throw new Exception($"Type reader failed to read: {reason}");
+                }
+                case MessageResponse.ExecuteInvokeFailException:
+                {
+                    string reason = binReader.ReadString();
+                    throw new Exception($"The method failed for some reason: {reason}");
+                }
             }
-            if (response == MessageResponse.ExecuteInvokeFailException)
+            
+            //If we are not a void, then we need to read the response
+            if (!method.IsReturnVoid)
             {
-                string reason = binReader.ReadString();
-                throw new Exception($"The method failed for some reason: {reason}");
+                //Get the type reader
+                ITypeReadWriter typeReader = typeReaderWriterManager.GetType(method.ReturnTypeName);
+                if(typeReader == null)
+                    throw new NoTypeReaderWriterException();
+
+                return typeReader.Read(binReader);
             }
+
+            return null;
         }
 
         /// <summary>

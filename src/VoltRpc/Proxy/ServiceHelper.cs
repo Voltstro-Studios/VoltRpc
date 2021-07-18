@@ -23,7 +23,9 @@ namespace VoltRpc.Proxy
                 {
                     MethodName = $"{method.DeclaringType.FullName}.{method.Name}",
                     MethodInfo = method,
-                    ParametersTypeNames = parametersTypeNames
+                    ParametersTypeNames = parametersTypeNames,
+                    IsReturnVoid = method.ReturnType == typeof(void),
+                    ReturnTypeName = method.ReturnType.FullName
                 };
             }
 
