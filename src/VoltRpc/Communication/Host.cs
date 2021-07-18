@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -52,9 +52,13 @@ namespace VoltRpc.Communication
         /// <param name="service">The service <see cref="object"/> to add</param>
         /// <typeparam name="T">The service type</typeparam>
         /// <exception cref="ArgumentException">Thrown if the service has already been added</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface</exception>
         public void AddService<T>(T service) 
             where T : class
         {
+            if (!typeof(T).IsInterface)
+                throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
+            
             if (methods.ContainsKey(service))
                 throw new ArgumentException("The service already exists!", nameof(service));
 

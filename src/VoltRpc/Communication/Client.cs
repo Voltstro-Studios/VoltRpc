@@ -42,11 +42,16 @@ namespace VoltRpc.Communication
         public abstract void Connect();
 
         /// <summary>
-        ///     Tells the <see cref="Client"/> that you are going to use <see cref="T"/>
+        ///     Tells the <see cref="Client"/> what interfaces you might be using
         /// </summary>
         /// <typeparam name="T">The same interface that you are using on the server</typeparam>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface</exception>
         public void AddService<T>()
+            where T : class
         {
+            if (!typeof(T).IsInterface)
+                throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
+            
             methods.AddRange(ServiceHelper.GetAllServiceMethods<T>());
         }
 
