@@ -14,19 +14,24 @@ namespace VoltRpc.Communication.TCP
         private readonly TcpClient client;
         
         private readonly IPEndPoint endPoint;
-        private readonly int timeout;
+        private readonly int connectionTimeout;
 
         /// <summary>
         ///     Creates a new <see cref="TCPClient"/> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
-        /// <param name="timeout">The timeout for connection</param>
-        public TCPClient(IPEndPoint endPoint, int timeout = 2000)
-        : base()
+        /// <param name="connectionTimeout">The timeout for connection</param>
+        /// <param name="receiveTimeout"></param>
+        /// <param name="sendTimeout"></param>
+        public TCPClient(IPEndPoint endPoint, int connectionTimeout = 2000, int receiveTimeout = 600000, int sendTimeout = 600000)
         {
-            client = new TcpClient();
+            client = new TcpClient
+            {
+                ReceiveTimeout = receiveTimeout, 
+                SendTimeout = sendTimeout
+            };
             this.endPoint = endPoint;
-            this.timeout = timeout;
+            this.connectionTimeout = connectionTimeout;
         }
 
         /// <inheritdoc/>
@@ -40,7 +45,7 @@ namespace VoltRpc.Communication.TCP
             
             while (!IsConnectedInternal)
             {
-                if (SpinWait.SpinUntil(() => IsConnectedInternal, timeout))
+                if (SpinWait.SpinUntil(() => IsConnectedInternal, connectionTimeout))
                     continue;
                 
                 throw new TimeoutException($"Client failed to connect to {endPoint}!");

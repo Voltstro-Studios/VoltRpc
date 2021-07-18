@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using VoltRpc.Proxy;
 using VoltRpc.Types;
@@ -18,6 +16,7 @@ namespace VoltRpc.Communication
             new Dictionary<object, ServiceMethod[]>();
 
         private readonly TypeReaderWriterManager readerWriterManager;
+        private readonly object invokeLock;
 
         /// <summary>
         ///     Creates a new <see cref="Host"/> instance
@@ -25,6 +24,7 @@ namespace VoltRpc.Communication
         protected Host()
         {
             readerWriterManager = new TypeReaderWriterManager();
+            invokeLock = new object();
         }
         
         /// <summary>
@@ -82,18 +82,24 @@ namespace VoltRpc.Communication
             bool doContinue = true;
             do
             {
-                MessageType messageType = (MessageType) binReader.ReadInt32();
-                switch (messageType)
+                try
                 {
-                    case MessageType.InvokeMethod:
-                        ProcessInvokeMethod(binReader, binWriter);
-                        break;
-                    case MessageType.Shutdown:
-                        doContinue = false;
-                        break;
+                    MessageType messageType = (MessageType) binReader.ReadInt32();
+                    switch (messageType)
+                    {
+                        case MessageType.InvokeMethod:
+                            ProcessInvokeMethod(binReader, binWriter);
+                            break;
+                        case MessageType.Shutdown:
+                            doContinue = false;
+                            break;
+                    }
                 }
-
-
+                catch (IOException)
+                {
+                    //A timeout most likely occured
+                    doContinue = false;
+                }
             } while (doContinue);
             
             binReader.Dispose();
@@ -102,105 +108,108 @@ namespace VoltRpc.Communication
 
         private void ProcessInvokeMethod(BinaryReader reader, BinaryWriter writer)
         {
-            //First, read the method
-            string methodName = reader.ReadString();
-
-            object obj = null;
-            ServiceMethod method = null;
-            foreach (KeyValuePair<object, ServiceMethod[]> service in methods)
+            lock (invokeLock)
             {
-                if(method != null)
-                    break;
-                
-                foreach (ServiceMethod serviceMethod in service.Value)
+                //First, read the method
+                string methodName = reader.ReadString();
+
+                object obj = null;
+                ServiceMethod method = null;
+                foreach (KeyValuePair<object, ServiceMethod[]> service in methods)
                 {
-                    if (serviceMethod.MethodName == methodName)
+                    if(method != null)
+                        break;
+                
+                    foreach (ServiceMethod serviceMethod in service.Value)
                     {
-                        obj = service.Key;
-                        method = serviceMethod;
+                        if (serviceMethod.MethodName == methodName)
+                        {
+                            obj = service.Key;
+                            method = serviceMethod;
+                        }
                     }
                 }
-            }
 
-            //No method was found
-            if (method == null)
-            {
-                writer.Write((int)MessageResponse.NoMethodFound);
-                writer.Flush();
-                return;
-            }
-            
-            //Now we read the parameters
-            int paramsCount = reader.ReadInt32();
-            object[] parameters = new object[paramsCount];
-            for (int i = 0; i < paramsCount; i++)
-            {
-                //Read the type
-                string type = reader.ReadString();
-                ITypeReadWriter typeRead = readerWriterManager.GetType(type);
-                if (typeRead == null)
+                //No method was found
+                if (method == null)
                 {
-                    writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
+                    writer.Write((int)MessageResponse.NoMethodFound);
                     writer.Flush();
                     return;
                 }
+            
+                //Now we read the parameters
+                int paramsCount = reader.ReadInt32();
+                object[] parameters = new object[paramsCount];
+                for (int i = 0; i < paramsCount; i++)
+                {
+                    //Read the type
+                    string type = reader.ReadString();
+                    ITypeReadWriter typeRead = readerWriterManager.GetType(type);
+                    if (typeRead == null)
+                    {
+                        writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
+                        writer.Flush();
+                        return;
+                    }
 
+                    try
+                    {
+                        parameters[i] = typeRead.Read(reader);
+                    }
+                    catch (Exception ex)
+                    {
+                        writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
+                        writer.Write(ex.Message);
+                        writer.Flush();
+                        return;
+                    }
+                }
+
+                //Invoke the method
+                object methodReturn;
                 try
                 {
-                    parameters[i] = typeRead.Read(reader);
+                    methodReturn = method.MethodInfo.Invoke(obj, parameters);
                 }
                 catch (Exception ex)
                 {
-                    writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
+                    writer.Write((int)MessageResponse.ExecuteInvokeFailException);
                     writer.Write(ex.Message);
                     writer.Flush();
                     return;
                 }
-            }
-
-            //Invoke the method
-            object methodReturn;
-            try
-            {
-                methodReturn = method.MethodInfo.Invoke(obj, parameters);
-            }
-            catch (Exception ex)
-            {
-                writer.Write((int)MessageResponse.ExecuteInvokeFailException);
-                writer.Write(ex.Message);
-                writer.Flush();
-                return;
-            }
             
-            //If the method doesn't return void, write it back
-            if (!method.IsReturnVoid)
-            {
-                ITypeReadWriter typeWriter = readerWriterManager.GetType(method.ReturnTypeName);
-                if (typeWriter == null)
+                //If the method doesn't return void, write it back
+                if (!method.IsReturnVoid)
                 {
-                    writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
-                    writer.Flush();
-                    return;
-                }
+                    ITypeReadWriter typeWriter = readerWriterManager.GetType(method.ReturnTypeName);
+                    if (typeWriter == null)
+                    {
+                        writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
+                        writer.Flush();
+                        return;
+                    }
                 
-                writer.Write((int)MessageResponse.ExecutedSuccessful);
-                try
-                {
-                    typeWriter.Write(writer, methodReturn);
-                    writer.Flush();
-                    return;
+                    writer.Write((int)MessageResponse.ExecutedSuccessful);
+                    try
+                    {
+                        typeWriter.Write(writer, methodReturn);
+                        writer.Flush();
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
+                        writer.Write(ex.Message);
+                        writer.Flush();
+                        return;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
-                    writer.Write(ex.Message);
-                    writer.Flush();
-                    return;
-                }
-            }
 
-            writer.Write((int)MessageResponse.ExecutedSuccessful);
-            writer.Flush();
+                writer.Write((int)MessageResponse.ExecutedSuccessful);
+                writer.Flush();
+            }
         }
     }
 }

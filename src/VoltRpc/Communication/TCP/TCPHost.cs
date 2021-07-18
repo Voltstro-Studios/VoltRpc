@@ -12,16 +12,22 @@ namespace VoltRpc.Communication.TCP
     public sealed class TCPHost : Host
     {
         private readonly TcpListener listener;
-
         private bool isRunning;
-        
+
+        private readonly int receiveTimeout;
+        private readonly int sendTimeout;
+
         /// <summary>
         ///     Creates a new <see cref="TCPHost"/> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on.</param>
-        public TCPHost(IPEndPoint endPoint)
+        /// <param name="receiveTimeout"></param>
+        /// <param name="sendTimeout"></param>
+        public TCPHost(IPEndPoint endPoint, int receiveTimeout = 600000, int sendTimeout = 600000)
         {
             listener = new TcpListener(endPoint);
+            this.receiveTimeout = receiveTimeout;
+            this.sendTimeout = sendTimeout;
         }
         
         /// <inheritdoc/>
@@ -29,22 +35,30 @@ namespace VoltRpc.Communication.TCP
         {
             isRunning = true;
             listener.Start(8192);
-
-            //TODO: Support multiple clients at once
+            
             while (isRunning)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
+                client.ReceiveTimeout = receiveTimeout;
+                client.SendTimeout = sendTimeout;
+
                 Console.WriteLine("Accepted client...");
 
-                //Start processing requests from the client
-                BufferedStream stream = new BufferedStream(client.GetStream(), 8192);
-                ProcessRequest(stream, stream);
-                
-                //Connection was closed
-                stream.Dispose();
-                client.Dispose();
-                Console.WriteLine("Client disconnected.");
+                _ = Task.Run(() => HandleClient(client));
             }
+        }
+
+        private Task HandleClient(TcpClient client)
+        {
+            //Start processing requests from the client
+            BufferedStream stream = new BufferedStream(client.GetStream(), 8192);
+            ProcessRequest(stream, stream);
+                
+            //Connection was closed
+            stream.Dispose();
+            client.Dispose();
+            Console.WriteLine("Client disconnected.");
+            return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
