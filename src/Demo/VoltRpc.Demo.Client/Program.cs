@@ -47,7 +47,7 @@ namespace VoltRpc.Demo.Client
             Stopwatch sw = Stopwatch.StartNew();
             client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", "Hello World!");
             sw.Stop();
-            Console.WriteLine($"Basic test took: {sw.ElapsedMilliseconds}ms");
+            Console.WriteLine($"Parm test took: {sw.ElapsedMilliseconds}ms");
         }
     }
 }
