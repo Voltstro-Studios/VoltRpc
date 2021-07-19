@@ -26,7 +26,7 @@ namespace VoltRpc.Communication.TCP
         /// <param name="sendTimeout">The send timeout</param>
         /// <param name="bufferSize">The initial size of the buffers</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPClient(IPEndPoint endPoint, int connectionTimeout = 2000, int receiveTimeout = 600000, int sendTimeout = 600000, int bufferSize = 8000)
+        public TCPClient(IPEndPoint endPoint, int connectionTimeout = 7000, int receiveTimeout = 600000, int sendTimeout = 600000, int bufferSize = 8000)
         : base(bufferSize)
         {
             client = new TcpClient
@@ -36,6 +36,32 @@ namespace VoltRpc.Communication.TCP
             };
             this.endPoint = endPoint;
             this.connectionTimeout = connectionTimeout;
+        }
+        
+        /// <summary>
+        ///     Creates a new <see cref="TCPClient"/> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
+        /// <param name="bufferSize">The initial size of the buffers</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        public TCPClient(IPEndPoint endPoint, int bufferSize = 8000)
+            : base(bufferSize)
+        {
+            client = new TcpClient();
+            this.endPoint = endPoint;
+            connectionTimeout = 7000;
+        }
+        
+        /// <summary>
+        ///     Creates a new <see cref="TCPClient"/> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        public TCPClient(IPEndPoint endPoint)
+        {
+            client = new TcpClient();
+            this.endPoint = endPoint;
+            connectionTimeout = 7000;
         }
 
         /// <inheritdoc/>

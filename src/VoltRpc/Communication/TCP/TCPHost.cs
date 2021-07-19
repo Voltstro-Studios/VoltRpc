@@ -35,6 +35,36 @@ namespace VoltRpc.Communication.TCP
             this.sendTimeout = sendTimeout;
         }
         
+        /// <summary>
+        ///     Creates a new <see cref="TCPHost"/> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on</param>
+        /// <param name="logger">The <see cref="ILogger"/> to use. Will default to <see cref="NullLogger"/> if null</param>
+        /// <param name="receiveTimeout">How long until timeout from receiving</param>
+        /// <param name="sendTimeout">How long until timeout from sending</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = 600000, int sendTimeout = 600000)
+            : base(logger)
+        {
+            listener = new TcpListener(endPoint);
+            this.receiveTimeout = receiveTimeout;
+            this.sendTimeout = sendTimeout;
+        }
+        
+        /// <summary>
+        ///     Creates a new <see cref="TCPHost"/> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on</param>
+        /// <param name="logger">The <see cref="ILogger"/> to use. Will default to <see cref="NullLogger"/> if null</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null)
+            : base(logger)
+        {
+            listener = new TcpListener(endPoint);
+            receiveTimeout = 600000;
+            sendTimeout = 600000;
+        }
+        
         /// <inheritdoc/>
         public override async Task StartListening()
         {
