@@ -26,6 +26,7 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Creates a new <see cref="Host"/> instance
         /// </summary>
+        /// <param name="logger">The <see cref="ILogger"/> to use.</param>
         protected Host(ILogger logger = null)
         {
             Logger = logger ?? new NullLogger();
@@ -69,10 +70,10 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Processes a request from a client
         /// </summary>
-        /// <param name="readStream"></param>
-        /// <param name="writeStream"></param>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <param name="readStream">The read stream</param>
+        /// <param name="writeStream">The write stream</param>
+        /// <exception cref="ArgumentNullException">Thrown if either provide stream is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected stream</exception>
         protected void ProcessRequest(Stream readStream, Stream writeStream)
         {
             if (readStream == null)

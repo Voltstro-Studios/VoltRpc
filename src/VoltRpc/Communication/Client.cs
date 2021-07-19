@@ -56,9 +56,9 @@ namespace VoltRpc.Communication
         }
 
         /// <summary>
-        ///     Sends the init message to the server
+        ///     Initialize streams
         /// </summary>
-        /// <param name="stream"></param>
+        /// <param name="stream">The main stream to communicate on</param>
         protected void Initialize(Stream stream)
         {
             binReader = new BinaryReader(stream);
@@ -68,11 +68,13 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Invokes a method on the server
         /// </summary>
-        /// <param name="methodName"></param>
-        /// <param name="parameters"></param>
-        /// <exception cref="MissingMethodException"></exception>
-        /// <exception cref="NullReferenceException"></exception>
-        /// <exception cref="NoTypeReaderWriterException"></exception>
+        /// <param name="methodName">The full method name</param>
+        /// <param name="parameters">All parameters to be passed to the method</param>
+        /// <exception cref="MissingMethodException">
+        ///     Thrown if the method name doesn't exist on either the client or server</exception>
+        /// <exception cref="NoTypeReaderWriterException">
+        ///     Thrown if the return type or parameter types doesn't have a <see cref="ITypeReadWriter"/>
+        /// </exception>
         public object InvokeMethod(string methodName, params object[] parameters)
         {
             //Get the method
@@ -86,7 +88,7 @@ namespace VoltRpc.Communication
             }
 
             if (method == null)
-                throw new NullReferenceException($"The interface that {methodName} is from needs to be added first with AddService!");
+                throw new MissingMemberException($"The interface that {methodName} is from needs to be added first with AddService!");
 
             //Write the method name first
             binWriter.Write((int) MessageType.InvokeMethod);
@@ -117,7 +119,7 @@ namespace VoltRpc.Communication
                 }
             }
             
-            //If we are not a void, then we need to read the response
+            //If we are a void, then we need to read the response
             if (!method.IsReturnVoid)
             {
                 //Get the type reader

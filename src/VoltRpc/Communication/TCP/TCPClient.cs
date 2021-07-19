@@ -21,8 +21,8 @@ namespace VoltRpc.Communication.TCP
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
         /// <param name="connectionTimeout">The timeout for connection</param>
-        /// <param name="receiveTimeout"></param>
-        /// <param name="sendTimeout"></param>
+        /// <param name="receiveTimeout">The receive timeout</param>
+        /// <param name="sendTimeout">The send timeout</param>
         public TCPClient(IPEndPoint endPoint, int connectionTimeout = 2000, int receiveTimeout = 600000, int sendTimeout = 600000)
         {
             client = new TcpClient
@@ -35,7 +35,7 @@ namespace VoltRpc.Communication.TCP
         }
 
         /// <inheritdoc/>
-        /// <exception cref="TimeoutException"></exception>
+        /// <exception cref="TimeoutException">Thrown if a connection timeout occurs</exception>
         public override void Connect()
         {
             client.BeginConnect(endPoint.Address, endPoint.Port, result =>

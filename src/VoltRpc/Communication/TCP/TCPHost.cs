@@ -20,10 +20,10 @@ namespace VoltRpc.Communication.TCP
         /// <summary>
         ///     Creates a new <see cref="TCPHost"/> instance
         /// </summary>
-        /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on.</param>
-        /// <param name="logger"></param>
-        /// <param name="receiveTimeout"></param>
-        /// <param name="sendTimeout"></param>
+        /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on</param>
+        /// <param name="logger">The <see cref="ILogger"/> to use. Will default to <see cref="NullLogger"/> if null</param>
+        /// <param name="receiveTimeout">How long until timeout from receiving</param>
+        /// <param name="sendTimeout">How long until timeout from sending</param>
         public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = 600000, int sendTimeout = 600000)
         : base(logger)
         {

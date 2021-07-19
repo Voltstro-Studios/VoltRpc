@@ -7,6 +7,5 @@ namespace VoltRpc.Types
     /// </summary>
     public class NoTypeReaderWriterException : Exception
     {
-        
     }
 }
