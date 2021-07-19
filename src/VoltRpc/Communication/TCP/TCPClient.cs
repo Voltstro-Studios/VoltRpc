@@ -12,9 +12,10 @@ namespace VoltRpc.Communication.TCP
     public sealed class TCPClient : Client
     {
         private readonly TcpClient client;
-        
         private readonly IPEndPoint endPoint;
         private readonly int connectionTimeout;
+
+        private Stream clientStream;
 
         /// <summary>
         ///     Creates a new <see cref="TCPClient"/> instance
@@ -51,14 +52,15 @@ namespace VoltRpc.Communication.TCP
                 throw new TimeoutException($"Client failed to connect to {endPoint}!");
             }
 
-            Stream stream = client.GetStream();
-            Initialize(stream, stream);
+            clientStream = client.GetStream();
+            Initialize(clientStream, clientStream);
         }
 
         /// <inheritdoc/>
         public override void Dispose()
         {
             base.Dispose();
+            clientStream.Dispose();
             client.Dispose();
             IsConnectedInternal = false;
         }
