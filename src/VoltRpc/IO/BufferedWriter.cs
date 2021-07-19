@@ -11,11 +11,24 @@ namespace VoltRpc.IO
     public class BufferedWriter : IDisposable
     {
         /// <summary>
-        ///     Max lenght for a <see cref="string"/>
+        ///     Max length for a <see cref="string"/>
         /// </summary>
         public const int MaxStringLength = 1024 * 32;
         
-        private readonly Stream outputStream;
+        /// <summary>
+        ///     Output <see cref="Stream"/>
+        /// </summary>
+        protected readonly Stream OutputStream;
+        
+        /// <summary>
+        ///     You may need to override this if your <see cref="Stream"/> requires it
+        /// </summary>
+        protected virtual long IncomingStreamPosition
+        {
+            get;
+            set;
+        }
+        
         private readonly UTF8Encoding encoding;
 
         private readonly byte[] stringBuffer;
@@ -28,7 +41,7 @@ namespace VoltRpc.IO
         /// <param name="output"></param>
         internal BufferedWriter(Stream output)
         {
-            outputStream = output;
+            OutputStream = output;
             encoding = new UTF8Encoding(false, true);
             stringBuffer = new byte[MaxStringLength];
             buffer = new byte[8000];
@@ -39,6 +52,7 @@ namespace VoltRpc.IO
         /// </summary>
         internal void Reset()
         {
+            IncomingStreamPosition = 0;
             position = 0;
         }
 
@@ -103,8 +117,9 @@ namespace VoltRpc.IO
 
         internal void Flush()
         {
-            outputStream.Write(buffer, 0, position);
-            outputStream.Flush();
+            OutputStream.Write(buffer, 0, position);
+            OutputStream.Flush();
+            OutputStream.Position = 0;
             Reset();
         }
         

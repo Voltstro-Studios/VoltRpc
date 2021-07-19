@@ -1,13 +1,26 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace VoltRpc.IO
 {
     /// <summary>
     ///     A buffered reader for a <see cref="Stream"/>
     /// </summary>
-    public class BufferedReader
+    public class BufferedReader : IDisposable
     {
-        private readonly Stream incomingStream;
+        /// <summary>
+        ///     The incoming <see cref="Stream"/>
+        /// </summary>
+        protected readonly Stream IncomingStream;
+        
+        /// <summary>
+        ///     You may need to override this if your <see cref="Stream"/> requires it
+        /// </summary>
+        protected virtual long IncomingStreamPosition
+        {
+            get;
+            set;
+        } 
         
         private readonly byte[] buffer;
         private int position;
@@ -15,7 +28,7 @@ namespace VoltRpc.IO
         
         internal BufferedReader(Stream incoming)
         {
-            incomingStream = incoming;
+            IncomingStream = incoming;
             buffer = new byte[8000];
         }
 
@@ -28,7 +41,8 @@ namespace VoltRpc.IO
         {
             if (position == readLength)
             {
-                readLength = incomingStream.Read(buffer, 0, buffer.Length);
+                readLength = IncomingStream.Read(buffer, 0, buffer.Length);
+                IncomingStreamPosition = 0;
                 position = 0;
                 
                 if (readLength == 0)
@@ -36,6 +50,12 @@ namespace VoltRpc.IO
             }
 
             return buffer[position++];
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            
         }
     }
 }
