@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 
 namespace VoltRpc.IO
 {
@@ -22,13 +23,16 @@ namespace VoltRpc.IO
             set;
         } 
         
+        private readonly UTF8Encoding encoding;
         private readonly byte[] buffer;
+        
         private int position;
         private int readLength;
         
         internal BufferedReader(Stream incoming)
         {
             IncomingStream = incoming;
+            encoding = new UTF8Encoding(false, true);
             buffer = new byte[8000];
         }
 
@@ -40,22 +44,90 @@ namespace VoltRpc.IO
         public byte ReadByte()
         {
             if (position == readLength)
+                ReadStream();
+            
+            return buffer[position++];
+        }
+        
+        /// <summary>
+        ///     Reads an array of <see cref="byte"/>s as an <see cref="ArraySegment{T}"/>
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <exception cref="EndOfStreamException"></exception>
+        public ArraySegment<byte> ReadBytesSegment(int count)
+        {
+            if (position == readLength)
+                ReadStream();
+
+            //Check if within buffer limits
+            if (position + count > readLength)
             {
-                readLength = IncomingStream.Read(buffer, 0, buffer.Length);
-                IncomingStreamPosition = 0;
-                position = 0;
-                
-                if (readLength == 0)
-                    throw new EndOfStreamException();
+                //Attempt to read again
+                ReadStream();
+                if(position + count > readLength)
+                    throw new EndOfStreamException("ReadBytesSegment can't read " + count + " bytes because it would read past the end of the stream.");
             }
 
-            return buffer[position++];
+            //Return the segment
+            ArraySegment<byte> result = new ArraySegment<byte>(buffer, position, count);
+            position += count;
+            return result;
+        }
+        
+        /// <summary>
+        ///     Reads a <see cref="ushort"/>
+        /// </summary>
+        /// <returns></returns>
+        public ushort ReadUShort()
+        {
+            ushort value = 0;
+            value |= ReadByte();
+            value |= (ushort)(ReadByte() << 8);
+            return value;
+        }
+
+        /// <summary>
+        ///     Reads a <see cref="string"/>
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="EndOfStreamException"></exception>
+        public string ReadString()
+        {
+            // read number of bytes
+            ushort size = ReadUShort();
+
+            // null support, see NetworkWriter
+            if (size == 0)
+                return null;
+
+            int realSize = size - 1;
+
+            // make sure it's within limits to avoid allocation attacks etc.
+            if (realSize >= BufferedWriter.MaxStringLength)
+            {
+                throw new EndOfStreamException("ReadString too long: " + realSize + ". Limit is: " + BufferedWriter.MaxStringLength);
+            }
+
+            ArraySegment<byte> data = ReadBytesSegment(realSize);
+
+            // convert directly from buffer to string via encoding
+            return encoding.GetString(data.Array, data.Offset, data.Count);
         }
 
         /// <inheritdoc/>
         public void Dispose()
         {
-            
+        }
+
+        private void ReadStream()
+        {
+            readLength = IncomingStream.Read(buffer, 0, buffer.Length);
+            IncomingStreamPosition = 0;
+            position = 0;
+                
+            if (readLength == 0)
+                throw new EndOfStreamException();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace VoltRpc.Tests.IOTests
 {
     public class MemoryStreamBufferedWriter : BufferedWriter
     {
-        protected override long IncomingStreamPosition
+        protected override long OutputStreamPosition
         {
             get => OutputStream.Position;
             set => OutputStream.Position = value;

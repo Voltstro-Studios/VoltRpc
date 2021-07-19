@@ -23,15 +23,15 @@ namespace VoltRpc.IO
         /// <summary>
         ///     You may need to override this if your <see cref="Stream"/> requires it
         /// </summary>
-        protected virtual long IncomingStreamPosition
+        protected virtual long OutputStreamPosition
         {
             get;
             set;
         }
         
         private readonly UTF8Encoding encoding;
-
         private readonly byte[] stringBuffer;
+        
         private byte[] buffer;
         private int position;
         
@@ -52,7 +52,7 @@ namespace VoltRpc.IO
         /// </summary>
         internal void Reset()
         {
-            IncomingStreamPosition = 0;
+            OutputStreamPosition = 0;
             position = 0;
         }
 
@@ -119,7 +119,7 @@ namespace VoltRpc.IO
         {
             OutputStream.Write(buffer, 0, position);
             OutputStream.Flush();
-            OutputStream.Position = 0;
+            OutputStreamPosition = 0;
             Reset();
         }
         
