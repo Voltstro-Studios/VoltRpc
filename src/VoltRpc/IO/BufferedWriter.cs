@@ -5,6 +5,11 @@ using System.Text;
 
 namespace VoltRpc.IO
 {
+    /*
+     * Base of this code comes from Mirror's NetworkWriter:
+     * https://github.com/vis2k/Mirror/blob/ca4c2fd9302b1ece4240b09cc562e25bcb84407f/Assets/Mirror/Runtime/NetworkWriter.cs
+     */
+    
     /// <summary>
     ///     A buffered writer for a <see cref="Stream"/>
     /// </summary>
@@ -114,21 +119,21 @@ namespace VoltRpc.IO
         /// <exception cref="IndexOutOfRangeException"></exception>
         public void WriteString(string value)
         {
+            //Null support
             if (value == null)
             {
                 WriteUShort(0);
                 return;
             }
-
-            // write string with same method as NetworkReader
-            // convert to byte[]
+            
+            //Write to string buffer
             int size = encoding.GetBytes(value, 0, value.Length, stringBuffer, 0);
 
-            // check if within max size
+            //Check if within max size
             if (size >= MaxStringLength)
                 throw new IndexOutOfRangeException($"Cannot write string larger then {MaxStringLength}!");
 
-            // write size and bytes
+            //Write size and bytes
             WriteUShort(checked((ushort)(size + 1)));
             WriteBytes(stringBuffer, 0, size);
         }

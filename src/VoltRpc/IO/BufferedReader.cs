@@ -4,6 +4,14 @@ using System.Text;
 
 namespace VoltRpc.IO
 {
+    /*
+     * Base of this code comes from Mirror's NetworkReader:
+     * https://github.com/vis2k/Mirror/blob/ca4c2fd9302b1ece4240b09cc562e25bcb84407f/Assets/Mirror/Runtime/NetworkReader.cs
+     *
+     * Some code also comes from .NET Runtime's BufferedStream:
+     * https://github.com/dotnet/runtime/blob/release/5.0/src/libraries/System.Private.CoreLib/src/System/IO/BufferedStream.cs
+     */
+
     /// <summary>
     ///     A buffered reader for a <see cref="Stream"/>
     /// </summary>
@@ -114,16 +122,16 @@ namespace VoltRpc.IO
         /// <exception cref="EndOfStreamException"></exception>
         public string ReadString()
         {
-            // read number of bytes
+            //Read number of bytes
             ushort size = ReadUShort();
 
-            // null support, see NetworkWriter
+            //Null support
             if (size == 0)
                 return null;
 
             int realSize = size - 1;
 
-            // make sure it's within limits to avoid allocation attacks etc.
+            //Make sure it's within limits to avoid allocation attacks etc.
             if (realSize >= BufferedWriter.MaxStringLength)
             {
                 throw new EndOfStreamException("ReadString too long: " + realSize + ". Limit is: " + BufferedWriter.MaxStringLength);
@@ -131,7 +139,7 @@ namespace VoltRpc.IO
 
             ArraySegment<byte> data = ReadBytesSegment(realSize);
 
-            // convert directly from buffer to string via encoding
+            //Convert directly from buffer to string via encoding
             return encoding.GetString(data.Array, data.Offset, data.Count);
         }
 
