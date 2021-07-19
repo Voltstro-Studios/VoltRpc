@@ -10,13 +10,22 @@ namespace VoltRpc.Types
         /// <inheritdoc/>
         public void Write(BinaryWriter writer, object obj)
         {
-            writer.Write((string)obj);
+            string stringObj = (string) obj;
+            if (stringObj == null)
+            {
+                writer.Write((byte)0);
+                return;
+            }
+            
+            writer.Write((byte)1);
+            writer.Write(stringObj);
         }
 
         /// <inheritdoc/>
         public object Read(BinaryReader reader)
         {
-            return reader.ReadString();
+            byte isNull = reader.ReadByte();
+            return isNull == 0 ? null : reader.ReadString();
         }
     }
 }

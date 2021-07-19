@@ -12,6 +12,12 @@ namespace VoltRpc.Demo.Host
 
         public void ParmTest(string message)
         {
+            if (message == null)
+            {
+                Console.WriteLine("The message was null");
+                return;
+            }
+            
             Console.WriteLine(message);
         }
 

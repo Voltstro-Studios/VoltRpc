@@ -145,12 +145,13 @@ namespace VoltRpc.Communication
 
             for (int i = 0; i < parameters.Count; i++)
             {
+                string parameterTypeName = method.ParametersTypeNames[i];
                 object parameter = parameters[i];
-                ITypeReadWriter writer = typeReaderWriterManager.GetType(parameter);
+                ITypeReadWriter writer = typeReaderWriterManager.GetType(parameterTypeName);
                 if (writer == null)
                     throw new NoTypeReaderWriterException();
 
-                binWriter.Write(method.ParametersTypeNames[i]);
+                binWriter.Write(parameterTypeName);
                 writer.Write(binWriter, parameter);
             }
         }

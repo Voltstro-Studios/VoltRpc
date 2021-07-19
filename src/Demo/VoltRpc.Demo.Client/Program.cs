@@ -52,7 +52,7 @@ namespace VoltRpc.Demo.Client
         private static void ParmTest(Communication.Client client)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", "Hello World!");
+            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", (string)null);
             sw.Stop();
             Console.WriteLine($"Parm test took: {sw.ElapsedMilliseconds}ms");
         }

@@ -16,13 +16,6 @@ namespace VoltRpc.Types
         {
             typeReadersWriters.Add(type, typeReadWriter);
         }
-        
-        public ITypeReadWriter GetType(object type)
-        {
-            string typeName = type.GetType().FullName;
-
-            return GetType(typeName);
-        }
 
         public ITypeReadWriter GetType(string type)
         {
