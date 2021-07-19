@@ -86,7 +86,7 @@ namespace VoltRpc.Communication
             if (!readStream.CanRead)
                 throw new ArgumentOutOfRangeException(nameof(readStream), "The read stream cannot be read to!");
             
-            if (!writeStream.CanRead)
+            if (!writeStream.CanWrite)
                 throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
 
             BufferedReader reader = new BufferedReader(readStream);

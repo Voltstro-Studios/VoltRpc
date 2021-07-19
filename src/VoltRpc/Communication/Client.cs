@@ -12,8 +12,8 @@ namespace VoltRpc.Communication
     /// </summary>
     public abstract class Client : IDisposable
     {
-        private BufferedReader binReader;
-        private BufferedWriter binWriter;
+        private BufferedReader reader;
+        private BufferedWriter writer;
 
         private readonly TypeReaderWriterManager typeReaderWriterManager;
         private readonly List<ServiceMethod> methods;
@@ -59,11 +59,26 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Initialize streams
         /// </summary>
-        /// <param name="stream">The main stream to communicate on</param>
-        protected void Initialize(Stream stream)
+        /// <param name="readStream">The read stream</param>
+        /// <param name="writeStream">The write stream</param>
+        /// <exception cref="ArgumentNullException">Thrown if either provide stream is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected stream</exception>
+        protected void Initialize(Stream readStream, Stream writeStream)
         {
-            binReader = new BufferedReader(stream);
-            binWriter = new BufferedWriter(stream);
+            if (readStream == null)
+                throw new ArgumentNullException(nameof(readStream));
+            
+            if (writeStream == null)
+                throw new ArgumentNullException(nameof(writeStream));
+
+            if (!readStream.CanRead)
+                throw new ArgumentOutOfRangeException(nameof(readStream), "The read stream cannot be read to!");
+            
+            if (!writeStream.CanWrite)
+                throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
+            
+            reader = new BufferedReader(readStream);
+            writer = new BufferedWriter(writeStream);
         }
 
         /// <summary>
@@ -92,16 +107,16 @@ namespace VoltRpc.Communication
                 throw new MissingMemberException($"The interface that {methodName} is from needs to be added first with AddService!");
 
             //Write the method name first
-            binWriter.WriteByte((byte) MessageType.InvokeMethod);
-            binWriter.WriteString(method.MethodName);
+            writer.WriteByte((byte) MessageType.InvokeMethod);
+            writer.WriteString(method.MethodName);
 
             //Now we need to write our parameters
             WriteParams(method, parameters);
 
-            binWriter.Flush();
+            writer.Flush();
 
             //Get response
-            MessageResponse response = (MessageResponse) binReader.ReadByte();
+            MessageResponse response = (MessageResponse) reader.ReadByte();
             switch (response)
             {
                 case MessageResponse.NoMethodFound:
@@ -110,12 +125,12 @@ namespace VoltRpc.Communication
                     throw new NoTypeReaderWriterException();
                 case MessageResponse.ExecuteTypeReadWriteFail:
                 {
-                    string reason = binReader.ReadString();
+                    string reason = reader.ReadString();
                     throw new Exception($"Type reader failed to read: {reason}");
                 }
                 case MessageResponse.ExecuteInvokeFailException:
                 {
-                    string reason = binReader.ReadString();
+                    string reason = reader.ReadString();
                     throw new Exception($"The method failed for some reason: {reason}");
                 }
             }
@@ -128,7 +143,7 @@ namespace VoltRpc.Communication
                 if(typeReader == null)
                     throw new NoTypeReaderWriterException();
 
-                return typeReader.Read(binReader);
+                return typeReader.Read(reader);
             }
 
             return null;
@@ -142,7 +157,7 @@ namespace VoltRpc.Communication
         /// <exception cref="NoTypeReaderWriterException"></exception>
         private void WriteParams(ServiceMethod method, IReadOnlyList<object> parameters)
         {
-            binWriter.WriteInt(parameters.Count);
+            writer.WriteInt(parameters.Count);
 
             for (int i = 0; i < parameters.Count; i++)
             {
@@ -152,8 +167,8 @@ namespace VoltRpc.Communication
                 if (writer == null)
                     throw new NoTypeReaderWriterException();
 
-                binWriter.WriteString(parameterTypeName);
-                writer.Write(binWriter, parameter);
+                this.writer.WriteString(parameterTypeName);
+                writer.Write(this.writer, parameter);
             }
         }
 
@@ -164,12 +179,12 @@ namespace VoltRpc.Communication
         {
             if (IsConnectedInternal)
             {
-                binWriter.WriteByte((byte)MessageType.Shutdown);
-                binWriter.Flush();
+                writer.WriteByte((byte)MessageType.Shutdown);
+                writer.Flush();
             }
             
-            binReader.Dispose();
-            binWriter.Dispose();
+            reader.Dispose();
+            writer.Dispose();
         }
     }
 }
