@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using VoltRpc.IO;
 
 namespace VoltRpc.Types
 {
@@ -8,24 +8,16 @@ namespace VoltRpc.Types
     public sealed class StringReadWriter : ITypeReadWriter
     {
         /// <inheritdoc/>
-        public void Write(BinaryWriter writer, object obj)
+        public void Write(BufferedWriter writer, object obj)
         {
             string stringObj = (string) obj;
-            if (stringObj == null)
-            {
-                writer.Write((byte)0);
-                return;
-            }
-            
-            writer.Write((byte)1);
-            writer.Write(stringObj);
+            writer.WriteString(stringObj);
         }
 
         /// <inheritdoc/>
-        public object Read(BinaryReader reader)
+        public object Read(BufferedReader reader)
         {
-            byte isNull = reader.ReadByte();
-            return isNull == 0 ? null : reader.ReadString();
+            return reader.ReadString();
         }
     }
 }

@@ -51,7 +51,7 @@ namespace VoltRpc.Communication.TCP
                 throw new TimeoutException($"Client failed to connect to {endPoint}!");
             }
 
-            Initialize(new BufferedStream(client.GetStream(), 8192));
+            Initialize(client.GetStream());
         }
 
         /// <inheritdoc/>

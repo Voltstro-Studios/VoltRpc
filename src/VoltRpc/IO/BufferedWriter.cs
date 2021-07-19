@@ -88,7 +88,25 @@ namespace VoltRpc.IO
             WriteByte((byte)value);
             WriteByte((byte)(value >> 8));
         }
-        
+
+        /// <summary>
+        ///     Writes a <see cref="uint"/>
+        /// </summary>
+        /// <param name="value"></param>
+        public void WriteUInt(uint value)
+        {
+            WriteByte((byte)value);
+            WriteByte((byte)(value >> 8));
+            WriteByte((byte)(value >> 16));
+            WriteByte((byte)(value >> 24));
+        }
+
+        /// <summary>
+        ///     Writes a <see cref="int"/>
+        /// </summary>
+        /// <param name="value"></param>
+        public void WriteInt(int value) => WriteUInt((uint) value);
+
         /// <summary>
         ///     Writes a <see cref="string"/>
         /// </summary>

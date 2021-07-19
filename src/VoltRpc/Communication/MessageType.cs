@@ -3,7 +3,7 @@
     /// <summary>
     ///     What type of message is this?
     /// </summary>
-    public enum MessageType
+    public enum MessageType : byte
     {
         /// <summary>
         ///     Invoke a message

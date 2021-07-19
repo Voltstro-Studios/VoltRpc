@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using VoltRpc.IO;
 
 namespace VoltRpc.Types
 {
@@ -13,13 +14,13 @@ namespace VoltRpc.Types
         /// <param name="writer"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public void Write(BinaryWriter writer, object obj);
+        public void Write(BufferedWriter writer, object obj);
         
         /// <summary>
         ///     Read the type
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        public object Read(BinaryReader reader);
+        public object Read(BufferedReader reader);
     }
 }

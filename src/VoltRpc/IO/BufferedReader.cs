@@ -86,6 +86,26 @@ namespace VoltRpc.IO
             value |= (ushort)(ReadByte() << 8);
             return value;
         }
+        
+        /// <summary>
+        ///     Reads a <see cref="uint"/>
+        /// </summary>
+        /// <returns></returns>
+        public uint ReadUInt()
+        {
+            uint value = 0;
+            value |= ReadByte();
+            value |= (uint)(ReadByte() << 8);
+            value |= (uint)(ReadByte() << 16);
+            value |= (uint)(ReadByte() << 24);
+            return value;
+        }
+
+        /// <summary>
+        ///     Reads a <see cref="int"/>
+        /// </summary>
+        /// <returns></returns>
+        public int ReadInt() => (int) ReadUInt();
 
         /// <summary>
         ///     Reads a <see cref="string"/>

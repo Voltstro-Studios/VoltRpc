@@ -54,7 +54,7 @@ namespace VoltRpc.Communication.TCP
         private Task HandleClient(TcpClient client)
         {
             //Start processing requests from the client
-            BufferedStream stream = new BufferedStream(client.GetStream(), 8192);
+            Stream stream = client.GetStream();
             ProcessRequest(stream, stream);
                 
             //Connection was closed

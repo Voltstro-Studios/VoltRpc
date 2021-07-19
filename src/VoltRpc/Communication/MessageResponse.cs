@@ -3,7 +3,7 @@
     /// <summary>
     ///     A response from a message
     /// </summary>
-    public enum MessageResponse
+    public enum MessageResponse : byte
     {
         /// <summary>
         ///     The method wasn't found

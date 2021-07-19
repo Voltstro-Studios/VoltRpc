@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using VoltRpc.IO;
 using VoltRpc.Logging;
 using VoltRpc.Proxy;
 using VoltRpc.Types;
@@ -88,19 +89,19 @@ namespace VoltRpc.Communication
             if (!writeStream.CanRead)
                 throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
 
-            BinaryReader binReader = new BinaryReader(readStream);
-            BinaryWriter binWriter = new BinaryWriter(writeStream);
+            BufferedReader reader = new BufferedReader(readStream);
+            BufferedWriter writer = new BufferedWriter(writeStream);
             
             bool doContinue = true;
             do
             {
                 try
                 {
-                    MessageType messageType = (MessageType) binReader.ReadInt32();
+                    MessageType messageType = (MessageType) reader.ReadByte();
                     switch (messageType)
                     {
                         case MessageType.InvokeMethod:
-                            ProcessInvokeMethod(binReader, binWriter);
+                            ProcessInvokeMethod(reader, writer);
                             break;
                         case MessageType.Shutdown:
                             doContinue = false;
@@ -114,11 +115,11 @@ namespace VoltRpc.Communication
                 }
             } while (doContinue);
             
-            binReader.Dispose();
-            binWriter.Dispose();
+            reader.Dispose();
+            writer.Dispose();
         }
 
-        private void ProcessInvokeMethod(BinaryReader reader, BinaryWriter writer)
+        private void ProcessInvokeMethod(BufferedReader reader, BufferedWriter writer)
         {
             lock (invokeLock)
             {
@@ -145,14 +146,14 @@ namespace VoltRpc.Communication
                 //No method was found
                 if (method == null)
                 {
-                    writer.Write((int)MessageResponse.NoMethodFound);
+                    writer.WriteByte((byte)MessageResponse.NoMethodFound);
                     writer.Flush();
                     Logger.Warn("Client sent an invalid method request.");
                     return;
                 }
             
                 //Now we read the parameters
-                int paramsCount = reader.ReadInt32();
+                int paramsCount = reader.ReadInt();
                 object[] parameters = new object[paramsCount];
                 for (int i = 0; i < paramsCount; i++)
                 {
@@ -161,7 +162,7 @@ namespace VoltRpc.Communication
                     ITypeReadWriter typeRead = readerWriterManager.GetType(type);
                     if (typeRead == null)
                     {
-                        writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
+                        writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
                         writer.Flush();
                         Logger.Error($"The client sent a method with a parameter type of '{type}' of which I don't have a type reader for some reason!");
                         return;
@@ -173,8 +174,8 @@ namespace VoltRpc.Communication
                     }
                     catch (Exception ex)
                     {
-                        writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
-                        writer.Write(ex.Message);
+                        writer.WriteByte((byte)MessageResponse.ExecuteTypeReadWriteFail);
+                        writer.WriteString(ex.Message);
                         writer.Flush();
                         Logger.Warn("Client sent invalid parameter data.");
                         return;
@@ -189,8 +190,8 @@ namespace VoltRpc.Communication
                 }
                 catch (Exception ex)
                 {
-                    writer.Write((int)MessageResponse.ExecuteInvokeFailException);
-                    writer.Write(ex.Message);
+                    writer.WriteByte((byte)MessageResponse.ExecuteInvokeFailException);
+                    writer.WriteString(ex.Message);
                     writer.Flush();
                     Logger.Error($"Method invoke failed! {ex}");
                     return;
@@ -202,13 +203,13 @@ namespace VoltRpc.Communication
                     ITypeReadWriter typeWriter = readerWriterManager.GetType(method.ReturnTypeName);
                     if (typeWriter == null)
                     {
-                        writer.Write((int)MessageResponse.ExecuteFailNoTypeReader);
+                        writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
                         writer.Flush();
                         Logger.Error($"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
                 
-                    writer.Write((int)MessageResponse.ExecutedSuccessful);
+                    writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
                     try
                     {
                         typeWriter.Write(writer, methodReturn);
@@ -217,15 +218,15 @@ namespace VoltRpc.Communication
                     }
                     catch (Exception ex)
                     {
-                        writer.Write((int)MessageResponse.ExecuteTypeReadWriteFail);
-                        writer.Write(ex.Message);
+                        writer.WriteByte((byte)MessageResponse.ExecuteTypeReadWriteFail);
+                        writer.WriteString(ex.Message);
                         writer.Flush();
                         Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
                         return;
                     }
                 }
 
-                writer.Write((int)MessageResponse.ExecutedSuccessful);
+                writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
                 writer.Flush();
             }
         }
