@@ -18,6 +18,8 @@ namespace VoltRpc.Communication
             new Dictionary<object, ServiceMethod[]>();
         private readonly TypeReaderWriterManager readerWriterManager;
         private readonly object invokeLock;
+
+        private readonly int bufferSize;
         
         /// <summary>
         ///     Logger
@@ -27,13 +29,21 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Creates a new <see cref="Host"/> instance
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> to use.</param>
-        protected Host(ILogger logger = null)
+        /// <param name="logger">The <see cref="ILogger"/> to use</param>
+        /// <param name="bufferSize">The initial size of the buffers</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        protected Host(ILogger logger = null, int bufferSize = 8000)
         {
+            if (bufferSize < 16)
+                throw new ArgumentOutOfRangeException(nameof(bufferSize),
+                    "The buffer needs to be larger then 15 bytes!");
+            
             Logger = logger ?? new NullLogger();
 
             readerWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
+            
+            this.bufferSize = bufferSize;
         }
         
         /// <summary>
@@ -89,8 +99,8 @@ namespace VoltRpc.Communication
             if (!writeStream.CanWrite)
                 throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
 
-            BufferedReader reader = new BufferedReader(readStream);
-            BufferedWriter writer = new BufferedWriter(writeStream);
+            BufferedReader reader = new BufferedReader(readStream, bufferSize);
+            BufferedWriter writer = new BufferedWriter(writeStream, bufferSize);
             
             bool doContinue = true;
             do

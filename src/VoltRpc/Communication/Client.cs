@@ -18,13 +18,22 @@ namespace VoltRpc.Communication
         private readonly TypeReaderWriterManager typeReaderWriterManager;
         private readonly List<ServiceMethod> methods;
 
+        private readonly int bufferSize;
+
         /// <summary>
         ///     Creates a new <see cref="Client"/> instance
         /// </summary>
-        protected Client()
+        /// <param name="bufferSize">The initial size of the buffers</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        protected Client(int bufferSize = 8000)
         {
+            if (bufferSize < 16)
+                throw new ArgumentOutOfRangeException(nameof(bufferSize),
+                    "The buffer needs to be larger then 15 bytes!");
+            
             typeReaderWriterManager = new TypeReaderWriterManager();
             methods = new List<ServiceMethod>();
+            this.bufferSize = bufferSize;
         }
 
         /// <summary>
@@ -77,8 +86,8 @@ namespace VoltRpc.Communication
             if (!writeStream.CanWrite)
                 throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
             
-            reader = new BufferedReader(readStream);
-            writer = new BufferedWriter(writeStream);
+            reader = new BufferedReader(readStream, bufferSize);
+            writer = new BufferedWriter(writeStream, bufferSize);
         }
 
         /// <summary>

@@ -24,7 +24,10 @@ namespace VoltRpc.Communication.TCP
         /// <param name="connectionTimeout">The timeout for connection</param>
         /// <param name="receiveTimeout">The receive timeout</param>
         /// <param name="sendTimeout">The send timeout</param>
-        public TCPClient(IPEndPoint endPoint, int connectionTimeout = 2000, int receiveTimeout = 600000, int sendTimeout = 600000)
+        /// <param name="bufferSize">The initial size of the buffers</param>
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        public TCPClient(IPEndPoint endPoint, int connectionTimeout = 2000, int receiveTimeout = 600000, int sendTimeout = 600000, int bufferSize = 8000)
+        : base(bufferSize)
         {
             client = new TcpClient
             {

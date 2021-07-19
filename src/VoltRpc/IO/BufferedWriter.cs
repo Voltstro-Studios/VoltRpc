@@ -39,17 +39,18 @@ namespace VoltRpc.IO
         
         private byte[] buffer;
         private int position;
-        
+
         /// <summary>
         ///     Creates a new <see cref="BufferedWriter"/> instance
         /// </summary>
         /// <param name="output"></param>
-        internal BufferedWriter(Stream output)
+        /// <param name="bufferSize"></param>
+        internal BufferedWriter(Stream output, int bufferSize = 8000)
         {
             OutputStream = output;
             encoding = new UTF8Encoding(false, true);
             stringBuffer = new byte[MaxStringLength];
-            buffer = new byte[8000];
+            buffer = new byte[bufferSize];
         }
 
         /// <summary>

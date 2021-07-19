@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -22,10 +23,12 @@ namespace VoltRpc.Communication.TCP
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on</param>
         /// <param name="logger">The <see cref="ILogger"/> to use. Will default to <see cref="NullLogger"/> if null</param>
+        /// <param name="bufferSize">The initial size of the buffers</param>
         /// <param name="receiveTimeout">How long until timeout from receiving</param>
         /// <param name="sendTimeout">How long until timeout from sending</param>
-        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = 600000, int sendTimeout = 600000)
-        : base(logger)
+        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int bufferSize = 8000, int receiveTimeout = 600000, int sendTimeout = 600000)
+        : base(logger, bufferSize)
         {
             listener = new TcpListener(endPoint);
             this.receiveTimeout = receiveTimeout;

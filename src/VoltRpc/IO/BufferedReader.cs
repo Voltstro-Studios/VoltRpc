@@ -37,11 +37,16 @@ namespace VoltRpc.IO
         private int position;
         private int readLength;
         
-        internal BufferedReader(Stream incoming)
+        /// <summary>
+        ///     Creates a new <see cref="BufferedReader"/> instance
+        /// </summary>
+        /// <param name="incoming"></param>
+        /// <param name="bufferSize"></param>
+        internal BufferedReader(Stream incoming, int bufferSize = 8000)
         {
             IncomingStream = incoming;
             encoding = new UTF8Encoding(false, true);
-            buffer = new byte[8000];
+            buffer = new byte[bufferSize];
         }
 
         /// <summary>
