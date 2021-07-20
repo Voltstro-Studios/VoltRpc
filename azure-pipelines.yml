@@ -1,0 +1,15 @@
+trigger:
+- master
+
+variables:
+  buildConfiguration: 'Release'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: dotnet restore -v minimal src/VoltRpc.sln
+  displayName: Restore Packages
+
+- script: dotnet build src/VoltRpc.sln --no-restore -v minimal -c $(buildConfiguration)
+  displayName: Build Project
