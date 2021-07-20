@@ -1,11 +1,11 @@
 ﻿using VoltRpc.IO;
 
-namespace VoltRpc.Types
+namespace VoltRpc.Types.TypeReaderWriters
 {
     /// <summary>
     ///     <see cref="ITypeReadWriter"/> for <see cref="string"/>
     /// </summary>
-    public sealed class StringReadWriter : ITypeReadWriter
+    internal sealed class StringReadWriter : ITypeReadWriter
     {
         /// <inheritdoc/>
         public void Write(BufferedWriter writer, object obj)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Types
 {
@@ -16,6 +17,7 @@ namespace VoltRpc.Types
             typeReadersWriters = new Dictionary<string, ITypeReadWriter>();
             
             AddType<string>(new StringReadWriter());
+            AddType<string[]>(new StringArrayReadWriter());
         }
         
         private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;

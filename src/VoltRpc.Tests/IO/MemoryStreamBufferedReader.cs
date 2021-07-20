@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using VoltRpc.IO;
 
-namespace VoltRpc.Tests.IOTests
+namespace VoltRpc.Tests.IO
 {
     public class MemoryStreamBufferedReader : BufferedReader
     {
