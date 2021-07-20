@@ -4,7 +4,7 @@ using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Tests.TypesTests.ReaderWriters
 {
-    public class TypeReaderWritersTest
+    public class StringTypeTest
     {
         [Test]
         public void StringTest()
