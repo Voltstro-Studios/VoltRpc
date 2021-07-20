@@ -1,6 +1,4 @@
-﻿using System.IO;
-using NUnit.Framework;
-using VoltRpc.IO;
+﻿using NUnit.Framework;
 using VoltRpc.Tests.IO;
 
 namespace VoltRpc.Tests.IOTests
@@ -11,15 +9,13 @@ namespace VoltRpc.Tests.IOTests
         public void ByteTest()
         {
             const byte byteValue = 2;
-            
-            using MemoryStream ms = new MemoryStream(1000);
-            using BufferedWriter writer = new MemoryStreamBufferedWriter(ms);
-            using BufferedReader reader = new MemoryStreamBufferedReader(ms);
-            
-            writer.WriteByte(byteValue);
-            writer.Flush();
 
-            byte value = reader.ReadByte();
+            using DualBuffers buffers = new DualBuffers();
+            
+            buffers.BufferedWriter.WriteByte(byteValue);
+            buffers.BufferedWriter.Flush();
+
+            byte value = buffers.BufferedReader.ReadByte();
             Assert.AreEqual(byteValue, value);
         }
         
@@ -29,30 +25,28 @@ namespace VoltRpc.Tests.IOTests
             const byte byteTest1 = 2;
             const byte byteTest2 = 18;
             const byte byteTest3 = 14;
-            
-            using MemoryStream ms = new MemoryStream(1000);
-            using BufferedWriter writer = new MemoryStreamBufferedWriter(ms);
-            using BufferedReader reader = new MemoryStreamBufferedReader(ms);
+
+            using DualBuffers buffers = new DualBuffers();
             
             //Value 1
-            writer.WriteByte(byteTest1);
-            writer.Flush();
+            buffers.BufferedWriter.WriteByte(byteTest1);
+            buffers.BufferedWriter.Flush();
 
-            byte value1 = reader.ReadByte();
+            byte value1 = buffers.BufferedReader.ReadByte();
             Assert.AreEqual(byteTest1, value1);
             
             //Value 2
-            writer.WriteByte(byteTest2);
-            writer.Flush();
+            buffers.BufferedWriter.WriteByte(byteTest2);
+            buffers.BufferedWriter.Flush();
 
-            byte value2 = reader.ReadByte();
+            byte value2 = buffers.BufferedReader.ReadByte();
             Assert.AreEqual(byteTest2, value2);
             
             //Value 3
-            writer.WriteByte(byteTest3);
-            writer.Flush();
+            buffers.BufferedWriter.WriteByte(byteTest3);
+            buffers.BufferedWriter.Flush();
 
-            byte value3 = reader.ReadByte();
+            byte value3 = buffers.BufferedReader.ReadByte();
             Assert.AreEqual(byteTest3, value3);
         }
 
@@ -60,15 +54,13 @@ namespace VoltRpc.Tests.IOTests
         public void StringTest()
         {
             const string message = "Hello World!";
-            
-            using MemoryStream ms = new MemoryStream(1000);
-            using BufferedWriter writer = new MemoryStreamBufferedWriter(ms);
-            using BufferedReader reader = new MemoryStreamBufferedReader(ms);
-            
-            writer.WriteString(message);
-            writer.Flush();
 
-            string value = reader.ReadString();
+            using DualBuffers buffers = new DualBuffers();
+            
+            buffers.BufferedWriter.WriteString(message);
+            buffers.BufferedWriter.Flush();
+
+            string value = buffers.BufferedReader.ReadString();
             Assert.AreEqual(message, value);
         }
         
@@ -77,23 +69,21 @@ namespace VoltRpc.Tests.IOTests
         {
             const string message = "Hello World!";
             const string message2 = "Fuck you Rowan!";
-            
-            using MemoryStream ms = new MemoryStream(1000);
-            using BufferedWriter writer = new MemoryStreamBufferedWriter(ms);
-            using BufferedReader reader = new MemoryStreamBufferedReader(ms);
+
+            using DualBuffers buffers = new DualBuffers();
             
             //Message 1
-            writer.WriteString(message);
-            writer.Flush();
+            buffers.BufferedWriter.WriteString(message);
+            buffers.BufferedWriter.Flush();
 
-            string value = reader.ReadString();
+            string value = buffers.BufferedReader.ReadString();
             Assert.AreEqual(message, value);
             
             //Message 2
-            writer.WriteString(message2);
-            writer.Flush();
+            buffers.BufferedWriter.WriteString(message2);
+            buffers.BufferedWriter.Flush();
 
-            string value2 = reader.ReadString();
+            string value2 = buffers.BufferedReader.ReadString();
             Assert.AreEqual(message2, value2);
         }
         
@@ -102,19 +92,17 @@ namespace VoltRpc.Tests.IOTests
         {
             const string message = "Hello World!";
             const string message2 = "Fuck you Rowan!";
-            
-            using MemoryStream ms = new MemoryStream(1000);
-            using BufferedWriter writer = new MemoryStreamBufferedWriter(ms);
-            using BufferedReader reader = new MemoryStreamBufferedReader(ms);
-            
-            writer.WriteString(message);
-            writer.WriteString(message2);
-            writer.Flush();
 
-            string value = reader.ReadString();
+            using DualBuffers buffers = new DualBuffers();
+            
+            buffers.BufferedWriter.WriteString(message);
+            buffers.BufferedWriter.WriteString(message2);
+            buffers.BufferedWriter.Flush();
+
+            string value = buffers.BufferedReader.ReadString();
             Assert.AreEqual(message, value);
             
-            string value2 = reader.ReadString();
+            string value2 = buffers.BufferedReader.ReadString();
             Assert.AreEqual(message2, value2);
         }
         
@@ -124,18 +112,16 @@ namespace VoltRpc.Tests.IOTests
             const string message = "Hello World!";
             const byte byteTest = 2;
 
-            using MemoryStream ms = new MemoryStream(1000);
-            using BufferedWriter writer = new MemoryStreamBufferedWriter(ms);
-            using BufferedReader reader = new MemoryStreamBufferedReader(ms);
+            using DualBuffers buffers = new DualBuffers();
             
-            writer.WriteString(message);
-            writer.WriteByte(byteTest);
-            writer.Flush();
+            buffers.BufferedWriter.WriteString(message);
+            buffers.BufferedWriter.WriteByte(byteTest);
+            buffers.BufferedWriter.Flush();
 
-            string value = reader.ReadString();
+            string value = buffers.BufferedReader.ReadString();
             Assert.AreEqual(message, value);
 
-            byte byteValue = reader.ReadByte();
+            byte byteValue = buffers.BufferedReader.ReadByte();
             Assert.AreEqual(byteTest, byteValue);
         }
     }
