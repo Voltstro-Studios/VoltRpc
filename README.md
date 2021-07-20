@@ -2,6 +2,10 @@
 
 # VoltRpc
 
+[![License](https://img.shields.io/github/license/Voltstro-Studios/VoltRpc)](/LICENSE.md)
+[![Build Status](https://img.shields.io/azure-devops/build/Voltstro-Studios/63163ef8-da1d-42b6-b8b9-689420a730e5/9?logo=azure-pipelines)](https://dev.azure.com/Voltstro-Studios/VoltRpc/_build/latest?definitionId=9&branchName=master)
+[![Discord](https://img.shields.io/badge/Discord-Voltstro-7289da.svg?logo=discord)](https://discord.voltstro.dev)
+
 VoltRpc - Library designed for high performance RPC communication.
 
 ## Features
