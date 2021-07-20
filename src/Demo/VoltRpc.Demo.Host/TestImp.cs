@@ -25,5 +25,14 @@ namespace VoltRpc.Demo.Host
         {
             return "Hello Back!";
         }
+
+        public void ArrayTest(string[] array)
+        {
+            Console.WriteLine("Got array");
+            foreach (string s in array)
+            {
+                Console.WriteLine(s);
+            }
+        }
     }
 }

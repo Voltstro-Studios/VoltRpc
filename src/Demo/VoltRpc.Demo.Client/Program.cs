@@ -34,6 +34,13 @@ namespace VoltRpc.Demo.Client
             
             Console.WriteLine("Return test #2");
             ReturnTest(client);
+            
+            //Array test
+            Console.WriteLine("Array test #1");
+            ArrayTest(client);
+            
+            Console.WriteLine("Array test #2");
+            ArrayTest(client);
 
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
@@ -63,6 +70,16 @@ namespace VoltRpc.Demo.Client
             Console.WriteLine($"Got response: {(string)client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ReturnTest")}");
             sw.Stop();
             Console.WriteLine($"Return test took: {sw.ElapsedMilliseconds}ms");
+        }
+
+        private static void ArrayTest(Communication.Client client)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            object[] parms = new[] {new string[] {"Hello Word!", "Bruh!"} };
+            
+            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ArrayTest", parms);
+            sw.Stop();
+            Console.WriteLine($"Array test took: {sw.ElapsedMilliseconds}ms");
         }
     }
 }
