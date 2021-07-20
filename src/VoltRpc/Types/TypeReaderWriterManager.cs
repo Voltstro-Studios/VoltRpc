@@ -16,8 +16,34 @@ namespace VoltRpc.Types
         {
             typeReadersWriters = new Dictionary<string, ITypeReadWriter>();
             
+            AddType<bool>(new BoolReadWriter());
+            AddType<bool[]>(new BoolArrayReadWriter());
+            AddType<byte>(new ByteReadWriter());
+            AddType<byte[]>(new ByteArrayReadWriter());
+            AddType<char>(new CharReadWriter());
+            AddType<char[]>(new CharArrayReadWriter());
+            AddType<decimal>(new DecimalReadWriter());
+            AddType<decimal[]>(new DecimalArrayReadWriter());
+            AddType<double>(new DoubleReadWriter());
+            AddType<double[]>(new DoubleArrayReadWriter());
+            AddType<float>(new FloatReadWriter());
+            AddType<float[]>(new FloatArrayReadWriter());
+            AddType<int>(new IntReadWriter());
+            AddType<int[]>(new IntArrayReadWriter());
+            AddType<long>(new LongReadWriter());
+            AddType<long[]>(new LongArrayReadWriter());
+            AddType<sbyte>(new SByteReadWriter());
+            AddType<sbyte[]>(new SByteArrayReadWriter());
+            AddType<short>(new ShortReadWriter());
+            AddType<short[]>(new ShortArrayReadWriter());
             AddType<string>(new StringReadWriter());
             AddType<string[]>(new StringArrayReadWriter());
+            AddType<uint>(new UIntReadWriter());
+            AddType<uint[]>(new UIntArrayReadWriter());
+            AddType<ulong>(new ULongReadWriter());
+            AddType<ulong[]>(new ULongArrayReadWriter());
+            AddType<ushort>(new UShortReadWriter());
+            AddType<ushort[]>(new UShortArrayReadWriter());
         }
         
         private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;
