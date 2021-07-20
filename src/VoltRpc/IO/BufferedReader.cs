@@ -79,7 +79,7 @@ namespace VoltRpc.IO
                 //Attempt to read again
                 ReadStream();
                 if(position + count > readLength)
-                    throw new EndOfStreamException("ReadBytesSegment can't read " + count + " bytes because it would read past the end of the stream.");
+                    throw new EndOfStreamException("Cannot read beyond stream!");
             }
 
             //Return the segment
@@ -87,7 +87,19 @@ namespace VoltRpc.IO
             position += count;
             return result;
         }
-        
+
+        /// <summary>
+        ///     Reads a <see cref="sbyte"/>
+        /// </summary>
+        /// <returns></returns>
+        public sbyte ReadSByte() => (sbyte) ReadByte();
+
+        /// <summary>
+        ///     Reads a <see cref="bool"/>
+        /// </summary>
+        /// <returns></returns>
+        public bool ReadBool() => ReadByte() != 0;
+
         /// <summary>
         ///     Reads a <see cref="ushort"/>
         /// </summary>
@@ -99,7 +111,19 @@ namespace VoltRpc.IO
             value |= (ushort)(ReadByte() << 8);
             return value;
         }
-        
+
+        /// <summary>
+        ///     Reads a <see cref="short"/>
+        /// </summary>
+        /// <returns></returns>
+        public short ReadShort() => (short) ReadUShort();
+
+        /// <summary>
+        ///     Reads a <see cref="char"/>
+        /// </summary>
+        /// <returns></returns>
+        public char ReadChar() => (char)ReadUShort();
+
         /// <summary>
         ///     Reads a <see cref="uint"/>
         /// </summary>
@@ -119,6 +143,70 @@ namespace VoltRpc.IO
         /// </summary>
         /// <returns></returns>
         public int ReadInt() => (int) ReadUInt();
+        
+        /// <summary>
+        ///     Reads a <see cref="ulong"/>
+        /// </summary>
+        /// <returns></returns>
+        public ulong ReadULong()
+        {
+            ulong value = 0;
+            value |= ReadByte();
+            value |= ((ulong)ReadByte()) << 8;
+            value |= ((ulong)ReadByte()) << 16;
+            value |= ((ulong)ReadByte()) << 24;
+            value |= ((ulong)ReadByte()) << 32;
+            value |= ((ulong)ReadByte()) << 40;
+            value |= ((ulong)ReadByte()) << 48;
+            value |= ((ulong)ReadByte()) << 56;
+            return value;
+        }
+
+        /// <summary>
+        ///     Reads a <see cref="long"/>
+        /// </summary>
+        /// <returns></returns>
+        public long ReadLong() => (long) ReadULong();
+
+        /// <summary>
+        ///     Reads a <see cref="float"/>
+        /// </summary>
+        /// <returns></returns>
+        public float ReadFloat()
+        {
+            UIntFloat converter = new UIntFloat
+            {
+                intValue = ReadUInt()
+            };
+            return converter.floatValue;
+        }
+
+        /// <summary>
+        ///     Reads a <see cref="double"/>
+        /// </summary>
+        /// <returns></returns>
+        public double ReadDouble()
+        {
+            UIntDouble converter = new UIntDouble
+            {
+                longValue = ReadULong()
+            };
+            return converter.doubleValue;
+        }
+
+        /// <summary>
+        ///     Reads a <see cref="decimal"/>
+        /// </summary>
+        /// <returns></returns>
+        public decimal ReadDecimal()
+        {
+            UIntDecimal converter = new UIntDecimal
+            {
+                longValue1 = ReadULong(), 
+                longValue2 = ReadULong()
+            };
+            return converter.decimalValue;
+        }
 
         /// <summary>
         ///     Reads a <see cref="string"/>
@@ -138,9 +226,7 @@ namespace VoltRpc.IO
 
             //Make sure it's within limits to avoid allocation attacks etc.
             if (realSize >= BufferedWriter.MaxStringLength)
-            {
-                throw new EndOfStreamException("ReadString too long: " + realSize + ". Limit is: " + BufferedWriter.MaxStringLength);
-            }
+                throw new EndOfStreamException($"Read string was too long! Max size is {BufferedWriter.MaxStringLength}.");
 
             ArraySegment<byte> data = ReadBytesSegment(realSize);
 
