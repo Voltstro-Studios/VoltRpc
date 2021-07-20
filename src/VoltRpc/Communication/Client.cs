@@ -14,11 +14,17 @@ namespace VoltRpc.Communication
     {
         private BufferedReader reader;
         private BufferedWriter writer;
-
-        private readonly TypeReaderWriterManager typeReaderWriterManager;
+        
         private readonly List<ServiceMethod> methods;
-
         private readonly int bufferSize;
+
+        /// <summary>
+        ///     The <see cref="Types.TypeReaderWriterManager"/> for <see cref="Client"/>
+        /// </summary>
+        public TypeReaderWriterManager TypeReaderWriterManager
+        {
+            get;
+        }
 
         /// <summary>
         ///     Creates a new <see cref="Client"/> instance
@@ -31,7 +37,7 @@ namespace VoltRpc.Communication
                 throw new ArgumentOutOfRangeException(nameof(bufferSize),
                     "The buffer needs to be larger then 15 bytes!");
             
-            typeReaderWriterManager = new TypeReaderWriterManager();
+            TypeReaderWriterManager = new TypeReaderWriterManager();
             methods = new List<ServiceMethod>();
             this.bufferSize = bufferSize;
         }
@@ -148,7 +154,7 @@ namespace VoltRpc.Communication
             if (!method.IsReturnVoid)
             {
                 //Get the type reader
-                ITypeReadWriter typeReader = typeReaderWriterManager.GetType(method.ReturnTypeName);
+                ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(method.ReturnTypeName);
                 if(typeReader == null)
                     throw new NoTypeReaderWriterException();
 
@@ -172,7 +178,7 @@ namespace VoltRpc.Communication
             {
                 string parameterTypeName = method.ParametersTypeNames[i];
                 object parameter = parameters[i];
-                ITypeReadWriter writer = typeReaderWriterManager.GetType(parameterTypeName);
+                ITypeReadWriter writer = TypeReaderWriterManager.GetType(parameterTypeName);
                 if (writer == null)
                     throw new NoTypeReaderWriterException();
 

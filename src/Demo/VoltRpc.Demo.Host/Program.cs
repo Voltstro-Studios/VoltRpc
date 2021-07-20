@@ -11,7 +11,7 @@ namespace VoltRpc.Demo.Host
         public static void Main(string[] args)
         {
             TestImp testImp = new TestImp();
-            
+
             TCPHost host = new TCPHost(new IPEndPoint(IPAddress.Loopback, 7678), new ConsoleLogger(LogVerbosity.Debug));
             host.AddService<ITest>(testImp);
             host.StartListening();

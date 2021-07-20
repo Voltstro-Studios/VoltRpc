@@ -13,7 +13,7 @@ namespace VoltRpc.Demo.Client
             TCPClient client = new TCPClient(new IPEndPoint(IPAddress.Loopback, 7678));
             client.AddService<ITest>();
             client.Connect();
-            
+
             //Basic test
             Console.WriteLine("Basic test #1");
             BasicTest(client);
@@ -52,7 +52,7 @@ namespace VoltRpc.Demo.Client
         private static void ParmTest(Communication.Client client)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", (string)null);
+            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", "Hello World!");
             sw.Stop();
             Console.WriteLine($"Parm test took: {sw.ElapsedMilliseconds}ms");
         }

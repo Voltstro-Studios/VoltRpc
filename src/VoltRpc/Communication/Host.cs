@@ -16,7 +16,6 @@ namespace VoltRpc.Communication
     {
         private readonly Dictionary<object, ServiceMethod[]> methods =
             new Dictionary<object, ServiceMethod[]>();
-        private readonly TypeReaderWriterManager readerWriterManager;
         private readonly object invokeLock;
 
         private readonly int bufferSize;
@@ -25,6 +24,14 @@ namespace VoltRpc.Communication
         ///     Logger
         /// </summary>
         protected readonly ILogger Logger;
+
+        /// <summary>
+        ///     The <see cref="Types.TypeReaderWriterManager"/> for <see cref="Host"/>
+        /// </summary>
+        public TypeReaderWriterManager ReaderWriterManager
+        {
+            get;
+        }
 
         /// <summary>
         ///     Creates a new <see cref="Host"/> instance
@@ -40,7 +47,7 @@ namespace VoltRpc.Communication
             
             Logger = logger ?? new NullLogger();
 
-            readerWriterManager = new TypeReaderWriterManager();
+            ReaderWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
             
             this.bufferSize = bufferSize;
@@ -169,7 +176,7 @@ namespace VoltRpc.Communication
                 {
                     //Read the type
                     string type = reader.ReadString();
-                    ITypeReadWriter typeRead = readerWriterManager.GetType(type);
+                    ITypeReadWriter typeRead = ReaderWriterManager.GetType(type);
                     if (typeRead == null)
                     {
                         writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
@@ -210,7 +217,7 @@ namespace VoltRpc.Communication
                 //If the method doesn't return void, write it back
                 if (!method.IsReturnVoid)
                 {
-                    ITypeReadWriter typeWriter = readerWriterManager.GetType(method.ReturnTypeName);
+                    ITypeReadWriter typeWriter = ReaderWriterManager.GetType(method.ReturnTypeName);
                     if (typeWriter == null)
                     {
                         writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
