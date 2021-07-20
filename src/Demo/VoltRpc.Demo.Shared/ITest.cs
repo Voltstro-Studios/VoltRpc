@@ -4,7 +4,7 @@
     {
         public void BasicTest();
 
-        public void ParmTest(string message);
+        public void ParmTest(string message, float num);
 
         public string ReturnTest();
         

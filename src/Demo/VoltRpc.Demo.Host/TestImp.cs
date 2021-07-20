@@ -10,7 +10,7 @@ namespace VoltRpc.Demo.Host
             Console.WriteLine("Basic Test!");
         }
 
-        public void ParmTest(string message)
+        public void ParmTest(string message, float num)
         {
             if (message == null)
             {
@@ -18,6 +18,7 @@ namespace VoltRpc.Demo.Host
                 return;
             }
             
+            Console.WriteLine(num);
             Console.WriteLine(message);
         }
 
