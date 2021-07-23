@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void DecimalTest()
         {
             const decimal test = 3;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new DecimalReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            decimal value = (decimal)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new DecimalReadWriter(), test);
         }
 
         [Test]
         public void DecimalArrayTest()
         {
             decimal[] messages = new decimal[] {3, 8};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new DecimalArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            decimal[] values = (decimal[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new DecimalArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void DecimalNullArrayTest()
+        {
+            decimal[] messages = null;
+            Utils.TestTypeReaderWriter(new DecimalArrayReadWriter(), messages);
         }
     }
 }

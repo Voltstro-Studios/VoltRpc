@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void BoolTest()
         {
             const bool test = true;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new BoolReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            bool value = (bool)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new BoolReadWriter(), test);
         }
 
         [Test]
         public void BoolArrayTest()
         {
             bool[] messages = new[] {true, false};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new BoolArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            bool[] values = (bool[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new BoolArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void BoolNullArrayTest()
+        {
+            bool[] messages = null;
+            Utils.TestTypeReaderWriter(new BoolArrayReadWriter(), messages);
         }
     }
 }

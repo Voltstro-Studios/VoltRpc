@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void DoubleTest()
         {
             const double test = 123.48;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new DoubleReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            double value = (double)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new DoubleReadWriter(), test);
         }
 
         [Test]
         public void DoubleArrayTest()
         {
             double[] messages = new [] {128.32, 700.4};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new DoubleArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            double[] values = (double[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new DoubleArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void DoubleNullArrayTest()
+        {
+            double[] messages = null;
+            Utils.TestTypeReaderWriter(new DoubleArrayReadWriter(), messages);
         }
     }
 }

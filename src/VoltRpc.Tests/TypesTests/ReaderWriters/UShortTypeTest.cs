@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void UShortTest()
         {
             const ushort test = ushort.MaxValue;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new UShortReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            ushort value = (ushort)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new UShortReadWriter(), test);
         }
 
         [Test]
         public void UShortArrayTest()
         {
             ushort[] messages = new ushort[] {ushort.MaxValue, 800};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new UShortArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            ushort[] values = (ushort[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new UShortArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void UShortNullArrayTest()
+        {
+            ushort[] messages = null;
+            Utils.TestTypeReaderWriter(new UShortArrayReadWriter(), messages);
         }
     }
 }

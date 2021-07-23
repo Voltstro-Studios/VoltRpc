@@ -9,31 +9,29 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         [Test]
         public void StringTest()
         {
-            const string message = "Hello World!";
-
-            using DualBuffers buffers = new DualBuffers();
-
-            StringReadWriter readWriter = new StringReadWriter();
-            readWriter.Write(buffers.BufferedWriter, message);
-            buffers.BufferedWriter.Flush();
-
-            string value = (string)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(message, value);
+            const string test = "Hello World!";
+            Utils.TestTypeReaderWriter(new StringReadWriter(), test);
+        }
+        
+        [Test]
+        public void StringNullTest()
+        {
+            const string test = null;
+            Utils.TestTypeReaderWriter(new StringReadWriter(), test);
         }
 
         [Test]
         public void StringArrayTest()
         {
             string[] messages = new[] {"Hello World!", "Rowan Suxs"};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            StringArrayReadWriter readWriter = new StringArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            string[] values = (string[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new StringArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void StringNullArrayTest()
+        {
+            string[] messages = null;
+            Utils.TestTypeReaderWriter(new StringArrayReadWriter(), messages);
         }
     }
 }

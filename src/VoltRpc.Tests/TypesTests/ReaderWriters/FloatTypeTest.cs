@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void FloatTest()
         {
             const float test = 80.93f;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new FloatReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            float value = (float)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new FloatReadWriter(), test);
         }
 
         [Test]
         public void FloatArrayTest()
         {
             float[] messages = new [] {80.93f, 4.289f};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new FloatArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            float[] values = (float[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new FloatArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void FloatNullArrayTest()
+        {
+            float[] messages = null;
+            Utils.TestTypeReaderWriter(new FloatArrayReadWriter(), messages);
         }
     }
 }

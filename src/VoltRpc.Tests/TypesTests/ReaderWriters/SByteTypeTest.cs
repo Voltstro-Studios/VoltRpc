@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void SByteTest()
         {
             const sbyte test = sbyte.MaxValue;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new SByteReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            sbyte value = (sbyte)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new SByteReadWriter(), test);
         }
 
         [Test]
         public void SByteArrayTest()
         {
             sbyte[] messages = new sbyte[] {sbyte.MaxValue, 13};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new SByteArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            sbyte[] values = (sbyte[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new SByteArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void SByteNullArrayTest()
+        {
+            sbyte[] messages = null;
+            Utils.TestTypeReaderWriter(new SByteArrayReadWriter(), messages);
         }
     }
 }

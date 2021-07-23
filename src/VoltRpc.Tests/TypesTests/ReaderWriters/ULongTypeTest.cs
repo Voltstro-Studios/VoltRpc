@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void ULongTest()
         {
             const ulong test = ulong.MaxValue;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new ULongReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            ulong value = (ulong)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new ULongReadWriter(), test);
         }
 
         [Test]
         public void ULongArrayTest()
         {
             ulong[] messages = new ulong[] {ulong.MaxValue, 800};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new ULongArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            ulong[] values = (ulong[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new ULongArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void ULongNullArrayTest()
+        {
+            ulong[] messages = null;
+            Utils.TestTypeReaderWriter(new ULongArrayReadWriter(), messages);
         }
     }
 }

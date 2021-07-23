@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void ByteTest()
         {
             const byte test = 25;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new ByteReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            byte value = (byte)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new ByteReadWriter(), test);
         }
 
         [Test]
         public void ByteArrayTest()
         {
             byte[] messages = new byte[] {13, 40};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new ByteArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            byte[] values = (byte[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new ByteArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void ByteNullArrayTest()
+        {
+            byte[] messages = null;
+            Utils.TestTypeReaderWriter(new ByteArrayReadWriter(), messages);
         }
     }
 }

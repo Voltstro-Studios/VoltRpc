@@ -11,30 +11,21 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         public void LongTest()
         {
             const long test = long.MaxValue;
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new LongReadWriter();
-            readWriter.Write(buffers.BufferedWriter, test);
-            buffers.BufferedWriter.Flush();
-
-            long value = (long)readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(test, value);
+            Utils.TestTypeReaderWriter(new LongReadWriter(), test);
         }
 
         [Test]
         public void LongArrayTest()
         {
             long[] messages = new [] {long.MaxValue, 80};
-
-            using DualBuffers buffers = new DualBuffers();
-
-            ITypeReadWriter readWriter = new LongArrayReadWriter();
-            readWriter.Write(buffers.BufferedWriter, messages);
-            buffers.BufferedWriter.Flush();
-
-            long[] values = (long[])readWriter.Read(buffers.BufferedReader);
-            Assert.AreEqual(messages, values);
+            Utils.TestTypeReaderWriter(new LongArrayReadWriter(), messages);
+        }
+        
+        [Test]
+        public void LongNullArrayTest()
+        {
+            long[] messages = null;
+            Utils.TestTypeReaderWriter(new LongArrayReadWriter(), messages);
         }
     }
 }
