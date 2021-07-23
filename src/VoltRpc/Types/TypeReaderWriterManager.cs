@@ -50,10 +50,12 @@ namespace VoltRpc.Types
         /// <summary>
         ///     Creates a new <see cref="TypeReaderWriterManager"/> instance
         /// </summary>
-        internal TypeReaderWriterManager()
+        internal TypeReaderWriterManager(bool addDefaults = true)
         {
             typeReadersWriters = new Dictionary<string, ITypeReadWriter>();
 
+            if(!addDefaults)
+                return;
             foreach (KeyValuePair<Type,ITypeReadWriter> typeReaderWriter in DefaultTypeReaderWriters)
                 AddType(typeReaderWriter.Key, typeReaderWriter.Value);
         }
