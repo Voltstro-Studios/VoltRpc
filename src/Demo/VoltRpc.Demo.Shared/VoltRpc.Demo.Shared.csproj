@@ -2,6 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+      <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj" />
+    </ItemGroup>
 
 </Project>

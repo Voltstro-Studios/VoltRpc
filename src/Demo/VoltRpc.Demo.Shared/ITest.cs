@@ -1,5 +1,8 @@
-﻿namespace VoltRpc.Demo.Shared
+﻿using VoltRpc.Proxy;
+
+namespace VoltRpc.Demo.Shared
 {
+    [GenerateProxy]
     public interface ITest
     {
         public void BasicTest();
