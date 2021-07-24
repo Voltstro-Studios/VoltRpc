@@ -12,6 +12,10 @@
       </PackageReference>
       <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
+    </ItemGroup>
     
     
 
