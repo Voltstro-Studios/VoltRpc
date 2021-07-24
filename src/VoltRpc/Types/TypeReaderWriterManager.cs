@@ -10,43 +10,55 @@ namespace VoltRpc.Types
     public class TypeReaderWriterManager
     {
         /// <summary>
-        ///     Creates a new <see cref="TypeReaderWriterManager"/> instance
+        ///     Default <see cref="ITypeReadWriter"/> to be added
         /// </summary>
-        internal TypeReaderWriterManager()
-        {
-            typeReadersWriters = new Dictionary<string, ITypeReadWriter>();
-            
-            AddType<bool>(new BoolReadWriter());
-            AddType<bool[]>(new BoolArrayReadWriter());
-            AddType<byte>(new ByteReadWriter());
-            AddType<byte[]>(new ByteArrayReadWriter());
-            AddType<char>(new CharReadWriter());
-            AddType<char[]>(new CharArrayReadWriter());
-            AddType<decimal>(new DecimalReadWriter());
-            AddType<decimal[]>(new DecimalArrayReadWriter());
-            AddType<double>(new DoubleReadWriter());
-            AddType<double[]>(new DoubleArrayReadWriter());
-            AddType<float>(new FloatReadWriter());
-            AddType<float[]>(new FloatArrayReadWriter());
-            AddType<int>(new IntReadWriter());
-            AddType<int[]>(new IntArrayReadWriter());
-            AddType<long>(new LongReadWriter());
-            AddType<long[]>(new LongArrayReadWriter());
-            AddType<sbyte>(new SByteReadWriter());
-            AddType<sbyte[]>(new SByteArrayReadWriter());
-            AddType<short>(new ShortReadWriter());
-            AddType<short[]>(new ShortArrayReadWriter());
-            AddType<string>(new StringReadWriter());
-            AddType<string[]>(new StringArrayReadWriter());
-            AddType<uint>(new UIntReadWriter());
-            AddType<uint[]>(new UIntArrayReadWriter());
-            AddType<ulong>(new ULongReadWriter());
-            AddType<ulong[]>(new ULongArrayReadWriter());
-            AddType<ushort>(new UShortReadWriter());
-            AddType<ushort[]>(new UShortArrayReadWriter());
-        }
+        internal readonly Dictionary<Type, ITypeReadWriter> DefaultTypeReaderWriters =
+            new Dictionary<Type, ITypeReadWriter>
+            {
+                [typeof(bool)] = new BoolReadWriter(),
+                [typeof(bool[])] = new BoolArrayReadWriter(),
+                [typeof(byte)] = new ByteReadWriter(),
+                [typeof(byte[])] = new ByteArrayReadWriter(),
+                [typeof(char)] = new CharReadWriter(),
+                [typeof(char[])] = new CharArrayReadWriter(),
+                [typeof(decimal)] = new DecimalReadWriter(),
+                [typeof(decimal[])] = new DecimalReadWriter(),
+                [typeof(double)] = new DoubleReadWriter(),
+                [typeof(double[])] = new DoubleArrayReadWriter(),
+                [typeof(float)] = new FloatReadWriter(),
+                [typeof(float[])] = new FloatArrayReadWriter(),
+                [typeof(int)] = new IntReadWriter(),
+                [typeof(int[])] = new IntArrayReadWriter(),
+                [typeof(long)] = new LongReadWriter(),
+                [typeof(long[])] = new LongArrayReadWriter(),
+                [typeof(sbyte)] = new SByteReadWriter(),
+                [typeof(sbyte[])] = new SByteArrayReadWriter(),
+                [typeof(short)] = new ShortReadWriter(),
+                [typeof(short[])] = new ShortArrayReadWriter(),
+                [typeof(string)] = new StringReadWriter(),
+                [typeof(string[])] = new StringArrayReadWriter(),
+                [typeof(uint)] = new UIntReadWriter(),
+                [typeof(uint[])] = new UIntArrayReadWriter(),
+                [typeof(ulong)] = new ULongReadWriter(),
+                [typeof(ulong[])] = new ULongArrayReadWriter(),
+                [typeof(ushort)] = new UShortReadWriter(),
+                [typeof(ushort[])] = new UShortArrayReadWriter()
+            };
         
         private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;
+        
+        /// <summary>
+        ///     Creates a new <see cref="TypeReaderWriterManager"/> instance
+        /// </summary>
+        internal TypeReaderWriterManager(bool addDefaults = true)
+        {
+            typeReadersWriters = new Dictionary<string, ITypeReadWriter>();
+
+            if(!addDefaults)
+                return;
+            foreach (KeyValuePair<Type,ITypeReadWriter> typeReaderWriter in DefaultTypeReaderWriters)
+                AddType(typeReaderWriter.Key, typeReaderWriter.Value);
+        }
 
         /// <summary>
         ///     Adds a <see cref="ITypeReadWriter"/>
@@ -102,6 +114,26 @@ namespace VoltRpc.Types
         public ITypeReadWriter GetType(string typeFullName)
         {
             return !typeReadersWriters.ContainsKey(typeFullName) ? null : typeReadersWriters[typeFullName];
+        }
+
+        /// <summary>
+        ///     Gets a <see cref="ITypeReadWriter"/>
+        /// </summary>
+        /// <param name="type">The <see cref="Type"/> to get</param>
+        /// <returns>Will return null if <see cref="ITypeReadWriter"/> hasn't been added for <see cref="Type"/></returns>
+        public ITypeReadWriter GetType(Type type)
+        {
+            return GetType(type.FullName);
+        }
+
+        /// <summary>
+        ///     Gets a <see cref="ITypeReadWriter"/>
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Type"/> to get</typeparam>
+        /// <returns>Will return null if <see cref="ITypeReadWriter"/> hasn't been added for <see cref="Type"/></returns>
+        public ITypeReadWriter GetType<T>()
+        {
+            return GetType(typeof(T));
         }
     }
 }
