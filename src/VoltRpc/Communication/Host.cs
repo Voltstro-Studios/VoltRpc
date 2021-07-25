@@ -170,10 +170,16 @@ namespace VoltRpc.Communication
                 }
             
                 //Now we read the parameters
-                int paramsCount = reader.ReadInt();
+                int paramsCount = method.Parameters.Length;
                 object[] parameters = new object[paramsCount];
                 for (int i = 0; i < paramsCount; i++)
                 {
+                    if (method.Parameters[i].IsOut)
+                    {
+                        parameters[i] = null;
+                        continue;
+                    }
+                    
                     //Read the type
                     string type = reader.ReadString();
                     ITypeReadWriter typeRead = ReaderWriterManager.GetType(type);
@@ -213,7 +219,7 @@ namespace VoltRpc.Communication
                     Logger.Error($"Method invoke failed! {ex}");
                     return;
                 }
-            
+
                 //If the method doesn't return void, write it back
                 if (!method.IsReturnVoid)
                 {
@@ -225,13 +231,11 @@ namespace VoltRpc.Communication
                         Logger.Error($"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
-                
-                    writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
+                    
                     try
                     {
+                        writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
                         typeWriter.Write(writer, methodReturn);
-                        writer.Flush();
-                        return;
                     }
                     catch (Exception ex)
                     {
@@ -242,8 +246,44 @@ namespace VoltRpc.Communication
                         return;
                     }
                 }
+                else
+                {
+                    writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
+                }
+                
+                //If we have any out or ref types
+                if (method.ContainsRefOrOutParameters)
+                {
+                    for (int i = 0; i < method.Parameters.Length; i++)
+                    {
+                        Parameter parameter = method.Parameters[i];
+                        if(!parameter.IsOut && !parameter.IsRef)
+                            continue;
+                        
+                        ITypeReadWriter typeWriter = ReaderWriterManager.GetType(parameter.ParameterTypeName);
+                        if (typeWriter == null)
+                        {
+                            writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
+                            writer.Flush();
+                            Logger.Error($"The client sent a method with a parameter ref/out type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
+                            return;
+                        }
+                        
+                        try
+                        {
+                            typeWriter.Write(writer, parameters[i]);
+                        }
+                        catch (Exception ex)
+                        {
+                            writer.WriteByte((byte)MessageResponse.ExecuteTypeReadWriteFail);
+                            writer.WriteString(ex.Message);
+                            writer.Flush();
+                            Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
+                            return;
+                        }
+                    }
+                }
 
-                writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
                 writer.Flush();
             }
         }

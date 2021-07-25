@@ -100,10 +100,12 @@ namespace VoltRpc.Types
             if (typeReadersWriters.ContainsKey(typeFullName))
             {
                 typeReadersWriters[typeFullName] = typeReadWriter;
+                typeReadersWriters[$"{typeFullName}&"] = typeReadWriter;
                 return;
             }
             
             typeReadersWriters.Add(typeFullName, typeReadWriter);
+            typeReadersWriters.Add($"{typeFullName}&", typeReadWriter);
         }
 
         /// <summary>

@@ -106,7 +106,7 @@ namespace VoltRpc.Communication
         /// <exception cref="NoTypeReaderWriterException">
         ///     Thrown if the return type or parameter types doesn't have a <see cref="ITypeReadWriter"/>
         /// </exception>
-        public object InvokeMethod(string methodName, params object[] parameters)
+        public object[] InvokeMethod(string methodName, params object[] parameters)
         {
             //Get the method
             ServiceMethod method = null;
@@ -149,6 +149,18 @@ namespace VoltRpc.Communication
                     throw new Exception($"The method failed for some reason: {reason}");
                 }
             }
+
+            //We can fuck off from here
+            if (method.IsReturnVoid && !method.ContainsRefOrOutParameters)
+                return null;
+
+            //Create out array to return out of this method with
+            int objectReturnSize = method.RefOrOutParameterCount;
+            if (!method.IsReturnVoid)
+                objectReturnSize++;
+            
+            object[] objectReturn = new object[objectReturnSize];
+            int currentObjectReturnIndex = 0;
             
             //If we are a void, then we need to read the response
             if (!method.IsReturnVoid)
@@ -158,10 +170,29 @@ namespace VoltRpc.Communication
                 if(typeReader == null)
                     throw new NoTypeReaderWriterException();
 
-                return typeReader.Read(reader);
+                objectReturn[0] = typeReader.Read(reader);
+                currentObjectReturnIndex++;
             }
 
-            return null;
+            //Read our ref and out parameters
+            if (method.ContainsRefOrOutParameters)
+            {
+                foreach (Parameter parameter in method.Parameters)
+                {
+                    if (!parameter.IsRef && !parameter.IsOut) 
+                        continue;
+                
+                    //Get the type reader
+                    ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(parameter.ParameterTypeName);
+                    if(typeReader == null)
+                        throw new NoTypeReaderWriterException();
+
+                    objectReturn[currentObjectReturnIndex] = typeReader.Read(reader);
+                    currentObjectReturnIndex++;
+                }
+            }
+
+            return objectReturn;
         }
 
         /// <summary>
@@ -172,18 +203,16 @@ namespace VoltRpc.Communication
         /// <exception cref="NoTypeReaderWriterException"></exception>
         private void WriteParams(ServiceMethod method, IReadOnlyList<object> parameters)
         {
-            writer.WriteInt(parameters.Count);
-
             for (int i = 0; i < parameters.Count; i++)
             {
-                string parameterTypeName = method.ParametersTypeNames[i];
+                string parameterTypeName = method.Parameters[i].ParameterTypeName;
                 object parameter = parameters[i];
-                ITypeReadWriter writer = TypeReaderWriterManager.GetType(parameterTypeName);
-                if (writer == null)
+                ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameterTypeName);
+                if (typeWriter == null)
                     throw new NoTypeReaderWriterException();
 
-                this.writer.WriteString(parameterTypeName);
-                writer.Write(this.writer, parameter);
+                writer.WriteString(parameterTypeName);
+                typeWriter.Write(this.writer, parameter);
             }
         }
 

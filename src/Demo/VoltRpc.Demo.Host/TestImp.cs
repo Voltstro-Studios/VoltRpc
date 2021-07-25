@@ -35,5 +35,23 @@ namespace VoltRpc.Demo.Host
                 Console.WriteLine(s);
             }
         }
+
+        public void RefTest(ref string refTest)
+        {
+            Console.WriteLine($"Ref was {refTest}");
+            refTest = "Hello Back";
+        }
+
+        public byte RefReturnTest(ref uint refTest)
+        {
+            refTest = 76;
+            return 128;
+        }
+
+        public void OutTest(out string outTest)
+        {
+            Console.WriteLine("Got out test");
+            outTest = "Hello Out!";
+        }
     }
 }

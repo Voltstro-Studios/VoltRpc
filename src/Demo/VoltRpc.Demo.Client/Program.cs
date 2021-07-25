@@ -44,6 +44,20 @@ namespace VoltRpc.Demo.Client
             
             Console.WriteLine("Array test #2");
             ArrayTest(proxy);
+            
+            //Ref test
+            Console.WriteLine("Ref test #1");
+            RefTest(proxy);
+            
+            Console.WriteLine("Ref test #2");
+            RefTest(proxy);
+            
+            //Out test
+            Console.WriteLine("Out test #1");
+            OutTest(proxy);
+            
+            Console.WriteLine("Out test #2");
+            OutTest(proxy);
 
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
@@ -78,10 +92,28 @@ namespace VoltRpc.Demo.Client
         private static void ArrayTest(ITest proxy)
         {
             Stopwatch sw = Stopwatch.StartNew();
-
             proxy.ArrayTest(new[] {"Hello Word!", "Bruh!"});
             sw.Stop();
             Console.WriteLine($"Array test took: {sw.ElapsedMilliseconds}ms");
+        }
+
+        private static void RefTest(ITest proxy)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            string value = "Hello World!";
+            proxy.RefTest(ref value);
+            Console.WriteLine($"Ref value is: {value}");
+            sw.Stop();
+            Console.WriteLine($"Ref test took: {sw.ElapsedMilliseconds}ms");
+        }
+        
+        private static void OutTest(ITest proxy)
+        {
+            Stopwatch sw = Stopwatch.StartNew();
+            proxy.OutTest(out string message);
+            Console.WriteLine($"Out value is: {message}");
+            sw.Stop();
+            Console.WriteLine($"Out test took: {sw.ElapsedMilliseconds}ms");
         }
     }
 }

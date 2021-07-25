@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace VoltRpc.Proxy
 {
@@ -14,16 +15,35 @@ namespace VoltRpc.Proxy
                 MethodInfo method = interfaceMethods[i];
                 
                 //Get the method parameters
+                bool containsRefOrOutParameter = false;
+                int refOrOutParameterCount = 0;
                 ParameterInfo[] methodParameters = method.GetParameters();
-                string[] parametersTypeNames = new string[methodParameters.Length];
+                Parameter[] parameters = new Parameter[methodParameters.Length];
                 for (int x = 0; x < methodParameters.Length; x++)
-                    parametersTypeNames[x] = methodParameters[x].ParameterType.FullName;
+                {
+                    ParameterInfo parameterInfo = methodParameters[x];
+                    Type parameterType = parameterInfo.ParameterType;
+                    Parameter parameter = new Parameter
+                    {
+                        IsOut = parameterInfo.IsOut,
+                        IsRef = parameterType.IsByRef && parameterInfo.IsOut == false,
+                        ParameterTypeName = parameterType.FullName
+                    };
+                    parameters[x] = parameter;
+                    if(parameter.IsOut || parameter.IsRef)
+                    {
+                        containsRefOrOutParameter = true;
+                        refOrOutParameterCount++;
+                    }
+                }
 
                 serviceMethods[i] = new ServiceMethod
                 {
                     MethodName = $"{method.DeclaringType.FullName}.{method.Name}",
                     MethodInfo = method,
-                    ParametersTypeNames = parametersTypeNames,
+                    ContainsRefOrOutParameters = containsRefOrOutParameter,
+                    RefOrOutParameterCount = refOrOutParameterCount,
+                    Parameters = parameters,
                     IsReturnVoid = method.ReturnType == typeof(void),
                     ReturnTypeName = method.ReturnType.FullName
                 };

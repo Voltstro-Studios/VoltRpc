@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -135,37 +137,76 @@ namespace VoltRpc.Proxy.Generator
             methodSb.Append("\t\t{\n");
             methodSb.Append("\t\t\t");
             
+            bool anyOutOrRefParms =
+                methodSymbol.Parameters.Any(x => x.RefKind == RefKind.Ref || x.RefKind == RefKind.Out);
+            
             //If the method returns and object, we need to cast the result from client.InvokeMethod to the return type
-            if (!methodSymbol.ReturnsVoid)
+            if (!methodSymbol.ReturnsVoid && !anyOutOrRefParms)
                 methodSb.Append($"return ({methodSymbol.ReturnType}) ");
+
+            if (anyOutOrRefParms)
+                methodSb.Append("object[] returnObjects = ");
 
             methodSb.Append($"client.InvokeMethod(\"{interfaceNamespace}.{interfaceName}.{method.Identifier.ValueText}\"");
             
-            if (parametersCount > 0)
-            {
-                //If any parms is an array we need to do some extra stuff, as client.InvokeMethod arguments is an params object[]
-                bool anyArrayParms = methodSymbol.Parameters.Any(x => x.Type is IArrayTypeSymbol);
-                
-                methodSb.Append(", ");
-                
-                if(anyArrayParms)
-                    methodSb.Append("new object[]{ ");
-                
-                for (int i = 0; i < parametersCount; i++)
-                {
-                    IParameterSymbol symbol = methodSymbol.Parameters[i];
-                    methodSb.Append($"{symbol.Name}");
-                    if (i + 1 != parametersCount)
-                        methodSb.Append(", ");
-                }
+            //Write parameters for InvokeMethod
+            methodSb.Append(WriteInvokeMethodParameters(methodSymbol.Parameters));
 
-                if(anyArrayParms)
-                    methodSb.Append(" }");
+            methodSb.Append(")");
+            if (!anyOutOrRefParms && !methodSymbol.ReturnsVoid)
+                methodSb.Append("[0]");
+            methodSb.Append(";");
+
+            int parameterIndex = 0;
+            if (!methodSymbol.ReturnsVoid)
+                parameterIndex++;
+            
+            for (int i = 0; i < parametersCount; i++)
+            {
+                IParameterSymbol symbol = methodSymbol.Parameters[i];
+                if (symbol.RefKind == RefKind.Ref || symbol.RefKind == RefKind.Out)
+                {
+                    methodSb.Append($"\n\t\t\t{symbol.Name} = ({symbol.Type}) returnObjects[{parameterIndex}];");
+                    parameterIndex++; 
+                }
             }
 
-            methodSb.Append(");");
+            if (anyOutOrRefParms && !methodSymbol.ReturnsVoid)
+                methodSb.Append($"\n\t\t\treturn ({methodSymbol.ReturnType}) returnObjects[0];");
+            
             methodSb.AppendLine("\n\t\t}");
             return methodSb.ToString();
+        }
+
+        private string WriteInvokeMethodParameters(ImmutableArray<IParameterSymbol> parameterSymbols)
+        {
+            StringBuilder parameterString = new StringBuilder();
+            List<IParameterSymbol> parameters = parameterSymbols.Where(parameterSymbol => parameterSymbol.RefKind != RefKind.Out).ToList();
+
+            if (parameters.Count > 0)
+            {
+                parameterString.Append(", ");
+                bool anyArrays = parameters.Any(x => x.Type is IArrayTypeSymbol);
+                
+                //If any parms is an array we need to do some extra stuff, as client.InvokeMethod arguments is an params object[]
+                if(anyArrays)
+                    parameterString.Append("new object[]{ ");
+
+                int parametersCount = parameters.Count;
+                for (int i = 0; i < parametersCount; i++)
+                {
+                    IParameterSymbol symbol = parameters[i];
+
+                    parameterString.Append($"{symbol.Name}");
+                    if (i + 1 != parametersCount)
+                        parameterString.Append(", ");
+                }
+
+                if (anyArrays)
+                    parameterString.Append(" }");
+            }
+
+            return parameterString.ToString();
         }
     }
 }

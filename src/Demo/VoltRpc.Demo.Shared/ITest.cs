@@ -12,5 +12,11 @@ namespace VoltRpc.Demo.Shared
         public string ReturnTest();
         
         public void ArrayTest(string[] array);
+
+        public void RefTest(ref string refTest);
+
+        public byte RefReturnTest(ref uint refTest);
+
+        public void OutTest(out string outTest);
     }
 }
