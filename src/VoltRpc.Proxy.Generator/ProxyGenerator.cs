@@ -9,42 +9,10 @@ namespace VoltRpc.Proxy.Generator
     [Generator]
     public class ProxyGenerator : ISourceGenerator
     {
-        private const string AttributeName = "VoltRpc.Proxy.GenerateProxyAttribute";
-
-        private const string AttributeText = @"using System;
-
-namespace VoltRpc.Proxy
-{
-    [AttributeUsage(AttributeTargets.Interface, Inherited = false, AllowMultiple = false)]
-    public sealed class GenerateProxyAttribute : Attribute
-    {
-        public GenerateProxyAttribute()
-        {
-        }
-    }
-}";
-
-        private const string BaseText = @"using VoltRpc.Communication;
-
-namespace VoltRpc.Proxy.Generated
-{{
-    public class {0} : {1}
-    {{
-        private readonly Client client;
-
-        public {0}(Client client)
-        {{
-            this.client = client;
-        }}
-
-        {2}
-    }}
-}}";
-        
         public void Initialize(GeneratorInitializationContext context)
         {
             // Register the attribute source
-            context.RegisterForPostInitialization(i => i.AddSource("GenerateProxyAttribute", AttributeText));
+            context.RegisterForPostInitialization(i => i.AddSource("GenerateProxyAttribute", ProxyCodeTemplates.GenerateProxyAttributeCode));
             context.RegisterForSyntaxNotifications(() => new ProxySyntaxReceiver());
         }
 
@@ -52,7 +20,7 @@ namespace VoltRpc.Proxy.Generated
         {
             if (context.SyntaxContextReceiver is ProxySyntaxReceiver proxySyntax)
             {
-                INamedTypeSymbol attributeSymbol = context.Compilation.GetTypeByMetadataName(AttributeName);
+                INamedTypeSymbol attributeSymbol = context.Compilation.GetTypeByMetadataName(ProxyCodeTemplates.GenerateProxyAttributeName);
                 SemanticModel model = null;
                 
                 foreach (InterfaceDeclarationSyntax interfaceDeclaration in proxySyntax.Interfaces)
@@ -77,17 +45,17 @@ namespace VoltRpc.Proxy.Generated
             string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
             string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
                 
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder methods = new StringBuilder();
             foreach (MemberDeclarationSyntax memberDeclarationSyntax in interfaceDeclaration.Members)
             {
                 if(memberDeclarationSyntax.Modifiers.All(modifer => modifer.Kind() != SyntaxKind.PublicKeyword))
                     continue;
                 
                 MethodDeclarationSyntax method = (MethodDeclarationSyntax) memberDeclarationSyntax;
-                stringBuilder.Append(CreateMethod(model, method, interfaceNamespace, interfaceName));
+                methods.Append(CreateMethod(model, method, interfaceNamespace, interfaceName));
             }
-            
-            context.AddSource(interfaceProxyName, string.Format(BaseText, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", stringBuilder));
+
+            context.AddSource(interfaceProxyName, string.Format(ProxyCodeTemplates.ProxyCodeTemplate, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", methods));
         }
 
         private string CreateMethod(SemanticModel model, MethodDeclarationSyntax method, string interfaceNamespace, string interfaceName)
@@ -95,7 +63,7 @@ namespace VoltRpc.Proxy.Generated
             IMethodSymbol methodSymbol = model.GetDeclaredSymbol(method);
             
             StringBuilder methodSb = new StringBuilder();
-            methodSb.Append($"\npublic {method.ReturnType.ToFullString()}{method.Identifier.ValueText}(");
+            methodSb.Append($"\n\t\tpublic {method.ReturnType.ToFullString()}{method.Identifier.ValueText}(");
 
             //Create parms
             int parametersCount = methodSymbol.Parameters.Length;
@@ -116,8 +84,10 @@ namespace VoltRpc.Proxy.Generated
                 if (i + 1 != parametersCount)
                     methodSb.Append(", ");
             }
-
-            methodSb.Append(")\n{\n");
+            
+            methodSb.Append(")\n");
+            methodSb.Append("\t\t{\n");
+            methodSb.Append("\t\t\t");
             
             if (!methodSymbol.ReturnsVoid)
                 methodSb.Append($"return ({methodSymbol.ReturnType}) ");
@@ -144,8 +114,8 @@ namespace VoltRpc.Proxy.Generated
                     methodSb.Append(" }");
             }
 
-            methodSb.Append(");\n");
-            methodSb.Append("}\n");
+            methodSb.Append(");");
+            methodSb.AppendLine("\n\t\t}");
             return methodSb.ToString();
         }
     }
