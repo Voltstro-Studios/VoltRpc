@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
+using VoltRpc.Proxy.Generated;
 
 namespace VoltRpc.Demo.Client
 {
@@ -14,33 +15,35 @@ namespace VoltRpc.Demo.Client
             client.AddService<ITest>();
             client.Connect();
 
+            ITest proxy = new ITest_GeneratedProxy(client);
+
             //Basic test
             Console.WriteLine("Basic test #1");
-            BasicTest(client);
+            BasicTest(proxy);
             
             Console.WriteLine("Basic test #2");
-            BasicTest(client);
+            BasicTest(proxy);
             
             //Parm test
             Console.WriteLine("Parm test #1");
-            ParmTest(client);
+            ParmTest(proxy);
             
             Console.WriteLine("Parm test #2");
-            ParmTest(client);
+            ParmTest(proxy);
             
             //Return test
             Console.WriteLine("Return test #1");
-            ReturnTest(client);
+            ReturnTest(proxy);
             
             Console.WriteLine("Return test #2");
-            ReturnTest(client);
+            ReturnTest(proxy);
             
             //Array test
             Console.WriteLine("Array test #1");
-            ArrayTest(client);
+            ArrayTest(proxy);
             
             Console.WriteLine("Array test #2");
-            ArrayTest(client);
+            ArrayTest(proxy);
 
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
@@ -48,36 +51,35 @@ namespace VoltRpc.Demo.Client
             client.Dispose();
         }
 
-        private static void BasicTest(Communication.Client client)
+        private static void BasicTest(ITest proxy)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.BasicTest");
+            proxy.BasicTest();
             sw.Stop();
             Console.WriteLine($"Basic test took: {sw.ElapsedMilliseconds}ms");
         }
         
-        private static void ParmTest(Communication.Client client)
+        private static void ParmTest(ITest proxy)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ParmTest", "Hello World!", 142f);
+            proxy.ParmTest("Hello World!", 142f);
             sw.Stop();
             Console.WriteLine($"Parm test took: {sw.ElapsedMilliseconds}ms");
         }
         
-        private static void ReturnTest(Communication.Client client)
+        private static void ReturnTest(ITest proxy)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            Console.WriteLine($"Got response: {(string)client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ReturnTest")}");
+            Console.WriteLine($"Got response: {proxy.ReturnTest()}");
             sw.Stop();
             Console.WriteLine($"Return test took: {sw.ElapsedMilliseconds}ms");
         }
 
-        private static void ArrayTest(Communication.Client client)
+        private static void ArrayTest(ITest proxy)
         {
             Stopwatch sw = Stopwatch.StartNew();
-            object[] parms = new[] {new string[] {"Hello Word!", "Bruh!"} };
-            
-            client.InvokeMethod("VoltRpc.Demo.Shared.ITest.ArrayTest", parms);
+
+            proxy.ArrayTest(new[] {"Hello Word!", "Bruh!"});
             sw.Stop();
             Console.WriteLine($"Array test took: {sw.ElapsedMilliseconds}ms");
         }

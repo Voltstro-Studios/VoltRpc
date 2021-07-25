@@ -84,13 +84,13 @@ namespace VoltRpc.Proxy.Generated
                     continue;
                 
                 MethodDeclarationSyntax method = (MethodDeclarationSyntax) memberDeclarationSyntax;
-                stringBuilder.Append(CreateMethod(model, method));
+                stringBuilder.Append(CreateMethod(model, method, interfaceNamespace, interfaceName));
             }
             
             context.AddSource(interfaceProxyName, string.Format(BaseText, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", stringBuilder));
         }
 
-        private string CreateMethod(SemanticModel model, MethodDeclarationSyntax method)
+        private string CreateMethod(SemanticModel model, MethodDeclarationSyntax method, string interfaceNamespace, string interfaceName)
         {
             IMethodSymbol methodSymbol = model.GetDeclaredSymbol(method);
             
@@ -113,21 +113,39 @@ namespace VoltRpc.Proxy.Generated
                 }
                 
                 methodSb.Append($"{symbol.Type} {symbol.Name}");
-                
                 if (i + 1 != parametersCount)
                     methodSb.Append(", ");
             }
 
             methodSb.Append(")\n{\n");
-
-            //TODO: Implement 
+            
             if (!methodSymbol.ReturnsVoid)
+                methodSb.Append($"return ({methodSymbol.ReturnType}) ");
+
+            methodSb.Append($"client.InvokeMethod(\"{interfaceNamespace}.{interfaceName}.{method.Identifier.ValueText}\"");
+            bool anyArrayParms = methodSymbol.Parameters.Any(x => x.Type is IArrayTypeSymbol);
+            
+            if (parametersCount > 0)
             {
-                methodSb.Append("return null;\n");
+                methodSb.Append(", ");
+                
+                if(anyArrayParms)
+                    methodSb.Append("new object[]{ ");
+                
+                for (int i = 0; i < parametersCount; i++)
+                {
+                    IParameterSymbol symbol = methodSymbol.Parameters[i];
+                    methodSb.Append($"{symbol.Name}");
+                    if (i + 1 != parametersCount)
+                        methodSb.Append(", ");
+                }
+
+                if(anyArrayParms)
+                    methodSb.Append(" }");
             }
 
+            methodSb.Append(");\n");
             methodSb.Append("}\n");
-            
             return methodSb.ToString();
         }
     }
