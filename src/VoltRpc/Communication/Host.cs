@@ -174,20 +174,22 @@ namespace VoltRpc.Communication
                 object[] parameters = new object[paramsCount];
                 for (int i = 0; i < paramsCount; i++)
                 {
-                    if (method.Parameters[i].IsOut)
+                    Parameter parameter = method.Parameters[i];
+                    
+                    //If it is a out, the we just set it to null and don't read (as nothing is sent for outs)
+                    if (parameter.IsOut)
                     {
                         parameters[i] = null;
                         continue;
                     }
                     
-                    //Read the type
-                    string type = reader.ReadString();
-                    ITypeReadWriter typeRead = ReaderWriterManager.GetType(type);
+                    //Get the type reader
+                    ITypeReadWriter typeRead = ReaderWriterManager.GetType(parameter.ParameterTypeName);
                     if (typeRead == null)
                     {
                         writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
                         writer.Flush();
-                        Logger.Error($"The client sent a method with a parameter type of '{type}' of which I don't have a type reader for some reason!");
+                        Logger.Error($"The client sent a method with a parameter type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
 

@@ -210,9 +210,8 @@ namespace VoltRpc.Communication
                 ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameterTypeName);
                 if (typeWriter == null)
                     throw new NoTypeReaderWriterException();
-
-                writer.WriteString(parameterTypeName);
-                typeWriter.Write(this.writer, parameter);
+                
+                typeWriter.Write(writer, parameter);
             }
         }
 
