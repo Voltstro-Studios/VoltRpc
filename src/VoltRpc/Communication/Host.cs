@@ -14,6 +14,7 @@ namespace VoltRpc.Communication
     /// </summary>
     public abstract class Host : IDisposable
     {
+        //TODO: Store interface name
         private readonly Dictionary<object, ServiceMethod[]> methods =
             new Dictionary<object, ServiceMethod[]>();
         private readonly object invokeLock;
@@ -84,12 +85,17 @@ namespace VoltRpc.Communication
             ServiceMethod[] serviceMethods = ServiceHelper.GetAllServiceMethods<T>();
             methods.Add(service, serviceMethods);
         }
-
+        
         /// <summary>
         ///     Processes a request from a client
+        ///     <para>
+        ///         This override will automatically create the <see cref="BufferedReader"/> and <see cref="BufferedWriter"/> for you
+        ///         then call <see cref="ProcessRequest(BufferedReader,BufferedWriter)"/>.
+        ///         <para>This is the preferred process request method to call.</para>
+        ///     </para>
         /// </summary>
-        /// <param name="readStream">The read stream</param>
-        /// <param name="writeStream">The write stream</param>
+        /// <param name="readStream">The <see cref="Stream"/> to read from</param>
+        /// <param name="writeStream">The <see cref="Stream"/> to write to</param>
         /// <exception cref="ArgumentNullException">Thrown if either provide stream is null</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected stream</exception>
         protected void ProcessRequest(Stream readStream, Stream writeStream)
@@ -108,6 +114,26 @@ namespace VoltRpc.Communication
 
             BufferedReader reader = new BufferedReader(readStream, bufferSize);
             BufferedWriter writer = new BufferedWriter(writeStream, bufferSize);
+            
+            ProcessRequest(reader, writer);
+        }
+
+        /// <summary>
+        ///     Processes a request from a client
+        ///     <para>
+        ///         You should only call this if you need to provide a custom <see cref="BufferedReader"/> and/or <see cref="BufferedWriter"/>.
+        ///         For example you are using a <see cref="Stream"/> that needs <see cref="Stream.Position"/>.
+        ///     </para>
+        /// </summary>
+        /// <param name="reader">The <see cref="BufferedReader"/> to read from</param>
+        /// <param name="writer">The <see cref="BufferedWriter"/> to write to</param>
+        /// <exception cref="ArgumentNullException">Thrown if either buffer is null</exception>
+        protected void ProcessRequest(BufferedReader reader, BufferedWriter writer)
+        {
+            if (reader == null)
+                throw new ArgumentNullException(nameof(reader));
+            if (writer == null)
+                throw new ArgumentNullException(nameof(writer));
             
             bool doContinue = true;
             do
