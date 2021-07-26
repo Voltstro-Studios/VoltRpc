@@ -163,8 +163,7 @@ namespace VoltRpc.Communication
                 //No method was found
                 if (method == null)
                 {
-                    writer.WriteByte((byte)MessageResponse.NoMethodFound);
-                    writer.Flush();
+                    WriteError(writer, MessageResponse.NoMethodFound);
                     Logger.Warn("Client sent an invalid method request.");
                     return;
                 }
@@ -187,8 +186,7 @@ namespace VoltRpc.Communication
                     ITypeReadWriter typeRead = ReaderWriterManager.GetType(parameter.ParameterTypeName);
                     if (typeRead == null)
                     {
-                        writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
-                        writer.Flush();
+                        WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
                         Logger.Error($"The client sent a method with a parameter type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
@@ -199,9 +197,7 @@ namespace VoltRpc.Communication
                     }
                     catch (Exception ex)
                     {
-                        writer.WriteByte((byte)MessageResponse.ExecuteTypeReadWriteFail);
-                        writer.WriteString(ex.Message);
-                        writer.Flush();
+                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message, ex.InnerException?.StackTrace);
                         Logger.Warn("Client sent invalid parameter data.");
                         return;
                     }
@@ -215,12 +211,12 @@ namespace VoltRpc.Communication
                 }
                 catch (Exception ex)
                 {
-                    writer.WriteByte((byte)MessageResponse.ExecuteInvokeFailException);
-                    writer.WriteString(ex.Message);
-                    writer.Flush();
+                    WriteError(writer, MessageResponse.ExecuteInvokeFailException, ex.Message, ex.InnerException?.StackTrace);
                     Logger.Error($"Method invoke failed! {ex}");
                     return;
                 }
+                
+                writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
 
                 //If the method doesn't return void, write it back
                 if (!method.IsReturnVoid)
@@ -228,31 +224,23 @@ namespace VoltRpc.Communication
                     ITypeReadWriter typeWriter = ReaderWriterManager.GetType(method.ReturnTypeName);
                     if (typeWriter == null)
                     {
-                        writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
-                        writer.Flush();
+                        WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
                         Logger.Error($"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
                     
                     try
                     {
-                        writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
                         typeWriter.Write(writer, methodReturn);
                     }
                     catch (Exception ex)
                     {
-                        writer.WriteByte((byte)MessageResponse.ExecuteTypeReadWriteFail);
-                        writer.WriteString(ex.Message);
-                        writer.Flush();
+                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message, ex.InnerException?.StackTrace);
                         Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
                         return;
                     }
                 }
-                else
-                {
-                    writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
-                }
-                
+
                 //If we have any out or ref types
                 if (method.ContainsRefOrOutParameters)
                 {
@@ -265,8 +253,7 @@ namespace VoltRpc.Communication
                         ITypeReadWriter typeWriter = ReaderWriterManager.GetType(parameter.ParameterTypeName);
                         if (typeWriter == null)
                         {
-                            writer.WriteByte((byte)MessageResponse.ExecuteFailNoTypeReader);
-                            writer.Flush();
+                            WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
                             Logger.Error($"The client sent a method with a parameter ref/out type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
                             return;
                         }
@@ -277,9 +264,7 @@ namespace VoltRpc.Communication
                         }
                         catch (Exception ex)
                         {
-                            writer.WriteByte((byte)MessageResponse.ExecuteTypeReadWriteFail);
-                            writer.WriteString(ex.Message);
-                            writer.Flush();
+                            WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message, ex.InnerException?.StackTrace);
                             Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
                             return;
                         }
@@ -288,6 +273,29 @@ namespace VoltRpc.Communication
 
                 writer.Flush();
             }
+        }
+
+        private void WriteError(BufferedWriter writer, MessageResponse message, string error = null, string stackTrace = null)
+        {
+            writer.Reset();
+            writer.WriteByte((byte)message);
+            switch (message)
+            {
+                case MessageResponse.NoMethodFound:
+                    break;
+                case MessageResponse.ExecutedSuccessful:
+                    break;
+                case MessageResponse.ExecuteFailNoTypeReader:
+                    break;
+                case MessageResponse.ExecuteTypeReadWriteFail:
+                case MessageResponse.ExecuteInvokeFailException:
+                    writer.WriteString(error);
+                    writer.WriteString(stackTrace);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(message), message, null);
+            }
+            writer.Flush();
         }
     }
 }

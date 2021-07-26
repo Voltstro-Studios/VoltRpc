@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using VoltRpc.IO;
 using VoltRpc.Proxy;
 using VoltRpc.Types;
@@ -106,6 +108,12 @@ namespace VoltRpc.Communication
         /// <exception cref="NoTypeReaderWriterException">
         ///     Thrown if the return type or parameter types doesn't have a <see cref="ITypeReadWriter"/>
         /// </exception>
+        /// <exception cref="TypeReaderWriterException">
+        ///     Thrown if the type reader/writer fails on the host
+        /// </exception>
+        /// <exception cref="MethodInvokeFailedException">
+        ///     Thrown if an <see cref="Exception"/> occurs while invoking a method on the host
+        /// </exception>
         public object[] InvokeMethod(string methodName, params object[] parameters)
         {
             //Get the method
@@ -141,12 +149,16 @@ namespace VoltRpc.Communication
                 case MessageResponse.ExecuteTypeReadWriteFail:
                 {
                     string reason = reader.ReadString();
-                    throw new Exception($"Type reader failed to read: {reason}");
+                    string stackTrace = reader.ReadString();
+                    throw new TypeReaderWriterException("An error occured in type reader/writer on the host!", 
+                        new StackTrace().ToString(), reason, stackTrace);
                 }
                 case MessageResponse.ExecuteInvokeFailException:
                 {
                     string reason = reader.ReadString();
-                    throw new Exception($"The method failed for some reason: {reason}");
+                    string stackTrace = reader.ReadString();
+                    throw new MethodInvokeFailedException("Invoking the method threw an exception on the host!", 
+                        new StackTrace().ToString(), reason, stackTrace);
                 }
             }
 
