@@ -19,7 +19,10 @@ namespace VoltRpc.Communication
             new Dictionary<object, ServiceMethod[]>();
         private readonly object invokeLock;
 
-        private readonly int bufferSize;
+        /// <summary>
+        ///     This size of the buffer
+        /// </summary>
+        protected readonly int BufferSize;
         
         /// <summary>
         ///     Logger
@@ -51,7 +54,7 @@ namespace VoltRpc.Communication
             ReaderWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
             
-            this.bufferSize = bufferSize;
+            this.BufferSize = bufferSize;
         }
         
         /// <summary>
@@ -112,8 +115,8 @@ namespace VoltRpc.Communication
             if (!writeStream.CanWrite)
                 throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
 
-            BufferedReader reader = new BufferedReader(readStream, bufferSize);
-            BufferedWriter writer = new BufferedWriter(writeStream, bufferSize);
+            BufferedReader reader = new BufferedReader(readStream, BufferSize);
+            BufferedWriter writer = new BufferedWriter(writeStream, BufferSize);
             
             ProcessRequest(reader, writer);
         }

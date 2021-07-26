@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../Properties.props" />
+
+    <PropertyGroup>
+        <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <Title>VoltRpc.Pipes</Title>
+        <Authors>Voltstro</Authors>
+        <PackageTags>IPC, RPC, Pipes, Named-Pipes</PackageTags>
+        <Description>VoltRpc.Pipes - Named Pipes communication for VoltRpc.</Description>
+        <Version>1.0.0</Version>
+        <PackageVersion>1.0.0</PackageVersion>
+        <PackageReleaseNotes>Inital Release.</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <DocumentationFile>bin\Debug\$(TargetFramework)\VoltRpc.Pipes.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DocumentationFile>bin\Release\$(TargetFramework)\VoltRpc.Pipes.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
+    </ItemGroup>
+
+</Project>
