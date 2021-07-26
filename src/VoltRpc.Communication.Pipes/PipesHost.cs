@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using VoltRpc.Communication;
 using VoltRpc.Logging;
 
-namespace VoltRpc.Pipes
+namespace VoltRpc.Communication.Pipes
 {
     /// <summary>
     ///     <see cref="Host"/> using named pipes

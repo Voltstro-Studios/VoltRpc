@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\VoltRpc.Pipes\VoltRpc.Pipes.csproj" />
+      <ProjectReference Include="..\..\VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj" />
       <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj" />
       <ProjectReference Include="..\VoltRpc.Demo.Shared\VoltRpc.Demo.Shared.csproj" />
     </ItemGroup>

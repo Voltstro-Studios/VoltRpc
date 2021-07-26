@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
-using VoltRpc.Pipes;
+using VoltRpc.Communication.Pipes;
 using VoltRpc.Proxy.Generated;
 
 namespace VoltRpc.Demo.Client

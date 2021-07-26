@@ -3,7 +3,7 @@ using System.Net;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
 using VoltRpc.Logging;
-using VoltRpc.Pipes;
+using VoltRpc.Communication.Pipes;
 
 namespace VoltRpc.Demo.Host
 {

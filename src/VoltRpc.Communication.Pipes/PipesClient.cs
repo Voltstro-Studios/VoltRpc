@@ -1,7 +1,7 @@
 ﻿using System.IO.Pipes;
 using VoltRpc.Communication;
 
-namespace VoltRpc.Pipes
+namespace VoltRpc.Communication.Pipes
 {
     /// <summary>
     ///     <see cref="Client"/> using named pipes

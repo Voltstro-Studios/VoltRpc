@@ -19,7 +19,7 @@ ProjectSection(SolutionItems) = preProject
 	Properties.props = Properties.props
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Pipes", "VoltRpc.Pipes\VoltRpc.Pipes.csproj", "{FCA66CEF-3D46-445C-925E-2EA476F6730B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Communication.Pipes", "VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj", "{FCA66CEF-3D46-445C-925E-2EA476F6730B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
