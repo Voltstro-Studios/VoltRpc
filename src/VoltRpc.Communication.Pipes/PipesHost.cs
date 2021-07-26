@@ -55,6 +55,8 @@ namespace VoltRpc.Communication.Pipes
 
         private void SeverLoop()
         {
+            Logger.Debug("Named Pipes host now listening...");
+            
             isRunning = true;
             while (isRunning)
             {
@@ -74,8 +76,10 @@ namespace VoltRpc.Communication.Pipes
 
         private Task HandleClient(NamedPipeServerStream stream)
         {
+            Logger.Debug("Accepted client...");
             ProcessRequest(stream, stream);
             stream.Dispose();
+            Logger.Debug("Client disconnected.");
             return Task.CompletedTask;
         }
     }
