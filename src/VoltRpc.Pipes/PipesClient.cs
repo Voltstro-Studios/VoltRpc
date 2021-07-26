@@ -57,6 +57,15 @@ namespace VoltRpc.Pipes
             : this(".", pipeName, 7000, bufferSize)
         {
         }
+        
+        /// <summary>
+        ///     Creates a new <see cref="PipesClient"/> instance
+        /// </summary>
+        /// <param name="pipeName">The name of the pipe</param>
+        public PipesClient(string pipeName)
+            : this(".", pipeName, 7000)
+        {
+        }
 
         /// <inheritdoc />
         public override void Connect()

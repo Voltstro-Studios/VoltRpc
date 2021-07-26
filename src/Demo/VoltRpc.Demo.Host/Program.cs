@@ -13,7 +13,7 @@ namespace VoltRpc.Demo.Host
         {
             TestImp testImp = new TestImp();
 
-            Communication.Host host = new PipesHost("TestPipe", 128, new ConsoleLogger(LogVerbosity.Debug));
+            Communication.Host host = new PipesHost("TestPipe", new ConsoleLogger(LogVerbosity.Debug));
             host.AddService<ITest>(testImp);
             host.StartListening();
             

@@ -12,7 +12,7 @@ namespace VoltRpc.Demo.Client
     {
         public static void Main(string[] args)
         {
-            Communication.Client client = new PipesClient(".", "TestPipe");
+            Communication.Client client = new PipesClient("TestPipe");
             client.AddService<ITest>();
             client.Connect();
 
