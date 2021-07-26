@@ -1,0 +1,24 @@
+<Project>
+    <PropertyGroup>
+        <Company>Voltstro-Studios</Company>
+        <Copyright>Copyright © 2021 Voltstro-Studios</Copyright>
+        <RepositoryUrl>https://github.com/Voltstro-Studios/VoltRpc</RepositoryUrl>
+        <PackageProjectUrl></PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <LangVersion>8</LangVersion>
+        <PackageIcon>icon.png</PackageIcon>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="$(SolutionDir)/icon.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+    
+</Project>

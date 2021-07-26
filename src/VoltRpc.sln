@@ -14,6 +14,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Tests", "VoltRpc.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Proxy.Generator", "VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj", "{1CD1F711-95A6-4448-9FCD-75702B861762}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Imports", "Imports", "{6ADC469E-7899-4F05-874C-81DBD32FAFA4}"
+ProjectSection(SolutionItems) = preProject
+	Properties.props = Properties.props
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

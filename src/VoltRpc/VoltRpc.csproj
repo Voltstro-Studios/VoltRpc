@@ -1,24 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="../Properties.props" />
+
     <PropertyGroup>
         <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <RootNamespace>VoltRpc</RootNamespace>
         <Title>VoltRpc</Title>
         <Authors>Voltstro</Authors>
-        <RepositoryUrl>https://github.com/Voltstro-Studios/VoltRpc</RepositoryUrl>
         <PackageTags>IPC, RPC, TCP</PackageTags>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>VoltRpc - Library designed for high performance RPC communication.</Description>
         <Version>1.0.0</Version>
         <PackageVersion>1.0.0</PackageVersion>
-        <Company>Voltstro-Studios</Company>
-        <Copyright>Copyright © Voltstro-Studios 2021</Copyright>
-        <PackageProjectUrl></PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryType>Github</RepositoryType>
-        <PackageIcon>icon.png</PackageIcon>
         <PackageReleaseNotes>Inital Release.</PackageReleaseNotes>
-        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -27,14 +20,6 @@
 
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
         <DocumentationFile>bin\Release\$(TargetFramework)\VoltRpc.xml</DocumentationFile>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="icon.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-        </None>
-    </ItemGroup>
 
 </Project>
