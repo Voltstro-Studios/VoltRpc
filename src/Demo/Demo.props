@@ -1,0 +1,30 @@
+<Project>
+	<PropertyGroup>
+		<Company>Voltstro-Studios</Company>
+		<Copyright>Copyright © 2021 Voltstro-Studios</Copyright>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>$(SolutionDir)Demo\bin\Debug\</OutputPath>
+		<PublishDir>$(SolutionDir)Demo\bin\Debug\publish\$(RuntimeIdentifier)</PublishDir>
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>$(SolutionDir)Demo\bin\Release\</OutputPath>
+		<PublishDir>$(SolutionDir)Demo\bin\Release\publish\$(RuntimeIdentifier)</PublishDir>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<AllowedReferenceRelatedFileExtensions>
+			<!-- Prevent default XML and PDB files copied to output in RELEASE. 
+           Only *.allowedextension files will be included, which doesn't exist in my case.
+		     -->
+			.allowedextension
+		</AllowedReferenceRelatedFileExtensions>
+	</PropertyGroup>
+    
+</Project>

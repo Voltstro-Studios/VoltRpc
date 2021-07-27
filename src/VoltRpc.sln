@@ -1,25 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc", "VoltRpc\VoltRpc.csproj", "{AC4B6B76-88AF-4886-B59C-1C40D90AC0A3}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc", "VoltRpc\VoltRpc.csproj", "{AC4B6B76-88AF-4886-B59C-1C40D90AC0A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{CB85A35B-DEEB-49C8-846D-004E8A32576F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Demo.Host", "Demo\VoltRpc.Demo.Host\VoltRpc.Demo.Host.csproj", "{B5D01A62-6921-49A0-B863-B453EF6CC4CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Demo.Host", "Demo\VoltRpc.Demo.Host\VoltRpc.Demo.Host.csproj", "{B5D01A62-6921-49A0-B863-B453EF6CC4CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Demo.Client", "Demo\VoltRpc.Demo.Client\VoltRpc.Demo.Client.csproj", "{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Demo.Client", "Demo\VoltRpc.Demo.Client\VoltRpc.Demo.Client.csproj", "{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Demo.Shared", "Demo\VoltRpc.Demo.Shared\VoltRpc.Demo.Shared.csproj", "{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Demo.Shared", "Demo\VoltRpc.Demo.Shared\VoltRpc.Demo.Shared.csproj", "{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Tests", "VoltRpc.Tests\VoltRpc.Tests.csproj", "{21E9814B-221C-4777-BAD0-07E67342B476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Tests", "VoltRpc.Tests\VoltRpc.Tests.csproj", "{21E9814B-221C-4777-BAD0-07E67342B476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Proxy.Generator", "VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj", "{1CD1F711-95A6-4448-9FCD-75702B861762}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Proxy.Generator", "VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj", "{1CD1F711-95A6-4448-9FCD-75702B861762}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Imports", "Imports", "{6ADC469E-7899-4F05-874C-81DBD32FAFA4}"
-ProjectSection(SolutionItems) = preProject
-	Properties.props = Properties.props
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		Demo\Demo.props = Demo\Demo.props
+		Properties.props = Properties.props
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoltRpc.Communication.Pipes", "VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj", "{FCA66CEF-3D46-445C-925E-2EA476F6730B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Communication.Pipes", "VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj", "{FCA66CEF-3D46-445C-925E-2EA476F6730B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,9 +60,15 @@ Global
 		{FCA66CEF-3D46-445C-925E-2EA476F6730B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA66CEF-3D46-445C-925E-2EA476F6730B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B5D01A62-6921-49A0-B863-B453EF6CC4CE} = {CB85A35B-DEEB-49C8-846D-004E8A32576F}
 		{CECF22AE-2B0A-4F77-9F6D-4ECD59BD49EE} = {CB85A35B-DEEB-49C8-846D-004E8A32576F}
 		{14F46FB7-D63E-4097-B2ED-C0B0CAA5B51A} = {CB85A35B-DEEB-49C8-846D-004E8A32576F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F39EBDA4-80AF-4AB0-B0ED-8EAF74A21F02}
 	EndGlobalSection
 EndGlobal
