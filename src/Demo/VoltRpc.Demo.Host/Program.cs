@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Net;
-using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
 using VoltRpc.Logging;
 using VoltRpc.Communication.Pipes;
+using VoltRpc.Communication.TCP;
 
 namespace VoltRpc.Demo.Host
 {
@@ -11,9 +10,18 @@ namespace VoltRpc.Demo.Host
     {
         public static void Main(string[] args)
         {
-            TestImp testImp = new TestImp();
+            ArgsParser parser = new();
+            parser.ParseArgs(args);
 
-            Communication.Host host = new PipesHost("TestPipe", new ConsoleLogger(LogVerbosity.Debug));
+            ILogger logger = new ConsoleLogger(LogVerbosity.Debug);
+
+            Communication.Host host;
+            if (parser.PipesClient)
+                host = new PipesHost(parser.PipeName, logger);
+            else
+                host = new TCPHost(parser.IpEndPoint, logger);
+
+            TestImp testImp = new();
             host.AddService<ITest>(testImp);
             host.StartListening();
             
