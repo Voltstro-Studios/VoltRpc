@@ -14,6 +14,11 @@ namespace VoltRpc.Communication
     /// </summary>
     public abstract class Host : IDisposable
     {
+        /// <summary>
+        ///     The default size of the buffers
+        /// </summary>
+        public const int DefaultBufferSize = 8000;
+        
         //TODO: Store interface name
         private readonly Dictionary<object, ServiceMethod[]> methods =
             new Dictionary<object, ServiceMethod[]>();
@@ -43,7 +48,7 @@ namespace VoltRpc.Communication
         /// <param name="logger">The <see cref="ILogger"/> to use</param>
         /// <param name="bufferSize">The initial size of the buffers</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        protected Host(ILogger logger = null, int bufferSize = 8000)
+        protected Host(ILogger logger = null, int bufferSize = DefaultBufferSize)
         {
             if (bufferSize < 16)
                 throw new ArgumentOutOfRangeException(nameof(bufferSize),

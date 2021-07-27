@@ -12,6 +12,16 @@ namespace VoltRpc.Communication.TCP
     /// </summary>
     public sealed class TCPHost : Host
     {
+        /// <summary>
+        ///     Default receive timeout time
+        /// </summary>
+        public const int DefaultReceiveTimeout = 600000;
+        
+        /// <summary>
+        ///     Default send timeout time
+        /// </summary>
+        public const int DefaultSendTimeout = 600000;
+        
         private readonly TcpListener listener;
         private bool isRunning;
 
@@ -27,8 +37,9 @@ namespace VoltRpc.Communication.TCP
         /// <param name="receiveTimeout">How long until timeout from receiving</param>
         /// <param name="sendTimeout">How long until timeout from sending</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int bufferSize = 8000, int receiveTimeout = 600000, int sendTimeout = 600000)
-        : base(logger, bufferSize)
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int bufferSize = DefaultBufferSize,
+            int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
+            : base(logger, bufferSize)
         {
             listener = new TcpListener(endPoint);
             this.receiveTimeout = receiveTimeout;
@@ -43,28 +54,11 @@ namespace VoltRpc.Communication.TCP
         /// <param name="receiveTimeout">How long until timeout from receiving</param>
         /// <param name="sendTimeout">How long until timeout from sending</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = 600000, int sendTimeout = 600000)
-            : base(logger)
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
+            : this(endPoint, logger, DefaultBufferSize, receiveTimeout, sendTimeout)
         {
-            listener = new TcpListener(endPoint);
-            this.receiveTimeout = receiveTimeout;
-            this.sendTimeout = sendTimeout;
         }
-        
-        /// <summary>
-        ///     Creates a new <see cref="TCPHost"/> instance
-        /// </summary>
-        /// <param name="endPoint">The <see cref="IPEndPoint"/> to listen on</param>
-        /// <param name="logger">The <see cref="ILogger"/> to use. Will default to <see cref="NullLogger"/> if null</param>
-        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPHost(IPEndPoint endPoint, ILogger logger = null)
-            : base(logger)
-        {
-            listener = new TcpListener(endPoint);
-            receiveTimeout = 600000;
-            sendTimeout = 600000;
-        }
-        
+
         /// <inheritdoc/>
         public override async Task StartListening()
         {

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using VoltRpc.IO;
 using VoltRpc.Proxy;
 using VoltRpc.Types;
@@ -14,6 +13,11 @@ namespace VoltRpc.Communication
     /// </summary>
     public abstract class Client : IDisposable
     {
+        /// <summary>
+        ///     The default size of the buffers
+        /// </summary>
+        public const int DefaultBufferSize = 8000;
+        
         private BufferedReader reader;
         private BufferedWriter writer;
         
@@ -33,7 +37,7 @@ namespace VoltRpc.Communication
         /// </summary>
         /// <param name="bufferSize">The initial size of the buffers</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        protected Client(int bufferSize = 8000)
+        protected Client(int bufferSize = DefaultBufferSize)
         {
             if (bufferSize < 16)
                 throw new ArgumentOutOfRangeException(nameof(bufferSize),
