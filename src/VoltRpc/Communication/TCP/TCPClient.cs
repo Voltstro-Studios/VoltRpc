@@ -11,6 +11,21 @@ namespace VoltRpc.Communication.TCP
     /// </summary>
     public sealed class TCPClient : Client
     {
+        /// <summary>
+        ///     Default receive timeout time
+        /// </summary>
+        public const int DefaultReceiveTimeout = 600000;
+        
+        /// <summary>
+        ///     Default send timeout time
+        /// </summary>
+        public const int DefaultSendTimeout = 600000;
+
+        /// <summary>
+        ///     Default connection timeout time
+        /// </summary>
+        public const int DefaultConnectionTimeout = 7000;
+        
         private readonly TcpClient client;
         private readonly IPEndPoint endPoint;
         private readonly int connectionTimeout;
@@ -21,13 +36,13 @@ namespace VoltRpc.Communication.TCP
         ///     Creates a new <see cref="TCPClient"/> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
-        /// <param name="connectionTimeout">The timeout for connection</param>
+        /// <param name="bufferSize">The size of the buffers</param>
+        /// <param name="connectionTimeout">The timeout time for connection</param>
         /// <param name="receiveTimeout">The receive timeout</param>
         /// <param name="sendTimeout">The send timeout</param>
-        /// <param name="bufferSize">The initial size of the buffers</param>
-        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPClient(IPEndPoint endPoint, int connectionTimeout = 7000, int receiveTimeout = 600000, int sendTimeout = 600000, int bufferSize = 8000)
-        : base(bufferSize)
+        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize, int connectionTimeout = DefaultConnectionTimeout,
+            int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
+            : base(bufferSize)
         {
             client = new TcpClient
             {
@@ -37,31 +52,15 @@ namespace VoltRpc.Communication.TCP
             this.endPoint = endPoint;
             this.connectionTimeout = connectionTimeout;
         }
-        
+
         /// <summary>
         ///     Creates a new <see cref="TCPClient"/> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
-        /// <param name="bufferSize">The initial size of the buffers</param>
-        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPClient(IPEndPoint endPoint, int bufferSize = 8000)
-            : base(bufferSize)
+        /// <param name="connectionTimeout">The timeout time for connection</param>
+        public TCPClient(IPEndPoint endPoint, int connectionTimeout = DefaultConnectionTimeout)
+            : this(endPoint, DefaultBufferSize, connectionTimeout)
         {
-            client = new TcpClient();
-            this.endPoint = endPoint;
-            connectionTimeout = 7000;
-        }
-        
-        /// <summary>
-        ///     Creates a new <see cref="TCPClient"/> instance
-        /// </summary>
-        /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
-        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPClient(IPEndPoint endPoint)
-        {
-            client = new TcpClient();
-            this.endPoint = endPoint;
-            connectionTimeout = 7000;
         }
 
         /// <inheritdoc/>
