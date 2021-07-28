@@ -8,11 +8,11 @@ namespace VoltRpc.Tests.TypesTests
     {
         public static void TestTypeReaderWriter<T>(ITypeReadWriter readWriter, T value)
         {
-            using DualBuffers buffers = new DualBuffers();
+            using DualBuffers buffers = new();
             readWriter.Write(buffers.BufferedWriter, value);
             buffers.BufferedWriter.Flush();
 
-            T result = (T)readWriter.Read(buffers.BufferedReader);
+            T result = (T) readWriter.Read(buffers.BufferedReader);
             Assert.AreEqual(value, result);
         }
     }

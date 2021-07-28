@@ -6,7 +6,7 @@ namespace VoltRpc.Types.TypeReaderWriters
     {
         public void Write(BufferedWriter writer, object obj)
         {
-            writer.WriteDecimal((decimal)obj);
+            writer.WriteDecimal((decimal) obj);
         }
 
         public object Read(BufferedReader reader)

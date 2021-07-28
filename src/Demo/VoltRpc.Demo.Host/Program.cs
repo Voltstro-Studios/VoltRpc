@@ -1,8 +1,8 @@
 ﻿using System;
-using VoltRpc.Demo.Shared;
-using VoltRpc.Logging;
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
+using VoltRpc.Demo.Shared;
+using VoltRpc.Logging;
 
 namespace VoltRpc.Demo.Host
 {
@@ -19,12 +19,13 @@ namespace VoltRpc.Demo.Host
             if (parser.PipesClient)
                 host = new PipesHost(parser.PipeName, logger);
             else
-                host = new TCPHost(parser.IpEndPoint, logger, Communication.Host.DefaultBufferSize, TCPHost.DefaultSendTimeout);
+                host = new TCPHost(parser.IpEndPoint, logger, Communication.Host.DefaultBufferSize,
+                    TCPHost.DefaultSendTimeout);
 
             TestImp testImp = new();
             host.AddService<ITest>(testImp);
             host.StartListening();
-            
+
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
             host.Dispose();

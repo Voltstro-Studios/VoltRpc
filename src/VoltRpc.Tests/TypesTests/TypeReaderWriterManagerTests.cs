@@ -10,18 +10,18 @@ namespace VoltRpc.Tests.TypesTests
     public class TypeReaderWriterManagerTests
     {
         private TypeReaderWriterManager readerWriterManager;
-        
+
         [OneTimeSetUp]
         public void Setup()
         {
             readerWriterManager = new TypeReaderWriterManager(false);
         }
-        
+
         [Test]
         public void DefaultTypes()
         {
-            TypeReaderWriterManager manager = new TypeReaderWriterManager();
-            foreach (KeyValuePair<Type,ITypeReadWriter> defaultTypeReaderWriter in manager.DefaultTypeReaderWriters)
+            TypeReaderWriterManager manager = new();
+            foreach (KeyValuePair<Type, ITypeReadWriter> defaultTypeReaderWriter in manager.DefaultTypeReaderWriters)
             {
                 ITypeReadWriter readWriter = manager.GetType(defaultTypeReaderWriter.Key);
                 Assert.NotNull(readWriter);
@@ -32,7 +32,7 @@ namespace VoltRpc.Tests.TypesTests
         [Test]
         public void AddTypeTest()
         {
-            BoolReadWriter boolReadWriter = new BoolReadWriter();
+            BoolReadWriter boolReadWriter = new();
             readerWriterManager.AddType<bool>(boolReadWriter);
 
             ITypeReadWriter readWriter = readerWriterManager.GetType<bool>();
@@ -43,7 +43,7 @@ namespace VoltRpc.Tests.TypesTests
         [Test]
         public void OverrideTypeTest()
         {
-            CustomBool boolReadWriter = new CustomBool();
+            CustomBool boolReadWriter = new();
             readerWriterManager.AddType<bool>(new BoolReadWriter());
             readerWriterManager.AddType<bool>(boolReadWriter);
 
@@ -51,7 +51,7 @@ namespace VoltRpc.Tests.TypesTests
             Assert.IsNotNull(readWriter);
             Assert.AreEqual(boolReadWriter, readWriter);
         }
-        
+
         private class CustomBool : ITypeReadWriter
         {
             public void Write(BufferedWriter writer, object obj)

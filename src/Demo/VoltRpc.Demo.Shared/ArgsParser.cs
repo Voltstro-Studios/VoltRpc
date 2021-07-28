@@ -8,11 +8,11 @@ namespace VoltRpc.Demo.Shared
     {
         private const int DefaultPort = 8877;
 
-        public bool PipesClient;
-
         public IPEndPoint IpEndPoint = new(IPAddress.Loopback, DefaultPort);
 
         public string PipeName = "VoltRpcPipe";
+
+        public bool PipesClient;
 
         public void ParseArgs(string[] args)
         {
@@ -25,7 +25,6 @@ namespace VoltRpc.Demo.Shared
             {
                 string arg = args[i];
                 if (i + 1! < args.Length)
-                {
                     switch (arg)
                     {
                         case "-ip":
@@ -49,7 +48,6 @@ namespace VoltRpc.Demo.Shared
                             break;
                         }
                     }
-                }
             }
         }
     }

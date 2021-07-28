@@ -9,22 +9,22 @@
         ///     The method wasn't found
         /// </summary>
         NoMethodFound,
-        
+
         /// <summary>
         ///     The method was executed successfully
         /// </summary>
         ExecutedSuccessful,
-        
+
         /// <summary>
         ///     The method failed to execute due to a missing type reader/writer
         /// </summary>
         ExecuteFailNoTypeReader,
-        
+
         /// <summary>
         ///     The type reader/writer failed for some reason
         /// </summary>
         ExecuteTypeReadWriteFail,
-        
+
         /// <summary>
         ///     The method failed while being invoked
         /// </summary>

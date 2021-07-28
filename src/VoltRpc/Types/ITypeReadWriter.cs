@@ -1,10 +1,9 @@
-﻿using System.IO;
-using VoltRpc.IO;
+﻿using VoltRpc.IO;
 
 namespace VoltRpc.Types
 {
     /// <summary>
-    ///     Interface for reading and writing a <see cref="System.Type"/>
+    ///     Interface for reading and writing a <see cref="System.Type" />
     /// </summary>
     public interface ITypeReadWriter
     {
@@ -15,7 +14,7 @@ namespace VoltRpc.Types
         /// <param name="obj"></param>
         /// <returns></returns>
         public void Write(BufferedWriter writer, object obj);
-        
+
         /// <summary>
         ///     Read the type
         /// </summary>

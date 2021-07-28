@@ -7,7 +7,7 @@ using System.Threading;
 namespace VoltRpc.Communication.TCP
 {
     /// <summary>
-    ///     A <see cref="Client"/> that uses TCP to communicate
+    ///     A <see cref="Client" /> that uses TCP to communicate
     /// </summary>
     public sealed class TCPClient : Client
     {
@@ -15,7 +15,7 @@ namespace VoltRpc.Communication.TCP
         ///     Default receive timeout time
         /// </summary>
         public const int DefaultReceiveTimeout = 600000;
-        
+
         /// <summary>
         ///     Default send timeout time
         /// </summary>
@@ -25,28 +25,29 @@ namespace VoltRpc.Communication.TCP
         ///     Default connection timeout time
         /// </summary>
         public const int DefaultConnectionTimeout = 7000;
-        
+
         private readonly TcpClient client;
-        private readonly IPEndPoint endPoint;
         private readonly int connectionTimeout;
+        private readonly IPEndPoint endPoint;
 
         private Stream clientStream;
 
         /// <summary>
-        ///     Creates a new <see cref="TCPClient"/> instance
+        ///     Creates a new <see cref="TCPClient" /> instance
         /// </summary>
-        /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
         /// <param name="bufferSize">The size of the buffers</param>
         /// <param name="connectionTimeout">The timeout time for connection</param>
         /// <param name="receiveTimeout">The receive timeout</param>
         /// <param name="sendTimeout">The send timeout</param>
-        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize, int connectionTimeout = DefaultConnectionTimeout,
+        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize,
+            int connectionTimeout = DefaultConnectionTimeout,
             int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
             : base(bufferSize)
         {
             client = new TcpClient
             {
-                ReceiveTimeout = receiveTimeout, 
+                ReceiveTimeout = receiveTimeout,
                 SendTimeout = sendTimeout
             };
             this.endPoint = endPoint;
@@ -54,29 +55,26 @@ namespace VoltRpc.Communication.TCP
         }
 
         /// <summary>
-        ///     Creates a new <see cref="TCPClient"/> instance
+        ///     Creates a new <see cref="TCPClient" /> instance
         /// </summary>
-        /// <param name="endPoint">The <see cref="IPEndPoint"/> to connect to</param>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
         /// <param name="connectionTimeout">The timeout time for connection</param>
         public TCPClient(IPEndPoint endPoint, int connectionTimeout = DefaultConnectionTimeout)
             : this(endPoint, DefaultBufferSize, connectionTimeout)
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         /// <exception cref="TimeoutException">Thrown if a connection timeout occurs</exception>
         public override void Connect()
         {
-            client.BeginConnect(endPoint.Address, endPoint.Port, result =>
-            {
-                IsConnectedInternal = true;
-            }, client);
-            
+            client.BeginConnect(endPoint.Address, endPoint.Port, result => { IsConnectedInternal = true; }, client);
+
             while (!IsConnectedInternal)
             {
                 if (SpinWait.SpinUntil(() => IsConnectedInternal, connectionTimeout))
                     continue;
-                
+
                 throw new TimeoutException($"Client failed to connect to {endPoint}!");
             }
 
@@ -84,7 +82,7 @@ namespace VoltRpc.Communication.TCP
             Initialize(clientStream, clientStream);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override void Dispose()
         {
             base.Dispose();

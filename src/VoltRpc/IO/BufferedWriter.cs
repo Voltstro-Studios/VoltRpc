@@ -9,39 +9,31 @@ namespace VoltRpc.IO
      * Base of this code comes from Mirror's NetworkWriter:
      * https://github.com/vis2k/Mirror/blob/ca4c2fd9302b1ece4240b09cc562e25bcb84407f/Assets/Mirror/Runtime/NetworkWriter.cs
      */
-    
+
     /// <summary>
-    ///     A buffered writer for a <see cref="Stream"/>
+    ///     A buffered writer for a <see cref="Stream" />
     /// </summary>
     public class BufferedWriter : IDisposable
     {
         /// <summary>
-        ///     Max length for a <see cref="string"/>
+        ///     Max length for a <see cref="string" />
         /// </summary>
         public const int MaxStringLength = 1024 * 32;
-        
+
+        private readonly UTF8Encoding encoding;
+
         /// <summary>
-        ///     Output <see cref="Stream"/>
+        ///     Output <see cref="Stream" />
         /// </summary>
         protected readonly Stream OutputStream;
-        
-        /// <summary>
-        ///     You may need to override this if your <see cref="Stream"/> requires it
-        /// </summary>
-        protected virtual long OutputStreamPosition
-        {
-            get;
-            set;
-        }
-        
-        private readonly UTF8Encoding encoding;
+
         private readonly byte[] stringBuffer;
-        
+
         private byte[] buffer;
         private int position;
 
         /// <summary>
-        ///     Creates a new <see cref="BufferedWriter"/> instance
+        ///     Creates a new <see cref="BufferedWriter" /> instance
         /// </summary>
         /// <param name="output"></param>
         /// <param name="bufferSize"></param>
@@ -54,6 +46,16 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
+        ///     You may need to override this if your <see cref="Stream" /> requires it
+        /// </summary>
+        protected virtual long OutputStreamPosition { get; set; }
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+        }
+
+        /// <summary>
         ///     Reset position
         /// </summary>
         internal void Reset()
@@ -63,7 +65,7 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Writes a <see cref="byte"/>
+        ///     Writes a <see cref="byte" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteByte(byte value)
@@ -71,9 +73,9 @@ namespace VoltRpc.IO
             EnsureCapacity(position + 1);
             buffer[position++] = value;
         }
-        
+
         /// <summary>
-        ///     Writes an array of <see cref="byte"/>s
+        ///     Writes an array of <see cref="byte" />s
         /// </summary>
         /// <param name="bytesBuffer"></param>
         /// <param name="offset"></param>
@@ -86,81 +88,99 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Writes a <see cref="sbyte"/>
+        ///     Writes a <see cref="sbyte" />
         /// </summary>
         /// <param name="value"></param>
-        public void WriteSByte(sbyte value) => WriteByte((byte) value);
+        public void WriteSByte(sbyte value)
+        {
+            WriteByte((byte) value);
+        }
 
         /// <summary>
-        ///     Writes a <see cref="bool"/>
+        ///     Writes a <see cref="bool" />
         /// </summary>
         /// <param name="value"></param>
-        public void WriteBool(bool value) => WriteByte((byte) (value ? 1 : 0));
-        
+        public void WriteBool(bool value)
+        {
+            WriteByte((byte) (value ? 1 : 0));
+        }
+
         /// <summary>
-        ///     Writes a <see cref="ushort"/>
+        ///     Writes a <see cref="ushort" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteUShort(ushort value)
         {
-            WriteByte((byte)value);
-            WriteByte((byte)(value >> 8));
+            WriteByte((byte) value);
+            WriteByte((byte) (value >> 8));
         }
 
         /// <summary>
-        ///     Writes a <see cref="short"/>
+        ///     Writes a <see cref="short" />
         /// </summary>
         /// <param name="value"></param>
-        public void WriteShort(short value) => WriteUShort((ushort) value);
-        
+        public void WriteShort(short value)
+        {
+            WriteUShort((ushort) value);
+        }
+
         /// <summary>
-        ///     Writes a <see cref="char"/>
+        ///     Writes a <see cref="char" />
         /// </summary>
         /// <param name="value"></param>
-        public void WriteChar(char value) => WriteUShort(value);
-        
+        public void WriteChar(char value)
+        {
+            WriteUShort(value);
+        }
+
         /// <summary>
-        ///     Writes a <see cref="uint"/>
+        ///     Writes a <see cref="uint" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteUInt(uint value)
         {
-            WriteByte((byte)value);
-            WriteByte((byte)(value >> 8));
-            WriteByte((byte)(value >> 16));
-            WriteByte((byte)(value >> 24));
+            WriteByte((byte) value);
+            WriteByte((byte) (value >> 8));
+            WriteByte((byte) (value >> 16));
+            WriteByte((byte) (value >> 24));
         }
 
         /// <summary>
-        ///     Writes a <see cref="int"/>
+        ///     Writes a <see cref="int" />
         /// </summary>
         /// <param name="value"></param>
-        public void WriteInt(int value) => WriteUInt((uint) value);
-        
+        public void WriteInt(int value)
+        {
+            WriteUInt((uint) value);
+        }
+
         /// <summary>
-        ///     Writes a <see cref="ulong"/>
+        ///     Writes a <see cref="ulong" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteULong(ulong value)
         {
-            WriteByte((byte)value);
-            WriteByte((byte)(value >> 8));
-            WriteByte((byte)(value >> 16));
-            WriteByte((byte)(value >> 24));
-            WriteByte((byte)(value >> 32));
-            WriteByte((byte)(value >> 40));
-            WriteByte((byte)(value >> 48));
-            WriteByte((byte)(value >> 56));
+            WriteByte((byte) value);
+            WriteByte((byte) (value >> 8));
+            WriteByte((byte) (value >> 16));
+            WriteByte((byte) (value >> 24));
+            WriteByte((byte) (value >> 32));
+            WriteByte((byte) (value >> 40));
+            WriteByte((byte) (value >> 48));
+            WriteByte((byte) (value >> 56));
         }
 
         /// <summary>
-        ///     Writes a <see cref="long"/>
+        ///     Writes a <see cref="long" />
         /// </summary>
         /// <param name="value"></param>
-        public void WriteLong(long value) => WriteULong((ulong) value);
+        public void WriteLong(long value)
+        {
+            WriteULong((ulong) value);
+        }
 
         /// <summary>
-        ///     Writes a <see cref="float"/>
+        ///     Writes a <see cref="float" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteFloat(float value)
@@ -173,7 +193,7 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Writes a <see cref="double"/>
+        ///     Writes a <see cref="double" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteDouble(double value)
@@ -184,9 +204,9 @@ namespace VoltRpc.IO
             };
             WriteULong(converter.longValue);
         }
-        
+
         /// <summary>
-        ///     Writes a <see cref="decimal"/>
+        ///     Writes a <see cref="decimal" />
         /// </summary>
         /// <param name="value"></param>
         public void WriteDecimal(decimal value)
@@ -201,9 +221,9 @@ namespace VoltRpc.IO
             WriteULong(converter.longValue1);
             WriteULong(converter.longValue2);
         }
-        
+
         /// <summary>
-        ///     Writes a <see cref="string"/>
+        ///     Writes a <see cref="string" />
         /// </summary>
         /// <param name="value"></param>
         /// <exception cref="IndexOutOfRangeException"></exception>
@@ -215,7 +235,7 @@ namespace VoltRpc.IO
                 WriteUShort(0);
                 return;
             }
-            
+
             //Write to string buffer
             int size = encoding.GetBytes(value, 0, value.Length, stringBuffer, 0);
 
@@ -224,7 +244,7 @@ namespace VoltRpc.IO
                 throw new IndexOutOfRangeException($"Cannot write string larger then {MaxStringLength}!");
 
             //Write size and bytes
-            WriteUShort(checked((ushort)(size + 1)));
+            WriteUShort(checked((ushort) (size + 1)));
             WriteBytes(stringBuffer, 0, size);
         }
 
@@ -235,12 +255,7 @@ namespace VoltRpc.IO
             OutputStreamPosition = 0;
             Reset();
         }
-        
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-        }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void EnsureCapacity(int value)
         {

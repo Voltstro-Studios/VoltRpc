@@ -13,7 +13,7 @@ namespace VoltRpc.Services
             for (int i = 0; i < interfaceMethods.Length; i++)
             {
                 MethodInfo method = interfaceMethods[i];
-                
+
                 //Get the method parameters
                 bool containsRefOrOutParameter = false;
                 int refOrOutParameterCount = 0;
@@ -30,7 +30,7 @@ namespace VoltRpc.Services
                         ParameterTypeName = parameterType.FullName
                     };
                     parameters[x] = parameter;
-                    if(parameter.IsOut || parameter.IsRef)
+                    if (parameter.IsOut || parameter.IsRef)
                     {
                         containsRefOrOutParameter = true;
                         refOrOutParameterCount++;

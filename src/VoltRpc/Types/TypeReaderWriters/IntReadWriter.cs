@@ -6,7 +6,7 @@ namespace VoltRpc.Types.TypeReaderWriters
     {
         public void Write(BufferedWriter writer, object obj)
         {
-            writer.WriteInt((int)obj);
+            writer.WriteInt((int) obj);
         }
 
         public object Read(BufferedReader reader)

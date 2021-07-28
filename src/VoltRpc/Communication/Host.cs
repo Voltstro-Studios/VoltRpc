@@ -10,7 +10,7 @@ using VoltRpc.Types;
 namespace VoltRpc.Communication
 {
     /// <summary>
-    ///     The <see cref="Host"/> receives and responds to a <see cref="Client"/>'s requests
+    ///     The <see cref="Host" /> receives and responds to a <see cref="Client" />'s requests
     /// </summary>
     public abstract class Host : IDisposable
     {
@@ -19,36 +19,24 @@ namespace VoltRpc.Communication
         /// </summary>
         public const int DefaultBufferSize = 8000;
 
-        private readonly List<HostService> services = new List<HostService>();
-        private readonly object invokeLock;
-
         /// <summary>
         ///     This size of the buffer
         /// </summary>
         protected readonly int BufferSize;
-        
+
+        private readonly object invokeLock;
+
         /// <summary>
         ///     Logger
         /// </summary>
         protected readonly ILogger Logger;
 
-        /// <summary>
-        ///     The <see cref="Types.TypeReaderWriterManager"/> for <see cref="Host"/>
-        /// </summary>
-        public TypeReaderWriterManager ReaderWriterManager
-        {
-            get;
-        }
-        
-        /// <summary>
-        ///     Hides the stacktrace from the client when an <see cref="Exception"/> is thrown
-        /// </summary>
-        public bool HideStacktrace { get; set; }
+        private readonly List<HostService> services = new List<HostService>();
 
         /// <summary>
-        ///     Creates a new <see cref="Host"/> instance
+        ///     Creates a new <see cref="Host" /> instance
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger"/> to use</param>
+        /// <param name="logger">The <see cref="ILogger" /> to use</param>
         /// <param name="bufferSize">The initial size of the buffers</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
         protected Host(ILogger logger = null, int bufferSize = DefaultBufferSize)
@@ -56,43 +44,53 @@ namespace VoltRpc.Communication
             if (bufferSize < 16)
                 throw new ArgumentOutOfRangeException(nameof(bufferSize),
                     "The buffer needs to be larger then 15 bytes!");
-            
+
             Logger = logger ?? new NullLogger();
 
             ReaderWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
-            
+
             BufferSize = bufferSize;
         }
-        
-        /// <summary>
-        ///     Starts the <see cref="Host"/> to listen for requests
-        /// </summary>
-        public abstract Task StartListening();
 
         /// <summary>
-        ///     Destroys the <see cref="Host"/> instance
+        ///     The <see cref="Types.TypeReaderWriterManager" /> for <see cref="Host" />
+        /// </summary>
+        public TypeReaderWriterManager ReaderWriterManager { get; }
+
+        /// <summary>
+        ///     Hides the stacktrace from the client when an <see cref="Exception" /> is thrown
+        /// </summary>
+        public bool HideStacktrace { get; set; }
+
+        /// <summary>
+        ///     Destroys the <see cref="Host" /> instance
         /// </summary>
         public virtual void Dispose()
         {
         }
 
         /// <summary>
-        ///     Adds a service to this <see cref="Host"/>
+        ///     Starts the <see cref="Host" /> to listen for requests
         /// </summary>
-        /// <param name="service">The service <see cref="object"/> to add</param>
+        public abstract Task StartListening();
+
+        /// <summary>
+        ///     Adds a service to this <see cref="Host" />
+        /// </summary>
+        /// <param name="service">The service <see cref="object" /> to add</param>
         /// <typeparam name="T">The service type</typeparam>
         /// <exception cref="ArgumentException">Thrown if the service has already been added</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface</exception>
-        public void AddService<T>(T service) 
+        public void AddService<T>(T service)
             where T : class
         {
             Type interfaceType = typeof(T);
             if (!interfaceType.IsInterface)
                 throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
 
-            if(services.Exists(x => x.InterfaceObject == service 
-                                    || x.InterfaceName == interfaceType.FullName))
+            if (services.Exists(x => x.InterfaceObject == service
+                                     || x.InterfaceName == interfaceType.FullName))
                 throw new ArgumentException("The service already exists!", nameof(service));
 
             services.Add(new HostService
@@ -102,48 +100,50 @@ namespace VoltRpc.Communication
                 ServiceMethods = ServiceHelper.GetAllServiceMethods<T>()
             });
         }
-        
+
         /// <summary>
         ///     Processes a request from a client
         ///     <para>
-        ///         This override will automatically create the <see cref="BufferedReader"/> and <see cref="BufferedWriter"/> for you
-        ///         then call <see cref="ProcessRequest(BufferedReader,BufferedWriter)"/>.
+        ///         This override will automatically create the <see cref="BufferedReader" /> and <see cref="BufferedWriter" /> for
+        ///         you
+        ///         then call <see cref="ProcessRequest(BufferedReader,BufferedWriter)" />.
         ///         <para>This is the preferred process request method to call.</para>
         ///     </para>
         /// </summary>
-        /// <param name="readStream">The <see cref="Stream"/> to read from</param>
-        /// <param name="writeStream">The <see cref="Stream"/> to write to</param>
+        /// <param name="readStream">The <see cref="Stream" /> to read from</param>
+        /// <param name="writeStream">The <see cref="Stream" /> to write to</param>
         /// <exception cref="ArgumentNullException">Thrown if either provide stream is null</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected stream</exception>
         protected void ProcessRequest(Stream readStream, Stream writeStream)
         {
             if (readStream == null)
                 throw new ArgumentNullException(nameof(readStream));
-            
+
             if (writeStream == null)
                 throw new ArgumentNullException(nameof(writeStream));
 
             if (!readStream.CanRead)
                 throw new ArgumentOutOfRangeException(nameof(readStream), "The read stream cannot be read to!");
-            
+
             if (!writeStream.CanWrite)
                 throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
 
             BufferedReader reader = new BufferedReader(readStream, BufferSize);
             BufferedWriter writer = new BufferedWriter(writeStream, BufferSize);
-            
+
             ProcessRequest(reader, writer);
         }
 
         /// <summary>
         ///     Processes a request from a client
         ///     <para>
-        ///         You should only call this if you need to provide a custom <see cref="BufferedReader"/> and/or <see cref="BufferedWriter"/>.
-        ///         For example you are using a <see cref="Stream"/> that needs <see cref="Stream.Position"/>.
+        ///         You should only call this if you need to provide a custom <see cref="BufferedReader" /> and/or
+        ///         <see cref="BufferedWriter" />.
+        ///         For example you are using a <see cref="Stream" /> that needs <see cref="Stream.Position" />.
         ///     </para>
         /// </summary>
-        /// <param name="reader">The <see cref="BufferedReader"/> to read from</param>
-        /// <param name="writer">The <see cref="BufferedWriter"/> to write to</param>
+        /// <param name="reader">The <see cref="BufferedReader" /> to read from</param>
+        /// <param name="writer">The <see cref="BufferedWriter" /> to write to</param>
         /// <exception cref="ArgumentNullException">Thrown if either buffer is null</exception>
         protected void ProcessRequest(BufferedReader reader, BufferedWriter writer)
         {
@@ -151,7 +151,7 @@ namespace VoltRpc.Communication
                 throw new ArgumentNullException(nameof(reader));
             if (writer == null)
                 throw new ArgumentNullException(nameof(writer));
-            
+
             bool doContinue = true;
             do
             {
@@ -174,7 +174,7 @@ namespace VoltRpc.Communication
                     doContinue = false;
                 }
             } while (doContinue);
-            
+
             reader.Dispose();
             writer.Dispose();
         }
@@ -194,14 +194,12 @@ namespace VoltRpc.Communication
                         break;
 
                     foreach (ServiceMethod serviceMethod in service.ServiceMethods)
-                    {
                         if (serviceMethod.MethodName == methodName)
                         {
                             obj = service.InterfaceObject;
                             method = serviceMethod;
                             break;
                         }
-                    }
                 }
 
                 //No method was found
@@ -211,27 +209,28 @@ namespace VoltRpc.Communication
                     Logger.Warn("Client sent an invalid method request.");
                     return;
                 }
-            
+
                 //Now we read the parameters
                 int paramsCount = method.Parameters.Length;
                 object[] parameters = new object[paramsCount];
                 for (int i = 0; i < paramsCount; i++)
                 {
                     ServiceMethodParameter parameter = method.Parameters[i];
-                    
+
                     //If it is a out, the we just set it to null and don't read (as nothing is sent for outs)
                     if (parameter.IsOut)
                     {
                         parameters[i] = null;
                         continue;
                     }
-                    
+
                     //Get the type reader
                     ITypeReadWriter typeRead = ReaderWriterManager.GetType(parameter.ParameterTypeName);
                     if (typeRead == null)
                     {
                         WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
-                        Logger.Error($"The client sent a method with a parameter type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
+                        Logger.Error(
+                            $"The client sent a method with a parameter type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
 
@@ -241,7 +240,8 @@ namespace VoltRpc.Communication
                     }
                     catch (Exception ex)
                     {
-                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message, ex.InnerException?.StackTrace);
+                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
+                            ex.InnerException?.StackTrace);
                         Logger.Warn("Client sent invalid parameter data.");
                         return;
                     }
@@ -255,12 +255,13 @@ namespace VoltRpc.Communication
                 }
                 catch (Exception ex)
                 {
-                    WriteError(writer, MessageResponse.ExecuteInvokeFailException, ex.Message, ex.InnerException?.StackTrace);
+                    WriteError(writer, MessageResponse.ExecuteInvokeFailException, ex.Message,
+                        ex.InnerException?.StackTrace);
                     Logger.Error($"Method invoke failed! {ex}");
                     return;
                 }
-                
-                writer.WriteByte((byte)MessageResponse.ExecutedSuccessful);
+
+                writer.WriteByte((byte) MessageResponse.ExecutedSuccessful);
 
                 //If the method doesn't return void, write it back
                 if (!method.IsReturnVoid)
@@ -269,17 +270,19 @@ namespace VoltRpc.Communication
                     if (typeWriter == null)
                     {
                         WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
-                        Logger.Error($"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
+                        Logger.Error(
+                            $"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
-                    
+
                     try
                     {
                         typeWriter.Write(writer, methodReturn);
                     }
                     catch (Exception ex)
                     {
-                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message, ex.InnerException?.StackTrace);
+                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
+                            ex.InnerException?.StackTrace);
                         Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
                         return;
                     }
@@ -287,42 +290,44 @@ namespace VoltRpc.Communication
 
                 //If we have any out or ref types
                 if (method.ContainsRefOrOutParameters)
-                {
                     for (int i = 0; i < method.Parameters.Length; i++)
                     {
                         ServiceMethodParameter parameter = method.Parameters[i];
-                        if(!parameter.IsOut && !parameter.IsRef)
+                        if (!parameter.IsOut && !parameter.IsRef)
                             continue;
-                        
+
                         ITypeReadWriter typeWriter = ReaderWriterManager.GetType(parameter.ParameterTypeName);
                         if (typeWriter == null)
                         {
                             WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
-                            Logger.Error($"The client sent a method with a parameter ref/out type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
+                            Logger.Error(
+                                $"The client sent a method with a parameter ref/out type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
                             return;
                         }
-                        
+
                         try
                         {
                             typeWriter.Write(writer, parameters[i]);
                         }
                         catch (Exception ex)
                         {
-                            WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message, ex.InnerException?.StackTrace);
-                            Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
+                            WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
+                                ex.InnerException?.StackTrace);
+                            Logger.Error(
+                                $"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
                             return;
                         }
                     }
-                }
 
                 writer.Flush();
             }
         }
 
-        private void WriteError(BufferedWriter writer, MessageResponse message, string error = null, string stackTrace = null)
+        private void WriteError(BufferedWriter writer, MessageResponse message, string error = null,
+            string stackTrace = null)
         {
             writer.Reset();
-            writer.WriteByte((byte)message);
+            writer.WriteByte((byte) message);
             switch (message)
             {
                 case MessageResponse.NoMethodFound:
@@ -337,6 +342,7 @@ namespace VoltRpc.Communication
                 default:
                     throw new ArgumentOutOfRangeException(nameof(message), message, null);
             }
+
             writer.Flush();
         }
     }

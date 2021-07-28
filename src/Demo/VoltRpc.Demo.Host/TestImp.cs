@@ -17,7 +17,7 @@ namespace VoltRpc.Demo.Host
                 Console.WriteLine("The message was null");
                 return;
             }
-            
+
             Console.WriteLine(num);
             Console.WriteLine(message);
         }
@@ -30,10 +30,7 @@ namespace VoltRpc.Demo.Host
         public void ArrayTest(string[] array)
         {
             Console.WriteLine("Got array");
-            foreach (string s in array)
-            {
-                Console.WriteLine(s);
-            }
+            foreach (string s in array) Console.WriteLine(s);
         }
 
         public void RefTest(ref string refTest)

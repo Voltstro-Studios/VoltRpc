@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using VoltRpc.Tests.IO;
-using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Tests.TypesTests.ReaderWriters
@@ -17,10 +15,10 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         [Test]
         public void SByteArrayTest()
         {
-            sbyte[] messages = new sbyte[] {sbyte.MaxValue, 13};
+            sbyte[] messages = {sbyte.MaxValue, 13};
             Utils.TestTypeReaderWriter(new SByteArrayReadWriter(), messages);
         }
-        
+
         [Test]
         public void SByteNullArrayTest()
         {

@@ -9,7 +9,7 @@
         ///     Logging level
         /// </summary>
         public LogVerbosity LogVerbosity { get; set; }
-        
+
         /// <summary>
         ///     Log a debug message
         /// </summary>

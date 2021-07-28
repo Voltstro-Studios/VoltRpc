@@ -1,19 +1,18 @@
 ﻿using System.IO.Pipes;
-using VoltRpc.Communication;
 
 namespace VoltRpc.Communication.Pipes
 {
     /// <summary>
-    ///     <see cref="Client"/> using named pipes
+    ///     <see cref="Client" /> using named pipes
     /// </summary>
     public class PipesClient : Client
     {
         private readonly int connectionTimeout;
-        
+
         private readonly NamedPipeClientStream namedPipeClientStream;
 
         /// <summary>
-        ///     Creates a new <see cref="PipesClient"/> instance
+        ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
         /// <param name="server">The server to connect to</param>
         /// <param name="pipeName">The name of the pipe</param>
@@ -25,9 +24,9 @@ namespace VoltRpc.Communication.Pipes
             this.connectionTimeout = connectionTimeout;
             namedPipeClientStream = new NamedPipeClientStream(server, pipeName, PipeDirection.InOut);
         }
-        
+
         /// <summary>
-        ///     Creates a new <see cref="PipesClient"/> instance
+        ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="connectionTimeout">The timeout for connection</param>
@@ -36,9 +35,9 @@ namespace VoltRpc.Communication.Pipes
             : this(".", pipeName, connectionTimeout, bufferSize)
         {
         }
-        
+
         /// <summary>
-        ///     Creates a new <see cref="PipesClient"/> instance
+        ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
         /// <param name="server">The server to connect to</param>
         /// <param name="pipeName">The name of the pipe</param>
@@ -47,9 +46,9 @@ namespace VoltRpc.Communication.Pipes
             : this(server, pipeName, 7000, bufferSize)
         {
         }
-        
+
         /// <summary>
-        ///     Creates a new <see cref="PipesClient"/> instance
+        ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="bufferSize">The size of the buffers</param>
@@ -57,9 +56,9 @@ namespace VoltRpc.Communication.Pipes
             : this(".", pipeName, 7000, bufferSize)
         {
         }
-        
+
         /// <summary>
-        ///     Creates a new <see cref="PipesClient"/> instance
+        ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
         /// <param name="pipeName">The name of the pipe</param>
         public PipesClient(string pipeName)

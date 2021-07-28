@@ -9,7 +9,7 @@
         ///     Invoke a message
         /// </summary>
         InvokeMethod,
-        
+
         /// <summary>
         ///     Shutdown the connection
         /// </summary>

@@ -13,32 +13,24 @@ namespace VoltRpc.IO
      */
 
     /// <summary>
-    ///     A buffered reader for a <see cref="Stream"/>
+    ///     A buffered reader for a <see cref="Stream" />
     /// </summary>
     public class BufferedReader : IDisposable
     {
+        private readonly byte[] buffer;
+
+        private readonly UTF8Encoding encoding;
+
         /// <summary>
-        ///     The incoming <see cref="Stream"/>
+        ///     The incoming <see cref="Stream" />
         /// </summary>
         protected readonly Stream IncomingStream;
-        
-        /// <summary>
-        ///     You may need to override this if your <see cref="Stream"/> requires it
-        /// </summary>
-        protected virtual long IncomingStreamPosition
-        {
-            get;
-            set;
-        } 
-        
-        private readonly UTF8Encoding encoding;
-        private readonly byte[] buffer;
-        
+
         private int position;
         private int readLength;
-        
+
         /// <summary>
-        ///     Creates a new <see cref="BufferedReader"/> instance
+        ///     Creates a new <see cref="BufferedReader" /> instance
         /// </summary>
         /// <param name="incoming"></param>
         /// <param name="bufferSize"></param>
@@ -50,7 +42,17 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Reads a <see cref="byte"/>
+        ///     You may need to override this if your <see cref="Stream" /> requires it
+        /// </summary>
+        protected virtual long IncomingStreamPosition { get; set; }
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+        }
+
+        /// <summary>
+        ///     Reads a <see cref="byte" />
         /// </summary>
         /// <returns></returns>
         /// <exception cref="EndOfStreamException"></exception>
@@ -58,12 +60,12 @@ namespace VoltRpc.IO
         {
             if (position == readLength)
                 ReadStream();
-            
+
             return buffer[position++];
         }
-        
+
         /// <summary>
-        ///     Reads an array of <see cref="byte"/>s as an <see cref="ArraySegment{T}"/>
+        ///     Reads an array of <see cref="byte" />s as an <see cref="ArraySegment{T}" />
         /// </summary>
         /// <param name="count"></param>
         /// <returns></returns>
@@ -78,7 +80,7 @@ namespace VoltRpc.IO
             {
                 //Attempt to read again
                 ReadStream();
-                if(position + count > readLength)
+                if (position + count > readLength)
                     throw new EndOfStreamException("Cannot read beyond stream!");
             }
 
@@ -89,87 +91,105 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Reads a <see cref="sbyte"/>
+        ///     Reads a <see cref="sbyte" />
         /// </summary>
         /// <returns></returns>
-        public sbyte ReadSByte() => (sbyte) ReadByte();
+        public sbyte ReadSByte()
+        {
+            return (sbyte) ReadByte();
+        }
 
         /// <summary>
-        ///     Reads a <see cref="bool"/>
+        ///     Reads a <see cref="bool" />
         /// </summary>
         /// <returns></returns>
-        public bool ReadBool() => ReadByte() != 0;
+        public bool ReadBool()
+        {
+            return ReadByte() != 0;
+        }
 
         /// <summary>
-        ///     Reads a <see cref="ushort"/>
+        ///     Reads a <see cref="ushort" />
         /// </summary>
         /// <returns></returns>
         public ushort ReadUShort()
         {
             ushort value = 0;
             value |= ReadByte();
-            value |= (ushort)(ReadByte() << 8);
+            value |= (ushort) (ReadByte() << 8);
             return value;
         }
 
         /// <summary>
-        ///     Reads a <see cref="short"/>
+        ///     Reads a <see cref="short" />
         /// </summary>
         /// <returns></returns>
-        public short ReadShort() => (short) ReadUShort();
+        public short ReadShort()
+        {
+            return (short) ReadUShort();
+        }
 
         /// <summary>
-        ///     Reads a <see cref="char"/>
+        ///     Reads a <see cref="char" />
         /// </summary>
         /// <returns></returns>
-        public char ReadChar() => (char)ReadUShort();
+        public char ReadChar()
+        {
+            return (char) ReadUShort();
+        }
 
         /// <summary>
-        ///     Reads a <see cref="uint"/>
+        ///     Reads a <see cref="uint" />
         /// </summary>
         /// <returns></returns>
         public uint ReadUInt()
         {
             uint value = 0;
             value |= ReadByte();
-            value |= (uint)(ReadByte() << 8);
-            value |= (uint)(ReadByte() << 16);
-            value |= (uint)(ReadByte() << 24);
+            value |= (uint) (ReadByte() << 8);
+            value |= (uint) (ReadByte() << 16);
+            value |= (uint) (ReadByte() << 24);
             return value;
         }
 
         /// <summary>
-        ///     Reads a <see cref="int"/>
+        ///     Reads a <see cref="int" />
         /// </summary>
         /// <returns></returns>
-        public int ReadInt() => (int) ReadUInt();
-        
+        public int ReadInt()
+        {
+            return (int) ReadUInt();
+        }
+
         /// <summary>
-        ///     Reads a <see cref="ulong"/>
+        ///     Reads a <see cref="ulong" />
         /// </summary>
         /// <returns></returns>
         public ulong ReadULong()
         {
             ulong value = 0;
             value |= ReadByte();
-            value |= ((ulong)ReadByte()) << 8;
-            value |= ((ulong)ReadByte()) << 16;
-            value |= ((ulong)ReadByte()) << 24;
-            value |= ((ulong)ReadByte()) << 32;
-            value |= ((ulong)ReadByte()) << 40;
-            value |= ((ulong)ReadByte()) << 48;
-            value |= ((ulong)ReadByte()) << 56;
+            value |= (ulong) ReadByte() << 8;
+            value |= (ulong) ReadByte() << 16;
+            value |= (ulong) ReadByte() << 24;
+            value |= (ulong) ReadByte() << 32;
+            value |= (ulong) ReadByte() << 40;
+            value |= (ulong) ReadByte() << 48;
+            value |= (ulong) ReadByte() << 56;
             return value;
         }
 
         /// <summary>
-        ///     Reads a <see cref="long"/>
+        ///     Reads a <see cref="long" />
         /// </summary>
         /// <returns></returns>
-        public long ReadLong() => (long) ReadULong();
+        public long ReadLong()
+        {
+            return (long) ReadULong();
+        }
 
         /// <summary>
-        ///     Reads a <see cref="float"/>
+        ///     Reads a <see cref="float" />
         /// </summary>
         /// <returns></returns>
         public float ReadFloat()
@@ -182,7 +202,7 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Reads a <see cref="double"/>
+        ///     Reads a <see cref="double" />
         /// </summary>
         /// <returns></returns>
         public double ReadDouble()
@@ -195,21 +215,21 @@ namespace VoltRpc.IO
         }
 
         /// <summary>
-        ///     Reads a <see cref="decimal"/>
+        ///     Reads a <see cref="decimal" />
         /// </summary>
         /// <returns></returns>
         public decimal ReadDecimal()
         {
             UIntDecimal converter = new UIntDecimal
             {
-                longValue1 = ReadULong(), 
+                longValue1 = ReadULong(),
                 longValue2 = ReadULong()
             };
             return converter.decimalValue;
         }
 
         /// <summary>
-        ///     Reads a <see cref="string"/>
+        ///     Reads a <see cref="string" />
         /// </summary>
         /// <returns></returns>
         /// <exception cref="EndOfStreamException"></exception>
@@ -226,7 +246,8 @@ namespace VoltRpc.IO
 
             //Make sure it's within limits to avoid allocation attacks etc.
             if (realSize >= BufferedWriter.MaxStringLength)
-                throw new EndOfStreamException($"Read string was too long! Max size is {BufferedWriter.MaxStringLength}.");
+                throw new EndOfStreamException(
+                    $"Read string was too long! Max size is {BufferedWriter.MaxStringLength}.");
 
             ArraySegment<byte> data = ReadBytesSegment(realSize);
 
@@ -234,17 +255,12 @@ namespace VoltRpc.IO
             return encoding.GetString(data.Array, data.Offset, data.Count);
         }
 
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-        }
-
         private void ReadStream()
         {
             readLength = IncomingStream.Read(buffer, 0, buffer.Length);
             IncomingStreamPosition = 0;
             position = 0;
-                
+
             if (readLength == 0)
                 throw new EndOfStreamException();
         }

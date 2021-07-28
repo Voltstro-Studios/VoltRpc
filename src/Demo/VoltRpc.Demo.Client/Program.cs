@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using VoltRpc.Demo.Shared;
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
+using VoltRpc.Demo.Shared;
 using VoltRpc.Proxy.Generated;
 
 namespace VoltRpc.Demo.Client
@@ -42,7 +42,7 @@ namespace VoltRpc.Demo.Client
                 proxy.OutTest(out string message);
                 Console.WriteLine($"Got out as: {message}");
             });
-            
+
             Console.WriteLine("Press any key to quit...");
             Console.ReadKey();
 

@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using VoltRpc.Tests.IO;
-using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Tests.TypesTests.ReaderWriters
@@ -17,10 +15,10 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         [Test]
         public void UShortArrayTest()
         {
-            ushort[] messages = new ushort[] {ushort.MaxValue, 800};
+            ushort[] messages = {ushort.MaxValue, 800};
             Utils.TestTypeReaderWriter(new UShortArrayReadWriter(), messages);
         }
-        
+
         [Test]
         public void UShortNullArrayTest()
         {

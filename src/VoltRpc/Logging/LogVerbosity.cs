@@ -9,17 +9,17 @@
         ///     Debug level
         /// </summary>
         Debug,
-        
+
         /// <summary>
         ///     Info level
         /// </summary>
         Info,
-        
+
         /// <summary>
         ///     Warning level
         /// </summary>
         Warn,
-        
+
         /// <summary>
         ///     Error level
         /// </summary>

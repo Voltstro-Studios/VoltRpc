@@ -10,7 +10,7 @@ namespace VoltRpc.Demo.Shared
         public void ParmTest(string message, float num);
 
         public string ReturnTest();
-        
+
         public void ArrayTest(string[] array);
 
         public void RefTest(ref string refTest);

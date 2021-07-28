@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using VoltRpc.Tests.IO;
-using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Tests.TypesTests.ReaderWriters
@@ -17,10 +15,10 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         [Test]
         public void ULongArrayTest()
         {
-            ulong[] messages = new ulong[] {ulong.MaxValue, 800};
+            ulong[] messages = {ulong.MaxValue, 800};
             Utils.TestTypeReaderWriter(new ULongArrayReadWriter(), messages);
         }
-        
+
         [Test]
         public void ULongNullArrayTest()
         {

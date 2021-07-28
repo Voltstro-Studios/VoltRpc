@@ -1,29 +1,29 @@
 ﻿namespace VoltRpc.Logging
 {
     /// <summary>
-    ///     Null <see cref="ILogger"/>
+    ///     Null <see cref="ILogger" />
     /// </summary>
     public sealed class NullLogger : ILogger
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public LogVerbosity LogVerbosity { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Debug(string message)
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Info(string message)
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Warn(string message)
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Error(string message)
         {
         }

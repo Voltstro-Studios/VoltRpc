@@ -6,13 +6,13 @@ namespace VoltRpc.Types.TypeReaderWriters
     {
         public void Write(BufferedWriter writer, object obj)
         {
-            float[] array = (float[])obj;
+            float[] array = (float[]) obj;
             if (array == null)
             {
                 writer.WriteInt(-1);
                 return;
             }
-            
+
             writer.WriteInt(array.Length);
             foreach (float u in array)
                 writer.WriteFloat(u);
@@ -21,16 +21,10 @@ namespace VoltRpc.Types.TypeReaderWriters
         public object Read(BufferedReader reader)
         {
             int size = reader.ReadInt();
-            if (size == -1)
-            {
-                return null;
-            }
+            if (size == -1) return null;
 
             float[] array = new float[size];
-            for (int i = 0; i < size; i++)
-            {
-                array[i] = reader.ReadFloat();
-            }
+            for (int i = 0; i < size; i++) array[i] = reader.ReadFloat();
 
             return array;
         }

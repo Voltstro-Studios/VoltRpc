@@ -3,37 +3,37 @@
 namespace VoltRpc.Logging
 {
     /// <summary>
-    ///     Logger for <see cref="System.Console"/>
+    ///     Logger for <see cref="System.Console" />
     /// </summary>
     public sealed class ConsoleLogger : ILogger
     {
         /// <summary>
-        ///     Creates a new <see cref="ConsoleLogger"/> instance
+        ///     Creates a new <see cref="ConsoleLogger" /> instance
         /// </summary>
         /// <param name="logVerbosity"></param>
         public ConsoleLogger(LogVerbosity logVerbosity = LogVerbosity.Info)
         {
             LogVerbosity = logVerbosity;
         }
-        
-        /// <inheritdoc/>
+
+        /// <inheritdoc />
         public LogVerbosity LogVerbosity { get; set; }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Debug(string message)
         {
-            if(LogVerbosity <= LogVerbosity.Debug)
+            if (LogVerbosity <= LogVerbosity.Debug)
                 Console.WriteLine($"[DEBUG] {message}");
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Info(string message)
         {
-            if(LogVerbosity <= LogVerbosity.Info)
+            if (LogVerbosity <= LogVerbosity.Info)
                 Console.WriteLine($"[INFO] {message}");
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Warn(string message)
         {
             if (LogVerbosity <= LogVerbosity.Warn)
@@ -45,7 +45,7 @@ namespace VoltRpc.Logging
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Error(string message)
         {
             if (LogVerbosity <= LogVerbosity.Error)

@@ -11,7 +11,7 @@ namespace VoltRpc.Proxy.Generator
     //So I have no clue what I am doing with this whole Roslyn .NET Source Generators.
     //If you see something that is shit, or should be done some other way, please open
     //a PR explaining why something is shit.
-    
+
     /// <summary>
     ///     The VoltRpc proxy generator
     /// </summary>
@@ -21,9 +21,9 @@ namespace VoltRpc.Proxy.Generator
         public void Initialize(GeneratorInitializationContext context)
         {
             //Register the attribute source
-            context.RegisterForPostInitialization(i => i.AddSource("GenerateProxyAttribute", 
+            context.RegisterForPostInitialization(i => i.AddSource("GenerateProxyAttribute",
                 ProxyCodeTemplates.GenerateProxyAttributeCode));
-            
+
             //Register Syntax receiver
             context.RegisterForSyntaxNotifications(() => new ProxySyntaxReceiver());
         }
@@ -33,9 +33,10 @@ namespace VoltRpc.Proxy.Generator
             if (context.SyntaxContextReceiver is ProxySyntaxReceiver proxySyntax)
             {
                 //Get the generate proxy attribute symbol
-                INamedTypeSymbol attributeSymbol = context.Compilation.GetTypeByMetadataName(ProxyCodeTemplates.GenerateProxyAttributeName);
+                INamedTypeSymbol attributeSymbol =
+                    context.Compilation.GetTypeByMetadataName(ProxyCodeTemplates.GenerateProxyAttributeName);
                 SemanticModel model = null;
-                
+
                 //Go through all of our interfaces
                 foreach (InterfaceDeclarationSyntax interfaceDeclaration in proxySyntax.Interfaces)
                 {
@@ -46,9 +47,9 @@ namespace VoltRpc.Proxy.Generator
                     ISymbol interfaceSymbol = ModelExtensions.GetDeclaredSymbol(model, interfaceDeclaration);
 
                     //Get the generate proxy attribute, if it has it
-                    AttributeData attributeData = interfaceSymbol?.GetAttributes().FirstOrDefault(x => 
+                    AttributeData attributeData = interfaceSymbol?.GetAttributes().FirstOrDefault(x =>
                         SymbolEqualityComparer.Default.Equals(x.AttributeClass, attributeSymbol));
-                    
+
                     if (attributeData != null)
                         GenerateInterfaceProxy(context, model, interfaceDeclaration, attributeData);
                 }
@@ -56,60 +57,65 @@ namespace VoltRpc.Proxy.Generator
         }
 
         /// <summary>
-        ///     Generates a source file for a <see cref="InterfaceDeclarationSyntax"/>
+        ///     Generates a source file for a <see cref="InterfaceDeclarationSyntax" />
         /// </summary>
         /// <param name="context"></param>
         /// <param name="model"></param>
         /// <param name="interfaceDeclaration"></param>
         /// <param name="generateProxyData"></param>
-        private void GenerateInterfaceProxy(GeneratorExecutionContext context, SemanticModel model, InterfaceDeclarationSyntax interfaceDeclaration, AttributeData generateProxyData)
+        private void GenerateInterfaceProxy(GeneratorExecutionContext context, SemanticModel model,
+            InterfaceDeclarationSyntax interfaceDeclaration, AttributeData generateProxyData)
         {
             //Get info about the interface first
             INamedTypeSymbol interfaceSymbol = model.GetDeclaredSymbol(interfaceDeclaration);
-            if(interfaceSymbol == null)
+            if (interfaceSymbol == null)
                 return;
 
             string interfaceName = $"{interfaceDeclaration.Identifier.ValueText}";
             string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
             string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
 
-            TypedConstant overrideName = generateProxyData.NamedArguments.SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideName).Value;
+            TypedConstant overrideName = generateProxyData.NamedArguments
+                .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideName).Value;
             if (!overrideName.IsNull)
                 interfaceProxyName = overrideName.Value?.ToString();
-                
+
             //Create all of the methods
             StringBuilder methods = new StringBuilder();
             foreach (MemberDeclarationSyntax memberDeclarationSyntax in interfaceDeclaration.Members)
             {
                 //Member needs to be public
-                if(memberDeclarationSyntax.Modifiers.All(modifer => modifer.Kind() != SyntaxKind.PublicKeyword))
+                if (memberDeclarationSyntax.Modifiers.All(modifer => modifer.Kind() != SyntaxKind.PublicKeyword))
                     continue;
-                
+
                 MethodDeclarationSyntax method = (MethodDeclarationSyntax) memberDeclarationSyntax;
                 methods.Append(CreateMethod(model, method, interfaceNamespace, interfaceName));
             }
 
             //Add the source
-            context.AddSource(interfaceProxyName, string.Format(ProxyCodeTemplates.ProxyCodeTemplate, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", methods));
+            context.AddSource(interfaceProxyName,
+                string.Format(ProxyCodeTemplates.ProxyCodeTemplate, interfaceProxyName,
+                    $"{interfaceNamespace}.{interfaceName}", methods));
         }
 
         /// <summary>
-        ///     Creates source for a <see cref="MethodDeclarationSyntax"/>
+        ///     Creates source for a <see cref="MethodDeclarationSyntax" />
         /// </summary>
         /// <param name="model"></param>
         /// <param name="method"></param>
         /// <param name="interfaceNamespace"></param>
         /// <param name="interfaceName"></param>
         /// <returns></returns>
-        private string CreateMethod(SemanticModel model, MethodDeclarationSyntax method, string interfaceNamespace, string interfaceName)
+        private string CreateMethod(SemanticModel model, MethodDeclarationSyntax method, string interfaceNamespace,
+            string interfaceName)
         {
             //Get info about the method first
             IMethodSymbol methodSymbol = model.GetDeclaredSymbol(method);
             if (methodSymbol == null)
                 return string.Empty;
-            
+
             StringBuilder methodSb = new StringBuilder();
-            
+
             //Declaration of the method
             methodSb.Append($"\n\t\tpublic {method.ReturnType.ToFullString()}{method.Identifier.ValueText}(");
 
@@ -118,7 +124,7 @@ namespace VoltRpc.Proxy.Generator
             for (int i = 0; i < parametersCount; i++)
             {
                 IParameterSymbol symbol = methodSymbol.Parameters[i];
-                
+
                 //If it is a ref or out we need to declare that too
                 switch (symbol.RefKind)
                 {
@@ -129,22 +135,22 @@ namespace VoltRpc.Proxy.Generator
                         methodSb.Append("out ");
                         break;
                 }
-                
+
                 //Write the parm type and name
                 methodSb.Append($"{symbol.Type} {symbol.Name}");
-                
+
                 //Add a ',' for the next parm
                 if (i + 1 != parametersCount)
                     methodSb.Append(", ");
             }
-            
+
             methodSb.Append(")\n");
             methodSb.Append("\t\t{\n");
             methodSb.Append("\t\t\t");
-            
+
             bool anyOutOrRefParms =
                 methodSymbol.Parameters.Any(x => x.RefKind == RefKind.Ref || x.RefKind == RefKind.Out);
-            
+
             //If the method returns and object, we need to cast the result from client.InvokeMethod to the return type
             if (!methodSymbol.ReturnsVoid && !anyOutOrRefParms)
                 methodSb.Append($"return ({methodSymbol.ReturnType}) ");
@@ -152,8 +158,9 @@ namespace VoltRpc.Proxy.Generator
             if (anyOutOrRefParms)
                 methodSb.Append("object[] returnObjects = ");
 
-            methodSb.Append($"client.InvokeMethod(\"{interfaceNamespace}.{interfaceName}.{method.Identifier.ValueText}\"");
-            
+            methodSb.Append(
+                $"client.InvokeMethod(\"{interfaceNamespace}.{interfaceName}.{method.Identifier.ValueText}\"");
+
             //Write parameters for InvokeMethod
             methodSb.Append(WriteInvokeMethodParameters(methodSymbol.Parameters));
 
@@ -165,20 +172,20 @@ namespace VoltRpc.Proxy.Generator
             int parameterIndex = 0;
             if (!methodSymbol.ReturnsVoid)
                 parameterIndex++;
-            
+
             for (int i = 0; i < parametersCount; i++)
             {
                 IParameterSymbol symbol = methodSymbol.Parameters[i];
                 if (symbol.RefKind == RefKind.Ref || symbol.RefKind == RefKind.Out)
                 {
                     methodSb.Append($"\n\t\t\t{symbol.Name} = ({symbol.Type}) returnObjects[{parameterIndex}];");
-                    parameterIndex++; 
+                    parameterIndex++;
                 }
             }
 
             if (anyOutOrRefParms && !methodSymbol.ReturnsVoid)
                 methodSb.Append($"\n\t\t\treturn ({methodSymbol.ReturnType}) returnObjects[0];");
-            
+
             methodSb.AppendLine("\n\t\t}");
             return methodSb.ToString();
         }
@@ -186,15 +193,16 @@ namespace VoltRpc.Proxy.Generator
         private string WriteInvokeMethodParameters(ImmutableArray<IParameterSymbol> parameterSymbols)
         {
             StringBuilder parameterString = new StringBuilder();
-            List<IParameterSymbol> parameters = parameterSymbols.Where(parameterSymbol => parameterSymbol.RefKind != RefKind.Out).ToList();
+            List<IParameterSymbol> parameters =
+                parameterSymbols.Where(parameterSymbol => parameterSymbol.RefKind != RefKind.Out).ToList();
 
             if (parameters.Count > 0)
             {
                 parameterString.Append(", ");
                 bool anyArrays = parameters.Any(x => x.Type is IArrayTypeSymbol);
-                
+
                 //If any parms is an array we need to do some extra stuff, as client.InvokeMethod arguments is an params object[]
-                if(anyArrays)
+                if (anyArrays)
                     parameterString.Append("new object[]{ ");
 
                 int parametersCount = parameters.Count;

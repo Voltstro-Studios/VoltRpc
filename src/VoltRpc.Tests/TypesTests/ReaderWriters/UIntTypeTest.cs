@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using VoltRpc.Tests.IO;
-using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Tests.TypesTests.ReaderWriters
@@ -17,10 +15,10 @@ namespace VoltRpc.Tests.TypesTests.ReaderWriters
         [Test]
         public void UIntArrayTest()
         {
-            uint[] messages = new uint[] {73, 23};
+            uint[] messages = {73, 23};
             Utils.TestTypeReaderWriter(new UIntArrayReadWriter(), messages);
         }
-        
+
         [Test]
         public void UIntNullArrayTest()
         {

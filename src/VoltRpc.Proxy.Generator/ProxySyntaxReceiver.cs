@@ -1,6 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Collections.Generic;
 
 namespace VoltRpc.Proxy.Generator
 {
@@ -12,9 +12,7 @@ namespace VoltRpc.Proxy.Generator
         {
             if (context.Node is InterfaceDeclarationSyntax interfaceDeclarationSyntax &&
                 interfaceDeclarationSyntax.AttributeLists.Count > 0)
-            {
                 Interfaces.Add(interfaceDeclarationSyntax);
-            }
         }
     }
 }
