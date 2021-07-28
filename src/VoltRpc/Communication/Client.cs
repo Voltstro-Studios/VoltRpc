@@ -69,7 +69,7 @@ namespace VoltRpc.Communication
         /// </summary>
         /// <typeparam name="T">The same interface that you are using on the server</typeparam>
         /// <exception cref="NullReferenceException">Thrown if T's <see cref="Type.FullName"/> is null</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface, or has already been added as a service.</exception>
         public void AddService<T>()
             where T : class
         {

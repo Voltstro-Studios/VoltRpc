@@ -62,7 +62,7 @@ namespace VoltRpc.Communication
             ReaderWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
             
-            this.BufferSize = bufferSize;
+            BufferSize = bufferSize;
         }
         
         /// <summary>
