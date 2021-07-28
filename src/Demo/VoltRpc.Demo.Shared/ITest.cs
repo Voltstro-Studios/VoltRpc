@@ -2,7 +2,7 @@
 
 namespace VoltRpc.Demo.Shared
 {
-    [GenerateProxy]
+    [GenerateProxy(GeneratedName = "TestProxy")]
     public interface ITest
     {
         public void BasicTest();

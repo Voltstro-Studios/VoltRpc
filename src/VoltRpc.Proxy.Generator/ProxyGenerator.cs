@@ -50,7 +50,7 @@ namespace VoltRpc.Proxy.Generator
                         SymbolEqualityComparer.Default.Equals(x.AttributeClass, attributeSymbol));
                     
                     if (attributeData != null)
-                        GenerateInterfaceProxy(context, model, interfaceDeclaration);
+                        GenerateInterfaceProxy(context, model, interfaceDeclaration, attributeData);
                 }
             }
         }
@@ -61,16 +61,21 @@ namespace VoltRpc.Proxy.Generator
         /// <param name="context"></param>
         /// <param name="model"></param>
         /// <param name="interfaceDeclaration"></param>
-        private void GenerateInterfaceProxy(GeneratorExecutionContext context, SemanticModel model, InterfaceDeclarationSyntax interfaceDeclaration)
+        /// <param name="generateProxyData"></param>
+        private void GenerateInterfaceProxy(GeneratorExecutionContext context, SemanticModel model, InterfaceDeclarationSyntax interfaceDeclaration, AttributeData generateProxyData)
         {
             //Get info about the interface first
             INamedTypeSymbol interfaceSymbol = model.GetDeclaredSymbol(interfaceDeclaration);
             if(interfaceSymbol == null)
                 return;
-            
+
             string interfaceName = $"{interfaceDeclaration.Identifier.ValueText}";
             string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
             string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
+
+            TypedConstant overrideName = generateProxyData.NamedArguments.SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideName).Value;
+            if (!overrideName.IsNull)
+                interfaceProxyName = overrideName.Value?.ToString();
                 
             //Create all of the methods
             StringBuilder methods = new StringBuilder();

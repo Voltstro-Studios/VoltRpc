@@ -25,7 +25,7 @@ namespace VoltRpc.Demo.Client
             client.AddService<ITest>();
             client.Connect();
 
-            ITest proxy = new ITest_GeneratedProxy(client);
+            ITest proxy = new TestProxy(client);
 
             RunFunctionTest("Basic", proxy.BasicTest);
             RunFunctionTest("Parm", () => proxy.ParmTest("Hello World!", 142f));
