@@ -41,6 +41,11 @@ namespace VoltRpc.Communication
         {
             get;
         }
+        
+        /// <summary>
+        ///     Hides the stacktrace from the client when an <see cref="Exception"/> is thrown
+        /// </summary>
+        public bool HideStacktrace { get; set; }
 
         /// <summary>
         ///     Creates a new <see cref="Host"/> instance
@@ -316,15 +321,13 @@ namespace VoltRpc.Communication
             switch (message)
             {
                 case MessageResponse.NoMethodFound:
-                    break;
                 case MessageResponse.ExecutedSuccessful:
-                    break;
                 case MessageResponse.ExecuteFailNoTypeReader:
                     break;
                 case MessageResponse.ExecuteTypeReadWriteFail:
                 case MessageResponse.ExecuteInvokeFailException:
                     writer.WriteString(error);
-                    writer.WriteString(stackTrace);
+                    writer.WriteString(HideStacktrace ? null : stackTrace);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(message), message, null);
