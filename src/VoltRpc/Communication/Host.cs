@@ -18,10 +18,8 @@ namespace VoltRpc.Communication
         ///     The default size of the buffers
         /// </summary>
         public const int DefaultBufferSize = 8000;
-        
-        //TODO: Store interface name
-        private readonly Dictionary<object, ServiceMethod[]> methods =
-            new Dictionary<object, ServiceMethod[]>();
+
+        private readonly List<HostService> services = new List<HostService>();
         private readonly object invokeLock;
 
         /// <summary>
@@ -89,14 +87,20 @@ namespace VoltRpc.Communication
         public void AddService<T>(T service) 
             where T : class
         {
-            if (!typeof(T).IsInterface)
+            Type interfaceType = typeof(T);
+            if (!interfaceType.IsInterface)
                 throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
-            
-            if (methods.ContainsKey(service))
+
+            if(services.Exists(x => x.InterfaceObject == service 
+                                    || x.InterfaceName == interfaceType.FullName))
                 throw new ArgumentException("The service already exists!", nameof(service));
 
-            ServiceMethod[] serviceMethods = ServiceHelper.GetAllServiceMethods<T>();
-            methods.Add(service, serviceMethods);
+            services.Add(new HostService
+            {
+                InterfaceName = interfaceType.FullName,
+                InterfaceObject = service,
+                ServiceMethods = ServiceHelper.GetAllServiceMethods<T>()
+            });
         }
         
         /// <summary>
@@ -184,17 +188,18 @@ namespace VoltRpc.Communication
 
                 object obj = null;
                 ServiceMethod method = null;
-                foreach (KeyValuePair<object, ServiceMethod[]> service in methods)
+                foreach (HostService service in services)
                 {
-                    if(method != null)
+                    if (method != null)
                         break;
-                
-                    foreach (ServiceMethod serviceMethod in service.Value)
+
+                    foreach (ServiceMethod serviceMethod in service.ServiceMethods)
                     {
                         if (serviceMethod.MethodName == methodName)
                         {
-                            obj = service.Key;
+                            obj = service.InterfaceObject;
                             method = serviceMethod;
+                            break;
                         }
                     }
                 }

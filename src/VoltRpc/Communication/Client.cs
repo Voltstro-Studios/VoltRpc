@@ -21,7 +21,8 @@ namespace VoltRpc.Communication
         private BufferedReader reader;
         private BufferedWriter writer;
         
-        private readonly List<ServiceMethod> methods;
+        private readonly Dictionary<string, ServiceMethod[]> services;
+
         private readonly int bufferSize;
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace VoltRpc.Communication
                     "The buffer needs to be larger then 15 bytes!");
             
             TypeReaderWriterManager = new TypeReaderWriterManager();
-            methods = new List<ServiceMethod>();
+            services = new Dictionary<string, ServiceMethod[]>();
             this.bufferSize = bufferSize;
         }
 
@@ -67,14 +68,22 @@ namespace VoltRpc.Communication
         ///     Tells the <see cref="Client"/> what interfaces you might be using
         /// </summary>
         /// <typeparam name="T">The same interface that you are using on the server</typeparam>
+        /// <exception cref="NullReferenceException">Thrown if T's <see cref="Type.FullName"/> is null</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface</exception>
         public void AddService<T>()
             where T : class
         {
-            if (!typeof(T).IsInterface)
+            Type interfaceType = typeof(T);
+            if (!interfaceType.IsInterface)
                 throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
-            
-            methods.AddRange(ServiceHelper.GetAllServiceMethods<T>());
+
+            if (interfaceType.FullName == null)
+                throw new NullReferenceException("T's Type.FullName is null!");
+
+            if (services.ContainsKey(interfaceType.FullName))
+                throw new ArgumentOutOfRangeException(nameof(T), "T has already been added as a service!");
+
+            services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods<T>());
         }
 
         /// <summary>
@@ -122,16 +131,22 @@ namespace VoltRpc.Communication
         {
             //Get the method
             ServiceMethod method = null;
-            foreach (ServiceMethod serviceMethod in methods)
+            foreach (KeyValuePair<string, ServiceMethod[]> service in services)
             {
-                if (serviceMethod.MethodName != methodName) 
-                    continue;
-                method = serviceMethod;
-                break;
+                if(method != null)
+                    break;
+
+                foreach (ServiceMethod serviceMethod in service.Value)
+                {
+                    if (serviceMethod.MethodName != methodName)
+                        continue;
+                    method = serviceMethod;
+                    break;
+                }
             }
 
             if (method == null)
-                throw new MissingMemberException($"The interface that {methodName} is from needs to be added first with AddService!");
+                throw new MissingMethodException($"The interface that {methodName} is from needs to be added first with AddService!");
 
             //Write the method name first
             writer.WriteByte((byte) MessageType.InvokeMethod);
