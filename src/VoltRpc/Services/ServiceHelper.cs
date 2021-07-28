@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace VoltRpc.Proxy
+namespace VoltRpc.Services
 {
     internal static class ServiceHelper
     {
@@ -18,12 +18,12 @@ namespace VoltRpc.Proxy
                 bool containsRefOrOutParameter = false;
                 int refOrOutParameterCount = 0;
                 ParameterInfo[] methodParameters = method.GetParameters();
-                Parameter[] parameters = new Parameter[methodParameters.Length];
+                ServiceMethodParameter[] parameters = new ServiceMethodParameter[methodParameters.Length];
                 for (int x = 0; x < methodParameters.Length; x++)
                 {
                     ParameterInfo parameterInfo = methodParameters[x];
                     Type parameterType = parameterInfo.ParameterType;
-                    Parameter parameter = new Parameter
+                    ServiceMethodParameter parameter = new ServiceMethodParameter
                     {
                         IsOut = parameterInfo.IsOut,
                         IsRef = parameterType.IsByRef && parameterInfo.IsOut == false,

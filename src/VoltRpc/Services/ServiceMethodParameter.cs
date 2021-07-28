@@ -1,6 +1,6 @@
-﻿namespace VoltRpc.Proxy
+﻿namespace VoltRpc.Services
 {
-    internal struct Parameter
+    internal struct ServiceMethodParameter
     {
         public bool IsRef { get; set; }
         

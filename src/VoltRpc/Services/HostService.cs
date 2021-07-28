@@ -1,6 +1,4 @@
-﻿using VoltRpc.Proxy;
-
-namespace VoltRpc.Communication
+﻿namespace VoltRpc.Services
 {
     internal struct HostService
     {

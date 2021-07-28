@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using VoltRpc.IO;
 using VoltRpc.Logging;
-using VoltRpc.Proxy;
+using VoltRpc.Services;
 using VoltRpc.Types;
 
 namespace VoltRpc.Communication
@@ -217,7 +217,7 @@ namespace VoltRpc.Communication
                 object[] parameters = new object[paramsCount];
                 for (int i = 0; i < paramsCount; i++)
                 {
-                    Parameter parameter = method.Parameters[i];
+                    ServiceMethodParameter parameter = method.Parameters[i];
                     
                     //If it is a out, the we just set it to null and don't read (as nothing is sent for outs)
                     if (parameter.IsOut)
@@ -290,7 +290,7 @@ namespace VoltRpc.Communication
                 {
                     for (int i = 0; i < method.Parameters.Length; i++)
                     {
-                        Parameter parameter = method.Parameters[i];
+                        ServiceMethodParameter parameter = method.Parameters[i];
                         if(!parameter.IsOut && !parameter.IsRef)
                             continue;
                         

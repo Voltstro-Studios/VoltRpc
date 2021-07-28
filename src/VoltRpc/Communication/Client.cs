@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using VoltRpc.IO;
-using VoltRpc.Proxy;
+using VoltRpc.Services;
 using VoltRpc.Types;
 
 namespace VoltRpc.Communication
@@ -208,7 +208,7 @@ namespace VoltRpc.Communication
             //Read our ref and out parameters
             if (method.ContainsRefOrOutParameters)
             {
-                foreach (Parameter parameter in method.Parameters)
+                foreach (ServiceMethodParameter parameter in method.Parameters)
                 {
                     if (!parameter.IsRef && !parameter.IsOut) 
                         continue;

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace VoltRpc.Proxy
+namespace VoltRpc.Services
 {
     internal class ServiceMethod
     {
@@ -9,7 +9,7 @@ namespace VoltRpc.Proxy
         
         public bool ContainsRefOrOutParameters { get; set; }
         public int RefOrOutParameterCount { get; set; }
-        public Parameter[] Parameters { get; set; }
+        public ServiceMethodParameter[] Parameters { get; set; }
         
         public bool IsReturnVoid { get; set; }
         public string ReturnTypeName { get; set; }
