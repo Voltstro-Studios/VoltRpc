@@ -22,6 +22,8 @@ namespace VoltRpc.Demo.Host
                 host = new TCPHost(parser.IpEndPoint, logger, Communication.Host.DefaultBufferSize,
                     TCPHost.DefaultSendTimeout);
 
+            host.ReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
+
             TestImp testImp = new();
             host.AddService<ITest>(testImp);
             host.StartListening();

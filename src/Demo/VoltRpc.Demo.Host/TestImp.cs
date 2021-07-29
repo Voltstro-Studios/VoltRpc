@@ -50,5 +50,19 @@ namespace VoltRpc.Demo.Host
             Console.WriteLine("Got out test");
             outTest = "Hello Out!";
         }
+
+        public void CustomTypeTest(CustomType customType)
+        {
+            Console.WriteLine($"Got custom type with values of: {customType.Floaty} {customType.Message}");
+        }
+
+        public CustomType CustomTypeReturnTest()
+        {
+            return new CustomType
+            {
+                Floaty = 69.420f,
+                Message = "HaHa Reddit big chungus wholesome 100 keanu reeves"
+            };
+        }
     }
 }

@@ -18,5 +18,9 @@ namespace VoltRpc.Demo.Shared
         public byte RefReturnTest(ref uint refTest);
 
         public void OutTest(out string outTest);
+
+        public void CustomTypeTest(CustomType customType);
+
+        public CustomType CustomTypeReturnTest();
     }
 }

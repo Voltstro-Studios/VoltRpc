@@ -117,7 +117,7 @@ namespace VoltRpc.Proxy.Generator
             StringBuilder methodSb = new StringBuilder();
 
             //Declaration of the method
-            methodSb.Append($"\n\t\tpublic {method.ReturnType.ToFullString()}{method.Identifier.ValueText}(");
+            methodSb.Append($"\n\t\tpublic {methodSymbol.ReturnType} {method.Identifier.ValueText}(");
 
             //Create parms
             int parametersCount = methodSymbol.Parameters.Length;

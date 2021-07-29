@@ -22,6 +22,7 @@ namespace VoltRpc.Demo.Client
             else
                 client = new TCPClient(parser.IpEndPoint, 7000);
 
+            client.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
             client.AddService<ITest>();
             client.Connect();
 
@@ -41,6 +42,16 @@ namespace VoltRpc.Demo.Client
             {
                 proxy.OutTest(out string message);
                 Console.WriteLine($"Got out as: {message}");
+            });
+            RunFunctionTest("Custom Type", () => proxy.CustomTypeTest(new CustomType
+            {
+                Floaty = 666.6f,
+                Message = "Message of the day."
+            }));
+            RunFunctionTest("Custom Type Return", () =>
+            {
+                CustomType customType = proxy.CustomTypeReturnTest();
+                Console.WriteLine($"Got custom type with values: {customType.Floaty} {customType.Message}.");
             });
 
             Console.WriteLine("Press any key to quit...");
