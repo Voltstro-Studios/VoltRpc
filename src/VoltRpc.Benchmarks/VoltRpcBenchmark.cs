@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using VoltRpc.Communication;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Logging;
@@ -7,6 +8,8 @@ using VoltRpc.Proxy.Generated;
 
 namespace VoltRpc.Benchmarks
 {
+    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
+    [SimpleJob(RuntimeMoniker.Net50)]
     public class VoltRpcBenchmark
     {
         private readonly Host host;
@@ -15,6 +18,7 @@ namespace VoltRpc.Benchmarks
         private readonly IBenchmarkInterface benchmarkProxy;
 
         private readonly byte[] smallArray;
+        private readonly byte[] bigArray;
         
         public VoltRpcBenchmark()
         {
@@ -32,6 +36,8 @@ namespace VoltRpc.Benchmarks
 
             smallArray = new byte[25];
             smallArray = Utils.FillByteArray(smallArray);
+            bigArray = new byte[1920 * 1080 * 4];
+            bigArray = Utils.FillByteArray(bigArray);
         }
 
         [Benchmark]
@@ -54,5 +60,14 @@ namespace VoltRpc.Benchmarks
 
         [Benchmark]
         public byte[] ArrayParameterReturn() => benchmarkProxy.ArrayParameterReturn(smallArray);
+
+        [Benchmark]
+        public void BigAssArrayParameterVoid() => benchmarkProxy.BigAssArrayParameterVoid(bigArray);
+
+        [Benchmark]
+        public byte[] BigAssArrayReturn() => benchmarkProxy.BigAssArrayReturn();
+
+        [Benchmark]
+        public byte[] BigAssArrayParameterReturn() => benchmarkProxy.BigAssArrayParameterReturn(bigArray);
     }
 }
