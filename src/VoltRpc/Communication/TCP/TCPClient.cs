@@ -40,9 +40,9 @@ namespace VoltRpc.Communication.TCP
         /// <param name="connectionTimeout">The timeout time for connection</param>
         /// <param name="receiveTimeout">The receive timeout</param>
         /// <param name="sendTimeout">The send timeout</param>
-        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize, 
+        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize,
             int connectionTimeout = DefaultConnectionTimeout,
-            int receiveTimeout = DefaultReceiveTimeout, 
+            int receiveTimeout = DefaultReceiveTimeout,
             int sendTimeout = DefaultSendTimeout)
             : base(bufferSize)
         {

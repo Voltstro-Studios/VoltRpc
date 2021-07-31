@@ -246,8 +246,11 @@ namespace VoltRpc.Communication
         #region Destroy
 
         /// <summary>
-        ///     Deconstructor for <see cref="Client"/>.
-        ///     <para>Tells the server that we have disconnected and releases resources if it hasn't been done by <see cref="Dispose"/> already.</para>
+        ///     Deconstructor for <see cref="Client" />.
+        ///     <para>
+        ///         Tells the server that we have disconnected and releases resources if it hasn't been done by
+        ///         <see cref="Dispose" /> already.
+        ///     </para>
         /// </summary>
         ~Client()
         {
@@ -267,7 +270,7 @@ namespace VoltRpc.Communication
         {
             if (IsConnectedInternal)
             {
-                writer.WriteByte((byte)MessageType.Shutdown);
+                writer.WriteByte((byte) MessageType.Shutdown);
                 writer.Flush();
             }
 
