@@ -18,14 +18,20 @@ namespace VoltRpc.Benchmarks.Core
         
         protected VoltRpcBenchmark(Client client, Host host)
         {
-            this.host = host;
-            host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
-            host.StartListening();
+            try
+            {
+                this.host = host;
+                host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
+                host.StartListening();
 
-            this.client = client;
-            client.AddService<IBenchmarkInterface>();
-            client.Connect();
-            benchmarkProxy = new BenchmarkProxy(client);
+                this.client = client;
+                client.AddService<IBenchmarkInterface>();
+                client.Connect();
+                benchmarkProxy = new BenchmarkProxy(client);
+            }
+            catch (ConnectionFailed)
+            {
+            }
 
             smallArray = new byte[25];
             smallArray = Utils.FillByteArray(smallArray);

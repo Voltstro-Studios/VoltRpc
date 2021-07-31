@@ -270,12 +270,12 @@ namespace VoltRpc.Communication
         {
             if (IsConnectedInternal)
             {
-                writer.WriteByte((byte) MessageType.Shutdown);
-                writer.Flush();
+                writer?.WriteByte((byte) MessageType.Shutdown);
+                writer?.Flush();
             }
 
-            reader.Dispose();
-            writer.Dispose();
+            reader?.Dispose();
+            writer?.Dispose();
         }
 
         #endregion

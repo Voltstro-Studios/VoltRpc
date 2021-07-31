@@ -87,9 +87,16 @@ namespace VoltRpc.Communication.TCP
 
         /// <inheritdoc />
         /// <exception cref="TimeoutException">Thrown if a connection timeout occurs</exception>
+        /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
         public override void Connect()
         {
-            client.BeginConnect(endPoint.Address, endPoint.Port, result => { IsConnectedInternal = true; }, client);
+            client.BeginConnect(endPoint.Address, endPoint.Port, result =>
+            {
+                if (!client.Connected)
+                    throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
+
+                IsConnectedInternal = true;
+            }, client);
 
             while (!IsConnectedInternal)
             {
