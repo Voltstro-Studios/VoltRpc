@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj" />
       <ProjectReference Include="..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
       <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
