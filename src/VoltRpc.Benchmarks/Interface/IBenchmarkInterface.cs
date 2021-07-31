@@ -1,6 +1,6 @@
 ﻿using VoltRpc.Proxy;
 
-namespace VoltRpc.Benchmarks
+namespace VoltRpc.Benchmarks.Interface
 {
     [GenerateProxy(GeneratedName = "BenchmarkProxy")]
     public interface IBenchmarkInterface

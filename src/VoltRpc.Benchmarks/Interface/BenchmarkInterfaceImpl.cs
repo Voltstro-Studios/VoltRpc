@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VoltRpc.Benchmarks
+﻿namespace VoltRpc.Benchmarks.Interface
 {
     public class BenchmarkInterfaceImpl : IBenchmarkInterface
     {
