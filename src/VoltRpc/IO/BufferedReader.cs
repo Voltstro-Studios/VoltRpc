@@ -46,11 +46,6 @@ namespace VoltRpc.IO
         /// </summary>
         protected virtual long IncomingStreamPosition { get; set; }
 
-        /// <inheritdoc />
-        public void Dispose()
-        {
-        }
-
         /// <summary>
         ///     Reads a <see cref="byte" />
         /// </summary>
@@ -264,5 +259,15 @@ namespace VoltRpc.IO
             if (readLength == 0)
                 throw new EndOfStreamException();
         }
+
+        #region Destroy
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

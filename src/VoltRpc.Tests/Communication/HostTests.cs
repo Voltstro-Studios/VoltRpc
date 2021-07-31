@@ -10,7 +10,7 @@ namespace VoltRpc.Tests.Communication
         [Test]
         public void ServiceNotInterfaceTest()
         {
-            DualBuffers buffers = new DualBuffers();
+            DualBuffers buffers = new();
             Host host = new MemoryStreamHost(buffers.BufferedReader, buffers.BufferedWriter);
             Assert.Throws<ArgumentOutOfRangeException>(() => host.AddService<TestClass>(new TestClass()));
             buffers.Dispose();
@@ -19,10 +19,10 @@ namespace VoltRpc.Tests.Communication
         [Test]
         public void InterfaceAlreadyAddedTest()
         {
-            DualBuffers buffers = new DualBuffers();
+            DualBuffers buffers = new();
             Host host = new MemoryStreamHost(buffers.BufferedReader, buffers.BufferedWriter);
 
-            TestClass testClass = new TestClass();
+            TestClass testClass = new();
             
             host.AddService<IInterface>(testClass);
             Assert.Throws<ArgumentException>(() => host.AddService<IInterface>(testClass));

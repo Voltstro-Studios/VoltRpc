@@ -57,21 +57,6 @@ namespace VoltRpc.Communication
         public bool IsConnected => IsConnectedInternal;
 
         /// <summary>
-        ///     Destroys the <see cref="Client" /> instance
-        /// </summary>
-        public virtual void Dispose()
-        {
-            if (IsConnectedInternal)
-            {
-                writer.WriteByte((byte) MessageType.Shutdown);
-                writer.Flush();
-            }
-
-            reader.Dispose();
-            writer.Dispose();
-        }
-
-        /// <summary>
         ///     Connects the <see cref="Client" /> to a host
         /// </summary>
         public abstract void Connect();
@@ -257,5 +242,39 @@ namespace VoltRpc.Communication
                 typeWriter.Write(writer, parameter);
             }
         }
+
+        #region Destroy
+
+        /// <summary>
+        ///     Deconstructor for <see cref="Client"/>.
+        ///     <para>Tells the server that we have disconnected and releases resources if it hasn't been done by <see cref="Dispose"/> already.</para>
+        /// </summary>
+        ~Client()
+        {
+            ReleaseResources();
+        }
+
+        /// <summary>
+        ///     Destroys the <see cref="Client" /> instance
+        /// </summary>
+        public virtual void Dispose()
+        {
+            ReleaseResources();
+            GC.SuppressFinalize(this);
+        }
+
+        private void ReleaseResources()
+        {
+            if (IsConnectedInternal)
+            {
+                writer.WriteByte((byte)MessageType.Shutdown);
+                writer.Flush();
+            }
+
+            reader.Dispose();
+            writer.Dispose();
+        }
+
+        #endregion
     }
 }

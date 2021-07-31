@@ -64,13 +64,6 @@ namespace VoltRpc.Communication
         public bool HideStacktrace { get; set; }
 
         /// <summary>
-        ///     Destroys the <see cref="Host" /> instance
-        /// </summary>
-        public virtual void Dispose()
-        {
-        }
-
-        /// <summary>
         ///     Starts the <see cref="Host" /> to listen for requests
         /// </summary>
         public abstract Task StartListening();
@@ -345,5 +338,17 @@ namespace VoltRpc.Communication
 
             writer.Flush();
         }
+
+        #region Destory
+
+        /// <summary>
+        ///     Destroys the <see cref="Host" /> instance
+        /// </summary>
+        public virtual void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

@@ -53,6 +53,7 @@ namespace VoltRpc.IO
         /// <inheritdoc />
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
