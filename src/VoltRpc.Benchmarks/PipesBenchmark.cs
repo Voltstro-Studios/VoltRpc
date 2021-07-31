@@ -5,8 +5,6 @@ using VoltRpc.Communication.Pipes;
 
 namespace VoltRpc.Benchmarks
 {
-    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
-    [SimpleJob(RuntimeMoniker.Net50)]
     public class PipesBenchmark : VoltRpcBenchmark
     {
         private const string PipesName = "BenchmarkPipe";

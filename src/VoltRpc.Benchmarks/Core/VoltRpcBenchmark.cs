@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using VoltRpc.Benchmarks.Interface;
 using VoltRpc.Communication;
@@ -11,34 +12,33 @@ namespace VoltRpc.Benchmarks.Core
         private readonly Host host;
         private readonly Client client;
 
-        private readonly IBenchmarkInterface benchmarkProxy;
+        private IBenchmarkInterface benchmarkProxy;
 
-        private readonly byte[] smallArray;
-        private readonly byte[] bigArray;
+        private byte[] smallArray;
+        private byte[] bigArray;
         
         protected VoltRpcBenchmark(Client client, Host host)
         {
-            try
-            {
-                this.host = host;
-                host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
-                host.StartListening();
+            this.client = client;
+            this.host = host;
+        }
 
-                this.client = client;
-                client.AddService<IBenchmarkInterface>();
-                client.Connect();
-                benchmarkProxy = new BenchmarkProxy(client);
-            }
-            catch (ConnectionFailed)
-            {
-            }
+        [GlobalSetup]
+        public void Setup()
+        {
+            host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
+            host.StartListening();
+            
+            client.AddService<IBenchmarkInterface>();
+            client.Connect();
+            benchmarkProxy = new BenchmarkProxy(client);
 
             smallArray = new byte[25];
             smallArray = Utils.FillByteArray(smallArray);
             bigArray = new byte[1920 * 1080 * 4];
             bigArray = Utils.FillByteArray(bigArray);
         }
-
+        
         [Benchmark]
         public void BasicVoid() => benchmarkProxy.BasicVoid();
 
@@ -78,8 +78,14 @@ namespace VoltRpc.Benchmarks.Core
         [GlobalCleanup]
         public void Cleanup()
         {
-            client.Dispose();
-            host.Dispose();
+            try
+            {
+                client.Dispose();
+                host.Dispose();
+            }
+            catch (ObjectDisposedException)
+            {
+            }
         }
     }
 }

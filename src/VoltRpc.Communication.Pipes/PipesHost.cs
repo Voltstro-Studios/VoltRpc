@@ -48,7 +48,7 @@ namespace VoltRpc.Communication.Pipes
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="logger">The <see cref="ILogger" /> to use</param>
         public PipesHost(string pipeName, ILogger logger)
-            : this(pipeName, logger, DefaultBufferSize)
+            : this(pipeName, logger, DefaultMaxConnections)
         {
         }
 

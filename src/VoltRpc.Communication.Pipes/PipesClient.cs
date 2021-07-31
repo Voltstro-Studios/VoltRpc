@@ -66,7 +66,8 @@ namespace VoltRpc.Communication.Pipes
         /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
         public override void Connect()
         {
-            namedPipeClientStream.ConnectAsync(connectionTimeout);
+            namedPipeClientStream.Connect(connectionTimeout);
+
             if (!namedPipeClientStream.IsConnected)
                 throw new ConnectionFailed("Failed to connect to a pipes host!");
 
