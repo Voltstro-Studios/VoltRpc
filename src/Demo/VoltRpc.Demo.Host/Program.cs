@@ -19,8 +19,7 @@ namespace VoltRpc.Demo.Host
             if (parser.PipesClient)
                 host = new PipesHost(parser.PipeName, logger);
             else
-                host = new TCPHost(parser.IpEndPoint, logger, Communication.Host.DefaultBufferSize,
-                    TCPHost.DefaultSendTimeout);
+                host = new TCPHost(parser.IpEndPoint, logger);
 
             host.ReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
 

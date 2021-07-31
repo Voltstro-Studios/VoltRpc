@@ -40,9 +40,10 @@ namespace VoltRpc.Communication.TCP
         /// <param name="connectionTimeout">The timeout time for connection</param>
         /// <param name="receiveTimeout">The receive timeout</param>
         /// <param name="sendTimeout">The send timeout</param>
-        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize,
+        public TCPClient(IPEndPoint endPoint, int bufferSize = DefaultBufferSize, 
             int connectionTimeout = DefaultConnectionTimeout,
-            int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
+            int receiveTimeout = DefaultReceiveTimeout, 
+            int sendTimeout = DefaultSendTimeout)
             : base(bufferSize)
         {
             client = new TcpClient
@@ -58,9 +59,29 @@ namespace VoltRpc.Communication.TCP
         ///     Creates a new <see cref="TCPClient" /> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
+        /// <param name="receiveTimeout">The receive timeout</param>
+        /// <param name="sendTimeout">The send timeout</param>
+        public TCPClient(IPEndPoint endPoint, int receiveTimeout, int sendTimeout)
+            : this(endPoint, DefaultBufferSize, DefaultConnectionTimeout, receiveTimeout, sendTimeout)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="TCPClient" /> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
         /// <param name="connectionTimeout">The timeout time for connection</param>
-        public TCPClient(IPEndPoint endPoint, int connectionTimeout = DefaultConnectionTimeout)
+        public TCPClient(IPEndPoint endPoint, int connectionTimeout)
             : this(endPoint, DefaultBufferSize, connectionTimeout)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="TCPClient" /> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
+        public TCPClient(IPEndPoint endPoint)
+            : this(endPoint, DefaultBufferSize)
         {
         }
 

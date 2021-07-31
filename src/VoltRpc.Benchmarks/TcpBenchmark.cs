@@ -3,7 +3,6 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using VoltRpc.Benchmarks.Core;
 using VoltRpc.Communication.TCP;
-using VoltRpc.Logging;
 
 namespace VoltRpc.Benchmarks
 {
@@ -14,8 +13,8 @@ namespace VoltRpc.Benchmarks
         private const int Port = 7678;
 
         public TcpBenchmark()
-            : base(new TCPClient(new IPEndPoint(IPAddress.Loopback, Port), 7000), 
-                new TCPHost(new IPEndPoint(IPAddress.Loopback, Port), new NullLogger(), TCPHost.DefaultReceiveTimeout, TCPHost.DefaultSendTimeout))
+            : base(new TCPClient(new IPEndPoint(IPAddress.Loopback, Port)), 
+                new TCPHost(new IPEndPoint(IPAddress.Loopback, Port)))
         {
         }
     }

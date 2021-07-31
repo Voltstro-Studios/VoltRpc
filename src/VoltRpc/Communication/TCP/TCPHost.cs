@@ -37,7 +37,7 @@ namespace VoltRpc.Communication.TCP
         /// <param name="receiveTimeout">How long until timeout from receiving</param>
         /// <param name="sendTimeout">How long until timeout from sending</param>
         /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int bufferSize = DefaultBufferSize,
+        public TCPHost(IPEndPoint endPoint, ILogger logger, int bufferSize,
             int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
             : base(logger, bufferSize)
         {
@@ -50,13 +50,45 @@ namespace VoltRpc.Communication.TCP
         ///     Creates a new <see cref="TCPHost" /> instance
         /// </summary>
         /// <param name="endPoint">The <see cref="IPEndPoint" /> to listen on</param>
+        /// <param name="bufferSize">The initial size of the buffers</param>
+        /// <param name="receiveTimeout">How long until timeout from receiving</param>
+        /// <param name="sendTimeout">How long until timeout from sending</param>
+        public TCPHost(IPEndPoint endPoint, int bufferSize,
+            int receiveTimeout = DefaultReceiveTimeout, int sendTimeout = DefaultSendTimeout)
+            : this(endPoint, null, bufferSize, receiveTimeout, sendTimeout)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="TCPHost" /> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to listen on</param>
         /// <param name="logger">The <see cref="ILogger" /> to use. Will default to <see cref="NullLogger" /> if null</param>
         /// <param name="receiveTimeout">How long until timeout from receiving</param>
         /// <param name="sendTimeout">How long until timeout from sending</param>
-        /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-        public TCPHost(IPEndPoint endPoint, ILogger logger = null, int receiveTimeout = DefaultReceiveTimeout,
-            int sendTimeout = DefaultSendTimeout)
+        public TCPHost(IPEndPoint endPoint, ILogger logger, int receiveTimeout, int sendTimeout)
             : this(endPoint, logger, DefaultBufferSize, receiveTimeout, sendTimeout)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="TCPHost" /> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to listen on</param>
+        /// <param name="receiveTimeout">How long until timeout from receiving</param>
+        /// <param name="sendTimeout">How long until timeout from sending</param>
+        public TCPHost(IPEndPoint endPoint, int receiveTimeout, int sendTimeout)
+            : this(endPoint, null, DefaultBufferSize, receiveTimeout, sendTimeout)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="TCPHost" /> instance
+        /// </summary>
+        /// <param name="endPoint">The <see cref="IPEndPoint" /> to listen on</param>
+        /// <param name="logger">The <see cref="ILogger" /> to use. Will default to <see cref="NullLogger" /> if null</param>
+        public TCPHost(IPEndPoint endPoint, ILogger logger = null)
+            : this(endPoint, logger, DefaultBufferSize)
         {
         }
 

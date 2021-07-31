@@ -12,7 +12,7 @@ namespace VoltRpc.Benchmarks
         private const string PipesName = "BenchmarkPipe";
 
         public PipesBenchmark()
-            : base(new PipesClient(PipesName), new PipesHost(PipesName, 128))
+            : base(new PipesClient(PipesName), new PipesHost(PipesName))
         {
         }
     }

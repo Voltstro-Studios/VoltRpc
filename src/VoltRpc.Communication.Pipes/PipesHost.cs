@@ -26,14 +26,41 @@ namespace VoltRpc.Communication.Pipes
         /// </summary>
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="maxConnections">The max amount of connections to handle</param>
-        /// <param name="logger">The <see cref="ILogger" /> to use</param>
-        /// <param name="bufferSize">The size of the buffers</param>
-        public PipesHost(string pipeName, int maxConnections = DefaultMaxConnections, ILogger logger = null,
-            int bufferSize = 8000)
-            : base(logger, bufferSize)
+        public PipesHost(string pipeName, int maxConnections = DefaultMaxConnections)
+            : this(pipeName, null, maxConnections)
         {
-            this.pipeName = pipeName;
-            this.maxConnections = maxConnections;
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="PipesHost" /> instance
+        /// </summary>
+        /// <param name="pipeName">The name of the pipe</param>
+        /// <param name="logger">The <see cref="ILogger" /> to use</param>
+        /// <param name="maxConnections">The max amount of connections to handle</param>
+        public PipesHost(string pipeName, ILogger logger, int maxConnections)
+            : this(pipeName, logger, DefaultBufferSize, maxConnections)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="PipesHost" /> instance
+        /// </summary>
+        /// <param name="pipeName">The name of the pipe</param>
+        /// <param name="logger">The <see cref="ILogger" /> to use</param>
+        public PipesHost(string pipeName, ILogger logger)
+            : this(pipeName, logger, DefaultBufferSize)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="PipesHost" /> instance
+        /// </summary>
+        /// <param name="pipeName">The name of the pipe</param>
+        /// <param name="bufferSize">The size of the buffers</param>
+        /// <param name="maxConnections">The max amount of connections to handle</param>
+        public PipesHost(string pipeName, int bufferSize, int maxConnections = DefaultMaxConnections)
+            : this(pipeName, null, bufferSize, maxConnections)
+        {
         }
 
         /// <summary>
@@ -42,9 +69,12 @@ namespace VoltRpc.Communication.Pipes
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="logger">The <see cref="ILogger" /> to use</param>
         /// <param name="bufferSize">The size of the buffers</param>
-        public PipesHost(string pipeName, ILogger logger = null, int bufferSize = 8000)
-            : this(pipeName, DefaultMaxConnections, logger, bufferSize)
+        /// <param name="maxConnections">The max amount of connections to handle</param>
+        public PipesHost(string pipeName, ILogger logger, int bufferSize = DefaultBufferSize, int maxConnections = DefaultMaxConnections)
+            : base(logger, bufferSize)
         {
+            this.maxConnections = maxConnections;
+            this.pipeName = pipeName;
         }
 
         /// <inheritdoc />

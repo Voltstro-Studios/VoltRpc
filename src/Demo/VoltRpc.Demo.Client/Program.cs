@@ -20,7 +20,7 @@ namespace VoltRpc.Demo.Client
             if (parser.PipesClient)
                 client = new PipesClient(parser.PipeName);
             else
-                client = new TCPClient(parser.IpEndPoint, 7000);
+                client = new TCPClient(parser.IpEndPoint);
 
             client.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
             client.AddService<ITest>();

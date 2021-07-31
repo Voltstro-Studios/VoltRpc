@@ -7,6 +7,11 @@ namespace VoltRpc.Communication.Pipes
     /// </summary>
     public class PipesClient : Client
     {
+        /// <summary>
+        ///     Default connection timeout time
+        /// </summary>
+        public const int DefaultConnectionTimeout = 7000;
+
         private readonly int connectionTimeout;
 
         private readonly NamedPipeClientStream namedPipeClientStream;
@@ -18,7 +23,7 @@ namespace VoltRpc.Communication.Pipes
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="connectionTimeout">The timeout for connection</param>
         /// <param name="bufferSize">The size of the buffers</param>
-        public PipesClient(string server, string pipeName, int connectionTimeout = 7000, int bufferSize = 8000)
+        public PipesClient(string server, string pipeName, int connectionTimeout, int bufferSize = DefaultBufferSize)
             : base(bufferSize)
         {
             this.connectionTimeout = connectionTimeout;
@@ -28,10 +33,21 @@ namespace VoltRpc.Communication.Pipes
         /// <summary>
         ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
+        /// <param name="server">The server to connect to</param>
+        /// <param name="pipeName">The name of the pipe</param>
+        /// <param name="bufferSize">The size of the buffers</param>
+        public PipesClient(string server, string pipeName, int bufferSize = DefaultBufferSize)
+            : this(server, pipeName, DefaultConnectionTimeout, bufferSize)
+        {
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="PipesClient" /> instance
+        /// </summary>
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="connectionTimeout">The timeout for connection</param>
         /// <param name="bufferSize">The size of the buffers</param>
-        public PipesClient(string pipeName, int connectionTimeout = 7000, int bufferSize = 8000)
+        public PipesClient(string pipeName, int connectionTimeout, int bufferSize = DefaultBufferSize)
             : this(".", pipeName, connectionTimeout, bufferSize)
         {
         }
@@ -39,30 +55,10 @@ namespace VoltRpc.Communication.Pipes
         /// <summary>
         ///     Creates a new <see cref="PipesClient" /> instance
         /// </summary>
-        /// <param name="server">The server to connect to</param>
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="bufferSize">The size of the buffers</param>
-        public PipesClient(string server, string pipeName, int bufferSize = 8000)
-            : this(server, pipeName, 7000, bufferSize)
-        {
-        }
-
-        /// <summary>
-        ///     Creates a new <see cref="PipesClient" /> instance
-        /// </summary>
-        /// <param name="pipeName">The name of the pipe</param>
-        /// <param name="bufferSize">The size of the buffers</param>
-        public PipesClient(string pipeName, int bufferSize = 8000)
-            : this(".", pipeName, 7000, bufferSize)
-        {
-        }
-
-        /// <summary>
-        ///     Creates a new <see cref="PipesClient" /> instance
-        /// </summary>
-        /// <param name="pipeName">The name of the pipe</param>
-        public PipesClient(string pipeName)
-            : this(".", pipeName, 7000)
+        public PipesClient(string pipeName, int bufferSize = DefaultBufferSize)
+            : this(".", pipeName, bufferSize)
         {
         }
 
