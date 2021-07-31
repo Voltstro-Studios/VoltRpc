@@ -13,3 +13,13 @@ steps:
 
 - script: dotnet build src/VoltRpc.sln --no-restore -v minimal -c $(buildConfiguration)
   displayName: Build Project
+  
+- script: dotnet test src/VoltRpc.Tests/VoltRpc.Tests.csproj --logger trx
+  displayName: Run Tests
+  
+- task: PublishTestResults@2
+  displayName: Publish Test Results
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
