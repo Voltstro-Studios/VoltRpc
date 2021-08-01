@@ -1,5 +1,11 @@
 - name: Overview
   href: overview.md
 
+- name: Proxy Generation
+  href: proxy-generation.md
+
+- name: Custom Types
+  href: custom-types.md
+
 - name: Benchmarks
   href: benchmarks.md
