@@ -6,6 +6,7 @@ using VoltRpc.Communication.TCP;
 
 namespace VoltRpc.Benchmarks
 {
+    [VoltRpcConfig]
     public class TcpBenchmark : VoltRpcBenchmark
     {
         private const int Port = 7678;
