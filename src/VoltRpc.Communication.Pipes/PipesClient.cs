@@ -5,7 +5,7 @@ namespace VoltRpc.Communication.Pipes
     /// <summary>
     ///     <see cref="Client" /> using named pipes
     /// </summary>
-    public class PipesClient : Client
+    public sealed class PipesClient : Client
     {
         /// <summary>
         ///     Default connection timeout time

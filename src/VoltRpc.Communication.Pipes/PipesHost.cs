@@ -8,7 +8,7 @@ namespace VoltRpc.Communication.Pipes
     /// <summary>
     ///     <see cref="Host" /> using named pipes
     /// </summary>
-    public class PipesHost : Host
+    public sealed class PipesHost : Host
     {
         /// <summary>
         ///     The default max connection
