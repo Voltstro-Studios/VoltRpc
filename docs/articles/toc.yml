@@ -1,6 +1,9 @@
 - name: Overview
   href: overview.md
 
+- name: Setup
+  href: setup.md
+
 - name: Proxy Generation
   href: proxy-generation.md
 
