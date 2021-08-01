@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Benchmarks | VoltRpc Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Benchmarks | VoltRpc Documentation ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="benchmarks">Benchmarks</h1>
+
+<p>Benchmarks of VoltRpc.</p>
+<p>All benchmarks were performed with this configuration:</p>
+<pre><code class="lang-ini">BenchmarkDotNet=v0.13.0, OS=Windows 10.0.19043.1110 (21H1/May2021Update)
+Intel Core i5-10600KF CPU 4.10GHz, 1 CPU, 12 logical and 6 physical cores
+.NET SDK=5.0.302
+  [Host]     : .NET 5.0.8 (5.0.821.31504), X64 RyuJIT
+  Job-GCFSJA : .NET 5.0.8 (5.0.821.31504), X64 RyuJIT
+
+Jit=Default  Platform=AnyCpu  
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Performance may vary depending on the system, as well what .NET version you use. <br>
+If you want to test the performance your self, you can build the VoltRpc.Benchmarks project in RELEASE and run it.</p>
+</div>
+<h2 id="pipes-benchmark">Pipes Benchmark</h2>
+<p><a href="../images/Benchmarks/PipesBenchmark.png"><img src="../images/Benchmarks/PipesBenchmark.png" alt="Pipes Benchmark"></a></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>array</th>
+<th>message</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BasicVoid</td>
+<td>?</td>
+<td>?</td>
+<td style="text-align: right;">6.821 μs</td>
+<td style="text-align: right;">0.0889 μs</td>
+<td style="text-align: right;">0.0832 μs</td>
+</tr>
+<tr>
+<td>BasicReturn</td>
+<td>?</td>
+<td>?</td>
+<td style="text-align: right;">6.883 μs</td>
+<td style="text-align: right;">0.1264 μs</td>
+<td style="text-align: right;">0.1120 μs</td>
+</tr>
+<tr>
+<td>BasicParameterVoid</td>
+<td>?</td>
+<td>Hello World!</td>
+<td style="text-align: right;">7.088 μs</td>
+<td style="text-align: right;">0.0485 μs</td>
+<td style="text-align: right;">0.0430 μs</td>
+</tr>
+<tr>
+<td>BasicParameterReturn</td>
+<td>?</td>
+<td>Hello World!</td>
+<td style="text-align: right;">7.506 μs</td>
+<td style="text-align: right;">0.1465 μs</td>
+<td style="text-align: right;">0.2407 μs</td>
+</tr>
+<tr>
+<td>ArrayReturn</td>
+<td>?</td>
+<td>?</td>
+<td style="text-align: right;">7.024 μs</td>
+<td style="text-align: right;">0.0449 μs</td>
+<td style="text-align: right;">0.0420 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterVoid</td>
+<td>Byte[50]</td>
+<td>?</td>
+<td style="text-align: right;">6.952 μs</td>
+<td style="text-align: right;">0.0576 μs</td>
+<td style="text-align: right;">0.0481 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterVoid</td>
+<td>Byte[8,294,400]</td>
+<td>?</td>
+<td style="text-align: right;">6.926 μs</td>
+<td style="text-align: right;">0.0649 μs</td>
+<td style="text-align: right;">0.0607 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterReturn</td>
+<td>Byte[50]</td>
+<td>?</td>
+<td style="text-align: right;">7.237 μs</td>
+<td style="text-align: right;">0.0605 μs</td>
+<td style="text-align: right;">0.0536 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterReturn</td>
+<td>Byte[8,294,400]</td>
+<td>?</td>
+<td style="text-align: right;">7.176 μs</td>
+<td style="text-align: right;">0.1252 μs</td>
+<td style="text-align: right;">0.1110 μs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tcp-benchmark">TCP Benchmark</h2>
+<p><a href="../images/Benchmarks/TCPBenchmark.png"><img src="../images/Benchmarks/TCPBenchmark.png" alt="TCP Benchmark"></a></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>array</th>
+<th>message</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BasicVoid</td>
+<td>?</td>
+<td>?</td>
+<td style="text-align: right;">12.01 μs</td>
+<td style="text-align: right;">0.072 μs</td>
+<td style="text-align: right;">0.067 μs</td>
+</tr>
+<tr>
+<td>BasicReturn</td>
+<td>?</td>
+<td>?</td>
+<td style="text-align: right;">12.61 μs</td>
+<td style="text-align: right;">0.065 μs</td>
+<td style="text-align: right;">0.061 μs</td>
+</tr>
+<tr>
+<td>BasicParameterVoid</td>
+<td>?</td>
+<td>Hello World!</td>
+<td style="text-align: right;">12.35 μs</td>
+<td style="text-align: right;">0.053 μs</td>
+<td style="text-align: right;">0.050 μs</td>
+</tr>
+<tr>
+<td>BasicParameterReturn</td>
+<td>?</td>
+<td>Hello World!</td>
+<td style="text-align: right;">12.39 μs</td>
+<td style="text-align: right;">0.066 μs</td>
+<td style="text-align: right;">0.062 μs</td>
+</tr>
+<tr>
+<td>ArrayReturn</td>
+<td>?</td>
+<td>?</td>
+<td style="text-align: right;">12.54 μs</td>
+<td style="text-align: right;">0.048 μs</td>
+<td style="text-align: right;">0.040 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterVoid</td>
+<td>Byte[50]</td>
+<td>?</td>
+<td style="text-align: right;">12.61 μs</td>
+<td style="text-align: right;">0.062 μs</td>
+<td style="text-align: right;">0.058 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterVoid</td>
+<td>Byte[8,294,400]</td>
+<td>?</td>
+<td style="text-align: right;">12.62 μs</td>
+<td style="text-align: right;">0.087 μs</td>
+<td style="text-align: right;">0.082 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterReturn</td>
+<td>Byte[50]</td>
+<td>?</td>
+<td style="text-align: right;">13.30 μs</td>
+<td style="text-align: right;">0.265 μs</td>
+<td style="text-align: right;">0.248 μs</td>
+</tr>
+<tr>
+<td>ArrayParameterReturn</td>
+<td>Byte[8,294,400]</td>
+<td>?</td>
+<td style="text-align: right;">13.44 μs</td>
+<td style="text-align: right;">0.084 μs</td>
+<td style="text-align: right;">0.079 μs</td>
+</tr>
+</tbody>
+</table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/docs/articles/benchmarks.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              Voltstro-Studios (c) 2021
+              
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
