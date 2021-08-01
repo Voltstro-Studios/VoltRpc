@@ -18,11 +18,5 @@ namespace VoltRpc.Benchmarks.Interface
         public byte[] ArrayReturn();
 
         public byte[] ArrayParameterReturn(byte[] array);
-
-        public void BigAssArrayParameterVoid(byte[] array);
-
-        public byte[] BigAssArrayReturn();
-
-        public byte[] BigAssArrayParameterReturn(byte[] array);
     }
 }

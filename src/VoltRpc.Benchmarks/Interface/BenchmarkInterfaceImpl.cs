@@ -4,15 +4,10 @@
     {
         private readonly byte[] smallArray;
 
-        private readonly byte[] bigArray;
-        
         public BenchmarkInterfaceImpl()
         {
             smallArray = new byte[25];
             smallArray = Utils.FillByteArray(smallArray);
-
-            bigArray = new byte[1920 * 1080 * 4];
-            bigArray = Utils.FillByteArray(bigArray);
         }
         
         public void BasicVoid()
@@ -44,21 +39,7 @@
 
         public byte[] ArrayParameterReturn(byte[] array)
         {
-            return smallArray;
-        }
-
-        public void BigAssArrayParameterVoid(byte[] array)
-        {
-        }
-
-        public byte[] BigAssArrayReturn()
-        {
-            return bigArray;
-        }
-
-        public byte[] BigAssArrayParameterReturn(byte[] array)
-        {
-            return bigArray;
+            return array;
         }
     }
 }
