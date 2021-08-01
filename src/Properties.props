@@ -1,9 +1,9 @@
 <Project>
 	<PropertyGroup>
 		<Company>Voltstro-Studios</Company>
-		<Copyright>Copyright © 2021 Voltstro-Studios</Copyright>
+		<Copyright>Copyright (c) 2021 Voltstro-Studios</Copyright>
 		<RepositoryUrl>https://github.com/Voltstro-Studios/VoltRpc</RepositoryUrl>
-		<PackageProjectUrl></PackageProjectUrl>
+		<PackageProjectUrl>https://voltrpc.voltstro.dev</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
