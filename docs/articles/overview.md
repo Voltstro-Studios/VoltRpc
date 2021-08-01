@@ -16,7 +16,7 @@ Setting up VoltRpc is easy. VoltRpc has three parts; the host, the client and th
 
 For a more in-depth setup, see [Setup](setup.md).
 
-For this setup we will be using TCP. Other communication layers are available.
+For this setup we will be using TCP. [Other communication layers](communication-layers.md) are available.
 
 **Shared**:
 
@@ -25,7 +25,7 @@ using VoltRpc.Proxy;
 
 namespace VoltRpcExample.Shared
 {
-    [GenerateProxy]
+    [GenerateProxy(GeneratedName = "TestProxy")]
     public interface ITest
     {
         public void Basic();
