@@ -21,7 +21,7 @@ First, create these projects list above, use whatever name you want, however I'd
 
 ## Installation
 
-You will need to install the [NuGet package](https://nuget.org/VoltRpc) to add VoltRpc to your project.
+You will need to install the [NuGet package](https://www.nuget.org/packages/VoltRpc/) to add VoltRpc to your project.
 
 You can use the command below to install the package.
 

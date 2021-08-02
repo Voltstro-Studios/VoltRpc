@@ -9,7 +9,7 @@ For generation of proxies, a [.NET Source generator](https://devblogs.microsoft.
 
 ## Install
 
-You will need to install the [NuGet package](https://nuget.org/VoltRpc.Proxy.Generator) to add the generator to your project.
+You will need to install the [NuGet package](https://www.nuget.org/packages/VoltRpc.Proxy.Generator/) to add the generator to your project.
 
 You can use the command below to install the package.
 

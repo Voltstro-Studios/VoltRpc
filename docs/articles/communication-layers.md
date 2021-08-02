@@ -16,7 +16,7 @@ It can be used with <xref:VoltRpc.Communication.TCP.TCPHost> and <xref:VoltRpc.C
 
 ## Pipes
 
-Named Pipes is provided from the [VoltRpc.Communication.Pipes NuGet package](https://nuget.org/VoltRpc.Communication.Pipes).
+Named Pipes is provided from the [VoltRpc.Communication.Pipes NuGet package](https://www.nuget.org/packages/VoltRpc.Communication.Pipes/).
 
 You can use the command below to install the package.
 

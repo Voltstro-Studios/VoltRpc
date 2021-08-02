@@ -2,7 +2,7 @@
 
 ## Installation
 
-VoltRpc can be installed via [NuGet](https://nuget.org/VoltRpc).
+VoltRpc can be installed via [NuGet](https://www.nuget.org/packages/VoltRpc/).
 
 You can use the command below to install the package.
 
@@ -110,7 +110,7 @@ namespace VoltRpcExample.Client
 
 ## Proxy Generation
 
-All proxy generation is handled by a .NET Source generator. You will need to install it's [NuGet package](https://nuget.org/VoltRpc.Proxy.Generator) if you want to use it (You most likely 100% want to).
+All proxy generation is handled by a .NET Source generator. You will need to install it's [NuGet package](https://www.nuget.org/packages/VoltRpc.Proxy.Generator/) if you want to use it (You most likely 100% want to).
 
 You can use the command below to install the package.
 
