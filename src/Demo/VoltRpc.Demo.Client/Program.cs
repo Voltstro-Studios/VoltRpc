@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using VoltRpc.Communication;
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
@@ -24,7 +25,24 @@ namespace VoltRpc.Demo.Client
 
             client.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
             client.AddService<ITest>();
-            client.Connect();
+            try
+            {
+                client.Connect();
+            }
+            catch (TimeoutException)
+            {
+                Console.WriteLine("The client failed to connect! Timeout.");
+                Console.WriteLine("Press any key to quit...");
+                Console.ReadKey();
+                return;
+            }
+            catch (ConnectionFailed)
+            {
+                Console.WriteLine("The client failed to connect for some unknown reason!");
+                Console.WriteLine("Press any key to quit...");
+                Console.ReadKey();
+                return;
+            }
 
             ITest proxy = new TestProxy(client);
 

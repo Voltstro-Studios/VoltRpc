@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace VoltRpc.Communication.TCP
 {
@@ -90,23 +91,32 @@ namespace VoltRpc.Communication.TCP
         /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
         public override void Connect()
         {
-            client.BeginConnect(endPoint.Address, endPoint.Port, result =>
+            Task<TcpClient> connectTask = client
+                .ConnectAsync(endPoint.Address, endPoint.Port).ContinueWith(task => task.IsFaulted ? 
+                        throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!") : client, 
+                    TaskContinuationOptions.ExecuteSynchronously);
+            Task<TcpClient> timeoutTask = Task.Delay(connectionTimeout)
+                .ContinueWith<TcpClient>(task => throw new TimeoutException(), 
+                    TaskContinuationOptions.ExecuteSynchronously);
+            Task<TcpClient> result = Task.WhenAny(connectTask, timeoutTask).Unwrap();
+
+            try
             {
-                if (!client.Connected)
-                    throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
-
-                IsConnectedInternal = true;
-            }, client);
-
-            while (!IsConnectedInternal)
-            {
-                if (SpinWait.SpinUntil(() => IsConnectedInternal, connectionTimeout))
-                    continue;
-
-                throw new TimeoutException($"Client failed to connect to {endPoint}!");
+                result.Wait();
             }
+            catch (AggregateException ex)
+            {
+                if (ex.InnerExceptions.Any(x => x is TimeoutException))
+                    throw new TimeoutException();
 
-            clientStream = client.GetStream();
+                throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
+            }
+            
+            //Backup
+            if(result.Result == null)
+                throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
+
+            clientStream = result.Result.GetStream();
             Initialize(clientStream, clientStream);
         }
 
