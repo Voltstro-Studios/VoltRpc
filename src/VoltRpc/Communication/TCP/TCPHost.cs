@@ -22,6 +22,8 @@ namespace VoltRpc.Communication.TCP
         /// </summary>
         public const int DefaultSendTimeout = 600000;
 
+        private const int ListenerBacklog = 8192;
+
         private readonly TcpListener listener;
 
         private readonly int receiveTimeout;
@@ -96,19 +98,32 @@ namespace VoltRpc.Communication.TCP
         public override async Task StartListening()
         {
             isRunning = true;
-            listener.Start(8192);
+            listener.Start(ListenerBacklog);
             Logger.Debug("TCP host now listening...");
 
             while (isRunning)
             {
+                if (ConnectionCount >= MaxConnectionsCount)
+                {
+                    listener.Stop();
+                    continue;
+                }
+                
+                if(!listener.Server.IsBound)
+                    listener.Start(ListenerBacklog);
+                
+                Logger.Debug("TCP host is listening for a connection...");
                 TcpClient client = await listener.AcceptTcpClientAsync();
                 client.ReceiveTimeout = receiveTimeout;
                 client.SendTimeout = sendTimeout;
 
                 Logger.Debug("Accepted client...");
+                ConnectionCount++;
 
                 _ = Task.Run(() => HandleClient(client));
             }
+            
+            Logger.Debug("TCP host has stopped listening.");
         }
 
         private Task HandleClient(TcpClient client)
@@ -120,6 +135,7 @@ namespace VoltRpc.Communication.TCP
             //Connection was closed
             stream.Dispose();
             client.Dispose();
+            ConnectionCount--;
             Logger.Debug("Client disconnected.");
             return Task.CompletedTask;
         }

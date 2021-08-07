@@ -93,7 +93,8 @@ namespace VoltRpc.Communication.TCP
         {
             Task<TcpClient> connectTask = client
                 .ConnectAsync(endPoint.Address, endPoint.Port).ContinueWith(task => task.IsFaulted ? 
-                        throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!") : client, 
+                        throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!") : 
+                        client, 
                     TaskContinuationOptions.ExecuteSynchronously);
             Task<TcpClient> timeoutTask = Task.Delay(connectionTimeout)
                 .ContinueWith<TcpClient>(task => throw new TimeoutException(), 
@@ -111,7 +112,7 @@ namespace VoltRpc.Communication.TCP
 
                 throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
             }
-            
+
             //Backup
             if(result.Result == null)
                 throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");

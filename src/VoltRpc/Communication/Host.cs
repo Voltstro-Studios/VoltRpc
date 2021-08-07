@@ -61,7 +61,25 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Count of number of connections
         /// </summary>
-        public int ConnectionCount { get; private set; } = 0;
+        public int ConnectionCount { get; protected set; }
+        
+        /// <summary>
+        ///     What is the maximum amount of connections
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if value is 0 or less</exception>
+        public int MaxConnectionsCount
+        {
+            get => maxConnectionsCount;
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), "The value needs to be larger then 0!");
+
+                maxConnectionsCount = value;
+            }
+        }
+
+        private int maxConnectionsCount = 16;
 
         /// <summary>
         ///     Hides the stacktrace from the client when an <see cref="Exception" /> is thrown
@@ -151,7 +169,6 @@ namespace VoltRpc.Communication
                 throw new ArgumentNullException(nameof(writer));
 
             bool doContinue = true;
-            ConnectionCount++;
             do
             {
                 try
@@ -173,8 +190,7 @@ namespace VoltRpc.Communication
                     doContinue = false;
                 }
             } while (doContinue);
-
-            ConnectionCount--;
+            
             reader.Dispose();
             writer.Dispose();
         }

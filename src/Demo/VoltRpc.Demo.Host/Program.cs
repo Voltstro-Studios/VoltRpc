@@ -22,6 +22,7 @@ namespace VoltRpc.Demo.Host
                 host = new TCPHost(parser.IpEndPoint, logger);
 
             host.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
+            host.MaxConnectionsCount = 1;
 
             TestImp testImp = new();
             host.AddService<ITest>(testImp);
