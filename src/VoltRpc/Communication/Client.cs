@@ -113,8 +113,9 @@ namespace VoltRpc.Communication
         /// </summary>
         /// <param name="methodName">The full method name</param>
         /// <param name="parameters">All parameters to be passed to the method</param>
+        /// <exception cref="NotConnectedException">Thrown if the client is not connected to a host</exception>
         /// <exception cref="MissingMethodException">
-        ///     Thrown if the method name doesn't exist on either the client or server
+        ///     Thrown if the method name doesn't exist on either the client or host
         /// </exception>
         /// <exception cref="NoTypeReaderWriterException">
         ///     Thrown if the return type or parameter types doesn't have a <see cref="ITypeReadWriter" />
@@ -127,6 +128,9 @@ namespace VoltRpc.Communication
         /// </exception>
         public object[] InvokeMethod(string methodName, params object[] parameters)
         {
+            if (!IsConnectedInternal)
+                throw new NotConnectedException("The client is not connected!");
+            
             //Get the method
             ServiceMethod method = null;
             foreach (KeyValuePair<string, ServiceMethod[]> service in services)
