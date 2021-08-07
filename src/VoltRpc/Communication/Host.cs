@@ -59,6 +59,11 @@ namespace VoltRpc.Communication
         public TypeReaderWriterManager ReaderWriterManager { get; }
 
         /// <summary>
+        ///     Count of number of connections
+        /// </summary>
+        public int ConnectionCount { get; private set; } = 0;
+
+        /// <summary>
         ///     Hides the stacktrace from the client when an <see cref="Exception" /> is thrown
         /// </summary>
         public bool HideStacktrace { get; set; }
@@ -146,6 +151,7 @@ namespace VoltRpc.Communication
                 throw new ArgumentNullException(nameof(writer));
 
             bool doContinue = true;
+            ConnectionCount++;
             do
             {
                 try
@@ -168,6 +174,7 @@ namespace VoltRpc.Communication
                 }
             } while (doContinue);
 
+            ConnectionCount--;
             reader.Dispose();
             writer.Dispose();
         }
