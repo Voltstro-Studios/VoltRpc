@@ -27,15 +27,15 @@ VoltRpc is a library designed for high performance RPC communication. It can use
 
 |               Method | array         |      message |     Mean |     Error |    StdDev |
 |--------------------- |-------------- |------------- |---------:|----------:|----------:|
-|            BasicVoid |     ?         |            ? | 6.821 μs | 0.0889 μs | 0.0832 μs |
-|          BasicReturn |     ?         |            ? | 6.883 μs | 0.1264 μs | 0.1120 μs |
-|   BasicParameterVoid |     ?         | Hello World! | 7.088 μs | 0.0485 μs | 0.0430 μs |
-| BasicParameterReturn |     ?         | Hello World! | 7.506 μs | 0.1465 μs | 0.2407 μs |
-|          ArrayReturn |     ?         |            ? | 7.024 μs | 0.0449 μs | 0.0420 μs |
-|   ArrayParameterVoid |Byte[50]       |            ? | 6.952 μs | 0.0576 μs | 0.0481 μs |
-|   ArrayParameterVoid |Byte[8,294,400]|            ? | 6.926 μs | 0.0649 μs | 0.0607 μs |
-| ArrayParameterReturn |Byte[50]       |            ? | 7.237 μs | 0.0605 μs | 0.0536 μs |
-| ArrayParameterReturn |Byte[8,294,400]|            ? | 7.176 μs | 0.1252 μs | 0.1110 μs |
+|            BasicVoid |     ?         |            ? | 7.093 μs | 0.0721 μs | 0.0602 μs |
+|          BasicReturn |     ?         |            ? | 7.569 μs | 0.0902 μs | 0.0753 μs |
+|   BasicParameterVoid |     ?         | Hello World! | 7.567 μs | 0.0560 μs | 0.0496 μs |
+| BasicParameterReturn |     ?         | Hello World! | 8.082 μs | 0.1501 μs | 0.1787 μs |
+|          ArrayReturn |     ?         |            ? | 7.473 μs | 0.0374 μs | 0.0312 μs |
+|   ArrayParameterVoid |Byte[50]       |            ? | 7.604 μs | 0.0270 μs | 0.0240 μs |
+|   ArrayParameterVoid |Byte[8,294,400]|            ? | 7.523 μs | 0.0901 μs | 0.0752 μs |
+| ArrayParameterReturn |Byte[50]       |            ? | 7.729 μs | 0.0751 μs | 0.0666 μs |
+| ArrayParameterReturn |Byte[8,294,400]|            ? | 7.852 μs | 0.0625 μs | 0.0585 μs |
 
 For more info on these benchmarks see [Benchmarks](articles/benchmarks.md).
 

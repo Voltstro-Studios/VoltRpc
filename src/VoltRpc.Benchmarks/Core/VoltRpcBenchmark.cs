@@ -28,6 +28,7 @@ namespace VoltRpc.Benchmarks.Core
         {
             host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
             host.StartListening();
+            host.MaxConnectionsCount = 1;
             
             client.AddService<IBenchmarkInterface>();
             client.Connect();
