@@ -10,13 +10,6 @@ namespace VoltRpc.Communication.Pipes
     /// </summary>
     public sealed class PipesHost : Host
     {
-        /// <summary>
-        ///     The default max connection
-        /// </summary>
-        public const int DefaultMaxConnections = 128;
-
-        private readonly int maxConnections;
-
         private readonly string pipeName;
 
         private bool isRunning;
@@ -25,41 +18,9 @@ namespace VoltRpc.Communication.Pipes
         ///     Creates a new <see cref="PipesHost" /> instance
         /// </summary>
         /// <param name="pipeName">The name of the pipe</param>
-        /// <param name="maxConnections">The max amount of connections to handle</param>
-        public PipesHost(string pipeName, int maxConnections = DefaultMaxConnections)
-            : this(pipeName, null, maxConnections)
-        {
-        }
-
-        /// <summary>
-        ///     Creates a new <see cref="PipesHost" /> instance
-        /// </summary>
-        /// <param name="pipeName">The name of the pipe</param>
-        /// <param name="logger">The <see cref="ILogger" /> to use</param>
-        /// <param name="maxConnections">The max amount of connections to handle</param>
-        public PipesHost(string pipeName, ILogger logger, int maxConnections)
-            : this(pipeName, logger, DefaultBufferSize, maxConnections)
-        {
-        }
-
-        /// <summary>
-        ///     Creates a new <see cref="PipesHost" /> instance
-        /// </summary>
-        /// <param name="pipeName">The name of the pipe</param>
-        /// <param name="logger">The <see cref="ILogger" /> to use</param>
-        public PipesHost(string pipeName, ILogger logger)
-            : this(pipeName, logger, DefaultMaxConnections)
-        {
-        }
-
-        /// <summary>
-        ///     Creates a new <see cref="PipesHost" /> instance
-        /// </summary>
-        /// <param name="pipeName">The name of the pipe</param>
         /// <param name="bufferSize">The size of the buffers</param>
-        /// <param name="maxConnections">The max amount of connections to handle</param>
-        public PipesHost(string pipeName, int bufferSize, int maxConnections = DefaultMaxConnections)
-            : this(pipeName, null, bufferSize, maxConnections)
+        public PipesHost(string pipeName, int bufferSize)
+            : this(pipeName, null, bufferSize)
         {
         }
 
@@ -69,11 +30,9 @@ namespace VoltRpc.Communication.Pipes
         /// <param name="pipeName">The name of the pipe</param>
         /// <param name="logger">The <see cref="ILogger" /> to use</param>
         /// <param name="bufferSize">The size of the buffers</param>
-        /// <param name="maxConnections">The max amount of connections to handle</param>
-        public PipesHost(string pipeName, ILogger logger, int bufferSize = DefaultBufferSize, int maxConnections = DefaultMaxConnections)
+        public PipesHost(string pipeName, ILogger logger = null, int bufferSize = DefaultBufferSize)
             : base(logger, bufferSize)
         {
-            this.maxConnections = maxConnections;
             this.pipeName = pipeName;
         }
 
@@ -92,9 +51,12 @@ namespace VoltRpc.Communication.Pipes
             while (isRunning)
                 try
                 {
-                    NamedPipeServerStream serverStream = new NamedPipeServerStream(pipeName, PipeDirection.InOut,
-                        maxConnections);
+                    if (ConnectionCount >= MaxConnectionsCount)
+                        continue;
+
+                    NamedPipeServerStream serverStream = new NamedPipeServerStream(pipeName, PipeDirection.InOut);
                     serverStream.WaitForConnection();
+                    ConnectionCount++;
                     _ = Task.Run(() => HandleClient(serverStream));
                 }
                 catch (Exception ex)
@@ -109,6 +71,7 @@ namespace VoltRpc.Communication.Pipes
             ProcessRequest(stream, stream);
             stream.Dispose();
             Logger.Debug("Client disconnected.");
+            ConnectionCount--;
             return Task.CompletedTask;
         }
     }
