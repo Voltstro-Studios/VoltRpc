@@ -208,6 +208,19 @@ references:
   commentId: F:VoltRpc.Communication.Host.BufferSize
   fullName: VoltRpc.Communication.Host.BufferSize
   nameWithType: Host.BufferSize
+- uid: VoltRpc.Communication.Host.ConnectionCount
+  name: ConnectionCount
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ConnectionCount
+  commentId: P:VoltRpc.Communication.Host.ConnectionCount
+  fullName: VoltRpc.Communication.Host.ConnectionCount
+  nameWithType: Host.ConnectionCount
+- uid: VoltRpc.Communication.Host.ConnectionCount*
+  name: ConnectionCount
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ConnectionCount_
+  commentId: Overload:VoltRpc.Communication.Host.ConnectionCount
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Host.ConnectionCount
+  nameWithType: Host.ConnectionCount
 - uid: VoltRpc.Communication.Host.DefaultBufferSize
   name: DefaultBufferSize
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_DefaultBufferSize
@@ -240,12 +253,38 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.HideStacktrace
   nameWithType: Host.HideStacktrace
+- uid: VoltRpc.Communication.Host.IsRunning
+  name: IsRunning
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_IsRunning
+  commentId: P:VoltRpc.Communication.Host.IsRunning
+  fullName: VoltRpc.Communication.Host.IsRunning
+  nameWithType: Host.IsRunning
+- uid: VoltRpc.Communication.Host.IsRunning*
+  name: IsRunning
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_IsRunning_
+  commentId: Overload:VoltRpc.Communication.Host.IsRunning
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Host.IsRunning
+  nameWithType: Host.IsRunning
 - uid: VoltRpc.Communication.Host.Logger
   name: Logger
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_Logger
   commentId: F:VoltRpc.Communication.Host.Logger
   fullName: VoltRpc.Communication.Host.Logger
   nameWithType: Host.Logger
+- uid: VoltRpc.Communication.Host.MaxConnectionsCount
+  name: MaxConnectionsCount
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_MaxConnectionsCount
+  commentId: P:VoltRpc.Communication.Host.MaxConnectionsCount
+  fullName: VoltRpc.Communication.Host.MaxConnectionsCount
+  nameWithType: Host.MaxConnectionsCount
+- uid: VoltRpc.Communication.Host.MaxConnectionsCount*
+  name: MaxConnectionsCount
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_MaxConnectionsCount_
+  commentId: Overload:VoltRpc.Communication.Host.MaxConnectionsCount
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Host.MaxConnectionsCount
+  nameWithType: Host.MaxConnectionsCount
 - uid: VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream,System.IO.Stream)
   name: ProcessRequest(Stream, Stream)
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_System_IO_Stream_System_IO_Stream_
@@ -265,19 +304,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.ProcessRequest
   nameWithType: Host.ProcessRequest
-- uid: VoltRpc.Communication.Host.ReaderWriterManager
-  name: ReaderWriterManager
-  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ReaderWriterManager
-  commentId: P:VoltRpc.Communication.Host.ReaderWriterManager
-  fullName: VoltRpc.Communication.Host.ReaderWriterManager
-  nameWithType: Host.ReaderWriterManager
-- uid: VoltRpc.Communication.Host.ReaderWriterManager*
-  name: ReaderWriterManager
-  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ReaderWriterManager_
-  commentId: Overload:VoltRpc.Communication.Host.ReaderWriterManager
-  isSpec: "True"
-  fullName: VoltRpc.Communication.Host.ReaderWriterManager
-  nameWithType: Host.ReaderWriterManager
 - uid: VoltRpc.Communication.Host.StartListening
   name: StartListening()
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_StartListening
@@ -291,6 +317,19 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.StartListening
   nameWithType: Host.StartListening
+- uid: VoltRpc.Communication.Host.TypeReaderWriterManager
+  name: TypeReaderWriterManager
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_TypeReaderWriterManager
+  commentId: P:VoltRpc.Communication.Host.TypeReaderWriterManager
+  fullName: VoltRpc.Communication.Host.TypeReaderWriterManager
+  nameWithType: Host.TypeReaderWriterManager
+- uid: VoltRpc.Communication.Host.TypeReaderWriterManager*
+  name: TypeReaderWriterManager
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_TypeReaderWriterManager_
+  commentId: Overload:VoltRpc.Communication.Host.TypeReaderWriterManager
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Host.TypeReaderWriterManager
+  nameWithType: Host.TypeReaderWriterManager
 - uid: VoltRpc.Communication.MessageResponse
   name: MessageResponse
   href: api/VoltRpc.Communication.MessageResponse.html
@@ -377,6 +416,25 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.MethodInvokeFailedException.StackTrace
   nameWithType: MethodInvokeFailedException.StackTrace
+- uid: VoltRpc.Communication.NotConnectedException
+  name: NotConnectedException
+  href: api/VoltRpc.Communication.NotConnectedException.html
+  commentId: T:VoltRpc.Communication.NotConnectedException
+  fullName: VoltRpc.Communication.NotConnectedException
+  nameWithType: NotConnectedException
+- uid: VoltRpc.Communication.NotConnectedException.#ctor(System.String)
+  name: NotConnectedException(String)
+  href: api/VoltRpc.Communication.NotConnectedException.html#VoltRpc_Communication_NotConnectedException__ctor_System_String_
+  commentId: M:VoltRpc.Communication.NotConnectedException.#ctor(System.String)
+  fullName: VoltRpc.Communication.NotConnectedException.NotConnectedException(System.String)
+  nameWithType: NotConnectedException.NotConnectedException(String)
+- uid: VoltRpc.Communication.NotConnectedException.#ctor*
+  name: NotConnectedException
+  href: api/VoltRpc.Communication.NotConnectedException.html#VoltRpc_Communication_NotConnectedException__ctor_
+  commentId: Overload:VoltRpc.Communication.NotConnectedException.#ctor
+  isSpec: "True"
+  fullName: VoltRpc.Communication.NotConnectedException.NotConnectedException
+  nameWithType: NotConnectedException.NotConnectedException
 - uid: VoltRpc.Communication.Pipes
   name: VoltRpc.Communication.Pipes
   href: api/VoltRpc.Communication.Pipes.html
@@ -464,30 +522,12 @@ references:
   commentId: M:VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,System.Int32)
   fullName: VoltRpc.Communication.Pipes.PipesHost.PipesHost(System.String, System.Int32)
   nameWithType: PipesHost.PipesHost(String, Int32)
-- uid: VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,System.Int32,System.Int32)
-  name: PipesHost(String, Int32, Int32)
-  href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.Pipes.PipesHost.PipesHost(System.String, System.Int32, System.Int32)
-  nameWithType: PipesHost.PipesHost(String, Int32, Int32)
-- uid: VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger)
-  name: PipesHost(String, ILogger)
-  href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_
-  commentId: M:VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger)
-  fullName: VoltRpc.Communication.Pipes.PipesHost.PipesHost(System.String, VoltRpc.Logging.ILogger)
-  nameWithType: PipesHost.PipesHost(String, ILogger)
 - uid: VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger,System.Int32)
   name: PipesHost(String, ILogger, Int32)
   href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_System_Int32_
   commentId: M:VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger,System.Int32)
   fullName: VoltRpc.Communication.Pipes.PipesHost.PipesHost(System.String, VoltRpc.Logging.ILogger, System.Int32)
   nameWithType: PipesHost.PipesHost(String, ILogger, Int32)
-- uid: VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
-  name: PipesHost(String, ILogger, Int32, Int32)
-  href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.Pipes.PipesHost.PipesHost(System.String, VoltRpc.Logging.ILogger, System.Int32, System.Int32)
-  nameWithType: PipesHost.PipesHost(String, ILogger, Int32, Int32)
 - uid: VoltRpc.Communication.Pipes.PipesHost.#ctor*
   name: PipesHost
   href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost__ctor_
@@ -495,12 +535,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Pipes.PipesHost.PipesHost
   nameWithType: PipesHost.PipesHost
-- uid: VoltRpc.Communication.Pipes.PipesHost.DefaultMaxConnections
-  name: DefaultMaxConnections
-  href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost_DefaultMaxConnections
-  commentId: F:VoltRpc.Communication.Pipes.PipesHost.DefaultMaxConnections
-  fullName: VoltRpc.Communication.Pipes.PipesHost.DefaultMaxConnections
-  nameWithType: PipesHost.DefaultMaxConnections
 - uid: VoltRpc.Communication.Pipes.PipesHost.StartListening
   name: StartListening()
   href: api/VoltRpc.Communication.Pipes.PipesHost.html#VoltRpc_Communication_Pipes_PipesHost_StartListening

@@ -107,7 +107,16 @@
       <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_Logger">Host.Logger</a>
     </div>
     <div>
-      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ReaderWriterManager">Host.ReaderWriterManager</a>
+      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_TypeReaderWriterManager">Host.TypeReaderWriterManager</a>
+    </div>
+    <div>
+      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ConnectionCount">Host.ConnectionCount</a>
+    </div>
+    <div>
+      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_MaxConnectionsCount">Host.MaxConnectionsCount</a>
+    </div>
+    <div>
+      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_IsRunning">Host.IsRunning</a>
     </div>
     <div>
       <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_HideStacktrace">Host.HideStacktrace</a>
@@ -159,7 +168,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.%23ctor(System.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L29">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L20">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Pipes_PipesHost__ctor_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor*"></a>
   <h4 id="VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_System_Int32_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,System.Int32)">PipesHost(String, Int32)</h4>
@@ -168,47 +177,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, int maxConnections = 128)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">pipeName</span></td>
-        <td><p>The name of the pipe</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxConnections</span></td>
-        <td><p>The max amount of connections to handle</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.%23ctor(System.String%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L61">View Source</a>
-  </span>
-  <a id="VoltRpc_Communication_Pipes_PipesHost__ctor_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,System.Int32,System.Int32)">PipesHost(String, Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.Pipes.PipesHost.html">PipesHost</a> instance</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, int bufferSize, int maxConnections = 128)</code></pre>
+    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, int bufferSize)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -230,52 +199,6 @@
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">bufferSize</span></td>
         <td><p>The size of the buffers</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxConnections</span></td>
-        <td><p>The max amount of connections to handle</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.%23ctor(System.String%2CVoltRpc.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L50">View Source</a>
-  </span>
-  <a id="VoltRpc_Communication_Pipes_PipesHost__ctor_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger)">PipesHost(String, ILogger)</h4>
-  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.Pipes.PipesHost.html">PipesHost</a> instance</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, ILogger logger)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">pipeName</span></td>
-        <td><p>The name of the pipe</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="VoltRpc.Logging.ILogger.html">ILogger</a></td>
-        <td><span class="parametername">logger</span></td>
-        <td><p>The <a class="xref" href="VoltRpc.Logging.ILogger.html">ILogger</a> to use</p>
 </td>
       </tr>
     </tbody>
@@ -285,7 +208,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.%23ctor(System.String%2CVoltRpc.Logging.ILogger%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L40">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L31">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Pipes_PipesHost__ctor_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor*"></a>
   <h4 id="VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_System_Int32_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger,System.Int32)">PipesHost(String, ILogger, Int32)</h4>
@@ -294,53 +217,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, ILogger logger, int maxConnections)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">pipeName</span></td>
-        <td><p>The name of the pipe</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="VoltRpc.Logging.ILogger.html">ILogger</a></td>
-        <td><span class="parametername">logger</span></td>
-        <td><p>The <a class="xref" href="VoltRpc.Logging.ILogger.html">ILogger</a> to use</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxConnections</span></td>
-        <td><p>The max amount of connections to handle</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.%23ctor(System.String%2CVoltRpc.Logging.ILogger%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L73">View Source</a>
-  </span>
-  <a id="VoltRpc_Communication_Pipes_PipesHost__ctor_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_Pipes_PipesHost__ctor_System_String_VoltRpc_Logging_ILogger_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.Pipes.PipesHost.#ctor(System.String,VoltRpc.Logging.ILogger,System.Int32,System.Int32)">PipesHost(String, ILogger, Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.Pipes.PipesHost.html">PipesHost</a> instance</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, ILogger logger, int bufferSize = 8000, int maxConnections = 128)</code></pre>
+    <pre><code class="lang-csharp hljs">public PipesHost(string pipeName, ILogger logger = null, int bufferSize = 8000)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -369,44 +246,6 @@
         <td><span class="parametername">bufferSize</span></td>
         <td><p>The size of the buffers</p>
 </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxConnections</span></td>
-        <td><p>The max amount of connections to handle</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="fields">Fields
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost_DefaultMaxConnections.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.DefaultMaxConnections%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L16">View Source</a>
-  </span>
-  <h4 id="VoltRpc_Communication_Pipes_PipesHost_DefaultMaxConnections" data-uid="VoltRpc.Communication.Pipes.PipesHost.DefaultMaxConnections">DefaultMaxConnections</h4>
-  <div class="markdown level1 summary"><p>The default max connection</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int DefaultMaxConnections = 128</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
@@ -417,7 +256,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Pipes_PipesHost_StartListening.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Pipes.PipesHost.StartListening%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L81">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc.Communication.Pipes/PipesHost.cs/#L38">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Pipes_PipesHost_StartListening_" data-uid="VoltRpc.Communication.Pipes.PipesHost.StartListening*"></a>
   <h4 id="VoltRpc_Communication_Pipes_PipesHost_StartListening" data-uid="VoltRpc.Communication.Pipes.PipesHost.StartListening">StartListening()</h4>
