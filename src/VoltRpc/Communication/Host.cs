@@ -47,7 +47,7 @@ namespace VoltRpc.Communication
 
             Logger = logger ?? new NullLogger();
 
-            ReaderWriterManager = new TypeReaderWriterManager();
+            TypeReaderWriterManager = new TypeReaderWriterManager();
             invokeLock = new object();
 
             BufferSize = bufferSize;
@@ -56,7 +56,7 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     The <see cref="Types.TypeReaderWriterManager" /> for <see cref="Host" />
         /// </summary>
-        public TypeReaderWriterManager ReaderWriterManager { get; }
+        public TypeReaderWriterManager TypeReaderWriterManager { get; }
 
         /// <summary>
         ///     Count of number of connections
@@ -225,7 +225,7 @@ namespace VoltRpc.Communication
                     }
 
                     //Get the type reader
-                    ITypeReadWriter typeRead = ReaderWriterManager.GetType(parameter.ParameterTypeName);
+                    ITypeReadWriter typeRead = TypeReaderWriterManager.GetType(parameter.ParameterTypeName);
                     if (typeRead == null)
                     {
                         WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
@@ -266,7 +266,7 @@ namespace VoltRpc.Communication
                 //If the method doesn't return void, write it back
                 if (!method.IsReturnVoid)
                 {
-                    ITypeReadWriter typeWriter = ReaderWriterManager.GetType(method.ReturnTypeName);
+                    ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(method.ReturnTypeName);
                     if (typeWriter == null)
                     {
                         WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
@@ -296,7 +296,7 @@ namespace VoltRpc.Communication
                         if (!parameter.IsOut && !parameter.IsRef)
                             continue;
 
-                        ITypeReadWriter typeWriter = ReaderWriterManager.GetType(parameter.ParameterTypeName);
+                        ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameter.ParameterTypeName);
                         if (typeWriter == null)
                         {
                             WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
