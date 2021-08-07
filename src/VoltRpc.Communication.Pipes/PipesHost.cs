@@ -12,8 +12,6 @@ namespace VoltRpc.Communication.Pipes
     {
         private readonly string pipeName;
 
-        private bool isRunning;
-
         /// <summary>
         ///     Creates a new <see cref="PipesHost" /> instance
         /// </summary>
@@ -47,8 +45,8 @@ namespace VoltRpc.Communication.Pipes
         {
             Logger.Debug("Named Pipes host now listening...");
 
-            isRunning = true;
-            while (isRunning)
+            IsRunning = true;
+            while (IsRunning)
                 try
                 {
                     if (ConnectionCount >= MaxConnectionsCount)

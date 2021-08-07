@@ -28,7 +28,6 @@ namespace VoltRpc.Communication.TCP
 
         private readonly int receiveTimeout;
         private readonly int sendTimeout;
-        private bool isRunning;
 
         /// <summary>
         ///     Creates a new <see cref="TCPHost" /> instance
@@ -97,11 +96,11 @@ namespace VoltRpc.Communication.TCP
         /// <inheritdoc />
         public override async Task StartListening()
         {
-            isRunning = true;
+            IsRunning = true;
             listener.Start(ListenerBacklog);
             Logger.Debug("TCP host now listening...");
 
-            while (isRunning)
+            while (IsRunning)
             {
                 if (ConnectionCount >= MaxConnectionsCount)
                 {
@@ -143,7 +142,6 @@ namespace VoltRpc.Communication.TCP
         /// <inheritdoc />
         public override void Dispose()
         {
-            isRunning = false;
             base.Dispose();
             listener.Stop();
         }

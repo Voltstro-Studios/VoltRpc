@@ -80,6 +80,11 @@ namespace VoltRpc.Communication
         }
 
         private int maxConnectionsCount = 16;
+        
+        /// <summary>
+        ///     Is the <see cref="Host"/> running?
+        /// </summary>
+        public bool IsRunning { get; protected set; }
 
         /// <summary>
         ///     Hides the stacktrace from the client when an <see cref="Exception" /> is thrown
@@ -369,6 +374,7 @@ namespace VoltRpc.Communication
         /// </summary>
         public virtual void Dispose()
         {
+            IsRunning = false;
             GC.SuppressFinalize(this);
         }
 
