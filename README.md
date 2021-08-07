@@ -3,7 +3,10 @@
 # VoltRpc
 
 [![License](https://img.shields.io/github/license/Voltstro-Studios/VoltRpc)](/LICENSE.md)
+[![NuGet](https://img.shields.io/nuget/v/VoltRpc?label=NuGet)](https://www.nuget.org/packages/VoltRpc/)
+[![NuGet Download Count](https://img.shields.io/nuget/dt/VoltRpc?label=Downloads&logo=nuget&color=blue&logoColor=blue)](https://www.nuget.org/packages/VoltRpc/)
 [![Build Status](https://img.shields.io/azure-devops/build/Voltstro-Studios/63163ef8-da1d-42b6-b8b9-689420a730e5/9?logo=azure-pipelines)](https://dev.azure.com/Voltstro-Studios/VoltRpc/_build/latest?definitionId=9&branchName=master)
+[![Docs Status](https://img.shields.io/website?down_color=red&down_message=Offline&label=Docs&up_color=blue&up_message=Online&url=https%3A%2F%2Fvoltrpc.voltstro.dev)](https://voltrpc.voltstro.dev)
 [![Discord](https://img.shields.io/badge/Discord-Voltstro-7289da.svg?logo=discord)](https://discord.voltstro.dev)
 
 VoltRpc - Library designed for high performance RPC communication.
@@ -33,6 +36,8 @@ Install-Package VoltRpc
 ### Example
 
 For a more in-depth example, see the [Overview](https://voltrpc.voltstro.dev/articles/overview) or [Setup](https://voltrpc.voltstro.dev/articles/setup).
+
+There is also a [demo project](/src/Demo) included.
 
 **Shared**:
 
@@ -149,6 +154,8 @@ Jit=Default  Platform=AnyCpu
 |   ArrayParameterVoid |Byte[8,294,400]|            ? | 6.926 μs | 0.0649 μs | 0.0607 μs |
 | ArrayParameterReturn |Byte[50]       |            ? | 7.237 μs | 0.0605 μs | 0.0536 μs |
 | ArrayParameterReturn |Byte[8,294,400]|            ? | 7.176 μs | 0.1252 μs | 0.1110 μs |
+
+For more info on these benchmarks see [Benchmarks](https://voltrpc.voltstro.dev/articles/benchmarks).
 
 ## Authors
 

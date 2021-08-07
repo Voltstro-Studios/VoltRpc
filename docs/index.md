@@ -3,6 +3,8 @@
 # VoltRpc
 
 [![License](https://img.shields.io/github/license/Voltstro-Studios/VoltRpc)](https://github.com/Voltstro-Studios/VoltRpc/blob/master/LICENSE.md)
+[![NuGet](https://img.shields.io/nuget/v/VoltRpc?label=NuGet)](https://www.nuget.org/packages/VoltRpc/)
+[![NuGet Download Count](https://img.shields.io/nuget/dt/VoltRpc?label=Downloads&logo=nuget&color=blue&logoColor=blue)](https://www.nuget.org/packages/VoltRpc/)
 [![Build Status](https://img.shields.io/azure-devops/build/Voltstro-Studios/63163ef8-da1d-42b6-b8b9-689420a730e5/9?logo=azure-pipelines)](https://dev.azure.com/Voltstro-Studios/VoltRpc/_build/latest?definitionId=9&branchName=master)
 [![Discord](https://img.shields.io/badge/Discord-Voltstro-7289da.svg?logo=discord)](https://discord.voltstro.dev)
 
