@@ -3,6 +3,8 @@
 		<Company>Voltstro-Studios</Company>
 		<Copyright>Copyright © 2021 Voltstro-Studios</Copyright>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<LangVersion>10</LangVersion>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

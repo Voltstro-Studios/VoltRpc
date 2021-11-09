@@ -3,7 +3,7 @@
     <Import Project="../Properties.props" />
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <Title>VoltRpc.Communication.Pipes</Title>
         <Authors>Voltstro</Authors>
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>

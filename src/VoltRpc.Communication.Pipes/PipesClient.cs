@@ -70,8 +70,7 @@ namespace VoltRpc.Communication.Pipes
 
             if (!namedPipeClientStream.IsConnected)
                 throw new ConnectionFailed("Failed to connect to a pipes host!");
-
-            IsConnectedInternal = true;
+            
             Initialize(namedPipeClientStream, namedPipeClientStream);
         }
 
@@ -80,7 +79,6 @@ namespace VoltRpc.Communication.Pipes
         {
             base.Dispose();
             namedPipeClientStream.Dispose();
-            IsConnectedInternal = false;
         }
     }
 }

@@ -21,11 +21,8 @@ namespace VoltRpc.Communication
         private readonly int bufferSize;
 
         private readonly Dictionary<string, ServiceMethod[]> services;
-
-        /// <summary>
-        ///     Internal usage for if the client is connected
-        /// </summary>
-        protected bool IsConnectedInternal;
+        
+        private bool isConnectedInternal;
 
         private BufferedReader reader;
         private BufferedWriter writer;
@@ -54,7 +51,7 @@ namespace VoltRpc.Communication
         /// <summary>
         ///     Is the <see cref="Client" /> connected
         /// </summary>
-        public bool IsConnected => IsConnectedInternal;
+        public bool IsConnected => isConnectedInternal;
 
         /// <summary>
         ///     Connects the <see cref="Client" /> to a host
@@ -106,6 +103,7 @@ namespace VoltRpc.Communication
 
             reader = new BufferedReader(readStream, bufferSize);
             writer = new BufferedWriter(writeStream, bufferSize);
+            isConnectedInternal = true;
         }
 
         /// <summary>
@@ -128,7 +126,7 @@ namespace VoltRpc.Communication
         /// </exception>
         public object[] InvokeMethod(string methodName, params object[] parameters)
         {
-            if (!IsConnectedInternal)
+            if (!isConnectedInternal)
                 throw new NotConnectedException("The client is not connected!");
             
             //Get the method
@@ -272,7 +270,7 @@ namespace VoltRpc.Communication
 
         private void ReleaseResources()
         {
-            if (IsConnectedInternal)
+            if (isConnectedInternal)
             {
                 writer?.WriteByte((byte) MessageType.Shutdown);
                 writer?.Flush();
@@ -280,6 +278,7 @@ namespace VoltRpc.Communication
 
             reader?.Dispose();
             writer?.Dispose();
+            isConnectedInternal = false;
         }
 
         #endregion

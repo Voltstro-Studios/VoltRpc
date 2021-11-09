@@ -91,33 +91,17 @@ namespace VoltRpc.Communication.TCP
         /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
         public override void Connect()
         {
-            Task<TcpClient> connectTask = client
-                .ConnectAsync(endPoint.Address, endPoint.Port).ContinueWith(task => task.IsFaulted ? 
-                        throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!") : 
-                        client, 
-                    TaskContinuationOptions.ExecuteSynchronously);
-            Task<TcpClient> timeoutTask = Task.Delay(connectionTimeout)
-                .ContinueWith<TcpClient>(task => throw new TimeoutException(), 
-                    TaskContinuationOptions.ExecuteSynchronously);
-            Task<TcpClient> result = Task.WhenAny(connectTask, timeoutTask).Unwrap();
-
             try
             {
-                result.Wait();
+                if (!client.ConnectAsync(endPoint.Address, endPoint.Port).Wait(connectionTimeout))
+                    throw new TimeoutException("The TCP client failed to connect in time.");
             }
-            catch (AggregateException ex)
+            catch (Exception ex)
             {
-                if (ex.InnerExceptions.Any(x => x is TimeoutException))
-                    throw new TimeoutException();
-
-                throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
+                throw new ConnectionFailed("The TCP client failed to connect!", ex);
             }
-
-            //Backup
-            if(result.Result == null)
-                throw new ConnectionFailed("The TCP client failed to connect to a host for some reason!");
-
-            clientStream = result.Result.GetStream();
+            
+            clientStream = client.GetStream();
             Initialize(clientStream, clientStream);
         }
 
@@ -127,7 +111,6 @@ namespace VoltRpc.Communication.TCP
             base.Dispose();
             clientStream.Dispose();
             client.Dispose();
-            IsConnectedInternal = false;
         }
     }
 }

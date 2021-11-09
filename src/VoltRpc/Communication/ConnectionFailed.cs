@@ -15,5 +15,15 @@ namespace VoltRpc.Communication
             : base(message)
         {
         }
+
+        /// <summary>
+        ///     Creates a new <see cref="ConnectionFailed"/> instance
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="innerException"></param>
+        public ConnectionFailed(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }
