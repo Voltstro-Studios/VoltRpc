@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace VoltRpc.Services
 {
     internal static class ServiceHelper
     {
-        public static ServiceMethod[] GetAllServiceMethods<T>()
+#if NET6_0_OR_GREATER
+        public static ServiceMethod[] GetAllServiceMethods([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type)
+#else
+        public static ServiceMethod[] GetAllServiceMethods(Type type)
+#endif
         {
-            MethodInfo[] interfaceMethods = typeof(T).GetMethods();
+            MethodInfo[] interfaceMethods = type.GetMethods();
             ServiceMethod[] serviceMethods = new ServiceMethod[interfaceMethods.Length];
 
             for (int i = 0; i < interfaceMethods.Length; i++)

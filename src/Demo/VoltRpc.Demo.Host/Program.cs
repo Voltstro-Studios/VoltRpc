@@ -25,7 +25,7 @@ namespace VoltRpc.Demo.Host
             host.MaxConnectionsCount = 1;
 
             TestImp testImp = new();
-            host.AddService<ITest>(testImp);
+            host.AddService(typeof(ITest), testImp);
             host.StartListening();
 
             Console.WriteLine("Press any key to quit...");

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
 using VoltRpc.IO;
@@ -103,22 +104,41 @@ namespace VoltRpc.Communication
         /// <typeparam name="T">The service type</typeparam>
         /// <exception cref="ArgumentException">Thrown if the service has already been added</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface</exception>
+#if NET6_0_OR_GREATER
+        [RequiresUnreferencedCode("Use AddService(Type serviceType, object serviceObject) instead.")]
+#endif
         public void AddService<T>(T service)
             where T : class
         {
-            Type interfaceType = typeof(T);
-            if (!interfaceType.IsInterface)
-                throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
+            AddService(typeof(T), service);
+        }
 
-            if (services.Exists(x => x.InterfaceObject == service
-                                     || x.InterfaceName == interfaceType.FullName))
-                throw new ArgumentException("The service already exists!", nameof(service));
-
+        /// <summary>
+        ///     Adds a service to this <see cref="Host" />
+        /// </summary>
+        /// <param name="serviceType">The <see cref="Type"/> of a service</param>
+        /// <param name="serviceObject">The actual service <see cref="object"/> itself</param>
+        /// <exception cref="ArgumentException">Thrown if the service has already been added</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if serviceType is not an interface</exception>
+#if NET6_0_OR_GREATER
+        public void AddService([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type serviceType, 
+#else
+        public void AddService(Type serviceType, 
+#endif
+            object serviceObject)
+        {
+            if (!serviceType.IsInterface)
+                throw new ArgumentOutOfRangeException(nameof(serviceType), "Service Type is not an interface!");
+            
+            if (services.Exists(x => x.InterfaceObject == serviceObject 
+                                     || x.InterfaceName == serviceType.FullName))
+                throw new ArgumentException("The service already exists!", nameof(serviceType));
+            
             services.Add(new HostService
             {
-                InterfaceName = interfaceType.FullName,
-                InterfaceObject = service,
-                ServiceMethods = ServiceHelper.GetAllServiceMethods<T>()
+                InterfaceName = serviceType.FullName,
+                InterfaceObject = serviceObject,
+                ServiceMethods = ServiceHelper.GetAllServiceMethods(serviceType)
             });
         }
 

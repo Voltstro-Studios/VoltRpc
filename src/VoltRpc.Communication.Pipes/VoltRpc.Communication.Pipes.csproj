@@ -14,6 +14,7 @@
             * Updated to use VoltRpc's new Host.MaxConnectionsCount, Host.ConnectionCount and Host.IsRunning
         </PackageReleaseNotes>
         <RootNamespace>VoltRpc.Communication.Pipes</RootNamespace>
+        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">

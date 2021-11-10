@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using VoltRpc.IO;
 using VoltRpc.Services;
@@ -64,20 +65,36 @@ namespace VoltRpc.Communication
         /// <typeparam name="T">The same interface that you are using on the server</typeparam>
         /// <exception cref="NullReferenceException">Thrown if T's <see cref="Type.FullName" /> is null</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if T is not an interface, or has already been added as a service.</exception>
+#if NET6_0_OR_GREATER
+        [RequiresUnreferencedCode("Use AddService(Type interfaceType) instead.")]
+#endif
         public void AddService<T>()
             where T : class
         {
-            Type interfaceType = typeof(T);
+            AddService(typeof(T));
+        }
+        
+        /// <summary>
+        ///     Adds a service to this <see cref="Host" />
+        /// </summary>
+        /// <exception cref="NullReferenceException">Thrown if interfaceType's <see cref="Type.FullName" /> is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if interfaceType is not an interface, or has already been added as a service.</exception>
+#if NET6_0_OR_GREATER
+        public void AddService([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type interfaceType)
+#else
+        public void AddService(Type interfaceType)
+#endif
+        {
             if (!interfaceType.IsInterface)
-                throw new ArgumentOutOfRangeException(nameof(T), "T is not an interface!");
-
+                throw new ArgumentOutOfRangeException(nameof(interfaceType), "Provided interface type is not an interface!");
+            
             if (interfaceType.FullName == null)
-                throw new NullReferenceException("T's Type.FullName is null!");
-
+                throw new NullReferenceException("interfaceType.FullName is null!");
+            
             if (services.ContainsKey(interfaceType.FullName))
-                throw new ArgumentOutOfRangeException(nameof(T), "T has already been added as a service!");
-
-            services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods<T>());
+                throw new ArgumentOutOfRangeException(nameof(interfaceType), "interfaceType has already been added as a service!");
+            
+            services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods(interfaceType));
         }
 
         /// <summary>

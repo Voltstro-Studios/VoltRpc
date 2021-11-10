@@ -24,7 +24,7 @@ namespace VoltRpc.Demo.Client
                 client = new TCPClient(parser.IpEndPoint);
 
             client.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
-            client.AddService<ITest>();
+            client.AddService(typeof(ITest));
             try
             {
                 client.Connect();

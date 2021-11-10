@@ -18,6 +18,7 @@
             * Client.InvokeMethod will check if the client is connected
             BREAKING: Renamed Host.ReaderWriterManager to TypeReaderWriterManager to match the client's name
         </PackageReleaseNotes>
+        <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
