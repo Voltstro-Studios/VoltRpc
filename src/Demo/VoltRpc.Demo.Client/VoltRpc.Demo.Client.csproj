@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="../Demo.props" />
+    <Import Project="../Demo.props"/>
 
-	<PropertyGroup>
+    <PropertyGroup>
         <OutputType>Exe</OutputType>
         <PublishTrimmed>true</PublishTrimmed>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj" />
-      <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj" />
-      <ProjectReference Include="..\VoltRpc.Demo.Shared\VoltRpc.Demo.Shared.csproj" />
+        <ProjectReference Include="..\..\VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj"/>
+        <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj"/>
+        <ProjectReference Include="..\VoltRpc.Demo.Shared\VoltRpc.Demo.Shared.csproj"/>
     </ItemGroup>
 
 </Project>

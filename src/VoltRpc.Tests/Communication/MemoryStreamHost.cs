@@ -1,25 +1,23 @@
 ﻿using System.Threading.Tasks;
 using VoltRpc.Communication;
 using VoltRpc.IO;
-using VoltRpc.Tests.IO;
 
-namespace VoltRpc.Tests.Communication
+namespace VoltRpc.Tests.Communication;
+
+public class MemoryStreamHost : Host
 {
-    public class MemoryStreamHost : Host
+    private readonly BufferedReader reader;
+    private readonly BufferedWriter writer;
+
+    public MemoryStreamHost(BufferedReader bufferedReader, BufferedWriter bufferedWriter)
     {
-        private BufferedReader reader;
-        private BufferedWriter writer;
-        
-        public MemoryStreamHost(BufferedReader bufferedReader, BufferedWriter bufferedWriter)
-        {
-            reader = bufferedReader;
-            writer = bufferedWriter;
-        }
-        
-        public override Task StartListening()
-        {
-            ProcessRequest(reader, writer);
-            return Task.CompletedTask;
-        }
+        reader = bufferedReader;
+        writer = bufferedWriter;
+    }
+
+    public override Task StartListening()
+    {
+        ProcessRequest(reader, writer);
+        return Task.CompletedTask;
     }
 }

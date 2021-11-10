@@ -2,272 +2,270 @@
 using System.IO;
 using System.Text;
 
-namespace VoltRpc.IO
+namespace VoltRpc.IO;
+/*
+ * Base of this code comes from Mirror's NetworkReader:
+ * https://github.com/vis2k/Mirror/blob/ca4c2fd9302b1ece4240b09cc562e25bcb84407f/Assets/Mirror/Runtime/NetworkReader.cs
+ *
+ * Some code also comes from .NET Runtime's BufferedStream:
+ * https://github.com/dotnet/runtime/blob/release/5.0/src/libraries/System.Private.CoreLib/src/System/IO/BufferedStream.cs
+ */
+
+/// <summary>
+///     A buffered reader for a <see cref="Stream" />
+/// </summary>
+public class BufferedReader : IDisposable
 {
-    /*
-     * Base of this code comes from Mirror's NetworkReader:
-     * https://github.com/vis2k/Mirror/blob/ca4c2fd9302b1ece4240b09cc562e25bcb84407f/Assets/Mirror/Runtime/NetworkReader.cs
-     *
-     * Some code also comes from .NET Runtime's BufferedStream:
-     * https://github.com/dotnet/runtime/blob/release/5.0/src/libraries/System.Private.CoreLib/src/System/IO/BufferedStream.cs
-     */
+    private readonly byte[] buffer;
+
+    private readonly UTF8Encoding encoding;
 
     /// <summary>
-    ///     A buffered reader for a <see cref="Stream" />
+    ///     The incoming <see cref="Stream" />
     /// </summary>
-    public class BufferedReader : IDisposable
+    protected readonly Stream IncomingStream;
+
+    private int position;
+    private int readLength;
+
+    /// <summary>
+    ///     Creates a new <see cref="BufferedReader" /> instance
+    /// </summary>
+    /// <param name="incoming"></param>
+    /// <param name="bufferSize"></param>
+    internal BufferedReader(Stream incoming, int bufferSize = 8000)
     {
-        private readonly byte[] buffer;
+        IncomingStream = incoming;
+        encoding = new UTF8Encoding(false, true);
+        buffer = new byte[bufferSize];
+    }
 
-        private readonly UTF8Encoding encoding;
+    /// <summary>
+    ///     You may need to override this if your <see cref="Stream" /> requires it
+    /// </summary>
+    protected virtual long IncomingStreamPosition { get; set; }
 
-        /// <summary>
-        ///     The incoming <see cref="Stream" />
-        /// </summary>
-        protected readonly Stream IncomingStream;
+    #region Destroy
 
-        private int position;
-        private int readLength;
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+    }
 
-        /// <summary>
-        ///     Creates a new <see cref="BufferedReader" /> instance
-        /// </summary>
-        /// <param name="incoming"></param>
-        /// <param name="bufferSize"></param>
-        internal BufferedReader(Stream incoming, int bufferSize = 8000)
+    #endregion
+
+    /// <summary>
+    ///     Reads a <see cref="byte" />
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="EndOfStreamException"></exception>
+    public byte ReadByte()
+    {
+        if (position == readLength)
+            ReadStream();
+
+        return buffer[position++];
+    }
+
+    /// <summary>
+    ///     Reads an array of <see cref="byte" />s as an <see cref="ArraySegment{T}" />
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    /// <exception cref="EndOfStreamException"></exception>
+    public ArraySegment<byte> ReadBytesSegment(int count)
+    {
+        if (position == readLength)
+            ReadStream();
+
+        //Check if within buffer limits
+        if (position + count > readLength)
         {
-            IncomingStream = incoming;
-            encoding = new UTF8Encoding(false, true);
-            buffer = new byte[bufferSize];
-        }
-
-        /// <summary>
-        ///     You may need to override this if your <see cref="Stream" /> requires it
-        /// </summary>
-        protected virtual long IncomingStreamPosition { get; set; }
-
-        /// <summary>
-        ///     Reads a <see cref="byte" />
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="EndOfStreamException"></exception>
-        public byte ReadByte()
-        {
-            if (position == readLength)
-                ReadStream();
-
-            return buffer[position++];
-        }
-
-        /// <summary>
-        ///     Reads an array of <see cref="byte" />s as an <see cref="ArraySegment{T}" />
-        /// </summary>
-        /// <param name="count"></param>
-        /// <returns></returns>
-        /// <exception cref="EndOfStreamException"></exception>
-        public ArraySegment<byte> ReadBytesSegment(int count)
-        {
-            if (position == readLength)
-                ReadStream();
-
-            //Check if within buffer limits
+            //Attempt to read again
+            ReadStream();
             if (position + count > readLength)
-            {
-                //Attempt to read again
-                ReadStream();
-                if (position + count > readLength)
-                    throw new EndOfStreamException("Cannot read beyond stream!");
-            }
-
-            //Return the segment
-            ArraySegment<byte> result = new ArraySegment<byte>(buffer, position, count);
-            position += count;
-            return result;
+                throw new EndOfStreamException("Cannot read beyond stream!");
         }
 
-        /// <summary>
-        ///     Reads a <see cref="sbyte" />
-        /// </summary>
-        /// <returns></returns>
-        public sbyte ReadSByte()
+        //Return the segment
+        ArraySegment<byte> result = new(buffer, position, count);
+        position += count;
+        return result;
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="sbyte" />
+    /// </summary>
+    /// <returns></returns>
+    public sbyte ReadSByte()
+    {
+        return (sbyte) ReadByte();
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="bool" />
+    /// </summary>
+    /// <returns></returns>
+    public bool ReadBool()
+    {
+        return ReadByte() != 0;
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="ushort" />
+    /// </summary>
+    /// <returns></returns>
+    public ushort ReadUShort()
+    {
+        ushort value = 0;
+        value |= ReadByte();
+        value |= (ushort) (ReadByte() << 8);
+        return value;
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="short" />
+    /// </summary>
+    /// <returns></returns>
+    public short ReadShort()
+    {
+        return (short) ReadUShort();
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="char" />
+    /// </summary>
+    /// <returns></returns>
+    public char ReadChar()
+    {
+        return (char) ReadUShort();
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="uint" />
+    /// </summary>
+    /// <returns></returns>
+    public uint ReadUInt()
+    {
+        uint value = 0;
+        value |= ReadByte();
+        value |= (uint) (ReadByte() << 8);
+        value |= (uint) (ReadByte() << 16);
+        value |= (uint) (ReadByte() << 24);
+        return value;
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="int" />
+    /// </summary>
+    /// <returns></returns>
+    public int ReadInt()
+    {
+        return (int) ReadUInt();
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="ulong" />
+    /// </summary>
+    /// <returns></returns>
+    public ulong ReadULong()
+    {
+        ulong value = 0;
+        value |= ReadByte();
+        value |= (ulong) ReadByte() << 8;
+        value |= (ulong) ReadByte() << 16;
+        value |= (ulong) ReadByte() << 24;
+        value |= (ulong) ReadByte() << 32;
+        value |= (ulong) ReadByte() << 40;
+        value |= (ulong) ReadByte() << 48;
+        value |= (ulong) ReadByte() << 56;
+        return value;
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="long" />
+    /// </summary>
+    /// <returns></returns>
+    public long ReadLong()
+    {
+        return (long) ReadULong();
+    }
+
+    /// <summary>
+    ///     Reads a <see cref="float" />
+    /// </summary>
+    /// <returns></returns>
+    public float ReadFloat()
+    {
+        UIntFloat converter = new()
         {
-            return (sbyte) ReadByte();
-        }
+            intValue = ReadUInt()
+        };
+        return converter.floatValue;
+    }
 
-        /// <summary>
-        ///     Reads a <see cref="bool" />
-        /// </summary>
-        /// <returns></returns>
-        public bool ReadBool()
+    /// <summary>
+    ///     Reads a <see cref="double" />
+    /// </summary>
+    /// <returns></returns>
+    public double ReadDouble()
+    {
+        UIntDouble converter = new()
         {
-            return ReadByte() != 0;
-        }
+            longValue = ReadULong()
+        };
+        return converter.doubleValue;
+    }
 
-        /// <summary>
-        ///     Reads a <see cref="ushort" />
-        /// </summary>
-        /// <returns></returns>
-        public ushort ReadUShort()
+    /// <summary>
+    ///     Reads a <see cref="decimal" />
+    /// </summary>
+    /// <returns></returns>
+    public decimal ReadDecimal()
+    {
+        UIntDecimal converter = new()
         {
-            ushort value = 0;
-            value |= ReadByte();
-            value |= (ushort) (ReadByte() << 8);
-            return value;
-        }
+            longValue1 = ReadULong(),
+            longValue2 = ReadULong()
+        };
+        return converter.decimalValue;
+    }
 
-        /// <summary>
-        ///     Reads a <see cref="short" />
-        /// </summary>
-        /// <returns></returns>
-        public short ReadShort()
-        {
-            return (short) ReadUShort();
-        }
+    /// <summary>
+    ///     Reads a <see cref="string" />
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="EndOfStreamException"></exception>
+    public string ReadString()
+    {
+        //Read number of bytes
+        ushort size = ReadUShort();
 
-        /// <summary>
-        ///     Reads a <see cref="char" />
-        /// </summary>
-        /// <returns></returns>
-        public char ReadChar()
-        {
-            return (char) ReadUShort();
-        }
+        //Null support
+        if (size == 0)
+            return null;
 
-        /// <summary>
-        ///     Reads a <see cref="uint" />
-        /// </summary>
-        /// <returns></returns>
-        public uint ReadUInt()
-        {
-            uint value = 0;
-            value |= ReadByte();
-            value |= (uint) (ReadByte() << 8);
-            value |= (uint) (ReadByte() << 16);
-            value |= (uint) (ReadByte() << 24);
-            return value;
-        }
+        int realSize = size - 1;
 
-        /// <summary>
-        ///     Reads a <see cref="int" />
-        /// </summary>
-        /// <returns></returns>
-        public int ReadInt()
-        {
-            return (int) ReadUInt();
-        }
+        //Make sure it's within limits to avoid allocation attacks etc.
+        if (realSize >= BufferedWriter.MaxStringLength)
+            throw new EndOfStreamException(
+                $"Read string was too long! Max size is {BufferedWriter.MaxStringLength}.");
 
-        /// <summary>
-        ///     Reads a <see cref="ulong" />
-        /// </summary>
-        /// <returns></returns>
-        public ulong ReadULong()
-        {
-            ulong value = 0;
-            value |= ReadByte();
-            value |= (ulong) ReadByte() << 8;
-            value |= (ulong) ReadByte() << 16;
-            value |= (ulong) ReadByte() << 24;
-            value |= (ulong) ReadByte() << 32;
-            value |= (ulong) ReadByte() << 40;
-            value |= (ulong) ReadByte() << 48;
-            value |= (ulong) ReadByte() << 56;
-            return value;
-        }
+        ArraySegment<byte> data = ReadBytesSegment(realSize);
 
-        /// <summary>
-        ///     Reads a <see cref="long" />
-        /// </summary>
-        /// <returns></returns>
-        public long ReadLong()
-        {
-            return (long) ReadULong();
-        }
+        //Convert directly from buffer to string via encoding
+        return encoding.GetString(data.Array, data.Offset, data.Count);
+    }
 
-        /// <summary>
-        ///     Reads a <see cref="float" />
-        /// </summary>
-        /// <returns></returns>
-        public float ReadFloat()
-        {
-            UIntFloat converter = new UIntFloat
-            {
-                intValue = ReadUInt()
-            };
-            return converter.floatValue;
-        }
+    private void ReadStream()
+    {
+        readLength = IncomingStream.Read(buffer, 0, buffer.Length);
+        IncomingStreamPosition = 0;
+        position = 0;
 
-        /// <summary>
-        ///     Reads a <see cref="double" />
-        /// </summary>
-        /// <returns></returns>
-        public double ReadDouble()
-        {
-            UIntDouble converter = new UIntDouble
-            {
-                longValue = ReadULong()
-            };
-            return converter.doubleValue;
-        }
-
-        /// <summary>
-        ///     Reads a <see cref="decimal" />
-        /// </summary>
-        /// <returns></returns>
-        public decimal ReadDecimal()
-        {
-            UIntDecimal converter = new UIntDecimal
-            {
-                longValue1 = ReadULong(),
-                longValue2 = ReadULong()
-            };
-            return converter.decimalValue;
-        }
-
-        /// <summary>
-        ///     Reads a <see cref="string" />
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="EndOfStreamException"></exception>
-        public string ReadString()
-        {
-            //Read number of bytes
-            ushort size = ReadUShort();
-
-            //Null support
-            if (size == 0)
-                return null;
-
-            int realSize = size - 1;
-
-            //Make sure it's within limits to avoid allocation attacks etc.
-            if (realSize >= BufferedWriter.MaxStringLength)
-                throw new EndOfStreamException(
-                    $"Read string was too long! Max size is {BufferedWriter.MaxStringLength}.");
-
-            ArraySegment<byte> data = ReadBytesSegment(realSize);
-
-            //Convert directly from buffer to string via encoding
-            return encoding.GetString(data.Array, data.Offset, data.Count);
-        }
-
-        private void ReadStream()
-        {
-            readLength = IncomingStream.Read(buffer, 0, buffer.Length);
-            IncomingStreamPosition = 0;
-            position = 0;
-
-            if (readLength == 0)
-                throw new EndOfStreamException();
-        }
-
-        #region Destroy
-
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion
+        if (readLength == 0)
+            throw new EndOfStreamException();
     }
 }

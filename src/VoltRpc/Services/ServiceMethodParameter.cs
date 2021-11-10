@@ -1,11 +1,10 @@
-﻿namespace VoltRpc.Services
+﻿namespace VoltRpc.Services;
+
+internal struct ServiceMethodParameter
 {
-    internal struct ServiceMethodParameter
-    {
-        public bool IsRef { get; set; }
+    public bool IsRef { get; set; }
 
-        public bool IsOut { get; set; }
+    public bool IsOut { get; set; }
 
-        public string ParameterTypeName { get; set; }
-    }
+    public string ParameterTypeName { get; set; }
 }

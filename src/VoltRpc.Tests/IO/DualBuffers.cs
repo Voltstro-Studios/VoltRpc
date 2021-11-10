@@ -2,38 +2,37 @@
 using System.IO;
 using VoltRpc.IO;
 
-namespace VoltRpc.Tests.IO
+namespace VoltRpc.Tests.IO;
+
+public class DualBuffers : IDisposable
 {
-    public class DualBuffers : IDisposable
+    private readonly MemoryStream memoryStream;
+
+    public DualBuffers()
     {
-        public DualBuffers()
-        {
-            memoryStream = new MemoryStream(1000);
-            BufferedReader = new MemoryStreamBufferedReader(memoryStream);
-            BufferedWriter = new MemoryStreamBufferedWriter(memoryStream);
-        }
-        
-        private readonly MemoryStream memoryStream;
+        memoryStream = new MemoryStream(1000);
+        BufferedReader = new MemoryStreamBufferedReader(memoryStream);
+        BufferedWriter = new MemoryStreamBufferedWriter(memoryStream);
+    }
 
-        public BufferedReader BufferedReader { get; }
-        public BufferedWriter BufferedWriter { get; }
+    public BufferedReader BufferedReader { get; }
+    public BufferedWriter BufferedWriter { get; }
 
-        ~DualBuffers()
-        {
-            ReleaseResources();
-        }
-        
-        public void Dispose()
-        {
-            ReleaseResources();
-            GC.SuppressFinalize(this);
-        }
+    public void Dispose()
+    {
+        ReleaseResources();
+        GC.SuppressFinalize(this);
+    }
 
-        private void ReleaseResources()
-        {
-            BufferedReader?.Dispose();
-            BufferedWriter?.Dispose();
-            memoryStream?.Dispose();
-        }
+    ~DualBuffers()
+    {
+        ReleaseResources();
+    }
+
+    private void ReleaseResources()
+    {
+        BufferedReader?.Dispose();
+        BufferedWriter?.Dispose();
+        memoryStream?.Dispose();
     }
 }

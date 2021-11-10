@@ -1,32 +1,31 @@
 ﻿using VoltRpc.IO;
 
-namespace VoltRpc.Types.TypeReaderWriters
+namespace VoltRpc.Types.TypeReaderWriters;
+
+internal sealed class ULongArrayReadWriter : ITypeReadWriter
 {
-    internal sealed class ULongArrayReadWriter : ITypeReadWriter
+    public void Write(BufferedWriter writer, object obj)
     {
-        public void Write(BufferedWriter writer, object obj)
+        ulong[] array = (ulong[]) obj;
+        if (array == null)
         {
-            ulong[] array = (ulong[]) obj;
-            if (array == null)
-            {
-                writer.WriteInt(-1);
-                return;
-            }
-
-            writer.WriteInt(array.Length);
-            foreach (ulong u in array)
-                writer.WriteULong(u);
+            writer.WriteInt(-1);
+            return;
         }
 
-        public object Read(BufferedReader reader)
-        {
-            int size = reader.ReadInt();
-            if (size == -1) return null;
+        writer.WriteInt(array.Length);
+        foreach (ulong u in array)
+            writer.WriteULong(u);
+    }
 
-            ulong[] array = new ulong[size];
-            for (int i = 0; i < size; i++) array[i] = reader.ReadULong();
+    public object Read(BufferedReader reader)
+    {
+        int size = reader.ReadInt();
+        if (size == -1) return null;
 
-            return array;
-        }
+        ulong[] array = new ulong[size];
+        for (int i = 0; i < size; i++) array[i] = reader.ReadULong();
+
+        return array;
     }
 }

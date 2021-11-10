@@ -1,18 +1,17 @@
-﻿namespace VoltRpc.Communication
+﻿namespace VoltRpc.Communication;
+
+/// <summary>
+///     What type of message is this?
+/// </summary>
+public enum MessageType : byte
 {
     /// <summary>
-    ///     What type of message is this?
+    ///     Invoke a message
     /// </summary>
-    public enum MessageType : byte
-    {
-        /// <summary>
-        ///     Invoke a message
-        /// </summary>
-        InvokeMethod,
+    InvokeMethod,
 
-        /// <summary>
-        ///     Shutdown the connection
-        /// </summary>
-        Shutdown
-    }
+    /// <summary>
+    ///     Shutdown the connection
+    /// </summary>
+    Shutdown
 }

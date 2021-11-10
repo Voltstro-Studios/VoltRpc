@@ -4,33 +4,32 @@ using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
 using VoltRpc.Logging;
 
-namespace VoltRpc.Demo.Host
+namespace VoltRpc.Demo.Host;
+
+public static class Program
 {
-    public static class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            ArgsParser parser = new();
-            parser.ParseArgs(args);
+        ArgsParser parser = new();
+        parser.ParseArgs(args);
 
-            ILogger logger = new ConsoleLogger(LogVerbosity.Debug);
+        ILogger logger = new ConsoleLogger(LogVerbosity.Debug);
 
-            Communication.Host host;
-            if (parser.PipesClient)
-                host = new PipesHost(parser.PipeName, logger);
-            else
-                host = new TCPHost(parser.IpEndPoint, logger);
+        Communication.Host host;
+        if (parser.PipesClient)
+            host = new PipesHost(parser.PipeName, logger);
+        else
+            host = new TCPHost(parser.IpEndPoint, logger);
 
-            host.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
-            host.MaxConnectionsCount = 1;
+        host.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
+        host.MaxConnectionsCount = 1;
 
-            TestImp testImp = new();
-            host.AddService(typeof(ITest), testImp);
-            host.StartListening();
+        TestImp testImp = new();
+        host.AddService(typeof(ITest), testImp);
+        host.StartListening();
 
-            Console.WriteLine("Press any key to quit...");
-            Console.ReadKey();
-            host.Dispose();
-        }
+        Console.WriteLine("Press any key to quit...");
+        Console.ReadKey();
+        host.Dispose();
     }
 }

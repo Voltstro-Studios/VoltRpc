@@ -9,14 +9,14 @@ namespace VoltRpc.Benchmarks.Core
 {
     public abstract class VoltRpcBenchmark
     {
-        private readonly Host host;
         private readonly Client client;
+        private readonly Host host;
 
         private IBenchmarkInterface benchmarkProxy;
+        private byte[] bigArray;
 
         private byte[] smallArray;
-        private byte[] bigArray;
-        
+
         protected VoltRpcBenchmark(Client client, Host host)
         {
             this.client = client;
@@ -29,7 +29,7 @@ namespace VoltRpc.Benchmarks.Core
             host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
             host.StartListening();
             host.MaxConnectionsCount = 1;
-            
+
             client.AddService<IBenchmarkInterface>();
             client.Connect();
             benchmarkProxy = new BenchmarkProxy(client);
@@ -39,31 +39,52 @@ namespace VoltRpc.Benchmarks.Core
             bigArray = new byte[1920 * 1080 * 4];
             bigArray = Utils.FillByteArray(bigArray);
         }
-        
+
         [Benchmark]
-        public void BasicVoid() => benchmarkProxy.BasicVoid();
+        public void BasicVoid()
+        {
+            benchmarkProxy.BasicVoid();
+        }
 
         [Benchmark]
         [ArgumentsSource(nameof(GetMessage))]
-        public void BasicParameterVoid(string message) => benchmarkProxy.BasicParameterVoid(message);
+        public void BasicParameterVoid(string message)
+        {
+            benchmarkProxy.BasicParameterVoid(message);
+        }
 
         [Benchmark]
-        public string BasicReturn() => benchmarkProxy.BasicReturn();
+        public string BasicReturn()
+        {
+            return benchmarkProxy.BasicReturn();
+        }
 
         [Benchmark]
         [ArgumentsSource(nameof(GetMessage))]
-        public string BasicParameterReturn(string message) => benchmarkProxy.BasicParameterReturn(message);
+        public string BasicParameterReturn(string message)
+        {
+            return benchmarkProxy.BasicParameterReturn(message);
+        }
 
         [Benchmark]
         [ArgumentsSource(nameof(GetArray))]
-        public void ArrayParameterVoid(byte[] array) => benchmarkProxy.ArrayParameterVoid(array);
+        public void ArrayParameterVoid(byte[] array)
+        {
+            benchmarkProxy.ArrayParameterVoid(array);
+        }
 
         [Benchmark]
-        public byte[] ArrayReturn() => benchmarkProxy.ArrayReturn();
+        public byte[] ArrayReturn()
+        {
+            return benchmarkProxy.ArrayReturn();
+        }
 
         [Benchmark]
         [ArgumentsSource(nameof(GetArray))]
-        public byte[] ArrayParameterReturn(byte[] array) => benchmarkProxy.ArrayParameterReturn(array);
+        public byte[] ArrayParameterReturn(byte[] array)
+        {
+            return benchmarkProxy.ArrayParameterReturn(array);
+        }
 
         public IEnumerable<byte[]> GetArray()
         {

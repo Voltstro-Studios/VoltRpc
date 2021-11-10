@@ -1,11 +1,10 @@
-﻿namespace VoltRpc.Services
+﻿namespace VoltRpc.Services;
+
+internal struct HostService
 {
-    internal struct HostService
-    {
-        public string InterfaceName { get; set; }
+    public string InterfaceName { get; set; }
 
-        public object InterfaceObject { get; set; }
+    public object InterfaceObject { get; set; }
 
-        public ServiceMethod[] ServiceMethods { get; set; }
-    }
+    public ServiceMethod[] ServiceMethods { get; set; }
 }

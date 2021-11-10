@@ -9,7 +9,7 @@
             smallArray = new byte[25];
             smallArray = Utils.FillByteArray(smallArray);
         }
-        
+
         public void BasicVoid()
         {
         }

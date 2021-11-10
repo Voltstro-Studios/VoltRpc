@@ -2,17 +2,16 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace VoltRpc.Proxy.Generator
-{
-    public class ProxySyntaxReceiver : ISyntaxContextReceiver
-    {
-        public List<InterfaceDeclarationSyntax> Interfaces { get; } = new List<InterfaceDeclarationSyntax>();
+namespace VoltRpc.Proxy.Generator;
 
-        public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
-        {
-            if (context.Node is InterfaceDeclarationSyntax interfaceDeclarationSyntax &&
-                interfaceDeclarationSyntax.AttributeLists.Count > 0)
-                Interfaces.Add(interfaceDeclarationSyntax);
-        }
+public class ProxySyntaxReceiver : ISyntaxContextReceiver
+{
+    public List<InterfaceDeclarationSyntax> Interfaces { get; } = new();
+
+    public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
+    {
+        if (context.Node is InterfaceDeclarationSyntax interfaceDeclarationSyntax &&
+            interfaceDeclarationSyntax.AttributeLists.Count > 0)
+            Interfaces.Add(interfaceDeclarationSyntax);
     }
 }

@@ -5,63 +5,62 @@ using VoltRpc.IO;
 using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;
 
-namespace VoltRpc.Tests.TypesTests
+namespace VoltRpc.Tests.TypesTests;
+
+public class TypeReaderWriterManagerTests
 {
-    public class TypeReaderWriterManagerTests
+    private TypeReaderWriterManager readerWriterManager;
+
+    [OneTimeSetUp]
+    public void Setup()
     {
-        private TypeReaderWriterManager readerWriterManager;
+        readerWriterManager = new TypeReaderWriterManager(false);
+    }
 
-        [OneTimeSetUp]
-        public void Setup()
+    [Test]
+    public void DefaultTypes()
+    {
+        TypeReaderWriterManager manager = new();
+        foreach (KeyValuePair<Type, ITypeReadWriter> defaultTypeReaderWriter in manager.DefaultTypeReaderWriters)
         {
-            readerWriterManager = new TypeReaderWriterManager(false);
+            ITypeReadWriter readWriter = manager.GetType(defaultTypeReaderWriter.Key);
+            Assert.NotNull(readWriter);
+            Assert.AreEqual(defaultTypeReaderWriter.Value, readWriter);
+        }
+    }
+
+    [Test]
+    public void AddTypeTest()
+    {
+        BoolReadWriter boolReadWriter = new();
+        readerWriterManager.AddType<bool>(boolReadWriter);
+
+        ITypeReadWriter readWriter = readerWriterManager.GetType<bool>();
+        Assert.IsNotNull(readWriter);
+        Assert.AreEqual(boolReadWriter, readWriter);
+    }
+
+    [Test]
+    public void OverrideTypeTest()
+    {
+        CustomBool boolReadWriter = new();
+        readerWriterManager.AddType<bool>(new BoolReadWriter());
+        readerWriterManager.AddType<bool>(boolReadWriter);
+
+        ITypeReadWriter readWriter = readerWriterManager.GetType<bool>();
+        Assert.IsNotNull(readWriter);
+        Assert.AreEqual(boolReadWriter, readWriter);
+    }
+
+    private class CustomBool : ITypeReadWriter
+    {
+        public void Write(BufferedWriter writer, object obj)
+        {
         }
 
-        [Test]
-        public void DefaultTypes()
+        public object Read(BufferedReader reader)
         {
-            TypeReaderWriterManager manager = new();
-            foreach (KeyValuePair<Type, ITypeReadWriter> defaultTypeReaderWriter in manager.DefaultTypeReaderWriters)
-            {
-                ITypeReadWriter readWriter = manager.GetType(defaultTypeReaderWriter.Key);
-                Assert.NotNull(readWriter);
-                Assert.AreEqual(defaultTypeReaderWriter.Value, readWriter);
-            }
-        }
-
-        [Test]
-        public void AddTypeTest()
-        {
-            BoolReadWriter boolReadWriter = new();
-            readerWriterManager.AddType<bool>(boolReadWriter);
-
-            ITypeReadWriter readWriter = readerWriterManager.GetType<bool>();
-            Assert.IsNotNull(readWriter);
-            Assert.AreEqual(boolReadWriter, readWriter);
-        }
-
-        [Test]
-        public void OverrideTypeTest()
-        {
-            CustomBool boolReadWriter = new();
-            readerWriterManager.AddType<bool>(new BoolReadWriter());
-            readerWriterManager.AddType<bool>(boolReadWriter);
-
-            ITypeReadWriter readWriter = readerWriterManager.GetType<bool>();
-            Assert.IsNotNull(readWriter);
-            Assert.AreEqual(boolReadWriter, readWriter);
-        }
-
-        private class CustomBool : ITypeReadWriter
-        {
-            public void Write(BufferedWriter writer, object obj)
-            {
-            }
-
-            public object Read(BufferedReader reader)
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

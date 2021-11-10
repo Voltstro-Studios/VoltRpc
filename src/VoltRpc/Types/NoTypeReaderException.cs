@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace VoltRpc.Types
+namespace VoltRpc.Types;
+
+/// <summary>
+///     Exception when there is no type reader/writer available
+/// </summary>
+public class NoTypeReaderWriterException : Exception
 {
-    /// <summary>
-    ///     Exception when there is no type reader/writer available
-    /// </summary>
-    public class NoTypeReaderWriterException : Exception
-    {
-    }
 }

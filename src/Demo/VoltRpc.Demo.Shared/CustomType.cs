@@ -1,9 +1,8 @@
-﻿namespace VoltRpc.Demo.Shared
-{
-    public class CustomType
-    {
-        public float Floaty { get; set; }
+﻿namespace VoltRpc.Demo.Shared;
 
-        public string Message { get; set; }
-    }
+public class CustomType
+{
+    public float Floaty { get; set; }
+
+    public string Message { get; set; }
 }

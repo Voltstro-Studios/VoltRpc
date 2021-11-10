@@ -1,32 +1,31 @@
 ﻿using VoltRpc.IO;
 
-namespace VoltRpc.Types.TypeReaderWriters
+namespace VoltRpc.Types.TypeReaderWriters;
+
+internal sealed class DoubleArrayReadWriter : ITypeReadWriter
 {
-    internal sealed class DoubleArrayReadWriter : ITypeReadWriter
+    public void Write(BufferedWriter writer, object obj)
     {
-        public void Write(BufferedWriter writer, object obj)
+        double[] array = (double[]) obj;
+        if (array == null)
         {
-            double[] array = (double[]) obj;
-            if (array == null)
-            {
-                writer.WriteInt(-1);
-                return;
-            }
-
-            writer.WriteInt(array.Length);
-            foreach (double u in array)
-                writer.WriteDouble(u);
+            writer.WriteInt(-1);
+            return;
         }
 
-        public object Read(BufferedReader reader)
-        {
-            int size = reader.ReadInt();
-            if (size == -1) return null;
+        writer.WriteInt(array.Length);
+        foreach (double u in array)
+            writer.WriteDouble(u);
+    }
 
-            double[] array = new double[size];
-            for (int i = 0; i < size; i++) array[i] = reader.ReadDouble();
+    public object Read(BufferedReader reader)
+    {
+        int size = reader.ReadInt();
+        if (size == -1) return null;
 
-            return array;
-        }
+        double[] array = new double[size];
+        for (int i = 0; i < size; i++) array[i] = reader.ReadDouble();
+
+        return array;
     }
 }
