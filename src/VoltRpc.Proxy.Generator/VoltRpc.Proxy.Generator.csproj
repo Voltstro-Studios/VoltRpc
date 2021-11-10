@@ -8,7 +8,7 @@
         <Authors>Voltstro</Authors>
         <PackageTags>IPC, RPC, TCP, Source-Generator, Generator</PackageTags>
         <Description>VoltRpc - Proxy Source Generator for VoltRpc.</Description>
-        <LangVersion>8.0</LangVersion>
+        <LangVersion>10</LangVersion>
         <Version>1.0.0</Version>
         <PackageVersion>1.0.0</PackageVersion>
         <PackageReleaseNotes>Inital Release.</PackageReleaseNotes>
@@ -24,7 +24,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0" PrivateAssets="all" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
