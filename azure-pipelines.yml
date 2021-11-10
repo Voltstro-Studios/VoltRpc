@@ -8,6 +8,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: UseDotNet@2
+  displayName: Install .NET
+  inputs:
+    version: 6.0.x
+
 - script: dotnet restore -v minimal src/VoltRpc.sln
   displayName: Restore Packages
 
