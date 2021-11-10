@@ -87,8 +87,8 @@ public class ProxyGenerator : ISourceGenerator
             if (memberDeclarationSyntax.Modifiers.All(modifer => modifer.Kind() != SyntaxKind.PublicKeyword))
                 continue;
 
-            MethodDeclarationSyntax method = (MethodDeclarationSyntax) memberDeclarationSyntax;
-            methods.Append(CreateMethod(model, method, interfaceNamespace, interfaceName));
+            if (memberDeclarationSyntax is MethodDeclarationSyntax methodDeclarationSyntax)
+                methods.Append(CreateMethod(model, methodDeclarationSyntax, interfaceNamespace, interfaceName));
         }
 
         //Add the source
