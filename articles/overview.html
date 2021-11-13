@@ -8,7 +8,7 @@
     <title>Overview | VoltRpc Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Overview | VoltRpc Documentation ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -82,6 +82,15 @@
 <p>VoltRpc can be installed via <a href="https://www.nuget.org/packages/VoltRpc/">NuGet</a>.</p>
 <p>You can use the command below to install the package.</p>
 <pre><code class="lang-powershell">Install-Package VoltRpc
+</code></pre>
+<p>You will also want to install the <a href="https://www.nuget.org/packages/VoltRpc.Proxy.Generator/">VoltRpc.Proxy.Generator</a> package.</p>
+<p>You can install that package with the command below.</p>
+<pre><code class="lang-powershell">Install-Package VoltRpc.Proxy.Generator
+</code></pre>
+<h2 id="proxy-generation">Proxy Generation</h2>
+<p>All proxy generation is handled by a .NET Source generator. You will need to install it's <a href="https://www.nuget.org/packages/VoltRpc.Proxy.Generator/">NuGet package</a>.</p>
+<p>You can use the command below to install the package.</p>
+<pre><code class="lang-powershell">Install-Package VoltRpc.Proxy.Generator
 </code></pre>
 <h2 id="basic-setup">Basic setup</h2>
 <p>Setting up VoltRpc is easy. VoltRpc has three parts; the host, the client and the proxy for the client.</p>
@@ -167,11 +176,6 @@ namespace VoltRpcExample.Client
         }
     }
 }
-</code></pre>
-<h2 id="proxy-generation">Proxy Generation</h2>
-<p>All proxy generation is handled by a .NET Source generator. You will need to install it's <a href="https://www.nuget.org/packages/VoltRpc.Proxy.Generator/">NuGet package</a> if you want to use it (You most likely 100% want to).</p>
-<p>You can use the command below to install the package.</p>
-<pre><code class="lang-powershell">Install-Package VoltRpc.Proxy.Generator
 </code></pre>
 </article>
           </div>

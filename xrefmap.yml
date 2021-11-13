@@ -26,6 +26,12 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.Client
   nameWithType: Client.Client
+- uid: VoltRpc.Communication.Client.AddService(Type)
+  name: AddService(Type)
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_AddService_Type_
+  commentId: M:VoltRpc.Communication.Client.AddService(Type)
+  fullName: VoltRpc.Communication.Client.AddService(Type)
+  nameWithType: Client.AddService(Type)
 - uid: VoltRpc.Communication.Client.AddService*
   name: AddService
   href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_AddService_
@@ -87,11 +93,11 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.Finalize
   nameWithType: Client.Finalize
-- uid: VoltRpc.Communication.Client.Initialize(System.IO.Stream,System.IO.Stream)
+- uid: VoltRpc.Communication.Client.Initialize(Stream,Stream)
   name: Initialize(Stream, Stream)
-  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_System_IO_Stream_System_IO_Stream_
-  commentId: M:VoltRpc.Communication.Client.Initialize(System.IO.Stream,System.IO.Stream)
-  fullName: VoltRpc.Communication.Client.Initialize(System.IO.Stream, System.IO.Stream)
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_Stream_Stream_
+  commentId: M:VoltRpc.Communication.Client.Initialize(Stream,Stream)
+  fullName: VoltRpc.Communication.Client.Initialize(Stream, Stream)
   nameWithType: Client.Initialize(Stream, Stream)
 - uid: VoltRpc.Communication.Client.Initialize*
   name: Initialize
@@ -129,12 +135,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.IsConnected
   nameWithType: Client.IsConnected
-- uid: VoltRpc.Communication.Client.IsConnectedInternal
-  name: IsConnectedInternal
-  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_IsConnectedInternal
-  commentId: F:VoltRpc.Communication.Client.IsConnectedInternal
-  fullName: VoltRpc.Communication.Client.IsConnectedInternal
-  nameWithType: Client.IsConnectedInternal
 - uid: VoltRpc.Communication.Client.TypeReaderWriterManager
   name: TypeReaderWriterManager
   href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_TypeReaderWriterManager
@@ -160,6 +160,12 @@ references:
   commentId: M:VoltRpc.Communication.ConnectionFailed.#ctor(System.String)
   fullName: VoltRpc.Communication.ConnectionFailed.ConnectionFailed(System.String)
   nameWithType: ConnectionFailed.ConnectionFailed(String)
+- uid: VoltRpc.Communication.ConnectionFailed.#ctor(System.String,Exception)
+  name: ConnectionFailed(String, Exception)
+  href: api/VoltRpc.Communication.ConnectionFailed.html#VoltRpc_Communication_ConnectionFailed__ctor_System_String_Exception_
+  commentId: M:VoltRpc.Communication.ConnectionFailed.#ctor(System.String,Exception)
+  fullName: VoltRpc.Communication.ConnectionFailed.ConnectionFailed(System.String, Exception)
+  nameWithType: ConnectionFailed.ConnectionFailed(String, Exception)
 - uid: VoltRpc.Communication.ConnectionFailed.#ctor*
   name: ConnectionFailed
   href: api/VoltRpc.Communication.ConnectionFailed.html#VoltRpc_Communication_ConnectionFailed__ctor_
@@ -186,6 +192,12 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.Host
   nameWithType: Host.Host
+- uid: VoltRpc.Communication.Host.AddService(Type,System.Object)
+  name: AddService(Type, Object)
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_AddService_Type_System_Object_
+  commentId: M:VoltRpc.Communication.Host.AddService(Type,System.Object)
+  fullName: VoltRpc.Communication.Host.AddService(Type, System.Object)
+  nameWithType: Host.AddService(Type, Object)
 - uid: VoltRpc.Communication.Host.AddService*
   name: AddService
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_AddService_
@@ -285,11 +297,11 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.MaxConnectionsCount
   nameWithType: Host.MaxConnectionsCount
-- uid: VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream,System.IO.Stream)
+- uid: VoltRpc.Communication.Host.ProcessRequest(Stream,Stream)
   name: ProcessRequest(Stream, Stream)
-  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_System_IO_Stream_System_IO_Stream_
-  commentId: M:VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream,System.IO.Stream)
-  fullName: VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream, System.IO.Stream)
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_Stream_Stream_
+  commentId: M:VoltRpc.Communication.Host.ProcessRequest(Stream,Stream)
+  fullName: VoltRpc.Communication.Host.ProcessRequest(Stream, Stream)
   nameWithType: Host.ProcessRequest(Stream, Stream)
 - uid: VoltRpc.Communication.Host.ProcessRequest(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)
   name: ProcessRequest(BufferedReader, BufferedWriter)
@@ -560,29 +572,29 @@ references:
   commentId: T:VoltRpc.Communication.TCP.TCPClient
   fullName: VoltRpc.Communication.TCP.TCPClient
   nameWithType: TCPClient
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint)
   name: TCPClient(IPEndPoint)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint)
   nameWithType: TCPClient.TCPClient(IPEndPoint)
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32)
   name: TCPClient(IPEndPoint, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint, System.Int32)
   nameWithType: TCPClient.TCPClient(IPEndPoint, Int32)
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32)
   name: TCPClient(IPEndPoint, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint, System.Int32, System.Int32)
   nameWithType: TCPClient.TCPClient(IPEndPoint, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
   name: TCPClient(IPEndPoint, Int32, Int32, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint, System.Int32, System.Int32, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_System_Int32_System_Int32_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint, System.Int32, System.Int32, System.Int32, System.Int32)
   nameWithType: TCPClient.TCPClient(IPEndPoint, Int32, Int32, Int32, Int32)
 - uid: VoltRpc.Communication.TCP.TCPClient.#ctor*
   name: TCPClient
@@ -641,35 +653,35 @@ references:
   commentId: T:VoltRpc.Communication.TCP.TCPHost
   fullName: VoltRpc.Communication.TCP.TCPHost
   nameWithType: TCPHost
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, Int32, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, System.Int32, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, System.Int32, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, Int32, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger)
   name: TCPHost(IPEndPoint, ILogger)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, VoltRpc.Logging.ILogger)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, VoltRpc.Logging.ILogger)
   nameWithType: TCPHost.TCPHost(IPEndPoint, ILogger)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, ILogger, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, ILogger, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, ILogger, Int32, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, ILogger, Int32, Int32, Int32)
 - uid: VoltRpc.Communication.TCP.TCPHost.#ctor*
   name: TCPHost
@@ -1547,11 +1559,11 @@ references:
   commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType(System.String,VoltRpc.Types.ITypeReadWriter)
   fullName: VoltRpc.Types.TypeReaderWriterManager.AddType(System.String, VoltRpc.Types.ITypeReadWriter)
   nameWithType: TypeReaderWriterManager.AddType(String, ITypeReadWriter)
-- uid: VoltRpc.Types.TypeReaderWriterManager.AddType(System.Type,VoltRpc.Types.ITypeReadWriter)
+- uid: VoltRpc.Types.TypeReaderWriterManager.AddType(Type,VoltRpc.Types.ITypeReadWriter)
   name: AddType(Type, ITypeReadWriter)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType_System_Type_VoltRpc_Types_ITypeReadWriter_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType(System.Type,VoltRpc.Types.ITypeReadWriter)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.AddType(System.Type, VoltRpc.Types.ITypeReadWriter)
+  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType_Type_VoltRpc_Types_ITypeReadWriter_
+  commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType(Type,VoltRpc.Types.ITypeReadWriter)
+  fullName: VoltRpc.Types.TypeReaderWriterManager.AddType(Type, VoltRpc.Types.ITypeReadWriter)
   nameWithType: TypeReaderWriterManager.AddType(Type, ITypeReadWriter)
 - uid: VoltRpc.Types.TypeReaderWriterManager.AddType*
   name: AddType
@@ -1575,11 +1587,11 @@ references:
   commentId: M:VoltRpc.Types.TypeReaderWriterManager.GetType(System.String)
   fullName: VoltRpc.Types.TypeReaderWriterManager.GetType(System.String)
   nameWithType: TypeReaderWriterManager.GetType(String)
-- uid: VoltRpc.Types.TypeReaderWriterManager.GetType(System.Type)
+- uid: VoltRpc.Types.TypeReaderWriterManager.GetType(Type)
   name: GetType(Type)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_GetType_System_Type_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.GetType(System.Type)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.GetType(System.Type)
+  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_GetType_Type_
+  commentId: M:VoltRpc.Types.TypeReaderWriterManager.GetType(Type)
+  fullName: VoltRpc.Types.TypeReaderWriterManager.GetType(Type)
   nameWithType: TypeReaderWriterManager.GetType(Type)
 - uid: VoltRpc.Types.TypeReaderWriterManager.GetType*
   name: GetType

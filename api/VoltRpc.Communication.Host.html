@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Host
    | VoltRpc Documentation ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -92,34 +92,6 @@
       <div class="level2"><a class="xref" href="VoltRpc.Communication.Pipes.PipesHost.html">PipesHost</a></div>
       <div class="level2"><a class="xref" href="VoltRpc.Communication.TCP.TCPHost.html">TCPHost</a></div>
   </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="VoltRpc.Communication.html">VoltRpc.Communication</a></h6>
   <h6><strong>Assembly</strong>: VoltRpc.dll</h6>
   <h5 id="VoltRpc_Communication_Host_syntax">Syntax</h5>
@@ -133,7 +105,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host__ctor_VoltRpc_Logging_ILogger_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.%23ctor(VoltRpc.Logging.ILogger%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L42">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L45">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host__ctor_" data-uid="VoltRpc.Communication.Host.#ctor*"></a>
   <h4 id="VoltRpc_Communication_Host__ctor_VoltRpc_Logging_ILogger_System_Int32_" data-uid="VoltRpc.Communication.Host.#ctor(VoltRpc.Logging.ILogger,System.Int32)">Host(ILogger, Int32)</h4>
@@ -142,7 +114,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Host(ILogger logger = null, int bufferSize = 8000)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Host(ILogger logger = null, int bufferSize = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -168,22 +140,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>Will throw if the buffer size is less then 16</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
@@ -191,7 +147,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_BufferSize.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.BufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L25">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L26">View Source</a>
   </span>
   <h4 id="VoltRpc_Communication_Host_BufferSize" data-uid="VoltRpc.Communication.Host.BufferSize">BufferSize</h4>
   <div class="markdown level1 summary"><p>This size of the buffer</p>
@@ -221,7 +177,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_DefaultBufferSize.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.DefaultBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L20">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L21">View Source</a>
   </span>
   <h4 id="VoltRpc_Communication_Host_DefaultBufferSize" data-uid="VoltRpc.Communication.Host.DefaultBufferSize">DefaultBufferSize</h4>
   <div class="markdown level1 summary"><p>The default size of the buffers</p>
@@ -229,7 +185,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int DefaultBufferSize = 8000</code></pre>
+    <pre><code class="lang-csharp hljs">public const int DefaultBufferSize = null</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -251,7 +207,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_Logger.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.Logger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L32">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L33">View Source</a>
   </span>
   <h4 id="VoltRpc_Communication_Host_Logger" data-uid="VoltRpc.Communication.Host.Logger">Logger</h4>
   <div class="markdown level1 summary"><p>Logger</p>
@@ -283,7 +239,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_ConnectionCount.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.ConnectionCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L64">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L67">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_ConnectionCount_" data-uid="VoltRpc.Communication.Host.ConnectionCount*"></a>
   <h4 id="VoltRpc_Communication_Host_ConnectionCount" data-uid="VoltRpc.Communication.Host.ConnectionCount">ConnectionCount</h4>
@@ -314,11 +270,11 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_HideStacktrace.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.HideStacktrace%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L92">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L93">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_HideStacktrace_" data-uid="VoltRpc.Communication.Host.HideStacktrace*"></a>
   <h4 id="VoltRpc_Communication_Host_HideStacktrace" data-uid="VoltRpc.Communication.Host.HideStacktrace">HideStacktrace</h4>
-  <div class="markdown level1 summary"><p>Hides the stacktrace from the client when an <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a> is thrown</p>
+  <div class="markdown level1 summary"><p>Hides the stacktrace from the client when an <see cref="!:Exception"></see> is thrown</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -345,7 +301,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_IsRunning.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.IsRunning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L87">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L88">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_IsRunning_" data-uid="VoltRpc.Communication.Host.IsRunning*"></a>
   <h4 id="VoltRpc_Communication_Host_IsRunning" data-uid="VoltRpc.Communication.Host.IsRunning">IsRunning</h4>
@@ -376,7 +332,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_MaxConnectionsCount.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.MaxConnectionsCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L70">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L73">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_MaxConnectionsCount_" data-uid="VoltRpc.Communication.Host.MaxConnectionsCount*"></a>
   <h4 id="VoltRpc_Communication_Host_MaxConnectionsCount" data-uid="VoltRpc.Communication.Host.MaxConnectionsCount">MaxConnectionsCount</h4>
@@ -402,28 +358,12 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>Thrown if value is 0 or less</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_TypeReaderWriterManager.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.TypeReaderWriterManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L59">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L62">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_TypeReaderWriterManager_" data-uid="VoltRpc.Communication.Host.TypeReaderWriterManager*"></a>
   <h4 id="VoltRpc_Communication_Host_TypeReaderWriterManager" data-uid="VoltRpc.Communication.Host.TypeReaderWriterManager">TypeReaderWriterManager</h4>
@@ -453,10 +393,50 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_AddService_Type_System_Object_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.AddService(Type%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L139">View Source</a>
+  </span>
+  <a id="VoltRpc_Communication_Host_AddService_" data-uid="VoltRpc.Communication.Host.AddService*"></a>
+  <h4 id="VoltRpc_Communication_Host_AddService_Type_System_Object_" data-uid="VoltRpc.Communication.Host.AddService(Type,System.Object)">AddService(Type, Object)</h4>
+  <div class="markdown level1 summary"><p>Adds a service to this <a class="xref" href="VoltRpc.Communication.Host.html">Host</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddService(Type serviceType, object serviceObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Type</span></td>
+        <td><span class="parametername">serviceType</span></td>
+        <td><p>The <see cref="!:Type"></see> of a service</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">serviceObject</span></td>
+        <td><p>The actual service <see cref="!:System.Object"></see> itself</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_AddService__1___0_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.AddService%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L106">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L123">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_AddService_" data-uid="VoltRpc.Communication.Host.AddService*"></a>
   <h4 id="VoltRpc_Communication_Host_AddService__1___0_" data-uid="VoltRpc.Communication.Host.AddService``1(``0)">AddService&lt;T&gt;(T)</h4>
@@ -481,7 +461,7 @@
       <tr>
         <td><span class="xref">T</span></td>
         <td><span class="parametername">service</span></td>
-        <td><p>The service <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> to add</p>
+        <td><p>The service <see cref="!:System.Object"></see> to add</p>
 </td>
       </tr>
     </tbody>
@@ -502,33 +482,12 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown if the service has already been added</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>Thrown if T is not an interface</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_Dispose.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L375">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L100">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_Dispose_" data-uid="VoltRpc.Communication.Host.Dispose*"></a>
   <h4 id="VoltRpc_Communication_Host_Dispose" data-uid="VoltRpc.Communication.Host.Dispose">Dispose()</h4>
@@ -541,13 +500,13 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_ProcessRequest_System_IO_Stream_System_IO_Stream_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream%2CSystem.IO.Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_ProcessRequest_Stream_Stream_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.ProcessRequest(Stream%2CStream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L138">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L171">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_ProcessRequest_" data-uid="VoltRpc.Communication.Host.ProcessRequest*"></a>
-  <h4 id="VoltRpc_Communication_Host_ProcessRequest_System_IO_Stream_System_IO_Stream_" data-uid="VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream,System.IO.Stream)">ProcessRequest(Stream, Stream)</h4>
+  <h4 id="VoltRpc_Communication_Host_ProcessRequest_Stream_Stream_" data-uid="VoltRpc.Communication.Host.ProcessRequest(Stream,Stream)">ProcessRequest(Stream, Stream)</h4>
   <div class="markdown level1 summary"><p>Processes a request from a client</p>
 <p>
     This override will automatically create the <a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a> and <a class="xref" href="VoltRpc.IO.BufferedWriter.html">BufferedWriter</a> for
@@ -572,36 +531,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="xref">Stream</span></td>
         <td><span class="parametername">readStream</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a> to read from</p>
+        <td><p>The <see cref="!:Stream"></see> to read from</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="xref">Stream</span></td>
         <td><span class="parametername">writeStream</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a> to write to</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Thrown if either provide stream is null</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>Thrown if we can't read or write to the respected stream</p>
+        <td><p>The <see cref="!:Stream"></see> to write to</p>
 </td>
       </tr>
     </tbody>
@@ -611,7 +549,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_ProcessRequest_VoltRpc_IO_BufferedReader_VoltRpc_IO_BufferedWriter_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.ProcessRequest(VoltRpc.IO.BufferedReader%2CVoltRpc.IO.BufferedWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L169">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L202">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_ProcessRequest_" data-uid="VoltRpc.Communication.Host.ProcessRequest*"></a>
   <h4 id="VoltRpc_Communication_Host_ProcessRequest_VoltRpc_IO_BufferedReader_VoltRpc_IO_BufferedWriter_" data-uid="VoltRpc.Communication.Host.ProcessRequest(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)">ProcessRequest(BufferedReader, BufferedWriter)</h4>
@@ -619,7 +557,7 @@
 <p>
     You should only call this if you need to provide a custom <a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a> and/or
 <a class="xref" href="VoltRpc.IO.BufferedWriter.html">BufferedWriter</a>.
-For example you are using a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a> that needs <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream.position#System_IO_Stream_Position">Position</a>.
+For example you are using a <see cref="!:Stream"></see> that needs <see cref="!:Stream.Position"></see>.
 </p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -651,28 +589,12 @@ For example you are using a <a class="xref" href="https://docs.microsoft.com/dot
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Thrown if either buffer is null</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host_StartListening.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host.StartListening%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L97">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L111">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Host_StartListening_" data-uid="VoltRpc.Communication.Host.StartListening*"></a>
   <h4 id="VoltRpc_Communication_Host_StartListening" data-uid="VoltRpc.Communication.Host.StartListening">StartListening()</h4>
@@ -693,15 +615,11 @@ For example you are using a <a class="xref" href="https://docs.microsoft.com/dot
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
-  </div>
 </article>
           </div>
           
@@ -713,7 +631,7 @@ For example you are using a <a class="xref" href="https://docs.microsoft.com/dot
                     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Host.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Host.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

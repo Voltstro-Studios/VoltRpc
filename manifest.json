@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "D:/Projects/2021/VoltRpc/docs",
+  "source_base_path": "/media/liam/Data/Projects/2021/VoltRpc/docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Client.html",
-          "hash": "/XThYRKQRFRY5PHxv/LYrJw6LNJwiJO0q9+9+ZK26+I="
+          "hash": "/IrO6rpN/rJ4r4q/LzcqUhM5xT1R23IYZBOxdMd751E="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.ConnectionFailed.html",
-          "hash": "vhF0ld6yMLFvIuucDZCUA+WogT52unFHu2ViU7rdPOo="
+          "hash": "c6a9sydlDwV6huSB+Fe4AisTy1wDOsFNKPerUlm/oEg="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Host.html",
-          "hash": "+2y/5aIH4bXqQRCHwrAlksIBbOdU/u+HhEUO39hoO5w="
+          "hash": "Z8jhmsGDztSMHi5kIBnGChh+1GaSK0QnS08E1xoniSg="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.MessageResponse.html",
-          "hash": "fVw5esAOeoqk0w4Zsl2nnmvioQq9d8Bf8KViPfh2Wg4="
+          "hash": "GeZcI2j27kWOgywbP1GtigEK7sy0pWQY5Y7u0cZp6rY="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.MessageType.html",
-          "hash": "6Z4XAwqElt88JHppeT7AUB7vl/THUZNWc7XcN0O8KPA="
+          "hash": "Wgga6GllmhNu15fm3AiAlucS2OMdXEL4v7VPU4Sz788="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.MethodInvokeFailedException.html",
-          "hash": "qzJyhIdXx23zBnBKg5f6DFroZhMDwRs4pmiYC87Yupw="
+          "hash": "p0KTBOGJmr32MgpFz87c16D3Ugxhq0MQb4C2riy+WWg="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.NotConnectedException.html",
-          "hash": "0RuDfZtCQO9RpYk9FBMBtJV1OPAhZdaoPsJKWJsBrvw="
+          "hash": "PdIFwP6flswcTT98SLafC+OxEjf0EftF7NzvWBFLbYs="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Pipes.PipesClient.html",
-          "hash": "wHbyt2OyP6bRZGHiWZTwnn0qvzrJS9akgcVwPGg1+sA="
+          "hash": "2rzrX6oFChkdfBnhIutBnhfv0c3GThlIxBLi9dCrR1o="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Pipes.PipesHost.html",
-          "hash": "sGdJf53nlc4+IaEDLToCVIRCwYqmKGw4/O0UMM3z1TY="
+          "hash": "CzE0+k5BGzJI+9xRA46mlMPLK4TkK/tw9DPRu/UdwI8="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Pipes.html",
-          "hash": "eU+eslN9jvGXpQnpqaf9l3uMIFrlFD0EhBv27DfDtJ0="
+          "hash": "vYFamdSbPg7sbyQnCinJCWvbLOs0KlJndKHdalzlG6M="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.TCP.TCPClient.html",
-          "hash": "bqfdyCE2GQSqnZR9eH3U9P5lqMhzf+9SaHEckZ4UY0o="
+          "hash": "u/4qzcjiQNX4XFYZwrgNSwxdO+pMtlNeSPEZ+GdKlnQ="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.TCP.TCPHost.html",
-          "hash": "9Dsan+g8JxjwGiXSXq0AVsvvmlpbraNykf/5M6xiS3U="
+          "hash": "P68YFuf0O01QZxKUE83lCcZcE+5CQLuZNa9n97EcPfA="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.TCP.html",
-          "hash": "ftd/d9Us6Y1qoYOJ9V3UZMpDFHr0COg/h9Z6jjDdH9A="
+          "hash": "6hxAV3pTaybcl0rmHXg56pDMpNznv4YLxTAoCboQqME="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.html",
-          "hash": "EW2JyPLBMrhHslYAKUWYjn6Y1bTheGMhsNVqOZKYgHI="
+          "hash": "SEIm+psglb/uyYnMgbVssUROSP6cPFFzz1/8gUNAKxM="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.IO.BufferedReader.html",
-          "hash": "NYBAlM0w8xxcFjOg6BHlcheIIPvBw0UoYzgblI95S8g="
+          "hash": "J/+JCXJbCh01dwPnI81DnWXNzDNdltawq538U5I/+os="
         }
       },
       "is_incremental": false,
@@ -198,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.IO.BufferedWriter.html",
-          "hash": "YGoCtkIt0Ub0f66T6R5xK3k48uvfAii/AihczZBWb4g="
+          "hash": "G949B9tLoqJDSH8Y/0Wnu9swAaj1oOmmoSFsGAk0Cgk="
         }
       },
       "is_incremental": false,
@@ -210,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.IO.html",
-          "hash": "SddsmMi2n3fQMM6j0RlBHU19P+lGs34qxNgX7Aprpvg="
+          "hash": "HyN16JZg2fKnKfglcauIC2CSffEvF73z69Lh5T0ppKY="
         }
       },
       "is_incremental": false,
@@ -222,7 +222,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Logging.ConsoleLogger.html",
-          "hash": "SXd3JXGzD0rJA9cxl14Sz+Q65+279gdmEUtk4cOhYow="
+          "hash": "aTOBU+xYfGR6OU2syScS/tRqydzuST9y/5nWXMuFtL8="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Logging.ILogger.html",
-          "hash": "aNzT5Cj/zAtRkdaZEU6ALbwgkKqXyvuLv8cQos13uvY="
+          "hash": "J97eKKL+NsXYac73hCKsf2anlGrXeoa8YVc9VwdmZKU="
         }
       },
       "is_incremental": false,
@@ -246,7 +246,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Logging.LogVerbosity.html",
-          "hash": "JwBtYO3HjBNPbg9P1EpCiqunr9RRLVoCtotS0zbC71I="
+          "hash": "iIAnPHcFF6wXbmtzVClPg8hhf8xlVMWmV3D5A1w7KWs="
         }
       },
       "is_incremental": false,
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Logging.NullLogger.html",
-          "hash": "dCOufCTv5Rk/1G77MAbw5OBlZjMLPmQLbHlejhaNrNU="
+          "hash": "HMq9yQ3cohn0hRR1vJEJlXvZjzLheaUC3ladesXmShQ="
         }
       },
       "is_incremental": false,
@@ -270,7 +270,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Logging.html",
-          "hash": "JYVfoImnFF+ChkUN3sL9lvfwH/esWa9+hdlzhia7B6s="
+          "hash": "suuiOrp22j+Dur90XyGhqtk9OIIxg74qZdt1BqCoPGA="
         }
       },
       "is_incremental": false,
@@ -282,7 +282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Types.ITypeReadWriter.html",
-          "hash": "j3A1PzJxt0WhyZETD6EGiUj3bbfH5jNWNZhDuTzgn5A="
+          "hash": "X82ACw7RxRcuyLWr6R6iZ9fUFHOMa2b6OTYtqscbSXU="
         }
       },
       "is_incremental": false,
@@ -294,7 +294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Types.NoTypeReaderWriterException.html",
-          "hash": "bHjzoaKz4eLw+YKJHQs4VAG/Iek7MjFkKaW9I67UkWs="
+          "hash": "fEa2sRMMJyXn+jG4xb/UGuS3Fe8/SVAK4A4jnPQ5Wd4="
         }
       },
       "is_incremental": false,
@@ -306,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Types.TypeReaderWriterException.html",
-          "hash": "d5qeP1Z0EvoB+/2c2Rh1xynQUCB4+bmhzvfUE5v/SqA="
+          "hash": "kwO9Mw0iKPAOA1eROpt9eLFQRW6FBoVLDATB/EZs7j0="
         }
       },
       "is_incremental": false,
@@ -318,7 +318,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Types.TypeReaderWriterManager.html",
-          "hash": "lvIjXBygbjCm0cGbOD5NC8oVC16tzRIoKN+Xa8+uvxQ="
+          "hash": "zm4z3kUiTCJ9QkmQ8dkjXVtsmTGsPaoPwBdu/KXd6Qo="
         }
       },
       "is_incremental": false,
@@ -330,7 +330,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Types.html",
-          "hash": "oIlf9Bj61pO1Cfx3jCCGd+8/DNtF4MbJfASRqa/vC+c="
+          "hash": "MQbkLtp7U0SYDu2F6GdJw9Mo0EFOkqKnLUtUW2iHMVA="
         }
       },
       "is_incremental": false,
@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "/1yKwwEGl4XZ+d1dT/A0S0VL64utuoVClzrk1RhrI+8="
+          "hash": "00XlMzIgKEvILKmboaNT08mugIjTndlROgPGzkBCQ4Q="
         }
       },
       "is_incremental": false,
@@ -366,7 +366,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/benchmarks.html",
-          "hash": "sXubIofy/yqZmv6ThBKuuHoWLKAn6u9l6UnRU+y5z5c="
+          "hash": "/lY5Hlmopdc2S0sUOSMabTqes5TW3XQACgY5xkw6u0g="
         }
       },
       "is_incremental": false,
@@ -378,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/communication-layers.html",
-          "hash": "YhQnxJ2TJGxXgRu+qztwXcrPizQ+HevSEPAFqdURWrQ="
+          "hash": "MEOp4ZnVU6b24adgmI6uunRAHe3OopT03pYBjrvTzVU="
         }
       },
       "is_incremental": false,
@@ -390,7 +390,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/overview.html",
-          "hash": "O0lQc1jwwMlKm//46AUXsYNGqUZ+S+OVTfhjym32Fb8="
+          "hash": "1p+IQHBMvsRvCOvcQA9TmjZsro7BHMaxtmA8RepJXj4="
         }
       },
       "is_incremental": false,
@@ -402,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/proxy-generation.html",
-          "hash": "9PQelCzQkCSev8GEHNMn3Gb4lrLB+5qb3lxMbqtHJtA="
+          "hash": "tRQ19Qn78K9yarZK12gNaG3x/pe7rd4s1Y0UHEnwQl4="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/setup.html",
-          "hash": "IfMbnEbvGJvNVJKxoRtL040V8wbTfqEnsir/WYfukCY="
+          "hash": "8PRRTS5Bdy52IJg+yE5MfqnUCgcqx7PlARzJVanj3lI="
         }
       },
       "is_incremental": false,
@@ -438,7 +438,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/types.html",
-          "hash": "td1aymBL1sM5AohMzBLuTxhCF0rI2nF+zBbax8BnRRU="
+          "hash": "d6D/pPbOAj/gLF2fgg2VwncCFE8zdOtgBgiUr+ZakYo="
         }
       },
       "is_incremental": false,
@@ -494,7 +494,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "bZFuJZqnDhjPqSjlgW7AUnpxJJIo1S5Vr3R5A+1Kqm8="
+          "hash": "k4RA6q2lQHT5z+6RA6KwXBKXoEVV6F/7p84JFvkDAQU="
         }
       },
       "is_incremental": false,
@@ -527,25 +527,23 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 8,
-          "skipped_file_count": 0
+          "skipped_file_count": 7
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 27,
-          "skipped_file_count": 0
+          "skipped_file_count": 27
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

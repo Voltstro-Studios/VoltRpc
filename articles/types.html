@@ -8,7 +8,7 @@
     <title>Types | VoltRpc Documentation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Types | VoltRpc Documentation ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -133,7 +133,7 @@ public class CustomTypeReadWriter : ITypeReadWriter
     }
 }
 </code></pre>
-<p>You can read and write and type supported by <a class="xref" href="../api/VoltRpc.IO.BufferedWriter.html">BufferedWriter</a> and <a class="xref" href="../api/VoltRpc.IO.BufferedReader.html">BufferedReader</a>.</p>
+<p>You can read and write any type supported by <a class="xref" href="../api/VoltRpc.IO.BufferedWriter.html">BufferedWriter</a> and <a class="xref" href="../api/VoltRpc.IO.BufferedReader.html">BufferedReader</a>.</p>
 <p>To let the client and server know about this type, you will need to call their respected <a class="xref" href="../api/VoltRpc.Types.TypeReaderWriterManager.html">TypeReaderWriterManager</a>.AddType().</p>
 <p>For example:</p>
 <pre><code class="lang-csharp">client.TypeReaderWriterManager.AddType&lt;CustomType&gt;(new CustomTypeReadWriter());

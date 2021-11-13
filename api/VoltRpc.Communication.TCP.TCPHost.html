@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class TCPHost
    | VoltRpc Documentation ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,10 +91,6 @@
     <div class="level1"><a class="xref" href="VoltRpc.Communication.Host.html">Host</a></div>
     <div class="level2"><span class="xref">TCPHost</span></div>
   </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -125,50 +121,32 @@
       <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_AddService__1___0_">Host.AddService&lt;T&gt;(T)</a>
     </div>
     <div>
-      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_System_IO_Stream_System_IO_Stream_">Host.ProcessRequest(Stream, Stream)</a>
+      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_AddService_Type_System_Object_">Host.AddService(Type, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_Stream_Stream_">Host.ProcessRequest(Stream, Stream)</a>
     </div>
     <div>
       <a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_VoltRpc_IO_BufferedReader_VoltRpc_IO_BufferedWriter_">Host.ProcessRequest(BufferedReader, BufferedWriter)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="VoltRpc.Communication.TCP.html">VoltRpc.Communication.TCP</a></h6>
   <h6><strong>Assembly</strong>: VoltRpc.dll</h6>
   <h5 id="VoltRpc_Communication_TCP_TCPHost_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class TCPHost : Host, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class TCPHost : Host</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(System.Net.IPEndPoint%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(IPEndPoint%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/TCP/TCPHost.cs/#L81">View Source</a>
   </span>
   <a id="VoltRpc_Communication_TCP_TCPHost__ctor_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)">TCPHost(IPEndPoint, Int32, Int32)</h4>
+  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32)">TCPHost(IPEndPoint, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.TCP.TCPHost.html">TCPHost</a> instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -187,9 +165,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a></td>
+        <td><span class="xref">IPEndPoint</span></td>
         <td><span class="parametername">endPoint</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a> to listen on</p>
+        <td><p>The <see cref="!:IPEndPoint"></see> to listen on</p>
 </td>
       </tr>
       <tr>
@@ -208,19 +186,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(System.Net.IPEndPoint%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(IPEndPoint%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/TCP/TCPHost.cs/#L57">View Source</a>
   </span>
   <a id="VoltRpc_Communication_TCP_TCPHost__ctor_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32)">TCPHost(IPEndPoint, Int32, Int32, Int32)</h4>
+  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32)">TCPHost(IPEndPoint, Int32, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.TCP.TCPHost.html">TCPHost</a> instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TCPHost(IPEndPoint endPoint, int bufferSize, int receiveTimeout = 600000, int sendTimeout = 600000)</code></pre>
+    <pre><code class="lang-csharp hljs">public TCPHost(IPEndPoint endPoint, int bufferSize, int receiveTimeout = null, int sendTimeout = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -233,9 +211,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a></td>
+        <td><span class="xref">IPEndPoint</span></td>
         <td><span class="parametername">endPoint</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a> to listen on</p>
+        <td><p>The <see cref="!:IPEndPoint"></see> to listen on</p>
 </td>
       </tr>
       <tr>
@@ -260,13 +238,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(System.Net.IPEndPoint%2CVoltRpc.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(IPEndPoint%2CVoltRpc.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/TCP/TCPHost.cs/#L91">View Source</a>
   </span>
   <a id="VoltRpc_Communication_TCP_TCPHost__ctor_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger)">TCPHost(IPEndPoint, ILogger)</h4>
+  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger)">TCPHost(IPEndPoint, ILogger)</h4>
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.TCP.TCPHost.html">TCPHost</a> instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -285,9 +263,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a></td>
+        <td><span class="xref">IPEndPoint</span></td>
         <td><span class="parametername">endPoint</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a> to listen on</p>
+        <td><p>The <see cref="!:IPEndPoint"></see> to listen on</p>
 </td>
       </tr>
       <tr>
@@ -300,13 +278,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(System.Net.IPEndPoint%2CVoltRpc.Logging.ILogger%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(IPEndPoint%2CVoltRpc.Logging.ILogger%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/TCP/TCPHost.cs/#L70">View Source</a>
   </span>
   <a id="VoltRpc_Communication_TCP_TCPHost__ctor_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)">TCPHost(IPEndPoint, ILogger, Int32, Int32)</h4>
+  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)">TCPHost(IPEndPoint, ILogger, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.TCP.TCPHost.html">TCPHost</a> instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -325,9 +303,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a></td>
+        <td><span class="xref">IPEndPoint</span></td>
         <td><span class="parametername">endPoint</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a> to listen on</p>
+        <td><p>The <see cref="!:IPEndPoint"></see> to listen on</p>
 </td>
       </tr>
       <tr>
@@ -352,19 +330,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(System.Net.IPEndPoint%2CVoltRpc.Logging.ILogger%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.TCP.TCPHost.%23ctor(IPEndPoint%2CVoltRpc.Logging.ILogger%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/TCP/TCPHost.cs/#L41">View Source</a>
   </span>
   <a id="VoltRpc_Communication_TCP_TCPHost__ctor_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor*"></a>
-  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)">TCPHost(IPEndPoint, ILogger, Int32, Int32, Int32)</h4>
+  <h4 id="VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_" data-uid="VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)">TCPHost(IPEndPoint, ILogger, Int32, Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.Communication.TCP.TCPHost.html">TCPHost</a> instance</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TCPHost(IPEndPoint endPoint, ILogger logger, int bufferSize, int receiveTimeout = 600000, int sendTimeout = 600000)</code></pre>
+    <pre><code class="lang-csharp hljs">public TCPHost(IPEndPoint endPoint, ILogger logger, int bufferSize, int receiveTimeout = null, int sendTimeout = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -377,9 +355,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a></td>
+        <td><span class="xref">IPEndPoint</span></td>
         <td><span class="parametername">endPoint</span></td>
-        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.net.ipendpoint">IPEndPoint</a> to listen on</p>
+        <td><p>The <see cref="!:IPEndPoint"></see> to listen on</p>
 </td>
       </tr>
       <tr>
@@ -404,22 +382,6 @@
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">sendTimeout</span></td>
         <td><p>How long until timeout from sending</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>Will throw if the buffer size is less then 16</p>
 </td>
       </tr>
     </tbody>
@@ -439,7 +401,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int DefaultReceiveTimeout = 600000</code></pre>
+    <pre><code class="lang-csharp hljs">public const int DefaultReceiveTimeout = null</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -469,7 +431,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int DefaultSendTimeout = 600000</code></pre>
+    <pre><code class="lang-csharp hljs">public const int DefaultSendTimeout = null</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -532,17 +494,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_StartListening">Host.StartListening()</a></div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
-  </div>
 </article>
           </div>
           
