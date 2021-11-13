@@ -7,11 +7,12 @@
         <Title>VoltRpc.Communication.Pipes</Title>
         <Authors>Voltstro</Authors>
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
-        <Description>VoltRpc.Pipes - Named Pipes communication for VoltRpc.</Description>
-        <Version>1.1.0</Version>
-        <PackageVersion>1.1.0</PackageVersion>
-        <PackageReleaseNotes>Release notes for 1.1.0:
-            * Updated to use VoltRpc's new Host.MaxConnectionsCount, Host.ConnectionCount and Host.IsRunning
+        <Description>VoltRpc.Communication.Pipes - Named Pipes communication for VoltRpc.</Description>
+        <Version>1.2.0</Version>
+        <PackageVersion>1.2.0</PackageVersion>
+        <PackageReleaseNotes>Release notes for 1.2.0:
+            * Drop support for .NET 5, add .NET 6
+            * Handle isConnectedInternal completly internally
         </PackageReleaseNotes>
         <RootNamespace>VoltRpc.Communication.Pipes</RootNamespace>
         <IsTrimmable>true</IsTrimmable>
