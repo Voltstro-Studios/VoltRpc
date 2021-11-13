@@ -9,18 +9,17 @@
         <PackageTags>IPC, RPC, TCP, Source-Generator, Generator</PackageTags>
         <Description>VoltRpc.Proxy.Generator - Proxy Source Generator for VoltRpc.</Description>
         <LangVersion>10</LangVersion>
-        <Version>1.1.0</Version>
-        <PackageVersion>1.1.0</PackageVersion>
-        <PackageReleaseNotes>Release notes for 1.1.0:
-            * Use Scriban for code generation
-            * Check if a member is a method
-            * Target Microsoft.CodeAnalysis.CSharp version 3.9.0 for projects that use an older compiler (e.g Unity)
+        <Version>1.1.1</Version>
+        <PackageVersion>1.1.1</PackageVersion>
+        <PackageReleaseNotes>Release notes for 1.1.1:
+            * Include Scriban in the package.
         </PackageReleaseNotes>
         <IncludeBuildOutput>false</IncludeBuildOutput>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+        <None Include="$(OutputPath)\Scriban.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
 
     <ItemGroup>
@@ -29,11 +28,12 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" PrivateAssets="all" />
-        <PackageReference Include="Scriban" Version="5.0.0" />
+        <PackageReference Include="Scriban" Version="5.0.0" PrivateAssets="all" GeneratePathProperty="true" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
+        <AdditionalFiles Include="$(PkgScriban)\lib\netstandard2.0\*.dll" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 
     <PropertyGroup>
