@@ -12,7 +12,7 @@ Currently two communication layers are provided.
 - It has the most compatibly between systems. 
 - It is however the slowest as shown from the [benchmarks](benchmarks.md#tcp-benchmark).
 
-It can be used with <xref:VoltRpc.Communication.TCP.TCPHost> and <xref:VoltRpc.Communication.TCP.TCPHost> classes.
+It can be used with <xref:VoltRpc.Communication.TCP.TCPClient> and <xref:VoltRpc.Communication.TCP.TCPHost> classes.
 
 ## Pipes
 
@@ -28,4 +28,4 @@ Install-Package VoltRpc.Communication.Pipes
 - It is currently the fastest communication layer as shown from the [benchmarks](benchmarks.md#pipes-benchmark).
 - Some implementations such as [Unity's mono](https://github.com/Unity-Technologies/mono/blob/unity-2021.1-mbe/mcs/class/System.Core/System.IO.Pipes/NamedPipeClientStream.cs) may just throw <xref:System.NotImplementedException> on certain platforms.
 
-It can be used with <xref:VoltRpc.Communication.Pipes.PipesHost> and <xref:VoltRpc.Communication.Pipes.PipesHost> classes.
+It can be used with <xref:VoltRpc.Communication.Pipes.PipesClient> and <xref:VoltRpc.Communication.Pipes.PipesHost> classes.

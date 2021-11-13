@@ -10,6 +10,24 @@ You can use the command below to install the package.
 Install-Package VoltRpc
 ```
 
+You will also want to install the [VoltRpc.Proxy.Generator](https://www.nuget.org/packages/VoltRpc.Proxy.Generator/) package.
+
+You can install that package with the command below.
+
+```powershell
+Install-Package VoltRpc.Proxy.Generator
+```
+
+## Proxy Generation
+
+All proxy generation is handled by a .NET Source generator. You will need to install it's [NuGet package](https://www.nuget.org/packages/VoltRpc.Proxy.Generator/).
+
+You can use the command below to install the package.
+
+```powershell
+Install-Package VoltRpc.Proxy.Generator
+```
+
 ## Basic setup
 
 Setting up VoltRpc is easy. VoltRpc has three parts; the host, the client and the proxy for the client.
@@ -106,14 +124,4 @@ namespace VoltRpcExample.Client
         }
     }
 }
-```
-
-## Proxy Generation
-
-All proxy generation is handled by a .NET Source generator. You will need to install it's [NuGet package](https://www.nuget.org/packages/VoltRpc.Proxy.Generator/) if you want to use it (You most likely 100% want to).
-
-You can use the command below to install the package.
-
-```powershell
-Install-Package VoltRpc.Proxy.Generator
 ```
