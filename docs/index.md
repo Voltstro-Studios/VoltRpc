@@ -1,4 +1,6 @@
-<img align="right" width="15%" src="images/icon.svg">
+<div style="padding: 8px;">
+  <img align="right" width="15%" src="images/icon.svg">
+</div>
 
 # VoltRpc
 
@@ -24,19 +26,19 @@ VoltRpc is a library designed for high performance RPC communication. It can use
 
 ## Benchmarks
 
-[![Pipes Benchmark](~/images/benchmarks/PipesBenchmark.png)](~/images/benchmarks/PipesBenchmark.png)
+[![Pipes Benchmark](~/images/Benchmarks/PipesBenchmark.png)](~/images/Benchmarks/PipesBenchmark.png)
 
-|               Method | array         |      message |     Mean |     Error |    StdDev |
-|--------------------- |-------------- |------------- |---------:|----------:|----------:|
-|            BasicVoid |     ?         |            ? | 7.093 μs | 0.0721 μs | 0.0602 μs |
-|          BasicReturn |     ?         |            ? | 7.569 μs | 0.0902 μs | 0.0753 μs |
-|   BasicParameterVoid |     ?         | Hello World! | 7.567 μs | 0.0560 μs | 0.0496 μs |
-| BasicParameterReturn |     ?         | Hello World! | 8.082 μs | 0.1501 μs | 0.1787 μs |
-|          ArrayReturn |     ?         |            ? | 7.473 μs | 0.0374 μs | 0.0312 μs |
-|   ArrayParameterVoid |Byte[50]       |            ? | 7.604 μs | 0.0270 μs | 0.0240 μs |
-|   ArrayParameterVoid |Byte[8,294,400]|            ? | 7.523 μs | 0.0901 μs | 0.0752 μs |
-| ArrayParameterReturn |Byte[50]       |            ? | 7.729 μs | 0.0751 μs | 0.0666 μs |
-| ArrayParameterReturn |Byte[8,294,400]|            ? | 7.852 μs | 0.0625 μs | 0.0585 μs |
+|               Method | array | arraySize |      message |     Mean |     Error |    StdDev |
+|--------------------- |------ |---------- |------------- |---------:|----------:|----------:|
+|            **BasicVoid** |     **?** |         **?** |            **?** | **8.540 μs** | **0.1634 μs** | **0.2125 μs** |
+|          BasicReturn |     ? |         ? |            ? | 9.488 μs | 0.1218 μs | 0.1080 μs |
+|          ArrayReturn |     ? |         ? |            ? | 9.528 μs | 0.1653 μs | 0.1546 μs |
+|   **ArrayParameterVoid** |     **?** |        **25** |            **?** | **9.233 μs** | **0.0999 μs** | **0.0885 μs** |
+| ArrayParameterReturn |     ? |        25 |            ? | 9.427 μs | 0.1529 μs | 0.1636 μs |
+|   **ArrayParameterVoid** |     **?** |   **8294400** |            **?** | **9.290 μs** | **0.1106 μs** | **0.0924 μs** |
+| ArrayParameterReturn |     ? |   8294400 |            ? | 9.631 μs | 0.1637 μs | 0.1531 μs |
+|   **BasicParameterVoid** |     **?** |         **?** | **Hello World!** | **9.358 μs** | **0.1194 μs** | **0.1116 μs** |
+| BasicParameterReturn |     ? |         ? | Hello World! | 9.891 μs | 0.1478 μs | 0.1383 μs |
 
 For more info on these benchmarks see [Benchmarks](articles/benchmarks.md).
 

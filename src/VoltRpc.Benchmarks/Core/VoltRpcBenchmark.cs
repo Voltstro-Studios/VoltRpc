@@ -17,6 +17,9 @@ namespace VoltRpc.Benchmarks.Core
 
         private byte[] smallArray;
 
+        private const int smallArraySize = 25;
+        private const int largeArraySize = 1920 * 1080 * 4;
+
         protected VoltRpcBenchmark(Client client, Host host)
         {
             this.client = client;
@@ -34,9 +37,9 @@ namespace VoltRpc.Benchmarks.Core
             client.Connect();
             benchmarkProxy = new BenchmarkProxy(client);
 
-            smallArray = new byte[25];
+            smallArray = new byte[smallArraySize];
             smallArray = Utils.FillByteArray(smallArray);
-            bigArray = new byte[1920 * 1080 * 4];
+            bigArray = new byte[largeArraySize];
             bigArray = Utils.FillByteArray(bigArray);
         }
 
@@ -68,7 +71,7 @@ namespace VoltRpc.Benchmarks.Core
 
         [Benchmark]
         [ArgumentsSource(nameof(GetArray))]
-        public void ArrayParameterVoid(byte[] array)
+        public void ArrayParameterVoid(byte[] array, int arraySize)
         {
             benchmarkProxy.ArrayParameterVoid(array);
         }
@@ -81,15 +84,15 @@ namespace VoltRpc.Benchmarks.Core
 
         [Benchmark]
         [ArgumentsSource(nameof(GetArray))]
-        public byte[] ArrayParameterReturn(byte[] array)
+        public byte[] ArrayParameterReturn(byte[] array, int arraySize)
         {
             return benchmarkProxy.ArrayParameterReturn(array);
         }
 
-        public IEnumerable<byte[]> GetArray()
+        public IEnumerable<object[]> GetArray()
         {
-            yield return smallArray;
-            yield return bigArray;
+            yield return new object[] {smallArray, smallArraySize};
+            yield return new object[] {bigArray, largeArraySize};
         }
 
         public IEnumerable<string> GetMessage()
