@@ -1,8 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using VoltRpc.Tests.IO;
 
-namespace VoltRpc.Tests.IOTests;
+namespace VoltRpc.Tests.IO;
 
 public class BufferedReadWriterTests
 {
