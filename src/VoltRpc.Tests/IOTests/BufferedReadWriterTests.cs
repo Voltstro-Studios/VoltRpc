@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using VoltRpc.Tests.IO;
 
 namespace VoltRpc.Tests.IOTests;
@@ -123,5 +124,23 @@ public class BufferedReadWriterTests
 
         byte byteValue = buffers.BufferedReader.ReadByte();
         Assert.AreEqual(byteTest, byteValue);
+    }
+
+    [Test]
+    public void ArraySegmentTest()
+    {
+        byte[] baseArray = {1, 3, 4, 6, 7};
+        int arraySize = baseArray.Length;
+        
+        using DualBuffers buffers = new();
+        
+        buffers.BufferedWriter.WriteBytes(baseArray, 0, arraySize);
+        buffers.BufferedWriter.Flush();
+
+        ArraySegment<byte> readSegmentArray = buffers.BufferedReader.ReadBytesSegment(arraySize);
+        Assert.AreEqual(arraySize, readSegmentArray.Count);
+
+        for (int i = 0; i < arraySize; i++)
+            Assert.AreEqual(baseArray[i], readSegmentArray[i]);
     }
 }
