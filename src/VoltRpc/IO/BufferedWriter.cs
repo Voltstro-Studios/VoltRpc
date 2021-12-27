@@ -36,7 +36,7 @@ public class BufferedWriter : IDisposable
     /// </summary>
     /// <param name="output"></param>
     /// <param name="bufferSize"></param>
-    internal BufferedWriter(Stream output, int bufferSize = 8000)
+    public BufferedWriter(Stream output, int bufferSize = 8000)
     {
         OutputStream = output;
         encoding = new UTF8Encoding(false, true);

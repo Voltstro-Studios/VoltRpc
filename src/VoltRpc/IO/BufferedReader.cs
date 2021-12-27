@@ -33,7 +33,7 @@ public class BufferedReader : IDisposable
     /// </summary>
     /// <param name="incoming"></param>
     /// <param name="bufferSize"></param>
-    internal BufferedReader(Stream incoming, int bufferSize = 8000)
+    public BufferedReader(Stream incoming, int bufferSize = 8000)
     {
         IncomingStream = incoming;
         encoding = new UTF8Encoding(false, true);
