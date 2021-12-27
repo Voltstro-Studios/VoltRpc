@@ -29,7 +29,16 @@ public class BufferedWriter : IDisposable
     private readonly byte[] stringBuffer;
 
     private byte[] buffer;
-    private int position;
+
+    /// <summary>
+    ///     The current position of the buffer
+    /// </summary>
+    public int Position { get; private set; }
+
+    /// <summary>
+    ///     The length of the buffer
+    /// </summary>
+    public int Length => buffer.Length; 
 
     /// <summary>
     ///     Creates a new <see cref="BufferedWriter" /> instance
@@ -58,10 +67,10 @@ public class BufferedWriter : IDisposable
     /// <summary>
     ///     Reset position
     /// </summary>
-    internal void Reset()
+    public void Reset()
     {
         OutputStreamPosition = 0;
-        position = 0;
+        Position = 0;
     }
 
     /// <summary>
@@ -70,8 +79,8 @@ public class BufferedWriter : IDisposable
     /// <param name="value"></param>
     public void WriteByte(byte value)
     {
-        EnsureCapacity(position + 1);
-        buffer[position++] = value;
+        EnsureCapacity(Position + 1);
+        buffer[Position++] = value;
     }
 
     /// <summary>
@@ -82,9 +91,9 @@ public class BufferedWriter : IDisposable
     /// <param name="count"></param>
     public void WriteBytes(byte[] bytesBuffer, int offset, int count)
     {
-        EnsureCapacity(position + count);
-        Array.ConstrainedCopy(bytesBuffer, offset, buffer, position, count);
-        position += count;
+        EnsureCapacity(Position + count);
+        Array.ConstrainedCopy(bytesBuffer, offset, buffer, Position, count);
+        Position += count;
     }
 
     /// <summary>
@@ -248,9 +257,12 @@ public class BufferedWriter : IDisposable
         WriteBytes(stringBuffer, 0, size);
     }
 
-    internal void Flush()
+    /// <summary>
+    ///     Writes the buffer to the out <see cref="Stream"/> 
+    /// </summary>
+    public void Flush()
     {
-        OutputStream.Write(buffer, 0, position);
+        OutputStream.Write(buffer, 0, Position);
         OutputStream.Flush();
         OutputStreamPosition = 0;
         Reset();

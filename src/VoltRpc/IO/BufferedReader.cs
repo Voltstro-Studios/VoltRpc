@@ -24,9 +24,18 @@ public class BufferedReader : IDisposable
     ///     The incoming <see cref="Stream" />
     /// </summary>
     protected readonly Stream IncomingStream;
-
-    private int position;
+    
     private int readLength;
+    
+    /// <summary>
+    ///     The current position of the buffer
+    /// </summary>
+    public int Position { get; private set; }
+    
+    /// <summary>
+    ///     The length of the buffer
+    /// </summary>
+    public int Length => buffer.Length; 
 
     /// <summary>
     ///     Creates a new <see cref="BufferedReader" /> instance
@@ -62,10 +71,10 @@ public class BufferedReader : IDisposable
     /// <exception cref="EndOfStreamException"></exception>
     public byte ReadByte()
     {
-        if (position == readLength)
+        if (Position == readLength)
             ReadStream();
 
-        return buffer[position++];
+        return buffer[Position++];
     }
 
     /// <summary>
@@ -76,21 +85,21 @@ public class BufferedReader : IDisposable
     /// <exception cref="EndOfStreamException"></exception>
     public ArraySegment<byte> ReadBytesSegment(int count)
     {
-        if (position == readLength)
+        if (Position == readLength)
             ReadStream();
 
         //Check if within buffer limits
-        if (position + count > readLength)
+        if (Position + count > readLength)
         {
             //Attempt to read again
             ReadStream();
-            if (position + count > readLength)
+            if (Position + count > readLength)
                 throw new EndOfStreamException("Cannot read beyond stream!");
         }
 
         //Return the segment
-        ArraySegment<byte> result = new(buffer, position, count);
-        position += count;
+        ArraySegment<byte> result = new(buffer, Position, count);
+        Position += count;
         return result;
     }
 
@@ -263,7 +272,7 @@ public class BufferedReader : IDisposable
     {
         readLength = IncomingStream.Read(buffer, 0, buffer.Length);
         IncomingStreamPosition = 0;
-        position = 0;
+        Position = 0;
 
         if (readLength == 0)
             throw new EndOfStreamException();
