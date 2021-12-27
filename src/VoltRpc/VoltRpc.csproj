@@ -9,10 +9,12 @@
         <Authors>Voltstro</Authors>
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
         <Description>VoltRpc - Library designed for high performance RPC communication.</Description>
-        <Version>1.2.1</Version>
-        <PackageVersion>1.2.1</PackageVersion>
-        <PackageReleaseNotes>Release notes for 1.2.1:
-            * Expose buffered reader &amp; writer's constructor
+        <Version>1.2.2</Version>
+        <PackageVersion>1.2.2</PackageVersion>
+        <PackageReleaseNotes>Release notes for 1.2.2:
+            * Made position in buffers public
+            * Added Length property to buffers
+            * Made Flush and Reset in buffered writer public
         </PackageReleaseNotes>
         <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
