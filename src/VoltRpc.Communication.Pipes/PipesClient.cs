@@ -66,6 +66,8 @@ public sealed class PipesClient : Client
     /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
     public override void Connect()
     {
+        CheckDispose();
+        
         namedPipeClientStream.Connect(connectionTimeout);
 
         if (!namedPipeClientStream.IsConnected)

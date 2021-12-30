@@ -37,6 +37,7 @@ public sealed class PipesHost : Host
     /// <inheritdoc />
     public override Task StartListening()
     {
+        CheckDispose();
         Task.Factory.StartNew(SeverLoop, TaskCreationOptions.LongRunning);
         return Task.CompletedTask;
     }
