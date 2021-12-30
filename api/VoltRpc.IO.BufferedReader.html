@@ -96,6 +96,46 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class BufferedReader : IDisposable</code></pre>
   </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader__ctor_Stream_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.%23ctor(Stream%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L45">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReader__ctor_" data-uid="VoltRpc.IO.BufferedReader.#ctor*"></a>
+  <h4 id="VoltRpc_IO_BufferedReader__ctor_Stream_System_Int32_" data-uid="VoltRpc.IO.BufferedReader.#ctor(Stream,System.Int32)">BufferedReader(Stream, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a> instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BufferedReader(Stream incoming, int bufferSize = 8000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">incoming</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
@@ -135,7 +175,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_IncomingStreamPosition.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.IncomingStreamPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L46">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L55">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_IncomingStreamPosition_" data-uid="VoltRpc.IO.BufferedReader.IncomingStreamPosition*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_IncomingStreamPosition" data-uid="VoltRpc.IO.BufferedReader.IncomingStreamPosition">IncomingStreamPosition</h4>
@@ -161,6 +201,68 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_Length.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L38">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReader_Length_" data-uid="VoltRpc.IO.BufferedReader.Length*"></a>
+  <h4 id="VoltRpc_IO_BufferedReader_Length" data-uid="VoltRpc.IO.BufferedReader.Length">Length</h4>
+  <div class="markdown level1 summary"><p>The length of the buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_Position.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L33">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReader_Position_" data-uid="VoltRpc.IO.BufferedReader.Position*"></a>
+  <h4 id="VoltRpc_IO_BufferedReader_Position" data-uid="VoltRpc.IO.BufferedReader.Position">Position</h4>
+  <div class="markdown level1 summary"><p>The current position of the buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Position { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
@@ -168,7 +270,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_Dispose.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L51">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L60">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_Dispose_" data-uid="VoltRpc.IO.BufferedReader.Dispose*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_Dispose" data-uid="VoltRpc.IO.BufferedReader.Dispose">Dispose()</h4>
@@ -183,7 +285,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadBool.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadBool%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L110">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L119">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadBool_" data-uid="VoltRpc.IO.BufferedReader.ReadBool*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadBool" data-uid="VoltRpc.IO.BufferedReader.ReadBool">ReadBool()</h4>
@@ -214,7 +316,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadByte.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadByte%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L63">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L72">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadByte_" data-uid="VoltRpc.IO.BufferedReader.ReadByte*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadByte" data-uid="VoltRpc.IO.BufferedReader.ReadByte">ReadByte()</h4>
@@ -245,7 +347,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadBytesSegment_System_Int32_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadBytesSegment(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L77">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L86">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadBytesSegment_" data-uid="VoltRpc.IO.BufferedReader.ReadBytesSegment*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadBytesSegment_System_Int32_" data-uid="VoltRpc.IO.BufferedReader.ReadBytesSegment(System.Int32)">ReadBytesSegment(Int32)</h4>
@@ -293,7 +395,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadChar.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadChar%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L140">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L149">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadChar_" data-uid="VoltRpc.IO.BufferedReader.ReadChar*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadChar" data-uid="VoltRpc.IO.BufferedReader.ReadChar">ReadChar()</h4>
@@ -324,7 +426,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadDecimal.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadDecimal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L225">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L234">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadDecimal_" data-uid="VoltRpc.IO.BufferedReader.ReadDecimal*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadDecimal" data-uid="VoltRpc.IO.BufferedReader.ReadDecimal">ReadDecimal()</h4>
@@ -355,7 +457,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadDouble.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadDouble%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L212">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L221">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadDouble_" data-uid="VoltRpc.IO.BufferedReader.ReadDouble*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadDouble" data-uid="VoltRpc.IO.BufferedReader.ReadDouble">ReadDouble()</h4>
@@ -386,7 +488,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadFloat.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadFloat%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L199">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L208">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadFloat_" data-uid="VoltRpc.IO.BufferedReader.ReadFloat*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadFloat" data-uid="VoltRpc.IO.BufferedReader.ReadFloat">ReadFloat()</h4>
@@ -417,7 +519,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadInt.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadInt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L163">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L172">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadInt_" data-uid="VoltRpc.IO.BufferedReader.ReadInt*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadInt" data-uid="VoltRpc.IO.BufferedReader.ReadInt">ReadInt()</h4>
@@ -448,7 +550,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadLong.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadLong%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L190">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L199">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadLong_" data-uid="VoltRpc.IO.BufferedReader.ReadLong*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadLong" data-uid="VoltRpc.IO.BufferedReader.ReadLong">ReadLong()</h4>
@@ -479,7 +581,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadSByte.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadSByte%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L101">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L110">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadSByte_" data-uid="VoltRpc.IO.BufferedReader.ReadSByte*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadSByte" data-uid="VoltRpc.IO.BufferedReader.ReadSByte">ReadSByte()</h4>
@@ -510,7 +612,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadShort.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadShort%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L131">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L140">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadShort_" data-uid="VoltRpc.IO.BufferedReader.ReadShort*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadShort" data-uid="VoltRpc.IO.BufferedReader.ReadShort">ReadShort()</h4>
@@ -541,7 +643,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadString.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L240">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L249">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadString_" data-uid="VoltRpc.IO.BufferedReader.ReadString*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadString" data-uid="VoltRpc.IO.BufferedReader.ReadString">ReadString()</h4>
@@ -572,7 +674,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadUInt.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadUInt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L149">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L158">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadUInt_" data-uid="VoltRpc.IO.BufferedReader.ReadUInt*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadUInt" data-uid="VoltRpc.IO.BufferedReader.ReadUInt">ReadUInt()</h4>
@@ -603,7 +705,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadULong.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadULong%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L172">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L181">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadULong_" data-uid="VoltRpc.IO.BufferedReader.ReadULong*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadULong" data-uid="VoltRpc.IO.BufferedReader.ReadULong">ReadULong()</h4>
@@ -634,7 +736,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReader_ReadUShort.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReader.ReadUShort%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L119">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReader.cs/#L128">View Source</a>
   </span>
   <a id="VoltRpc_IO_BufferedReader_ReadUShort_" data-uid="VoltRpc.IO.BufferedReader.ReadUShort*"></a>
   <h4 id="VoltRpc_IO_BufferedReader_ReadUShort" data-uid="VoltRpc.IO.BufferedReader.ReadUShort">ReadUShort()</h4>

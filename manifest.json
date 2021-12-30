@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Client.html",
-          "hash": "/IrO6rpN/rJ4r4q/LzcqUhM5xT1R23IYZBOxdMd751E="
+          "hash": "NKjdK4rn5Tc2p+WEkHdEnkfwD+kWKaJw2nXb16grN/k="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Host.html",
-          "hash": "Z8jhmsGDztSMHi5kIBnGChh+1GaSK0QnS08E1xoniSg="
+          "hash": "PV+wp9EHoD59/zj05k5Ur1elgGIwimKOUeAAQMbMtKA="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Pipes.PipesClient.html",
-          "hash": "2rzrX6oFChkdfBnhIutBnhfv0c3GThlIxBLi9dCrR1o="
+          "hash": "yD90ak/VcQZKZMNiNh23A8BA0ff1NmRAHMLGNEPew/4="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.Pipes.PipesHost.html",
-          "hash": "CzE0+k5BGzJI+9xRA46mlMPLK4TkK/tw9DPRu/UdwI8="
+          "hash": "m7R4CcOxN21y0QdzN0rzydntB6Q+ymbd40R9Or3/x+c="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.TCP.TCPClient.html",
-          "hash": "u/4qzcjiQNX4XFYZwrgNSwxdO+pMtlNeSPEZ+GdKlnQ="
+          "hash": "sYoHiBnrE0u9nkDuFh6CgsAwpN1fgUHreGfp2BVBNFQ="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.Communication.TCP.TCPHost.html",
-          "hash": "P68YFuf0O01QZxKUE83lCcZcE+5CQLuZNa9n97EcPfA="
+          "hash": "tXrdpcEBd98xyqGWPvY/fj81tGr0AGQXjAK8V+nNS4g="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.IO.BufferedReader.html",
-          "hash": "J/+JCXJbCh01dwPnI81DnWXNzDNdltawq538U5I/+os="
+          "hash": "A0WilZVfAsTMZK0t2AmxhPer+CGk5gbsvwnpXTKR5NE="
         }
       },
       "is_incremental": false,
@@ -198,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VoltRpc.IO.BufferedWriter.html",
-          "hash": "G949B9tLoqJDSH8Y/0Wnu9swAaj1oOmmoSFsGAk0Cgk="
+          "hash": "lN2tWMleYKTP3PmBfiZOnrvofQQVtwZnMkf+tVOqnTk="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/setup.html",
-          "hash": "8PRRTS5Bdy52IJg+yE5MfqnUCgcqx7PlARzJVanj3lI="
+          "hash": "0pKmij36ZrshqtAd7CCn/E9kjGIj9I3j7eMChtlPNnM="
         }
       },
       "is_incremental": false,
@@ -438,7 +438,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/types.html",
-          "hash": "d6D/pPbOAj/gLF2fgg2VwncCFE8zdOtgBgiUr+ZakYo="
+          "hash": "y+H68lFqiRNwreZOyT0V6EldN6YkPG+IcZdC/8oSbg4="
         }
       },
       "is_incremental": false,
@@ -494,7 +494,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "k4RA6q2lQHT5z+6RA6KwXBKXoEVV6F/7p84JFvkDAQU="
+          "hash": "ziPecGKWnZhKomku8CFJe6Tbryr9zvVLnazML5JUyns="
         }
       },
       "is_incremental": false,
@@ -527,23 +527,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 8,
-          "skipped_file_count": 7
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 27,
-          "skipped_file_count": 27
+          "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

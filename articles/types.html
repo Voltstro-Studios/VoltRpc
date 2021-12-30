@@ -103,7 +103,7 @@
 <h1 id="custom-types">Custom Types</h1>
 <p>Custom types can be implemented using a <a class="xref" href="../api/VoltRpc.Types.ITypeReadWriter.html">ITypeReadWriter</a>.</p>
 <p>For this example we will be using a custom <code>CustomType</code> that looks like this:</p>
-<pre><code class="lang-csharp">public class CustomType
+<pre><code class="lang-csharp">public struct CustomType
 {
     public int UserId { get; set; }
 
@@ -134,10 +134,10 @@ public class CustomTypeReadWriter : ITypeReadWriter
 }
 </code></pre>
 <p>You can read and write any type supported by <a class="xref" href="../api/VoltRpc.IO.BufferedWriter.html">BufferedWriter</a> and <a class="xref" href="../api/VoltRpc.IO.BufferedReader.html">BufferedReader</a>.</p>
-<p>To let the client and server know about this type, you will need to call their respected <a class="xref" href="../api/VoltRpc.Types.TypeReaderWriterManager.html">TypeReaderWriterManager</a>.AddType().</p>
+<p>To let the client and host know about this type, you will need to call their respected <a class="xref" href="../api/VoltRpc.Types.TypeReaderWriterManager.html">TypeReaderWriterManager</a>.AddType().</p>
 <p>For example:</p>
 <pre><code class="lang-csharp">client.TypeReaderWriterManager.AddType&lt;CustomType&gt;(new CustomTypeReadWriter());
-host.ReaderWriterManager.AddType&lt;CustomType&gt;(new CustomTypeReadWriter());
+host.TypeReaderWriterManager.AddType&lt;CustomType&gt;(new CustomTypeReadWriter());
 </code></pre>
 </article>
           </div>

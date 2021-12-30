@@ -48,6 +48,19 @@ references:
   fullName.vb: VoltRpc.Communication.Client.AddService(Of T)()
   nameWithType: Client.AddService<T>()
   nameWithType.vb: Client.AddService(Of T)()
+- uid: VoltRpc.Communication.Client.CheckDispose
+  name: CheckDispose()
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_CheckDispose
+  commentId: M:VoltRpc.Communication.Client.CheckDispose
+  fullName: VoltRpc.Communication.Client.CheckDispose()
+  nameWithType: Client.CheckDispose()
+- uid: VoltRpc.Communication.Client.CheckDispose*
+  name: CheckDispose
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_CheckDispose_
+  commentId: Overload:VoltRpc.Communication.Client.CheckDispose
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Client.CheckDispose
+  nameWithType: Client.CheckDispose
 - uid: VoltRpc.Communication.Client.Connect
   name: Connect()
   href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Connect
@@ -93,12 +106,31 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.Finalize
   nameWithType: Client.Finalize
+- uid: VoltRpc.Communication.Client.HasDisposed
+  name: HasDisposed
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_HasDisposed
+  commentId: P:VoltRpc.Communication.Client.HasDisposed
+  fullName: VoltRpc.Communication.Client.HasDisposed
+  nameWithType: Client.HasDisposed
+- uid: VoltRpc.Communication.Client.HasDisposed*
+  name: HasDisposed
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_HasDisposed_
+  commentId: Overload:VoltRpc.Communication.Client.HasDisposed
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Client.HasDisposed
+  nameWithType: Client.HasDisposed
 - uid: VoltRpc.Communication.Client.Initialize(Stream,Stream)
   name: Initialize(Stream, Stream)
   href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_Stream_Stream_
   commentId: M:VoltRpc.Communication.Client.Initialize(Stream,Stream)
   fullName: VoltRpc.Communication.Client.Initialize(Stream, Stream)
   nameWithType: Client.Initialize(Stream, Stream)
+- uid: VoltRpc.Communication.Client.Initialize(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)
+  name: Initialize(BufferedReader, BufferedWriter)
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_VoltRpc_IO_BufferedReader_VoltRpc_IO_BufferedWriter_
+  commentId: M:VoltRpc.Communication.Client.Initialize(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)
+  fullName: VoltRpc.Communication.Client.Initialize(VoltRpc.IO.BufferedReader, VoltRpc.IO.BufferedWriter)
+  nameWithType: Client.Initialize(BufferedReader, BufferedWriter)
 - uid: VoltRpc.Communication.Client.Initialize*
   name: Initialize
   href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_
@@ -220,6 +252,19 @@ references:
   commentId: F:VoltRpc.Communication.Host.BufferSize
   fullName: VoltRpc.Communication.Host.BufferSize
   nameWithType: Host.BufferSize
+- uid: VoltRpc.Communication.Host.CheckDispose
+  name: CheckDispose()
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_CheckDispose
+  commentId: M:VoltRpc.Communication.Host.CheckDispose
+  fullName: VoltRpc.Communication.Host.CheckDispose()
+  nameWithType: Host.CheckDispose()
+- uid: VoltRpc.Communication.Host.CheckDispose*
+  name: CheckDispose
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_CheckDispose_
+  commentId: Overload:VoltRpc.Communication.Host.CheckDispose
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Host.CheckDispose
+  nameWithType: Host.CheckDispose
 - uid: VoltRpc.Communication.Host.ConnectionCount
   name: ConnectionCount
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ConnectionCount
@@ -252,6 +297,19 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.Dispose
   nameWithType: Host.Dispose
+- uid: VoltRpc.Communication.Host.HasDisposed
+  name: HasDisposed
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_HasDisposed
+  commentId: P:VoltRpc.Communication.Host.HasDisposed
+  fullName: VoltRpc.Communication.Host.HasDisposed
+  nameWithType: Host.HasDisposed
+- uid: VoltRpc.Communication.Host.HasDisposed*
+  name: HasDisposed
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_HasDisposed_
+  commentId: Overload:VoltRpc.Communication.Host.HasDisposed
+  isSpec: "True"
+  fullName: VoltRpc.Communication.Host.HasDisposed
+  nameWithType: Host.HasDisposed
 - uid: VoltRpc.Communication.Host.HideStacktrace
   name: HideStacktrace
   href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_HideStacktrace
@@ -740,6 +798,19 @@ references:
   commentId: T:VoltRpc.IO.BufferedReader
   fullName: VoltRpc.IO.BufferedReader
   nameWithType: BufferedReader
+- uid: VoltRpc.IO.BufferedReader.#ctor(Stream,System.Int32)
+  name: BufferedReader(Stream, Int32)
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader__ctor_Stream_System_Int32_
+  commentId: M:VoltRpc.IO.BufferedReader.#ctor(Stream,System.Int32)
+  fullName: VoltRpc.IO.BufferedReader.BufferedReader(Stream, System.Int32)
+  nameWithType: BufferedReader.BufferedReader(Stream, Int32)
+- uid: VoltRpc.IO.BufferedReader.#ctor*
+  name: BufferedReader
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader__ctor_
+  commentId: Overload:VoltRpc.IO.BufferedReader.#ctor
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReader.BufferedReader
+  nameWithType: BufferedReader.BufferedReader
 - uid: VoltRpc.IO.BufferedReader.Dispose
   name: Dispose()
   href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_Dispose
@@ -772,6 +843,32 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedReader.IncomingStreamPosition
   nameWithType: BufferedReader.IncomingStreamPosition
+- uid: VoltRpc.IO.BufferedReader.Length
+  name: Length
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_Length
+  commentId: P:VoltRpc.IO.BufferedReader.Length
+  fullName: VoltRpc.IO.BufferedReader.Length
+  nameWithType: BufferedReader.Length
+- uid: VoltRpc.IO.BufferedReader.Length*
+  name: Length
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_Length_
+  commentId: Overload:VoltRpc.IO.BufferedReader.Length
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReader.Length
+  nameWithType: BufferedReader.Length
+- uid: VoltRpc.IO.BufferedReader.Position
+  name: Position
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_Position
+  commentId: P:VoltRpc.IO.BufferedReader.Position
+  fullName: VoltRpc.IO.BufferedReader.Position
+  nameWithType: BufferedReader.Position
+- uid: VoltRpc.IO.BufferedReader.Position*
+  name: Position
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_Position_
+  commentId: Overload:VoltRpc.IO.BufferedReader.Position
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReader.Position
+  nameWithType: BufferedReader.Position
 - uid: VoltRpc.IO.BufferedReader.ReadBool
   name: ReadBool()
   href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadBool
@@ -973,6 +1070,19 @@ references:
   commentId: T:VoltRpc.IO.BufferedWriter
   fullName: VoltRpc.IO.BufferedWriter
   nameWithType: BufferedWriter
+- uid: VoltRpc.IO.BufferedWriter.#ctor(Stream,System.Int32)
+  name: BufferedWriter(Stream, Int32)
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter__ctor_Stream_System_Int32_
+  commentId: M:VoltRpc.IO.BufferedWriter.#ctor(Stream,System.Int32)
+  fullName: VoltRpc.IO.BufferedWriter.BufferedWriter(Stream, System.Int32)
+  nameWithType: BufferedWriter.BufferedWriter(Stream, Int32)
+- uid: VoltRpc.IO.BufferedWriter.#ctor*
+  name: BufferedWriter
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter__ctor_
+  commentId: Overload:VoltRpc.IO.BufferedWriter.#ctor
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriter.BufferedWriter
+  nameWithType: BufferedWriter.BufferedWriter
 - uid: VoltRpc.IO.BufferedWriter.Dispose
   name: Dispose()
   href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Dispose
@@ -986,6 +1096,32 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedWriter.Dispose
   nameWithType: BufferedWriter.Dispose
+- uid: VoltRpc.IO.BufferedWriter.Flush
+  name: Flush()
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Flush
+  commentId: M:VoltRpc.IO.BufferedWriter.Flush
+  fullName: VoltRpc.IO.BufferedWriter.Flush()
+  nameWithType: BufferedWriter.Flush()
+- uid: VoltRpc.IO.BufferedWriter.Flush*
+  name: Flush
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Flush_
+  commentId: Overload:VoltRpc.IO.BufferedWriter.Flush
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriter.Flush
+  nameWithType: BufferedWriter.Flush
+- uid: VoltRpc.IO.BufferedWriter.Length
+  name: Length
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Length
+  commentId: P:VoltRpc.IO.BufferedWriter.Length
+  fullName: VoltRpc.IO.BufferedWriter.Length
+  nameWithType: BufferedWriter.Length
+- uid: VoltRpc.IO.BufferedWriter.Length*
+  name: Length
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Length_
+  commentId: Overload:VoltRpc.IO.BufferedWriter.Length
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriter.Length
+  nameWithType: BufferedWriter.Length
 - uid: VoltRpc.IO.BufferedWriter.MaxStringLength
   name: MaxStringLength
   href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_MaxStringLength
@@ -1011,6 +1147,32 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedWriter.OutputStreamPosition
   nameWithType: BufferedWriter.OutputStreamPosition
+- uid: VoltRpc.IO.BufferedWriter.Position
+  name: Position
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Position
+  commentId: P:VoltRpc.IO.BufferedWriter.Position
+  fullName: VoltRpc.IO.BufferedWriter.Position
+  nameWithType: BufferedWriter.Position
+- uid: VoltRpc.IO.BufferedWriter.Position*
+  name: Position
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Position_
+  commentId: Overload:VoltRpc.IO.BufferedWriter.Position
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriter.Position
+  nameWithType: BufferedWriter.Position
+- uid: VoltRpc.IO.BufferedWriter.Reset
+  name: Reset()
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Reset
+  commentId: M:VoltRpc.IO.BufferedWriter.Reset
+  fullName: VoltRpc.IO.BufferedWriter.Reset()
+  nameWithType: BufferedWriter.Reset()
+- uid: VoltRpc.IO.BufferedWriter.Reset*
+  name: Reset
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_Reset_
+  commentId: Overload:VoltRpc.IO.BufferedWriter.Reset
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriter.Reset
+  nameWithType: BufferedWriter.Reset
 - uid: VoltRpc.IO.BufferedWriter.WriteBool(System.Boolean)
   name: WriteBool(Boolean)
   href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteBool_System_Boolean_
