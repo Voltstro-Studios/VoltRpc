@@ -71,16 +71,16 @@ public sealed class TCPClient : Client
     /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
     /// <param name="connectionTimeout">The timeout time for connection</param>
     public TCPClient(IPEndPoint endPoint, int connectionTimeout)
-        : this(endPoint, DefaultBufferSize, connectionTimeout)
+        : this(endPoint, DefaultBufferSize, connectionTimeout, DefaultReceiveTimeout)
     {
     }
-
+    
     /// <summary>
     ///     Creates a new <see cref="TCPClient" /> instance
     /// </summary>
     /// <param name="endPoint">The <see cref="IPEndPoint" /> to connect to</param>
     public TCPClient(IPEndPoint endPoint)
-        : this(endPoint, DefaultBufferSize)
+        : this(endPoint, DefaultBufferSize, DefaultConnectionTimeout, DefaultReceiveTimeout)
     {
     }
 
@@ -107,7 +107,7 @@ public sealed class TCPClient : Client
     public override void Dispose()
     {
         base.Dispose();
-        clientStream.Dispose();
+        clientStream?.Dispose();
         client.Dispose();
     }
 }

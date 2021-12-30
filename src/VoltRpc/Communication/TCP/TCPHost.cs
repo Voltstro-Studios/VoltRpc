@@ -104,7 +104,9 @@ public sealed class TCPHost : Host
         {
             if (ConnectionCount >= MaxConnectionsCount)
             {
-                listener.Stop();
+                if (listener.Server.IsBound)
+                    listener.Stop();
+                
                 continue;
             }
 
