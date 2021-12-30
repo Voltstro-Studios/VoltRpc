@@ -21,7 +21,10 @@ public abstract class Client : IDisposable
 
     private readonly int bufferSize;
 
-    private readonly Dictionary<string, ServiceMethod[]> services;
+    /// <summary>
+    ///     All added services
+    /// </summary>
+    internal readonly Dictionary<string, ServiceMethod[]> Services;
 
     private BufferedReader reader;
     private BufferedWriter writer;
@@ -38,7 +41,7 @@ public abstract class Client : IDisposable
                 "The buffer needs to be larger then 15 bytes!");
 
         TypeReaderWriterManager = new TypeReaderWriterManager();
-        services = new Dictionary<string, ServiceMethod[]>();
+        Services = new Dictionary<string, ServiceMethod[]>();
         this.bufferSize = bufferSize;
     }
 
@@ -69,11 +72,13 @@ public abstract class Client : IDisposable
     public void AddService<T>()
         where T : class
     {
+        CheckDispose();
+        
         AddService(typeof(T));
     }
 
     /// <summary>
-    ///     Adds a service to this <see cref="Host" />
+    ///     Tells the <see cref="Client" /> what interfaces you might be using
     /// </summary>
     /// <exception cref="NullReferenceException">Thrown if interfaceType's <see cref="Type.FullName" /> is null</exception>
     /// <exception cref="ArgumentOutOfRangeException">
@@ -87,6 +92,8 @@ public abstract class Client : IDisposable
         public void AddService(Type interfaceType)
 #endif
     {
+        CheckDispose();
+        
         if (!interfaceType.IsInterface)
             throw new ArgumentOutOfRangeException(nameof(interfaceType),
                 "Provided interface type is not an interface!");
@@ -94,20 +101,20 @@ public abstract class Client : IDisposable
         if (interfaceType.FullName == null)
             throw new NullReferenceException("interfaceType.FullName is null!");
 
-        if (services.ContainsKey(interfaceType.FullName))
+        if (Services.ContainsKey(interfaceType.FullName))
             throw new ArgumentOutOfRangeException(nameof(interfaceType),
                 "interfaceType has already been added as a service!");
 
-        services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods(interfaceType));
+        Services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods(interfaceType));
     }
 
     /// <summary>
     ///     Initialize streams
     /// </summary>
-    /// <param name="readStream">The read stream</param>
-    /// <param name="writeStream">The write stream</param>
-    /// <exception cref="ArgumentNullException">Thrown if either provide stream is null</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected stream</exception>
+    /// <param name="readStream">The <see cref="Stream"/> to read from</param>
+    /// <param name="writeStream">The <see cref="Stream"/> to write to</param>
+    /// <exception cref="ArgumentNullException">Thrown if either provided stream is null</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected streams</exception>
     protected void Initialize(Stream readStream, Stream writeStream)
     {
         if (readStream == null)
@@ -122,8 +129,21 @@ public abstract class Client : IDisposable
         if (!writeStream.CanWrite)
             throw new ArgumentOutOfRangeException(nameof(writeStream), "The write stream cannot be wrote to!");
 
-        reader = new BufferedReader(readStream, bufferSize);
-        writer = new BufferedWriter(writeStream, bufferSize);
+        Initialize(new BufferedReader(readStream, bufferSize), new BufferedWriter(writeStream, bufferSize));
+    }
+
+    /// <summary>
+    ///     Initialize streams
+    /// </summary>
+    /// <param name="bufferedRead">The <see cref="BufferedReader"/> that will be read from</param>
+    /// <param name="bufferedWrite">The <see cref="BufferedWriter"/> that will be written to</param>
+    /// <exception cref="ArgumentNullException">Thrown if either provided buffers is null</exception>
+    protected void Initialize(BufferedReader bufferedRead, BufferedWriter bufferedWrite)
+    {
+        CheckDispose();
+        
+        reader = bufferedRead ?? throw new ArgumentNullException(nameof(bufferedRead));
+        writer = bufferedWrite ?? throw new ArgumentNullException(nameof(bufferedWrite));
         IsConnected = true;
     }
 
@@ -147,12 +167,14 @@ public abstract class Client : IDisposable
     /// </exception>
     public object[] InvokeMethod(string methodName, params object[] parameters)
     {
+        CheckDispose();
+        
         if (!IsConnected)
             throw new NotConnectedException("The client is not connected!");
 
         //Get the method
         ServiceMethod method = null;
-        foreach (KeyValuePair<string, ServiceMethod[]> service in services)
+        foreach (KeyValuePair<string, ServiceMethod[]> service in Services)
         {
             if (method != null)
                 break;
@@ -267,6 +289,25 @@ public abstract class Client : IDisposable
     }
 
     #region Destroy
+    
+    /// <summary>
+    ///     Has this object been disposed
+    /// </summary>
+    public bool HasDisposed
+    {
+        get;
+        private set;
+    }
+
+    /// <summary>
+    ///     Checks if the object has been disposed
+    /// </summary>
+    /// <exception cref="ObjectDisposedException"></exception>
+    protected void CheckDispose()
+    {
+        if (HasDisposed)
+            throw new ObjectDisposedException(nameof(Client));
+    }
 
     /// <summary>
     ///     Deconstructor for <see cref="Client" />.
@@ -285,6 +326,7 @@ public abstract class Client : IDisposable
     /// </summary>
     public virtual void Dispose()
     {
+        CheckDispose();
         ReleaseResources();
         GC.SuppressFinalize(this);
     }
@@ -300,6 +342,7 @@ public abstract class Client : IDisposable
         reader?.Dispose();
         writer?.Dispose();
         IsConnected = false;
+        HasDisposed = true;
     }
 
     #endregion

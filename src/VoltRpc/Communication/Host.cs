@@ -31,11 +31,14 @@ public abstract class Host : IDisposable
     ///     Logger
     /// </summary>
     protected readonly ILogger Logger;
-
-    private readonly List<HostService> services = new();
-
+    
     private int maxConnectionsCount = 16;
 
+    /// <summary>
+    ///     All the added services
+    /// </summary>
+    internal readonly List<HostService> Services = new();
+    
     /// <summary>
     ///     Creates a new <see cref="Host" /> instance
     /// </summary>
@@ -93,12 +96,33 @@ public abstract class Host : IDisposable
     public bool HideStacktrace { get; set; }
 
     #region Destory
+    
+    /// <summary>
+    ///     Checks if the object has been disposed
+    /// </summary>
+    /// <exception cref="ObjectDisposedException"></exception>
+    protected void CheckDispose()
+    {
+        if (HasDisposed)
+            throw new ObjectDisposedException(nameof(Host));
+    }
+
+    /// <summary>
+    ///     Has this object been disposed
+    /// </summary>
+    public bool HasDisposed
+    {
+        get;
+        private set;
+    }
 
     /// <summary>
     ///     Destroys the <see cref="Host" /> instance
     /// </summary>
     public virtual void Dispose()
     {
+        CheckDispose();
+        HasDisposed = true;
         IsRunning = false;
         GC.SuppressFinalize(this);
     }
@@ -123,6 +147,8 @@ public abstract class Host : IDisposable
     public void AddService<T>(T service)
         where T : class
     {
+        CheckDispose();
+        
         AddService(typeof(T), service);
     }
 
@@ -140,14 +166,16 @@ public abstract class Host : IDisposable
 #endif
         object serviceObject)
     {
+        CheckDispose();
+        
         if (!serviceType.IsInterface)
             throw new ArgumentOutOfRangeException(nameof(serviceType), "Service Type is not an interface!");
 
-        if (services.Exists(x => x.InterfaceObject == serviceObject
+        if (Services.Exists(x => x.InterfaceObject == serviceObject
                                  || x.InterfaceName == serviceType.FullName))
             throw new ArgumentException("The service already exists!", nameof(serviceType));
 
-        services.Add(new HostService
+        Services.Add(new HostService
         {
             InterfaceName = serviceType.FullName,
             InterfaceObject = serviceObject,
@@ -170,6 +198,8 @@ public abstract class Host : IDisposable
     /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected stream</exception>
     protected void ProcessRequest(Stream readStream, Stream writeStream)
     {
+        CheckDispose();
+        
         if (readStream == null)
             throw new ArgumentNullException(nameof(readStream));
 
@@ -201,6 +231,8 @@ public abstract class Host : IDisposable
     /// <exception cref="ArgumentNullException">Thrown if either buffer is null</exception>
     protected void ProcessRequest(BufferedReader reader, BufferedWriter writer)
     {
+        CheckDispose();
+        
         if (reader == null)
             throw new ArgumentNullException(nameof(reader));
         if (writer == null)
@@ -242,7 +274,7 @@ public abstract class Host : IDisposable
 
             object obj = null;
             ServiceMethod method = null;
-            foreach (HostService service in services)
+            foreach (HostService service in Services)
             {
                 if (method != null)
                     break;
@@ -271,7 +303,7 @@ public abstract class Host : IDisposable
             {
                 ServiceMethodParameter parameter = method.Parameters[i];
 
-                //If it is a out, the we just set it to null and don't read (as nothing is sent for outs)
+                //If it is a out, then we just set it to null and don't read (as nothing is sent for outs)
                 if (parameter.IsOut)
                 {
                     parameters[i] = null;

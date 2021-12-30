@@ -96,6 +96,8 @@ public sealed class TCPHost : Host
     /// <inheritdoc />
     public override async Task StartListening()
     {
+        CheckDispose();
+        
         IsRunning = true;
         listener.Start(ListenerBacklog);
         Logger.Debug("TCP host now listening...");
