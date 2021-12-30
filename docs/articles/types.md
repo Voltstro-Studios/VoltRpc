@@ -26,7 +26,7 @@ Custom types can be implemented using a <xref:VoltRpc.Types.ITypeReadWriter>.
 For this example we will be using a custom `CustomType` that looks like this:
 
 ```csharp
-public class CustomType
+public struct CustomType
 {
     public int UserId { get; set; }
 
@@ -62,11 +62,11 @@ public class CustomTypeReadWriter : ITypeReadWriter
 
 You can read and write any type supported by <xref:VoltRpc.IO.BufferedWriter> and <xref:VoltRpc.IO.BufferedReader>.
 
-To let the client and server know about this type, you will need to call their respected <xref:VoltRpc.Types.TypeReaderWriterManager>.AddType().
+To let the client and host know about this type, you will need to call their respected <xref:VoltRpc.Types.TypeReaderWriterManager>.AddType().
 
 For example:
 
 ```csharp
 client.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReadWriter());
-host.ReaderWriterManager.AddType<CustomType>(new CustomTypeReadWriter());
+host.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReadWriter());
 ```

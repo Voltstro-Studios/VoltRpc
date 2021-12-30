@@ -14,7 +14,7 @@ When using VoltRpc, you will usually have three projects:
 
 ## Getting Started
 
-First, create these projects list above, use whatever name you want, however I'd recommend something like `<ProjectName>.Client`.
+First, create the projects listed above, use whatever name you want, however I'd recommend something like `<ProjectName>.Client`.
 
 > [!NOTE]
 > For this setup we will be using TCP. [Other communication layers](communication-layers.md) are available.
