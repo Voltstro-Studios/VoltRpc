@@ -9,12 +9,13 @@
         <Authors>Voltstro</Authors>
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
         <Description>VoltRpc - Library designed for high performance RPC communication.</Description>
-        <Version>1.2.2</Version>
-        <PackageVersion>1.2.2</PackageVersion>
-        <PackageReleaseNotes>Release notes for 1.2.2:
-            * Made position in buffers public
-            * Added Length property to buffers
-            * Made Flush and Reset in buffered writer public
+        <Version>1.3.0</Version>
+        <PackageVersion>1.3.0</PackageVersion>
+        <PackageReleaseNotes>Release notes for 1.3.0:
+            * Updated TCPClient's constructors
+            * Improve disposing on both the client and host
+            * Fix issue with disposing on TCPClient when the client has not connected before
+            * Don't repeatedly call listener.Stop() when the connection cap has been reached in TCPHost
         </PackageReleaseNotes>
         <IsTrimmable>true</IsTrimmable>
     </PropertyGroup>
