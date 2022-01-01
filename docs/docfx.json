@@ -65,7 +65,7 @@
     "dest": "_site",
     "globalMetadata": {
       "_appTitle": "VoltRpc Documentation",
-      "_appFooter": "Voltstro-Studios (c) 2021",
+      "_appFooter": "Voltstro-Studios (c) 2021-2022",
       "_appLogoPath": "logo.png",
       "_appFaviconPath":  "favicon.ico"
     },
