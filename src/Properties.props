@@ -9,11 +9,17 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <LangVersion>10</LangVersion>
         <PackageIcon>icon.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+    
     <ItemGroup>
         <None Include="../icon.png">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath>/</PackagePath>
+        </None>
+        <None Include="../../README.md">
+            <Pack>True</Pack>
+            <PackagePath>/</PackagePath>
         </None>
     </ItemGroup>
 
