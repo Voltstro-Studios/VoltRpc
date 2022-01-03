@@ -31,16 +31,6 @@ public class BufferedWriter : IDisposable
     private byte[] buffer;
 
     /// <summary>
-    ///     The current position of the buffer
-    /// </summary>
-    public int Position { get; private set; }
-
-    /// <summary>
-    ///     The length of the buffer
-    /// </summary>
-    public int Length => buffer.Length; 
-
-    /// <summary>
     ///     Creates a new <see cref="BufferedWriter" /> instance
     /// </summary>
     /// <param name="output"></param>
@@ -52,6 +42,16 @@ public class BufferedWriter : IDisposable
         stringBuffer = new byte[MaxStringLength];
         buffer = new byte[bufferSize];
     }
+
+    /// <summary>
+    ///     The current position of the buffer
+    /// </summary>
+    public int Position { get; private set; }
+
+    /// <summary>
+    ///     The length of the buffer
+    /// </summary>
+    public int Length => buffer.Length;
 
     /// <summary>
     ///     You may need to override this if your <see cref="Stream" /> requires it
@@ -258,7 +258,7 @@ public class BufferedWriter : IDisposable
     }
 
     /// <summary>
-    ///     Writes the buffer to the out <see cref="Stream"/> 
+    ///     Writes the buffer to the out <see cref="Stream" />
     /// </summary>
     public void Flush()
     {

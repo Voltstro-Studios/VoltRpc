@@ -24,18 +24,8 @@ public class BufferedReader : IDisposable
     ///     The incoming <see cref="Stream" />
     /// </summary>
     protected readonly Stream IncomingStream;
-    
+
     private int readLength;
-    
-    /// <summary>
-    ///     The current position of the buffer
-    /// </summary>
-    public int Position { get; private set; }
-    
-    /// <summary>
-    ///     The length of the buffer
-    /// </summary>
-    public int Length => buffer.Length; 
 
     /// <summary>
     ///     Creates a new <see cref="BufferedReader" /> instance
@@ -48,6 +38,16 @@ public class BufferedReader : IDisposable
         encoding = new UTF8Encoding(false, true);
         buffer = new byte[bufferSize];
     }
+
+    /// <summary>
+    ///     The current position of the buffer
+    /// </summary>
+    public int Position { get; private set; }
+
+    /// <summary>
+    ///     The length of the buffer
+    /// </summary>
+    public int Length => buffer.Length;
 
     /// <summary>
     ///     You may need to override this if your <see cref="Stream" /> requires it

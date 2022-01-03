@@ -9,7 +9,8 @@ internal static class ServiceHelper
 {
 #if NET6_0_OR_GREATER
     public static ServiceMethod[] GetAllServiceMethods(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type type)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)]
+        Type type)
 #else
         public static ServiceMethod[] GetAllServiceMethods(Type type)
 #endif

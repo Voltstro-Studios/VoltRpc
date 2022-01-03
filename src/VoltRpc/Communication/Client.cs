@@ -73,7 +73,7 @@ public abstract class Client : IDisposable
         where T : class
     {
         CheckDispose();
-        
+
         AddService(typeof(T));
     }
 
@@ -87,13 +87,14 @@ public abstract class Client : IDisposable
     /// </exception>
 #if NET6_0_OR_GREATER
     public void AddService(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type interfaceType)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)]
+        Type interfaceType)
 #else
         public void AddService(Type interfaceType)
 #endif
     {
         CheckDispose();
-        
+
         if (!interfaceType.IsInterface)
             throw new ArgumentOutOfRangeException(nameof(interfaceType),
                 "Provided interface type is not an interface!");
@@ -111,8 +112,8 @@ public abstract class Client : IDisposable
     /// <summary>
     ///     Initialize streams
     /// </summary>
-    /// <param name="readStream">The <see cref="Stream"/> to read from</param>
-    /// <param name="writeStream">The <see cref="Stream"/> to write to</param>
+    /// <param name="readStream">The <see cref="Stream" /> to read from</param>
+    /// <param name="writeStream">The <see cref="Stream" /> to write to</param>
     /// <exception cref="ArgumentNullException">Thrown if either provided stream is null</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if we can't read or write to the respected streams</exception>
     protected void Initialize(Stream readStream, Stream writeStream)
@@ -135,13 +136,13 @@ public abstract class Client : IDisposable
     /// <summary>
     ///     Initialize streams
     /// </summary>
-    /// <param name="bufferedRead">The <see cref="BufferedReader"/> that will be read from</param>
-    /// <param name="bufferedWrite">The <see cref="BufferedWriter"/> that will be written to</param>
+    /// <param name="bufferedRead">The <see cref="BufferedReader" /> that will be read from</param>
+    /// <param name="bufferedWrite">The <see cref="BufferedWriter" /> that will be written to</param>
     /// <exception cref="ArgumentNullException">Thrown if either provided buffers is null</exception>
     protected void Initialize(BufferedReader bufferedRead, BufferedWriter bufferedWrite)
     {
         CheckDispose();
-        
+
         reader = bufferedRead ?? throw new ArgumentNullException(nameof(bufferedRead));
         writer = bufferedWrite ?? throw new ArgumentNullException(nameof(bufferedWrite));
         IsConnected = true;
@@ -168,7 +169,7 @@ public abstract class Client : IDisposable
     public object[] InvokeMethod(string methodName, params object[] parameters)
     {
         CheckDispose();
-        
+
         if (!IsConnected)
             throw new NotConnectedException("The client is not connected!");
 
@@ -290,15 +291,11 @@ public abstract class Client : IDisposable
     }
 
     #region Destroy
-    
+
     /// <summary>
     ///     Has this object been disposed
     /// </summary>
-    public bool HasDisposed
-    {
-        get;
-        private set;
-    }
+    public bool HasDisposed { get; private set; }
 
     /// <summary>
     ///     Checks if the object has been disposed

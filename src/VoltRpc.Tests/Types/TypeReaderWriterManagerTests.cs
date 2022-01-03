@@ -5,7 +5,7 @@ using VoltRpc.IO;
 using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;
 
-namespace VoltRpc.Tests.TypesTests;
+namespace VoltRpc.Tests.Types;
 
 public class TypeReaderWriterManagerTests
 {

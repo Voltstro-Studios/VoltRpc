@@ -2,7 +2,7 @@
 using VoltRpc.Tests.IO;
 using VoltRpc.Types;
 
-namespace VoltRpc.Tests.TypesTests;
+namespace VoltRpc.Tests.Types;
 
 public static class Utils
 {

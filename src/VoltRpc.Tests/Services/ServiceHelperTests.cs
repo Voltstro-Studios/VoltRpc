@@ -52,7 +52,7 @@ public class ServiceHelperTests
         CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IReturnArrayInterface.ReturnArray", false, 0, 0);
         CheckReturn(method, "System.String", true);
     }
-    
+
     [Test]
     public void ServiceParamBasicInterfaceTest()
     {
@@ -63,7 +63,7 @@ public class ServiceHelperTests
         CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IParameterBasicInterface.BasicParam", true, 0, 1);
         CheckParameter(method.Parameters[0], "System.String", false, false, false);
     }
-    
+
     [Test]
     public void ServiceParamArrayInterfaceTest()
     {
@@ -74,7 +74,7 @@ public class ServiceHelperTests
         CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IParameterArrayInterface.ArrayParam", true, 0, 1);
         CheckParameter(method.Parameters[0], "System.String", false, false, true);
     }
-    
+
     [Test]
     public void ServiceRefBasicInterfaceTest()
     {
@@ -85,7 +85,7 @@ public class ServiceHelperTests
         CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IRefBasicInterface.RefBasic", true, 1, 1);
         CheckParameter(method.Parameters[0], "System.String", false, true, false);
     }
-    
+
     [Test]
     public void ServiceRefArrayInterfaceTest()
     {
@@ -96,7 +96,7 @@ public class ServiceHelperTests
         CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IRefArrayInterface.RefArray", true, 1, 1);
         CheckParameter(method.Parameters[0], "System.String", false, true, true);
     }
-    
+
     private void CheckMethod(ServiceMethod method, string methodName, bool methodReturnVoid, int refOrOutParamCount,
         int parameterCount)
     {
@@ -113,7 +113,8 @@ public class ServiceHelperTests
         Assert.AreEqual(isArray, method.ReturnType.IsArray);
     }
 
-    private void CheckParameter(ServiceMethodParameter parameter, string typeFullName, bool isOut, bool isRef, bool isArray)
+    private void CheckParameter(ServiceMethodParameter parameter, string typeFullName, bool isOut, bool isRef,
+        bool isArray)
     {
         StringAssert.AreEqualIgnoringCase(typeFullName, parameter.TypeInfo.TypeName);
         Assert.AreEqual(isOut, parameter.IsOut);

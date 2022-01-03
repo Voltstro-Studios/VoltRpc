@@ -12,7 +12,7 @@ internal class VoltTypeInfo
         if (type.IsByRef)
         {
             Type baseType = type.GetElementType();
-            if(baseType == null)
+            if (baseType == null)
                 throw new NullReferenceException("Failed to get type's element type!");
             IsArray = baseType.IsArray;
         }
@@ -23,8 +23,8 @@ internal class VoltTypeInfo
     }
 
     public Type BaseType { get; }
-    
+
     public string TypeName { get; }
-    
+
     public bool IsArray { get; }
 }

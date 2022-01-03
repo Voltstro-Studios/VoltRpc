@@ -32,7 +32,7 @@ public class HostTests
         HostService service = host.Services[0];
         Assert.AreEqual(service.InterfaceName, interfaceName);
         Assert.AreEqual(testClass, service.InterfaceObject);
-        
+
         buffers.Dispose();
     }
 
@@ -50,7 +50,7 @@ public class HostTests
         HostService service = host.Services[0];
         Assert.AreEqual(service.InterfaceName, interfaceName);
         Assert.AreEqual(testClass, service.InterfaceObject);
-        
+
         Assert.Throws<ArgumentException>(() => host.AddService<IInterface>(testClass));
         buffers.Dispose();
     }
@@ -60,7 +60,7 @@ public class HostTests
     {
         DualBuffers buffers = new();
         Host host = new MemoryStreamHost(buffers.BufferedReader, buffers.BufferedWriter);
-        
+
         host.Dispose();
         Assert.That(!host.IsRunning);
         Assert.That(host.HasDisposed);
@@ -72,7 +72,7 @@ public class HostTests
         DualBuffers buffers = new();
         Host host = new MemoryStreamHost(buffers.BufferedReader, buffers.BufferedWriter);
         host.StartListening();
-        
+
         host.Dispose();
         Assert.That(!host.IsRunning);
         Assert.That(host.HasDisposed);

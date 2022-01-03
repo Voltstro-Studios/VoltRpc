@@ -31,14 +31,14 @@ public abstract class Host : IDisposable
     ///     Logger
     /// </summary>
     protected readonly ILogger Logger;
-    
-    private int maxConnectionsCount = 16;
 
     /// <summary>
     ///     All the added services
     /// </summary>
     internal readonly List<HostService> Services = new();
-    
+
+    private int maxConnectionsCount = 16;
+
     /// <summary>
     ///     Creates a new <see cref="Host" /> instance
     /// </summary>
@@ -95,40 +95,6 @@ public abstract class Host : IDisposable
     /// </summary>
     public bool HideStacktrace { get; set; }
 
-    #region Destory
-    
-    /// <summary>
-    ///     Checks if the object has been disposed
-    /// </summary>
-    /// <exception cref="ObjectDisposedException"></exception>
-    protected void CheckDispose()
-    {
-        if (HasDisposed)
-            throw new ObjectDisposedException(nameof(Host));
-    }
-
-    /// <summary>
-    ///     Has this object been disposed
-    /// </summary>
-    public bool HasDisposed
-    {
-        get;
-        private set;
-    }
-
-    /// <summary>
-    ///     Destroys the <see cref="Host" /> instance
-    /// </summary>
-    public virtual void Dispose()
-    {
-        CheckDispose();
-        HasDisposed = true;
-        IsRunning = false;
-        GC.SuppressFinalize(this);
-    }
-
-    #endregion
-
     /// <summary>
     ///     Starts the <see cref="Host" /> to listen for requests
     /// </summary>
@@ -148,7 +114,7 @@ public abstract class Host : IDisposable
         where T : class
     {
         CheckDispose();
-        
+
         AddService(typeof(T), service);
     }
 
@@ -167,7 +133,7 @@ public abstract class Host : IDisposable
         object serviceObject)
     {
         CheckDispose();
-        
+
         if (!serviceType.IsInterface)
             throw new ArgumentOutOfRangeException(nameof(serviceType), "Service Type is not an interface!");
 
@@ -199,7 +165,7 @@ public abstract class Host : IDisposable
     protected void ProcessRequest(Stream readStream, Stream writeStream)
     {
         CheckDispose();
-        
+
         if (readStream == null)
             throw new ArgumentNullException(nameof(readStream));
 
@@ -232,7 +198,7 @@ public abstract class Host : IDisposable
     protected void ProcessRequest(BufferedReader reader, BufferedWriter writer)
     {
         CheckDispose();
-        
+
         if (reader == null)
             throw new ArgumentNullException(nameof(reader));
         if (writer == null)
@@ -431,4 +397,34 @@ public abstract class Host : IDisposable
 
         writer.Flush();
     }
+
+    #region Destory
+
+    /// <summary>
+    ///     Checks if the object has been disposed
+    /// </summary>
+    /// <exception cref="ObjectDisposedException"></exception>
+    protected void CheckDispose()
+    {
+        if (HasDisposed)
+            throw new ObjectDisposedException(nameof(Host));
+    }
+
+    /// <summary>
+    ///     Has this object been disposed
+    /// </summary>
+    public bool HasDisposed { get; private set; }
+
+    /// <summary>
+    ///     Destroys the <see cref="Host" /> instance
+    /// </summary>
+    public virtual void Dispose()
+    {
+        CheckDispose();
+        HasDisposed = true;
+        IsRunning = false;
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion
 }

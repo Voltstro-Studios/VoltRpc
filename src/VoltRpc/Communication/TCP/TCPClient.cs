@@ -74,7 +74,7 @@ public sealed class TCPClient : Client
         : this(endPoint, DefaultBufferSize, connectionTimeout, DefaultReceiveTimeout)
     {
     }
-    
+
     /// <summary>
     ///     Creates a new <see cref="TCPClient" /> instance
     /// </summary>
@@ -90,7 +90,7 @@ public sealed class TCPClient : Client
     public override void Connect()
     {
         CheckDispose();
-        
+
         try
         {
             if (!client.ConnectAsync(endPoint.Address, endPoint.Port).Wait(connectionTimeout))

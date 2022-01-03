@@ -130,9 +130,9 @@ public class BufferedReadWriterTests
     {
         byte[] baseArray = {1, 3, 4, 6, 7};
         int arraySize = baseArray.Length;
-        
+
         using DualBuffers buffers = new();
-        
+
         buffers.BufferedWriter.WriteBytes(baseArray, 0, arraySize);
         buffers.BufferedWriter.Flush();
 

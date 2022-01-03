@@ -29,7 +29,7 @@ public class TypeReaderWriterManager
             [typeof(string)] = new StringReadWriter(),
             [typeof(uint)] = new UIntReadWriter(),
             [typeof(ulong)] = new ULongReadWriter(),
-            [typeof(ushort)] = new UShortReadWriter(),
+            [typeof(ushort)] = new UShortReadWriter()
         };
 
     private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;
@@ -133,17 +133,14 @@ public class TypeReaderWriterManager
 
             //Create array
             Array array = Array.CreateInstance(type.BaseType, size);
-            for (int i = 0; i < size; i++)
-            {
-                array.SetValue(readWriter.Read(reader), i);
-            }
+            for (int i = 0; i < size; i++) array.SetValue(readWriter.Read(reader), i);
 
             return array;
         }
 
         return readWriter.Read(reader);
     }
-    
+
     internal static void Write(BufferedWriter writer, ITypeReadWriter readWriter, VoltTypeInfo type, object value)
     {
         //If it is an array, write the size first
@@ -153,8 +150,8 @@ public class TypeReaderWriterManager
 
             int length = array.Length;
             writer.WriteInt(array.Length);
-            
-            if(length <= 0)
+
+            if (length <= 0)
                 return;
 
             for (int i = 0; i < length; i++)
@@ -162,9 +159,10 @@ public class TypeReaderWriterManager
                 object obj = array.GetValue(i);
                 readWriter.Write(writer, obj);
             }
+
             return;
         }
-        
+
         readWriter.Write(writer, value);
     }
 }

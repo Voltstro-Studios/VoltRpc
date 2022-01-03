@@ -99,7 +99,7 @@ public class ProxyGenerator : ISourceGenerator
             inheritedtnterface = $"{interfaceNamespace}.{interfaceName}",
             methods = generatedMethods
         });
-        
+
         //Add the source
         context.AddSource(interfaceProxyName, code);
     }
@@ -121,7 +121,7 @@ public class ProxyGenerator : ISourceGenerator
             return new Method();
 
         List<Argument> arguments = new();
-        
+
         int parametersCount = methodSymbol.Parameters.Length;
         for (int i = 0; i < parametersCount; i++)
         {
@@ -131,7 +131,7 @@ public class ProxyGenerator : ISourceGenerator
                 name = symbol.Name,
                 type = symbol.Type.ToString()
             };
-            
+
             switch (symbol.RefKind)
             {
                 case RefKind.Ref:

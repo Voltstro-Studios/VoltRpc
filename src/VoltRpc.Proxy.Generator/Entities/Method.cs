@@ -6,7 +6,7 @@ public struct Method
 {
     public string interfacename;
     public string interfacenamespace;
-    
+
     public string returntype;
     public string name;
 

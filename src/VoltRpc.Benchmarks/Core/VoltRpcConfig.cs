@@ -10,33 +10,32 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Reports;
 using Perfolizer.Horology;
 
-namespace VoltRpc.Benchmarks.Core
+namespace VoltRpc.Benchmarks.Core;
+
+public class VoltRpcConfig : Attribute, IConfigSource
 {
-    public class VoltRpcConfig : Attribute, IConfigSource
+    public VoltRpcConfig()
     {
-        public VoltRpcConfig()
+        ManualConfig config = ManualConfig.CreateEmpty().AddJob(new Job(Job.Default)
         {
-            ManualConfig config = ManualConfig.CreateEmpty().AddJob(new Job(Job.Default)
+            Environment =
             {
-                Environment =
-                {
-                    Jit = Jit.Default,
-                    Platform = Platform.AnyCpu
-                }
-            });
-            IConfig defaultConfig = DefaultConfig.Instance;
+                Jit = Jit.Default,
+                Platform = Platform.AnyCpu
+            }
+        });
+        IConfig defaultConfig = DefaultConfig.Instance;
 
-            config.AddColumnProvider(DefaultColumnProviders.Instance);
-            config.AddLogger(defaultConfig.GetLoggers().ToArray());
-            config.AddAnalyser(defaultConfig.GetAnalysers().ToArray());
-            config.AddValidator(defaultConfig.GetValidators().ToArray());
-            config.AddExporter(new CsvExporter(CsvSeparator.Comma,
-                new SummaryStyle(CultureInfo.CurrentCulture, true, SizeUnit.KB, TimeUnit.Microsecond, false)));
-            config.AddExporter(MarkdownExporter.Default);
+        config.AddColumnProvider(DefaultColumnProviders.Instance);
+        config.AddLogger(defaultConfig.GetLoggers().ToArray());
+        config.AddAnalyser(defaultConfig.GetAnalysers().ToArray());
+        config.AddValidator(defaultConfig.GetValidators().ToArray());
+        config.AddExporter(new CsvExporter(CsvSeparator.Comma,
+            new SummaryStyle(CultureInfo.CurrentCulture, true, SizeUnit.KB, TimeUnit.Microsecond, false)));
+        config.AddExporter(MarkdownExporter.Default);
 
-            Config = config;
-        }
-
-        public IConfig Config { get; }
+        Config = config;
     }
+
+    public IConfig Config { get; }
 }

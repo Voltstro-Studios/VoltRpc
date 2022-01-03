@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using VoltRpc.Types.TypeReaderWriters;
 
-namespace VoltRpc.Tests.TypesTests.ReaderWriters;
+namespace VoltRpc.Tests.Types.ReaderWriters;
 
 public class LongTypeTest
 {

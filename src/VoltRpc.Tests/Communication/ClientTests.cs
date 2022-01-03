@@ -26,7 +26,7 @@ public class ClientTests
 
         string interfaceName = typeof(IInterface).FullName;
         Assert.That(client.Services.ContainsKey(interfaceName));
-        
+
         buffers.Dispose();
     }
 
@@ -41,16 +41,16 @@ public class ClientTests
         Assert.That(client.Services.ContainsKey(interfaceName));
 
         Assert.Throws<ArgumentOutOfRangeException>(() => client.AddService<IInterface>());
-        
+
         buffers.Dispose();
     }
-    
+
     [Test]
     public void DisposeBeforeConnectingTest()
     {
         DualBuffers buffers = new();
         Client client = new MemoryStreamClient(buffers.BufferedReader, buffers.BufferedWriter);
-        
+
         client.Dispose();
         Assert.That(!client.IsConnected);
         Assert.That(client.HasDisposed);

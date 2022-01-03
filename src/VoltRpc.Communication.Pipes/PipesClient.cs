@@ -67,7 +67,7 @@ public sealed class PipesClient : Client
     public override void Connect()
     {
         CheckDispose();
-        
+
         namedPipeClientStream.Connect(connectionTimeout);
 
         if (!namedPipeClientStream.IsConnected)

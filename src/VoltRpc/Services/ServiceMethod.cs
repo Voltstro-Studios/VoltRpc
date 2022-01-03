@@ -13,6 +13,6 @@ internal class ServiceMethod
     public ServiceMethodParameter[] Parameters { get; set; }
 
     public bool IsReturnVoid { get; set; }
-    
+
     public VoltTypeInfo ReturnType { get; set; }
 }

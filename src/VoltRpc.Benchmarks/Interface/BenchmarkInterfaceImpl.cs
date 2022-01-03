@@ -1,45 +1,46 @@
-﻿namespace VoltRpc.Benchmarks.Interface
+﻿using VoltRpc.Benchmarks.Core;
+
+namespace VoltRpc.Benchmarks.Interface;
+
+public class BenchmarkInterfaceImpl : IBenchmarkInterface
 {
-    public class BenchmarkInterfaceImpl : IBenchmarkInterface
+    private readonly byte[] smallArray;
+
+    public BenchmarkInterfaceImpl()
     {
-        private readonly byte[] smallArray;
+        smallArray = new byte[25];
+        smallArray = Utils.FillByteArray(smallArray);
+    }
 
-        public BenchmarkInterfaceImpl()
-        {
-            smallArray = new byte[25];
-            smallArray = Utils.FillByteArray(smallArray);
-        }
+    public void BasicVoid()
+    {
+    }
 
-        public void BasicVoid()
-        {
-        }
+    public void BasicParameterVoid(string message)
+    {
+    }
 
-        public void BasicParameterVoid(string message)
-        {
-        }
+    public string BasicReturn()
+    {
+        return "Hello World!";
+    }
 
-        public string BasicReturn()
-        {
-            return "Hello World!";
-        }
+    public string BasicParameterReturn(string message)
+    {
+        return "Hello World!";
+    }
 
-        public string BasicParameterReturn(string message)
-        {
-            return "Hello World!";
-        }
+    public void ArrayParameterVoid(byte[] array)
+    {
+    }
 
-        public void ArrayParameterVoid(byte[] array)
-        {
-        }
+    public byte[] ArrayReturn()
+    {
+        return smallArray;
+    }
 
-        public byte[] ArrayReturn()
-        {
-            return smallArray;
-        }
-
-        public byte[] ArrayParameterReturn(byte[] array)
-        {
-            return array;
-        }
+    public byte[] ArrayParameterReturn(byte[] array)
+    {
+        return array;
     }
 }

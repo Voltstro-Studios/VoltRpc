@@ -97,7 +97,7 @@ public sealed class TCPHost : Host
     public override async Task StartListening()
     {
         CheckDispose();
-        
+
         IsRunning = true;
         listener.Start(ListenerBacklog);
         Logger.Debug("TCP host now listening...");
@@ -108,7 +108,7 @@ public sealed class TCPHost : Host
             {
                 if (listener.Server.IsBound)
                     listener.Stop();
-                
+
                 continue;
             }
 
