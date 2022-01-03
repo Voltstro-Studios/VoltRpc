@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using VoltRpc.Types;
 
 namespace VoltRpc.Services;
 
@@ -33,7 +34,7 @@ internal static class ServiceHelper
                 {
                     IsOut = parameterInfo.IsOut,
                     IsRef = parameterType.IsByRef && parameterInfo.IsOut == false,
-                    ParameterTypeName = parameterType.FullName
+                    TypeInfo = new VoltTypeInfo(parameterType)
                 };
                 parameters[x] = parameter;
                 if (parameter.IsOut || parameter.IsRef)
@@ -51,7 +52,7 @@ internal static class ServiceHelper
                 RefOrOutParameterCount = refOrOutParameterCount,
                 Parameters = parameters,
                 IsReturnVoid = method.ReturnType == typeof(void),
-                ReturnTypeName = method.ReturnType.FullName
+                ReturnType = new VoltTypeInfo(method.ReturnType)
             };
         }
 

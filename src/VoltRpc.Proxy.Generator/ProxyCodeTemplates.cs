@@ -65,7 +65,7 @@ namespace VoltRpc.Proxy.Generated
             object[] returnObjects = client.InvokeMethod(""{{ method.interfacenamespace }}.{{ method.interfacename }}.{{ method.name }}"", new object[] { 
             {{- $returnObjectsCounter = 1 -}}
             {{- for argument in method.arguments -}}
-                {{- if !argument.isref && !argument.isout -}}
+                {{- if !argument.isout -}}
                     {{ argument.name }}
                     {{- if $returnObjectsCounter != method.arguments.size -}}
                         , {{ end -}}
@@ -73,22 +73,20 @@ namespace VoltRpc.Proxy.Generated
                 {{- end -}}
             {{- end -}}
             } );
-            {{- $parameterIndex = 0 -}}
-            {{- if !method.returnsvoid -}}
+            {{- $parameterIndex = 0 }}
+            {{ if !method.returnsvoid -}}
                 {{ $parameterIndex = 1 }} {{- end -}}
             {{- for argument in method.arguments -}}
-                {{- if argument.isref -}}
-                    {{ argument.name }} = ({{ argument.type }})returnObjects[{{ $parameterIndex }}];
-                    {{ $parameterIndex = $parameterIndex + 1 }} {{ end }}
-                {{- if argument.isout -}}
-                    {{ argument.name }} = ({{ argument.type }})returnObjects[{{ $parameterIndex }}];
-                    {{ $parameterIndex = $parameterIndex + 1 }} {{ end }}
-            {{- end -}}
-            {{- if !method.returnsvoid -}}
-                return ({{ method.returntype }}) returnObjects[0];
+                {{ if argument.isref || argument.isout }}
+                    {{- argument.name }} = ({{ argument.type }})returnObjects[{{ $parameterIndex }}];
+                    {{ $parameterIndex = $parameterIndex + 1 }} 
+                {{ end }}
+            {{- end }}
+            {{- if !method.returnsvoid }}
+            return ({{ method.returntype }}) returnObjects[0];
             {{- end }}
         }
-        {{ end }}
+        {{ end -}}
     }
 }";
 }

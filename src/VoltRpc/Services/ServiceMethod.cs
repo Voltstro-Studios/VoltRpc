@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using VoltRpc.Types;
 
 namespace VoltRpc.Services;
 
@@ -12,5 +13,6 @@ internal class ServiceMethod
     public ServiceMethodParameter[] Parameters { get; set; }
 
     public bool IsReturnVoid { get; set; }
-    public string ReturnTypeName { get; set; }
+    
+    public VoltTypeInfo ReturnType { get; set; }
 }

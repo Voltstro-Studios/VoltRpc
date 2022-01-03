@@ -241,11 +241,11 @@ public abstract class Client : IDisposable
         if (!method.IsReturnVoid)
         {
             //Get the type reader
-            ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(method.ReturnTypeName);
+            ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(method.ReturnType.TypeName);
             if (typeReader == null)
                 throw new NoTypeReaderWriterException();
 
-            objectReturn[0] = typeReader.Read(reader);
+            objectReturn[0] = TypeReaderWriterManager.Read(reader, typeReader, method.ReturnType);
             currentObjectReturnIndex++;
         }
 
@@ -257,11 +257,12 @@ public abstract class Client : IDisposable
                     continue;
 
                 //Get the type reader
-                ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(parameter.ParameterTypeName);
+                ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(parameter.TypeInfo.TypeName);
                 if (typeReader == null)
                     throw new NoTypeReaderWriterException();
 
-                objectReturn[currentObjectReturnIndex] = typeReader.Read(reader);
+                objectReturn[currentObjectReturnIndex] =
+                    TypeReaderWriterManager.Read(reader, typeReader, parameter.TypeInfo);
                 currentObjectReturnIndex++;
             }
 
@@ -278,13 +279,13 @@ public abstract class Client : IDisposable
     {
         for (int i = 0; i < parameters.Count; i++)
         {
-            string parameterTypeName = method.Parameters[i].ParameterTypeName;
+            string parameterTypeName = method.Parameters[i].TypeInfo.TypeName;
             object parameter = parameters[i];
             ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameterTypeName);
             if (typeWriter == null)
                 throw new NoTypeReaderWriterException();
 
-            typeWriter.Write(writer, parameter);
+            TypeReaderWriterManager.Write(writer, typeWriter, method.Parameters[i].TypeInfo, parameter);
         }
     }
 

@@ -311,24 +311,24 @@ public abstract class Host : IDisposable
                 }
 
                 //Get the type reader
-                ITypeReadWriter typeRead = TypeReaderWriterManager.GetType(parameter.ParameterTypeName);
+                ITypeReadWriter typeRead = TypeReaderWriterManager.GetType(parameter.TypeInfo.TypeName);
                 if (typeRead == null)
                 {
                     WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
                     Logger.Error(
-                        $"The client sent a method with a parameter type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
+                        $"The client sent a method with a parameter type of '{parameter.TypeInfo.TypeName}' of which I don't have a type reader for some reason!");
                     return;
                 }
 
                 try
                 {
-                    parameters[i] = typeRead.Read(reader);
+                    parameters[i] = TypeReaderWriterManager.Read(reader, typeRead, parameter.TypeInfo);
                 }
                 catch (Exception ex)
                 {
                     WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
                         ex.InnerException?.StackTrace);
-                    Logger.Warn("Client sent invalid parameter data.");
+                    Logger.Error($"Error reading parameter! {ex}");
                     return;
                 }
             }
@@ -352,24 +352,24 @@ public abstract class Host : IDisposable
             //If the method doesn't return void, write it back
             if (!method.IsReturnVoid)
             {
-                ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(method.ReturnTypeName);
+                ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(method.ReturnType.TypeName);
                 if (typeWriter == null)
                 {
                     WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
                     Logger.Error(
-                        $"The client sent a method with a return type of '{method.ReturnTypeName}' of which I don't have a type reader for some reason!");
+                        $"The client sent a method with a return type of '{method.ReturnType.TypeName}' of which I don't have a type reader for some reason!");
                     return;
                 }
 
                 try
                 {
-                    typeWriter.Write(writer, methodReturn);
+                    TypeReaderWriterManager.Write(writer, typeWriter, method.ReturnType, methodReturn);
                 }
                 catch (Exception ex)
                 {
                     WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
                         ex.InnerException?.StackTrace);
-                    Logger.Error($"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
+                    Logger.Error($"Parsing return type of '{method.ReturnType.TypeName}' failed for some reason! {ex}");
                     return;
                 }
             }
@@ -382,25 +382,25 @@ public abstract class Host : IDisposable
                     if (!parameter.IsOut && !parameter.IsRef)
                         continue;
 
-                    ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameter.ParameterTypeName);
+                    ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameter.TypeInfo.TypeName);
                     if (typeWriter == null)
                     {
                         WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
                         Logger.Error(
-                            $"The client sent a method with a parameter ref/out type of '{parameter.ParameterTypeName}' of which I don't have a type reader for some reason!");
+                            $"The client sent a method with a parameter ref/out type of '{parameter.TypeInfo.TypeName}' of which I don't have a type reader for some reason!");
                         return;
                     }
 
                     try
                     {
-                        typeWriter.Write(writer, parameters[i]);
+                        TypeReaderWriterManager.Write(writer, typeWriter, parameter.TypeInfo, parameters[i]);
                     }
                     catch (Exception ex)
                     {
                         WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
                             ex.InnerException?.StackTrace);
                         Logger.Error(
-                            $"Parsing return type of '{method.ReturnTypeName}' failed for some reason! {ex}");
+                            $"Parsing return type of '{parameter.TypeInfo.TypeName}' failed for some reason! {ex}");
                         return;
                     }
                 }

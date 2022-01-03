@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VoltRpc.IO;
 using VoltRpc.Types.TypeReaderWriters;
 
 namespace VoltRpc.Types;
@@ -16,33 +17,19 @@ public class TypeReaderWriterManager
         new()
         {
             [typeof(bool)] = new BoolReadWriter(),
-            [typeof(bool[])] = new BoolArrayReadWriter(),
             [typeof(byte)] = new ByteReadWriter(),
-            [typeof(byte[])] = new ByteArrayReadWriter(),
             [typeof(char)] = new CharReadWriter(),
-            [typeof(char[])] = new CharArrayReadWriter(),
             [typeof(decimal)] = new DecimalReadWriter(),
-            [typeof(decimal[])] = new DecimalReadWriter(),
             [typeof(double)] = new DoubleReadWriter(),
-            [typeof(double[])] = new DoubleArrayReadWriter(),
             [typeof(float)] = new FloatReadWriter(),
-            [typeof(float[])] = new FloatArrayReadWriter(),
             [typeof(int)] = new IntReadWriter(),
-            [typeof(int[])] = new IntArrayReadWriter(),
             [typeof(long)] = new LongReadWriter(),
-            [typeof(long[])] = new LongArrayReadWriter(),
             [typeof(sbyte)] = new SByteReadWriter(),
-            [typeof(sbyte[])] = new SByteArrayReadWriter(),
             [typeof(short)] = new ShortReadWriter(),
-            [typeof(short[])] = new ShortArrayReadWriter(),
             [typeof(string)] = new StringReadWriter(),
-            [typeof(string[])] = new StringArrayReadWriter(),
             [typeof(uint)] = new UIntReadWriter(),
-            [typeof(uint[])] = new UIntArrayReadWriter(),
             [typeof(ulong)] = new ULongReadWriter(),
-            [typeof(ulong[])] = new ULongArrayReadWriter(),
             [typeof(ushort)] = new UShortReadWriter(),
-            [typeof(ushort[])] = new UShortArrayReadWriter()
         };
 
     private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;
@@ -81,9 +68,10 @@ public class TypeReaderWriterManager
     /// </summary>
     /// <param name="type">The <see cref="System.Type" /> to add</param>
     /// <param name="typeReadWriter">The <see cref="ITypeReadWriter" /> for <see cref="System.Type" /></param>
+    /// <exception cref="NullReferenceException">Thrown if the type is an array, and the base type is null.</exception>
     public void AddType(Type type, ITypeReadWriter typeReadWriter)
     {
-        AddType(type.FullName, typeReadWriter);
+        AddType(type.GetTypeName(), typeReadWriter);
     }
 
     /// <summary>
@@ -94,18 +82,16 @@ public class TypeReaderWriterManager
     /// </summary>
     /// <param name="typeFullName">The <see cref="System.Type" /> full name to add</param>
     /// <param name="typeReadWriter">The <see cref="ITypeReadWriter" /> for <see cref="System.Type" /></param>
-    public void AddType(string typeFullName, ITypeReadWriter typeReadWriter)
+    private void AddType(string typeFullName, ITypeReadWriter typeReadWriter)
     {
         //If it exists already then replace it
         if (typeReadersWriters.ContainsKey(typeFullName))
         {
             typeReadersWriters[typeFullName] = typeReadWriter;
-            typeReadersWriters[$"{typeFullName}&"] = typeReadWriter;
             return;
         }
 
         typeReadersWriters.Add(typeFullName, typeReadWriter);
-        typeReadersWriters.Add($"{typeFullName}&", typeReadWriter);
     }
 
     /// <summary>
@@ -136,5 +122,49 @@ public class TypeReaderWriterManager
     public ITypeReadWriter GetType<T>()
     {
         return GetType(typeof(T));
+    }
+
+    internal static object Read(BufferedReader reader, ITypeReadWriter readWriter, VoltTypeInfo type)
+    {
+        if (type.IsArray)
+        {
+            //Read size
+            int size = reader.ReadInt();
+
+            //Create array
+            Array array = Array.CreateInstance(type.BaseType, size);
+            for (int i = 0; i < size; i++)
+            {
+                array.SetValue(readWriter.Read(reader), i);
+            }
+
+            return array;
+        }
+
+        return readWriter.Read(reader);
+    }
+    
+    internal static void Write(BufferedWriter writer, ITypeReadWriter readWriter, VoltTypeInfo type, object value)
+    {
+        //If it is an array, write the size first
+        if (type.IsArray)
+        {
+            Array array = (Array) value;
+
+            int length = array.Length;
+            writer.WriteInt(array.Length);
+            
+            if(length <= 0)
+                return;
+
+            for (int i = 0; i < length; i++)
+            {
+                object obj = array.GetValue(i);
+                readWriter.Write(writer, obj);
+            }
+            return;
+        }
+        
+        readWriter.Write(writer, value);
     }
 }
