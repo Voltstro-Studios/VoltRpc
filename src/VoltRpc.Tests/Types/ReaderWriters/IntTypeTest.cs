@@ -11,18 +11,4 @@ public class IntTypeTest
         const int test = 73;
         Utils.TestTypeReaderWriter(new IntReadWriter(), test);
     }
-
-    [Test]
-    public void IntArrayTest()
-    {
-        int[] messages = {73, 23};
-        Utils.TestTypeReaderWriter(new IntArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void IntNullArrayTest()
-    {
-        int[] messages = null;
-        Utils.TestTypeReaderWriter(new IntArrayReadWriter(), messages);
-    }
 }

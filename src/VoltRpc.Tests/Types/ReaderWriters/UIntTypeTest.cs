@@ -11,18 +11,4 @@ public class UIntTypeTest
         const uint test = 73;
         Utils.TestTypeReaderWriter(new UIntReadWriter(), test);
     }
-
-    [Test]
-    public void UIntArrayTest()
-    {
-        uint[] messages = {73, 23};
-        Utils.TestTypeReaderWriter(new UIntArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void UIntNullArrayTest()
-    {
-        uint[] messages = null;
-        Utils.TestTypeReaderWriter(new UIntArrayReadWriter(), messages);
-    }
 }

@@ -11,18 +11,4 @@ public class LongTypeTest
         const long test = long.MaxValue;
         Utils.TestTypeReaderWriter(new LongReadWriter(), test);
     }
-
-    [Test]
-    public void LongArrayTest()
-    {
-        long[] messages = {long.MaxValue, 80};
-        Utils.TestTypeReaderWriter(new LongArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void LongNullArrayTest()
-    {
-        long[] messages = null;
-        Utils.TestTypeReaderWriter(new LongArrayReadWriter(), messages);
-    }
 }

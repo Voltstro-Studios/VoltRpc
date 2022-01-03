@@ -11,18 +11,4 @@ public class ShortTypeTest
         const short test = short.MaxValue;
         Utils.TestTypeReaderWriter(new ShortReadWriter(), test);
     }
-
-    [Test]
-    public void ShortArrayTest()
-    {
-        short[] messages = {sbyte.MaxValue, 123};
-        Utils.TestTypeReaderWriter(new ShortArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void ShortNullArrayTest()
-    {
-        short[] messages = null;
-        Utils.TestTypeReaderWriter(new ShortArrayReadWriter(), messages);
-    }
 }

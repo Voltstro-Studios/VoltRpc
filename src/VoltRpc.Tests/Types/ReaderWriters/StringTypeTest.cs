@@ -18,18 +18,4 @@ public class StringTypeTest
         const string test = null;
         Utils.TestTypeReaderWriter(new StringReadWriter(), test);
     }
-
-    [Test]
-    public void StringArrayTest()
-    {
-        string[] messages = {"Hello World!", "Rowan Suxs"};
-        Utils.TestTypeReaderWriter(new StringArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void StringNullArrayTest()
-    {
-        string[] messages = null;
-        Utils.TestTypeReaderWriter(new StringArrayReadWriter(), messages);
-    }
 }

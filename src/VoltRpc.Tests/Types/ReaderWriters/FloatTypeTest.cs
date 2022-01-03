@@ -11,18 +11,4 @@ public class FloatTypeTest
         const float test = 80.93f;
         Utils.TestTypeReaderWriter(new FloatReadWriter(), test);
     }
-
-    [Test]
-    public void FloatArrayTest()
-    {
-        float[] messages = {80.93f, 4.289f};
-        Utils.TestTypeReaderWriter(new FloatArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void FloatNullArrayTest()
-    {
-        float[] messages = null;
-        Utils.TestTypeReaderWriter(new FloatArrayReadWriter(), messages);
-    }
 }

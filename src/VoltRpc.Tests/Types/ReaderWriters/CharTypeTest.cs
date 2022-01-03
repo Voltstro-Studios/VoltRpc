@@ -11,18 +11,4 @@ public class CharTypeTest
         const char test = 'g';
         Utils.TestTypeReaderWriter(new CharReadWriter(), test);
     }
-
-    [Test]
-    public void CharArrayTest()
-    {
-        char[] messages = {'g', 'L'};
-        Utils.TestTypeReaderWriter(new CharArrayReadWriter(), messages);
-    }
-
-    [Test]
-    public void CharNullArrayTest()
-    {
-        char[] messages = null;
-        Utils.TestTypeReaderWriter(new CharArrayReadWriter(), messages);
-    }
 }
