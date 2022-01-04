@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using VoltRpc.Services;
-using VoltRpc.Tests.Services.TestObjects;
+using VoltRpc.Tests.TestObjects.Interfaces;
 
 namespace VoltRpc.Tests.Services;
 
@@ -13,7 +13,7 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IBasicInterface.Basic", true, 0, 0);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic", true, 0, 0);
     }
 
     [Test]
@@ -24,11 +24,11 @@ public class ServiceHelperTests
 
         //Method 1
         ServiceMethod method1 = methods[0];
-        CheckMethod(method1, "VoltRpc.Tests.Services.TestObjects.IBasicMultipleInterface.Basic1", true, 0, 0);
+        CheckMethod(method1, "VoltRpc.Tests.TestObjects.Interfaces.IBasicMultipleInterface.Basic1", true, 0, 0);
 
         //Method 2
         ServiceMethod method2 = methods[1];
-        CheckMethod(method2, "VoltRpc.Tests.Services.TestObjects.IBasicMultipleInterface.Basic2", true, 0, 0);
+        CheckMethod(method2, "VoltRpc.Tests.TestObjects.Interfaces.IBasicMultipleInterface.Basic2", true, 0, 0);
     }
 
     [Test]
@@ -38,8 +38,8 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IReturnInterface.ReturnBasic", false, 0, 0);
-        CheckReturn(method, "System.String", false);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IReturnInterface.ReturnBasic", false, 0, 0);
+        CheckReturn(method, "System.Int32", false);
     }
 
     [Test]
@@ -49,8 +49,8 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IReturnArrayInterface.ReturnArray", false, 0, 0);
-        CheckReturn(method, "System.String", true);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IReturnArrayInterface.ReturnArray", false, 0, 0);
+        CheckReturn(method, "System.Int32", true);
     }
 
     [Test]
@@ -60,8 +60,8 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IParameterBasicInterface.BasicParam", true, 0, 1);
-        CheckParameter(method.Parameters[0], "System.String", false, false, false);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IParameterBasicInterface.BasicParam", true, 0, 1);
+        CheckParameter(method.Parameters[0], "System.Int32", false, false, false);
     }
 
     [Test]
@@ -71,7 +71,7 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IParameterArrayInterface.ArrayParam", true, 0, 1);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IParameterArrayInterface.ArrayParam", true, 0, 1);
         CheckParameter(method.Parameters[0], "System.String", false, false, true);
     }
 
@@ -82,7 +82,7 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IRefBasicInterface.RefBasic", true, 1, 1);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IRefBasicInterface.RefBasic", true, 1, 1);
         CheckParameter(method.Parameters[0], "System.String", false, true, false);
     }
 
@@ -93,7 +93,7 @@ public class ServiceHelperTests
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
-        CheckMethod(method, "VoltRpc.Tests.Services.TestObjects.IRefArrayInterface.RefArray", true, 1, 1);
+        CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IRefArrayInterface.RefArray", true, 1, 1);
         CheckParameter(method.Parameters[0], "System.String", false, true, true);
     }
 

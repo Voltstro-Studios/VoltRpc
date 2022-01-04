@@ -1,4 +1,4 @@
-namespace VoltRpc.Tests.Services.TestObjects;
+namespace VoltRpc.Tests.TestObjects.Interfaces;
 
 public interface IRefArrayInterface
 {

@@ -191,7 +191,7 @@ public abstract class Client : IDisposable
 
         if (method == null)
             throw new MissingMethodException(
-                $"The interface that {methodName} is from needs to be added first with AddService!");
+                "That method does not exist on the client!");
 
         //Write the method name first
         writer.WriteByte((byte) MessageType.InvokeMethod);
@@ -207,7 +207,7 @@ public abstract class Client : IDisposable
         switch (response)
         {
             case MessageResponse.NoMethodFound:
-                throw new MissingMethodException("The method does not exist on the server!");
+                throw new MissingMethodException("That method does not exist on the host!");
             case MessageResponse.ExecuteFailNoTypeReader:
                 throw new NoTypeReaderWriterException();
             case MessageResponse.ExecuteTypeReadWriteFail:
