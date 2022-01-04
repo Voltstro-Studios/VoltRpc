@@ -25,7 +25,7 @@ public class TypeReaderWriterException : Exception
     /// <param name="stackTrace"></param>
     /// <param name="innerExceptionMessage"></param>
     /// <param name="innerStackTrace"></param>
-    public TypeReaderWriterException(string message, string stackTrace, string innerExceptionMessage,
+    internal TypeReaderWriterException(string message, string stackTrace, string innerExceptionMessage,
         string innerStackTrace)
         : base(message, new TypeReaderWriterException(innerExceptionMessage, innerStackTrace))
     {

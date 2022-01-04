@@ -14,7 +14,7 @@ public abstract class CommunicationTests
     public void ConnectionFailTest()
     {
         CreateClientAndHost(out Client client, out Host _);
-        Assert.Throws<ConnectionFailed>(() => client.Connect());
+        Assert.Throws<ConnectionFailedException>(() => client.Connect());
         
         client.Dispose();
         Assert.That(client.HasDisposed);

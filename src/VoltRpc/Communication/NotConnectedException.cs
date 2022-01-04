@@ -11,7 +11,7 @@ public class NotConnectedException : Exception
     ///     Create new <see cref="NotConnectedException" />
     /// </summary>
     /// <param name="message"></param>
-    public NotConnectedException(string message)
+    internal NotConnectedException(string message)
         : base(message)
     {
     }

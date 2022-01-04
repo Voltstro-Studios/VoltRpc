@@ -63,7 +63,7 @@ public sealed class PipesClient : Client
     }
 
     /// <inheritdoc />
-    /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
+    /// <exception cref="ConnectionFailedException">Thrown if an error occurs while connecting.</exception>
     public override void Connect()
     {
         CheckDispose();
@@ -71,7 +71,7 @@ public sealed class PipesClient : Client
         namedPipeClientStream.Connect(connectionTimeout);
 
         if (!namedPipeClientStream.IsConnected)
-            throw new ConnectionFailed("Failed to connect to a pipes host!");
+            throw new ConnectionFailedException("Failed to connect to a pipes host!");
 
         Initialize(namedPipeClientStream, namedPipeClientStream);
     }

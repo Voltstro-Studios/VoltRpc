@@ -25,7 +25,7 @@ public class MethodInvokeFailedException : Exception
     /// <param name="stackTrace"></param>
     /// <param name="innerExceptionMessage"></param>
     /// <param name="innerStackTrace"></param>
-    public MethodInvokeFailedException(string message, string stackTrace, string innerExceptionMessage,
+    internal MethodInvokeFailedException(string message, string stackTrace, string innerExceptionMessage,
         string innerStackTrace)
         : base(message, new MethodInvokeFailedException(innerExceptionMessage, innerStackTrace))
     {

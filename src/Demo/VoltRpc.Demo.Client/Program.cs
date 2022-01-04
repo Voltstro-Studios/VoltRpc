@@ -36,7 +36,7 @@ public static class Program
             Console.ReadKey();
             return;
         }
-        catch (ConnectionFailed)
+        catch (ConnectionFailedException)
         {
             Console.WriteLine("The client failed to connect for some unknown reason!");
             Console.WriteLine("Press any key to quit...");

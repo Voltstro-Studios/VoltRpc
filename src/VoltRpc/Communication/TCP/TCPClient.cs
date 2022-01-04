@@ -86,7 +86,7 @@ public sealed class TCPClient : Client
 
     /// <inheritdoc />
     /// <exception cref="TimeoutException">Thrown if a connection timeout occurs</exception>
-    /// <exception cref="ConnectionFailed">Thrown if an unknown error occurs while connecting.</exception>
+    /// <exception cref="ConnectionFailedException">Thrown if an unknown error occurs while connecting.</exception>
     public override void Connect()
     {
         CheckDispose();
@@ -98,7 +98,7 @@ public sealed class TCPClient : Client
         }
         catch (Exception ex)
         {
-            throw new ConnectionFailed("The TCP client failed to connect!", ex);
+            throw new ConnectionFailedException("The TCP client failed to connect!", ex);
         }
 
         clientStream = client.GetStream();

@@ -5,23 +5,23 @@ namespace VoltRpc.Communication;
 /// <summary>
 ///     An <see cref="Exception" /> related to a connection failing
 /// </summary>
-public class ConnectionFailed : Exception
+public class ConnectionFailedException : Exception
 {
     /// <summary>
-    ///     Creates a new <see cref="ConnectionFailed" /> instance
+    ///     Creates a new <see cref="ConnectionFailedException" /> instance
     /// </summary>
     /// <param name="message"></param>
-    public ConnectionFailed(string message)
+    public ConnectionFailedException(string message)
         : base(message)
     {
     }
 
     /// <summary>
-    ///     Creates a new <see cref="ConnectionFailed" /> instance
+    ///     Creates a new <see cref="ConnectionFailedException" /> instance
     /// </summary>
     /// <param name="message"></param>
     /// <param name="innerException"></param>
-    public ConnectionFailed(string message, Exception innerException)
+    public ConnectionFailedException(string message, Exception innerException)
         : base(message, innerException)
     {
     }
