@@ -6,7 +6,7 @@ namespace VoltRpc.Demo.Shared;
 public class CustomTypeReaderWriter : TypeReadWriter<CustomType>
 {
     public override void Write(BufferedWriter writer, CustomType obj)
-    { ;
+    {
         writer.WriteFloat(obj.Floaty);
         writer.WriteString(obj.Message);
     }

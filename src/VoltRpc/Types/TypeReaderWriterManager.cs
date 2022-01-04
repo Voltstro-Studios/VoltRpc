@@ -8,7 +8,7 @@ namespace VoltRpc.Types;
 /// <summary>
 ///     Manger for <see cref="ITypeReadWriter" />s
 /// </summary>
-public class TypeReaderWriterManager
+public sealed class TypeReaderWriterManager
 {
     /// <summary>
     ///     Default <see cref="ITypeReadWriter" /> to be added

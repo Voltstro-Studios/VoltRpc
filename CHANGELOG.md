@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - [Unreleased]
+
+### Added
+
+- Added better array support, arrays are handled internally and don't need a custom type reader/writer for it anymore
+- Added default type readers for `DateTime`, `TimeSpan` and `Uri`
+
+### Changed
+
+- Changed `ConnectionFailed` to `ConnectionFailedException`
+- Made some exception's constructors internal
+- Updated some exception messages
+- Made some methods in `TypeReaderWriterManager` internal
+- Made `TypeReaderWriterManager` sealed
+- Updated the way that type read/writers are implemented, they now need to inherit from `TypeReadWriter<T>` and override `Read` and `Write`. They Should look like this:
+
+```csharp
+using VoltRpc.IO;
+using VoltRpc.Types;
+
+public class CustomTypeReaderWriter : TypeReadWriter<CustomType>
+{
+    public override void Write(BufferedWriter writer, CustomType value)
+    {
+        //Write here
+    }
+
+    public override CustomType Read(BufferedReader reader)
+    {
+        return new CustomType();
+    }
+}
+```
+
+### Fixed
+
+- Fixed proxy generator not handling refs correctly
+
 ## [1.3.0] - 2021-12-30
 
 ### Changed
