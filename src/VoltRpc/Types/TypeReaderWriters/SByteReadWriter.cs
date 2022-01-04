@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class SByteReadWriter : ITypeReadWriter
+internal sealed class SByteReadWriter : TypeReadWriter<sbyte>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, sbyte obj)
     {
-        writer.WriteSByte((sbyte) obj);
+        writer.WriteSByte(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override sbyte Read(BufferedReader reader)
     {
         return reader.ReadSByte();
     }

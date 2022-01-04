@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class DoubleReadWriter : ITypeReadWriter
+internal sealed class DoubleReadWriter : TypeReadWriter<double>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, double obj)
     {
-        writer.WriteDouble((double) obj);
+        writer.WriteDouble(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override double Read(BufferedReader reader)
     {
         return reader.ReadDouble();
     }

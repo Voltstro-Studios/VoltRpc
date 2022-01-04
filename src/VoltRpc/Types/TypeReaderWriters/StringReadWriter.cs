@@ -2,20 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-/// <summary>
-///     <see cref="ITypeReadWriter" /> for <see cref="string" />
-/// </summary>
-internal sealed class StringReadWriter : ITypeReadWriter
+internal sealed class StringReadWriter : TypeReadWriter<string>
 {
-    /// <inheritdoc />
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, string obj)
     {
-        string stringObj = (string) obj;
-        writer.WriteString(stringObj);
+        writer.WriteString(obj);
     }
-
-    /// <inheritdoc />
-    public object Read(BufferedReader reader)
+    
+    public override string Read(BufferedReader reader)
     {
         return reader.ReadString();
     }

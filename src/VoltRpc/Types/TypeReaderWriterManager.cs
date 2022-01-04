@@ -48,14 +48,14 @@ public class TypeReaderWriterManager
     }
 
     /// <summary>
-    ///     Adds a <see cref="ITypeReadWriter" />
+    ///     Adds a <see cref="TypeReadWriter{T}" />
     ///     <para>
     ///         If the <see cref="System.Type" /> has already been added, it will be overriden
     ///     </para>
     /// </summary>
-    /// <param name="typeReadWriter">The <see cref="ITypeReadWriter" /> for T</param>
-    /// <typeparam name="T">The <see cref="System.Type" /> to add</typeparam>
-    public void AddType<T>(ITypeReadWriter typeReadWriter)
+    /// <param name="typeReadWriter">The <see cref="TypeReadWriter{T}"/> to add</param>
+    /// <typeparam name="T">The base <see cref="System.Type" /> to add</typeparam>
+    public void AddType<T>(TypeReadWriter<T> typeReadWriter)
     {
         AddType(typeof(T), typeReadWriter);
     }
@@ -69,7 +69,7 @@ public class TypeReaderWriterManager
     /// <param name="type">The <see cref="System.Type" /> to add</param>
     /// <param name="typeReadWriter">The <see cref="ITypeReadWriter" /> for <see cref="System.Type" /></param>
     /// <exception cref="NullReferenceException">Thrown if the type is an array, and the base type is null.</exception>
-    public void AddType(Type type, ITypeReadWriter typeReadWriter)
+    private void AddType(Type type, ITypeReadWriter typeReadWriter)
     {
         AddType(type.GetTypeName(), typeReadWriter);
     }
@@ -99,7 +99,7 @@ public class TypeReaderWriterManager
     /// </summary>
     /// <param name="typeFullName">The <see cref="System.Type" /> full name</param>
     /// <returns>Will return null if <see cref="ITypeReadWriter" /> hasn't been added for <see cref="System.Type" /></returns>
-    public ITypeReadWriter GetType(string typeFullName)
+    internal ITypeReadWriter GetType(string typeFullName)
     {
         return !typeReadersWriters.ContainsKey(typeFullName) ? null : typeReadersWriters[typeFullName];
     }
@@ -109,7 +109,7 @@ public class TypeReaderWriterManager
     /// </summary>
     /// <param name="type">The <see cref="System.Type" /> to get</param>
     /// <returns>Will return null if <see cref="ITypeReadWriter" /> hasn't been added for <see cref="System.Type" /></returns>
-    public ITypeReadWriter GetType(Type type)
+    internal ITypeReadWriter GetType(Type type)
     {
         return GetType(type.FullName);
     }
@@ -119,7 +119,7 @@ public class TypeReaderWriterManager
     /// </summary>
     /// <typeparam name="T">The <see cref="System.Type" /> to get</typeparam>
     /// <returns>Will return null if <see cref="ITypeReadWriter" /> hasn't been added for <see cref="System.Type" /></returns>
-    public ITypeReadWriter GetType<T>()
+    internal ITypeReadWriter GetType<T>()
     {
         return GetType(typeof(T));
     }

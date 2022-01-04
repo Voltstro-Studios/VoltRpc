@@ -3,16 +3,15 @@ using VoltRpc.Types;
 
 namespace VoltRpc.Demo.Shared;
 
-public class CustomTypeReaderWriter : ITypeReadWriter
+public class CustomTypeReaderWriter : TypeReadWriter<CustomType>
 {
-    public void Write(BufferedWriter writer, object obj)
-    {
-        CustomType customType = (CustomType) obj;
-        writer.WriteFloat(customType.Floaty);
-        writer.WriteString(customType.Message);
+    public override void Write(BufferedWriter writer, CustomType obj)
+    { ;
+        writer.WriteFloat(obj.Floaty);
+        writer.WriteString(obj.Message);
     }
 
-    public object Read(BufferedReader reader)
+    public override CustomType Read(BufferedReader reader)
     {
         return new CustomType
         {

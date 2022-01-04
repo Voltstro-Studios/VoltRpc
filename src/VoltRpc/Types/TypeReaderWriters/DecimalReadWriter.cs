@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class DecimalReadWriter : ITypeReadWriter
+internal sealed class DecimalReadWriter : TypeReadWriter<decimal>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, decimal obj)
     {
-        writer.WriteDecimal((decimal) obj);
+        writer.WriteDecimal(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override decimal Read(BufferedReader reader)
     {
         return reader.ReadDecimal();
     }

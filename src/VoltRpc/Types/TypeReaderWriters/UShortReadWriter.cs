@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class UShortReadWriter : ITypeReadWriter
+internal sealed class UShortReadWriter : TypeReadWriter<ushort>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, ushort obj)
     {
-        writer.WriteUShort((ushort) obj);
+        writer.WriteUShort(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override ushort Read(BufferedReader reader)
     {
         return reader.ReadUShort();
     }

@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class BoolReadWriter : ITypeReadWriter
+internal sealed class BoolReadWriter : TypeReadWriter<bool>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, bool obj)
     {
-        writer.WriteBool((bool) obj);
+        writer.WriteBool(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override bool Read(BufferedReader reader)
     {
         return reader.ReadBool();
     }

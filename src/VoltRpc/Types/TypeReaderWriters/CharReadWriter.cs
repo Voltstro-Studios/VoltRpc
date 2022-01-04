@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class CharReadWriter : ITypeReadWriter
+internal sealed class CharReadWriter : TypeReadWriter<char>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, char obj)
     {
-        writer.WriteChar((char) obj);
+        writer.WriteChar(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override char Read(BufferedReader reader)
     {
         return reader.ReadChar();
     }

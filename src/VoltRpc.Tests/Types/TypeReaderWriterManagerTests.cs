@@ -52,15 +52,15 @@ public class TypeReaderWriterManagerTests
         Assert.AreEqual(boolReadWriter, readWriter);
     }
 
-    private class CustomBool : ITypeReadWriter
+    private class CustomBool : TypeReadWriter<bool>
     {
-        public void Write(BufferedWriter writer, object obj)
+        public override void Write(BufferedWriter writer, bool obj)
         {
         }
 
-        public object Read(BufferedReader reader)
+        public override bool Read(BufferedReader reader)
         {
-            return null;
+            return false;
         }
     }
 }

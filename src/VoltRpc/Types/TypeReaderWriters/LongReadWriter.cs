@@ -2,14 +2,14 @@
 
 namespace VoltRpc.Types.TypeReaderWriters;
 
-internal sealed class LongReadWriter : ITypeReadWriter
+internal sealed class LongReadWriter : TypeReadWriter<long>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public override void Write(BufferedWriter writer, long obj)
     {
-        writer.WriteLong((long) obj);
+        writer.WriteLong(obj);
     }
 
-    public object Read(BufferedReader reader)
+    public override long Read(BufferedReader reader)
     {
         return reader.ReadLong();
     }
