@@ -13,7 +13,7 @@ public abstract class CommunicationTests
     [Test]
     public void ConnectionFailTest()
     {
-        CreateClientAndHost(out Client client, out Host host);
+        CreateClientAndHost(out Client client, out Host _);
         Assert.Throws<ConnectionFailed>(() => client.Connect());
         
         client.Dispose();
@@ -29,35 +29,27 @@ public abstract class CommunicationTests
         client.Connect();
         Assert.That(client.IsConnected);
         
-        client.Dispose();
-        host.Dispose();
-        
-        Assert.That(client.HasDisposed);
-        Assert.That(host.HasDisposed);
+        DisposeClientAndHost(client, host);
     }
 
     [Test]
-    public void MissingMethodClientTest()
+    public void MethodMissingClientTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         host.AddService<IBasicInterface>(new BasicExceptionObject());
         host.StartListening();
         
         client.Connect();
-        Assert.Throws<MissingMethodException>(() =>
-            client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic"), "That method does not exist on the client!");
-        
         Assert.That(client.IsConnected);
         
-        client.Dispose();
-        host.Dispose();
-        
-        Assert.That(client.HasDisposed);
-        Assert.That(host.HasDisposed);
+        Assert.Throws<MissingMethodException>(() =>
+            client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic"), "That method does not exist on the client!");
+
+        DisposeClientAndHost(client, host);
     }
     
     [Test]
-    public void MissingMethodHostTest()
+    public void MethodMissingHostTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IBasicInterface>();
@@ -65,16 +57,12 @@ public abstract class CommunicationTests
         host.StartListening();
         
         client.Connect();
-        Assert.Throws<MissingMethodException>(() =>
-            client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic"), "That method does not exist on the host!");
-        
         Assert.That(client.IsConnected);
         
-        client.Dispose();
-        host.Dispose();
-        
-        Assert.That(client.HasDisposed);
-        Assert.That(host.HasDisposed);
+        Assert.Throws<MissingMethodException>(() =>
+            client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic"), "That method does not exist on the host!");
+
+        DisposeClientAndHost(client, host);
     }
     
     [Test]
@@ -87,16 +75,12 @@ public abstract class CommunicationTests
         host.StartListening();
         
         client.Connect();
-        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic");
-        Assert.IsNull(returnedObject);
-        
         Assert.That(client.IsConnected);
         
-        client.Dispose();
-        host.Dispose();
-        
-        Assert.That(client.HasDisposed);
-        Assert.That(host.HasDisposed);
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic");
+        Assert.IsNull(returnedObject);
+
+        DisposeClientAndHost(client, host);
     }
     
     [Test]
@@ -109,16 +93,12 @@ public abstract class CommunicationTests
         host.StartListening();
         
         client.Connect();
+        Assert.That(client.IsConnected);
+        
         Assert.Throws<MethodInvokeFailedException>(() =>
             client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IBasicInterface.Basic"));
         
-        Assert.That(client.IsConnected);
-        
-        client.Dispose();
-        host.Dispose();
-        
-        Assert.That(client.HasDisposed);
-        Assert.That(host.HasDisposed);
+        DisposeClientAndHost(client, host);
     }
     
     [Test]
@@ -131,23 +111,17 @@ public abstract class CommunicationTests
         host.StartListening();
         
         client.Connect();
-        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IReturnInterface.ReturnBasic");
-        Assert.IsNotNull(returnedObject);
-        Assert.IsInstanceOf<object[]>(returnedObject);
-        int value = (int)((object[]) returnedObject)[0];
-        Assert.AreEqual(128, value);
-        
         Assert.That(client.IsConnected);
         
-        client.Dispose();
-        host.Dispose();
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IReturnInterface.ReturnBasic");
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 1);
+        Assert.AreEqual(128, returnedObjects[0]);
         
-        Assert.That(client.HasDisposed);
-        Assert.That(host.HasDisposed);
+        DisposeClientAndHost(client, host);
     }
     
     [Test]
-    public void BasicParameterTest()
+    public void ParameterTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IParameterBasicInterface>();
@@ -156,11 +130,147 @@ public abstract class CommunicationTests
         host.StartListening();
         
         client.Connect();
+        Assert.That(client.IsConnected);
+        
         object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IParameterBasicInterface.BasicParam", 128);
         Assert.IsNull(returnedObject);
 
+        
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ParameterRefTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IRefBasicInterface>();
+        
+        host.AddService<IRefBasicInterface>(new RefObject());
+        host.StartListening();
+        
+        client.Connect();
         Assert.That(client.IsConnected);
         
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IRefBasicInterface.RefBasic", 75);
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 1);
+        Assert.AreEqual(128, returnedObjects[0]);
+
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ParameterRefReturnTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IRefReturnInterface>();
+        
+        host.AddService<IRefReturnInterface>(new RefReturnObject());
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IRefReturnInterface.RefReturn", 75);
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 2);
+        
+        Assert.AreEqual(25, returnedObjects[0]);
+        Assert.AreEqual(128, returnedObjects[1]);
+
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ParameterOutTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IOutInterface>();
+        
+        host.AddService<IOutInterface>(new OutObject());
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IOutInterface.OutBasic");
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 1);
+        Assert.AreEqual(128, returnedObjects[0]);
+
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ParameterOutReturnTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IOutReturnInterface>();
+        
+        host.AddService<IOutReturnInterface>(new OutReturnObject());
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IOutReturnInterface.OutReturn");
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 2);
+        Assert.AreEqual(75, returnedObjects[0]);
+        Assert.AreEqual(128, returnedObjects[1]);
+
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ParameterRefOutTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IRefOutInterface>();
+        
+        host.AddService<IRefOutInterface>(new RefOutObject());
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IRefOutInterface.RefOutBasic", 128);
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 2);
+        Assert.AreEqual(75, returnedObjects[0]);
+        Assert.AreEqual(25, returnedObjects[1]);
+
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ParameterRefOutReturnTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IRefOutReturnInterface>();
+        
+        host.AddService<IRefOutReturnInterface>(new RefOutReturnObject());
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        object returnedObject = client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IRefOutReturnInterface.RefOutReturn", 128);
+        object[] returnedObjects = GetReturnedObjects(returnedObject, 3);
+        Assert.AreEqual(16, returnedObjects[0]);
+        Assert.AreEqual(75, returnedObjects[1]);
+        Assert.AreEqual(25, returnedObjects[2]);
+
+        DisposeClientAndHost(client, host);
+    }
+
+    private static object[] GetReturnedObjects(object returnedObject, int expectedLenght)
+    {
+        Assert.IsNotNull(returnedObject);
+        Assert.IsInstanceOf<object[]>(returnedObject);
+        object[] returnedObjects = (object[]) returnedObject;
+        Assert.AreEqual(expectedLenght, returnedObjects.Length);
+
+        return returnedObjects;
+    }
+
+    private static void DisposeClientAndHost(Client client, Host host)
+    {
         client.Dispose();
         host.Dispose();
         

@@ -83,7 +83,7 @@ public class ServiceHelperTests
 
         ServiceMethod method = methods[0];
         CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IRefBasicInterface.RefBasic", true, 1, 1);
-        CheckParameter(method.Parameters[0], "System.String", false, true, false);
+        CheckParameter(method.Parameters[0], "System.Int32", false, true, false);
     }
 
     [Test]
