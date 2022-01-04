@@ -29,7 +29,10 @@ public class TypeReaderWriterManager
             [typeof(string)] = new StringReadWriter(),
             [typeof(uint)] = new UIntReadWriter(),
             [typeof(ulong)] = new ULongReadWriter(),
-            [typeof(ushort)] = new UShortReadWriter()
+            [typeof(ushort)] = new UShortReadWriter(),
+            [typeof(Uri)] = new UriReadWriter(),
+            [typeof(DateTime)] = new DateTimeReadWriter(),
+            [typeof(TimeSpan)] = new TimeSpanReadWriter()
         };
 
     private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;
