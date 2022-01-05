@@ -28,8 +28,4 @@
         <DocumentationFile>bin\Release\$(TargetFramework)\VoltRpc.xml</DocumentationFile>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Proxy" />
-    </ItemGroup>
-
 </Project>

@@ -20,10 +20,6 @@ public class ProxyGenerator : ISourceGenerator
 {
     public void Initialize(GeneratorInitializationContext context)
     {
-        //Register the attribute source
-        context.RegisterForPostInitialization(i => i.AddSource("GenerateProxyAttribute",
-            ProxyCodeTemplates.GenerateProxyAttributeCode));
-
         //Register Syntax receiver
         context.RegisterForSyntaxNotifications(() => new ProxySyntaxReceiver());
     }
@@ -75,10 +71,17 @@ public class ProxyGenerator : ISourceGenerator
         string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
         string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
 
+        //Check if their is specified name
         TypedConstant overrideName = generateProxyData.NamedArguments
             .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideName).Value;
         if (!overrideName.IsNull)
             interfaceProxyName = overrideName.Value?.ToString();
+
+        string proxyNamespace = ProxyCodeTemplates.GenerateProxyGeneratedDefaultNameSpace;
+        TypedConstant overrideNamespace = generateProxyData.NamedArguments
+            .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideNamespace).Value;
+        if (!overrideNamespace.IsNull)
+            proxyNamespace = overrideNamespace.Value?.ToString();
 
         //Create all of the methods
         List<Method> generatedMethods = new();
@@ -101,7 +104,7 @@ public class ProxyGenerator : ISourceGenerator
         }
 
         methods = string.Join("\n", splitMethods);
-        string code = string.Format(ProxyCodeTemplates.ProxyCodeTemplate, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", methods);
+        string code = string.Format(ProxyCodeTemplates.ProxyCodeTemplate, proxyNamespace, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", methods);
 
         //Add the source
         context.AddSource(interfaceProxyName, code);
