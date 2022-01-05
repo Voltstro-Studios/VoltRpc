@@ -10,12 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added better array support, arrays are handled internally and don't need a custom type reader/writer for it anymore
 - Added default type readers for `DateTime`, `TimeSpan` and `Uri`
+- Added the ability to change a generated proxy's namespace
 
 ### Changed
 
 - Changed `ConnectionFailed` to `ConnectionFailedException`
 - Made some exception's constructors internal
 - Updated some exception messages
+- Moved `GenerateProxyAttribute` to the base VoltRpc assembly (instead of it being generated)
+- Proxy generator no longer uses Scriban anymore
+- Generated proxies are marked with a `GeneratedCode` attribute
 - Made some methods in `TypeReaderWriterManager` internal
 - Made `TypeReaderWriterManager` sealed
 - Updated the way that type read/writers are implemented, they now need to inherit from `TypeReadWriter<T>` and override `Read` and `Write`. They Should look like this:
