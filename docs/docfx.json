@@ -37,8 +37,20 @@
         "files": [
           "articles/**.md",
           "articles/**/toc.yml",
+          "license/**/toc.yml",
           "toc.yml",
-          "*.md"
+          "*.md",
+          "LICENSE.md"
+        ],
+        "exclude": [
+          "README.md"
+        ]
+      },
+      {
+        "src": "../",
+        "files": [
+          "LICENSE.md",
+          "CHANGELOG.md"
         ]
       }
     ],

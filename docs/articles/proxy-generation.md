@@ -19,7 +19,7 @@ Install-Package VoltRpc.Proxy.Generator
 
 ## Usage
 
-The generator will generate proxies for any `interface` marked with an `GenerateProxy` attribute. By default the generator will generate classes with the name `<InterfaceName>_GeneratedProxy`. To override this, use the `GeneratedName` to set what the name will be.
+The generator will generate proxies for any `interface` marked with an `GenerateProxy` attribute. By default the generator will generate classes with the name `<InterfaceName>_GeneratedProxy` and with the namespace `VoltRpc.Proxy.Generated`. To override both of these, use the `GeneratedName` to set what the name should be, and `GeneratedNamespace` to set what the namespace should be.
 
 For example:
 ```csharp
@@ -27,7 +27,7 @@ using VoltRpc.Proxy;
 
 namespace VoltRpcExample.Shared
 {
-    [GenerateProxy(GeneratedName = "TestProxy")]
+    [GenerateProxy(GeneratedName = "TestProxy", GeneratedNamespace = "VoltRpcExample.Shared")]
     public interface ITest
     {
         public void Basic();
@@ -37,4 +37,4 @@ namespace VoltRpcExample.Shared
 }
 ```
 
-This would generate the proxy with the name `TestProxy`.
+This would generate the proxy with the name `TestProxy`, with the namespace `VoltRpcExample.Shared`.

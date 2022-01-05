@@ -12,16 +12,19 @@ The default provided types include:
 - [`Long`](xref:System.Int64)
 - [`SByte`](xref:System.SByte)
 - [`Short`](xref:System.Int16)
-- [`String`](xref:System.String)
 - [`UInt`](xref:System.UInt32)
 - [`ULong`](xref:System.UInt64)
 - [`UShort`](xref:System.UInt16)
-    - Array types of above listed
-    - Null support for any type that can be null
+- [`String`](xref:System.String)
+- [`DateTime`](xref:System.DateTime)
+- [`TimeSpan`](xref:System.TimeSpan)
+- [`Uri`](xref:System.Uri)
+
+VoltRpc will automatically handle arrays for any type.
 
 # Custom Types
 
-Custom types can be implemented using a <xref:VoltRpc.Types.ITypeReadWriter>.
+Custom types can be implemented using a <xref:VoltRpc.Types.TypeReadWriter`1>.
 
 For this example we will be using a custom `CustomType` that looks like this:
 
@@ -34,22 +37,21 @@ public struct CustomType
 }
 ```
 
-To create a <xref:VoltRpc.Types.ITypeReadWriter> for `CustomType`, you would do:
+To create a <xref:VoltRpc.Types.TypeReadWriter`1> for `CustomType`, you would do:
 
 ```csharp
 using VoltRpc.IO;
 using VoltRpc.Types;
 
-public class CustomTypeReadWriter : ITypeReadWriter
+public class CustomTypeReadWriter : TypeReadWriter<CustomType>
 {
-    public void Write(BufferedWriter writer, object obj)
+    public void Write(BufferedWriter writer, CustomType customType)
     {
-        CustomType customType = (CustomType) obj;
         writer.WriteInt(customType.UserId);
         writer.WriteString(customType.Message);
     }
 
-    public object Read(BufferedReader reader)
+    public CustomType Read(BufferedReader reader)
     {
         return new CustomType
         {

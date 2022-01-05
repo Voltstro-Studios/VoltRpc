@@ -25,7 +25,6 @@ VoltRpc - Library designed for high performance RPC communication.
     - `Long`
     - `SByte`
     - `Short`
-    - `String`
     - `UInt`
     - `ULong`
     - `UShort`
