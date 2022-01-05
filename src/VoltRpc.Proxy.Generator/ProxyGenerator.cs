@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Scriban;
 using VoltRpc.Proxy.Generator.Entities;
 
 namespace VoltRpc.Proxy.Generator;
@@ -72,8 +72,8 @@ public class ProxyGenerator : ISourceGenerator
             return;
 
         string interfaceName = $"{interfaceDeclaration.Identifier.ValueText}";
-        string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
         string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
+        string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
 
         TypedConstant overrideName = generateProxyData.NamedArguments
             .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideName).Value;
@@ -92,13 +92,16 @@ public class ProxyGenerator : ISourceGenerator
                 generatedMethods.Add(CreateMethod(model, methodDeclarationSyntax, interfaceNamespace, interfaceName));
         }
 
-        //Generate the code it self
-        string code = Template.Parse(ProxyCodeTemplates.ProxyCodeTemplate).Render(new
+        //Do some cleanup with the methods
+        string methods = string.Join("\n\n", generatedMethods);
+        string[] splitMethods = methods.Split(new []{"\n"}, StringSplitOptions.None);
+        for (int i = 0; i < splitMethods.Length; i++)
         {
-            classname = interfaceProxyName,
-            inheritedtnterface = $"{interfaceNamespace}.{interfaceName}",
-            methods = generatedMethods
-        });
+            splitMethods[i] = "\t\t" + splitMethods[i];
+        }
+
+        methods = string.Join("\n", splitMethods);
+        string code = string.Format(ProxyCodeTemplates.ProxyCodeTemplate, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", methods);
 
         //Add the source
         context.AddSource(interfaceProxyName, code);
@@ -126,38 +129,24 @@ public class ProxyGenerator : ISourceGenerator
         for (int i = 0; i < parametersCount; i++)
         {
             IParameterSymbol symbol = methodSymbol.Parameters[i];
-            Argument argument = new()
-            {
-                name = symbol.Name,
-                type = symbol.Type.ToString()
-            };
 
+            bool isRef = false;
+            bool isOut = false;
             switch (symbol.RefKind)
             {
                 case RefKind.Ref:
-                    argument.isref = true;
+                    isRef = true;
                     break;
                 case RefKind.Out:
-                    argument.isout = true;
+                    isOut = true;
                     break;
             }
 
-            if (i + 1 != parametersCount)
-                argument.trailing = ", ";
-
+            Argument argument = new(symbol.Name, symbol.Type.ToString(), symbol.Type is IArrayTypeSymbol, isRef, isOut);
             arguments.Add(argument);
         }
 
-        Method method = new()
-        {
-            name = methodSyntax.Identifier.ValueText,
-            returntype = methodSymbol.ReturnType.ToString(),
-            arguments = arguments,
-            returnsvoid = methodSymbol.ReturnsVoid,
-            anyarrays = methodSymbol.Parameters.Any(x => x.Type is IArrayTypeSymbol),
-            interfacename = interfaceName,
-            interfacenamespace = interfaceNamespace
-        };
+        Method method = new($"{interfaceNamespace}.{interfaceName}", methodSyntax.Identifier.ValueText, methodSymbol.ReturnsVoid ? null : methodSymbol.ReturnType.ToString(), arguments);
 
         return method;
     }
