@@ -10,7 +10,7 @@
         <Description>VoltRpc.Proxy.Generator - Proxy Source Generator for VoltRpc.</Description>
         <LangVersion>10</LangVersion>
         <Version>2.0.0</Version>
-        <PackageVersion>2.0.0</PackageVersion>
+        <PackageVersion>2.0.1</PackageVersion>
         <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <IncludeBuildOutput>false</IncludeBuildOutput>
     </PropertyGroup>
@@ -26,6 +26,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
     
 </Project>
