@@ -9,7 +9,6 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <LangVersion>10</LangVersion>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
     
     <ItemGroup>
