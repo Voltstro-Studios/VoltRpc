@@ -92,6 +92,34 @@
       <div class="level2"><a class="xref" href="VoltRpc.Communication.Pipes.PipesClient.html">PipesClient</a></div>
       <div class="level2"><a class="xref" href="VoltRpc.Communication.TCP.TCPClient.html">TCPClient</a></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="VoltRpc.Communication.html">VoltRpc.Communication</a></h6>
   <h6><strong>Assembly</strong>: VoltRpc.dll</h6>
   <h5 id="VoltRpc_Communication_Client_syntax">Syntax</h5>
@@ -114,7 +142,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Client(int bufferSize = null)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Client(int bufferSize = 8000)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -134,6 +162,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Will throw if the buffer size is less then 16</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
@@ -149,7 +193,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const int DefaultBufferSize = null</code></pre>
+    <pre><code class="lang-csharp hljs">public const int DefaultBufferSize = 8000</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -173,7 +217,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_HasDisposed.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.HasDisposed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L296">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L298">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_HasDisposed_" data-uid="VoltRpc.Communication.Client.HasDisposed*"></a>
   <h4 id="VoltRpc_Communication_Client_HasDisposed" data-uid="VoltRpc.Communication.Client.HasDisposed">HasDisposed</h4>
@@ -265,13 +309,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_AddService_Type_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.AddService(Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_AddService_System_Type_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.AddService(System.Type)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L92">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L89">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_AddService_" data-uid="VoltRpc.Communication.Client.AddService*"></a>
-  <h4 id="VoltRpc_Communication_Client_AddService_Type_" data-uid="VoltRpc.Communication.Client.AddService(Type)">AddService(Type)</h4>
+  <h4 id="VoltRpc_Communication_Client_AddService_System_Type_" data-uid="VoltRpc.Communication.Client.AddService(System.Type)">AddService(Type)</h4>
   <div class="markdown level1 summary"><p>Tells the <a class="xref" href="VoltRpc.Communication.Client.html">Client</a> what interfaces you might be using</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -290,9 +334,31 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Type</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">interfaceType</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullreferenceexception">NullReferenceException</a></td>
+        <td><p>Thrown if interfaceType's <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.type.fullname#System_Type_FullName">FullName</a> is null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Thrown if interfaceType is not an interface, or has already been added as
+a service.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -301,7 +367,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_AddService__1.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.AddService%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L72">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L70">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_AddService_" data-uid="VoltRpc.Communication.Client.AddService*"></a>
   <h4 id="VoltRpc_Communication_Client_AddService__1" data-uid="VoltRpc.Communication.Client.AddService``1">AddService&lt;T&gt;()</h4>
@@ -329,12 +395,33 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullreferenceexception">NullReferenceException</a></td>
+        <td><p>Thrown if T's <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.type.fullname#System_Type_FullName">FullName</a> is null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Thrown if T is not an interface, or has already been added as a service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_CheckDispose.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.CheckDispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L306">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L304">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_CheckDispose_" data-uid="VoltRpc.Communication.Client.CheckDispose*"></a>
   <h4 id="VoltRpc_Communication_Client_CheckDispose" data-uid="VoltRpc.Communication.Client.CheckDispose">CheckDispose()</h4>
@@ -345,6 +432,21 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected void CheckDispose()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_Connect.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.Connect%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -366,7 +468,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_Dispose.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L327">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L325">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_Dispose_" data-uid="VoltRpc.Communication.Client.Dispose*"></a>
   <h4 id="VoltRpc_Communication_Client_Dispose" data-uid="VoltRpc.Communication.Client.Dispose">Dispose()</h4>
@@ -382,7 +484,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_Finalize.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L319">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L317">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_Finalize_" data-uid="VoltRpc.Communication.Client.Finalize*"></a>
   <h4 id="VoltRpc_Communication_Client_Finalize" data-uid="VoltRpc.Communication.Client.Finalize">Finalize()</h4>
@@ -399,13 +501,13 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_Initialize_Stream_Stream_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.Initialize(Stream%2CStream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_Initialize_System_IO_Stream_System_IO_Stream_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.Initialize(System.IO.Stream%2CSystem.IO.Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L118">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L119">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_Initialize_" data-uid="VoltRpc.Communication.Client.Initialize*"></a>
-  <h4 id="VoltRpc_Communication_Client_Initialize_Stream_Stream_" data-uid="VoltRpc.Communication.Client.Initialize(Stream,Stream)">Initialize(Stream, Stream)</h4>
+  <h4 id="VoltRpc_Communication_Client_Initialize_System_IO_Stream_System_IO_Stream_" data-uid="VoltRpc.Communication.Client.Initialize(System.IO.Stream,System.IO.Stream)">Initialize(Stream, Stream)</h4>
   <div class="markdown level1 summary"><p>Initialize streams</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -424,15 +526,36 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Stream</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
         <td><span class="parametername">readStream</span></td>
-        <td><p>The <see cref="!:Stream"></see> to read from</p>
+        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a> to read from</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Stream</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
         <td><span class="parametername">writeStream</span></td>
-        <td><p>The <see cref="!:Stream"></see> to write to</p>
+        <td><p>The <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.io.stream">Stream</a> to write to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown if either provided stream is null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>Thrown if we can't read or write to the respected streams</p>
 </td>
       </tr>
     </tbody>
@@ -442,7 +565,7 @@
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_Initialize_VoltRpc_IO_BufferedReader_VoltRpc_IO_BufferedWriter_.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.Initialize(VoltRpc.IO.BufferedReader%2CVoltRpc.IO.BufferedWriter)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L141">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L142">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_Initialize_" data-uid="VoltRpc.Communication.Client.Initialize*"></a>
   <h4 id="VoltRpc_Communication_Client_Initialize_VoltRpc_IO_BufferedReader_VoltRpc_IO_BufferedWriter_" data-uid="VoltRpc.Communication.Client.Initialize(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)">Initialize(BufferedReader, BufferedWriter)</h4>
@@ -477,12 +600,28 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown if either provided buffers is null</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_Communication_Client_InvokeMethod_System_String_System_Object___.md&amp;value=---%0Auid%3A%20VoltRpc.Communication.Client.InvokeMethod(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L168">View Source</a>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/Communication/Client.cs/#L169">View Source</a>
   </span>
   <a id="VoltRpc_Communication_Client_InvokeMethod_" data-uid="VoltRpc.Communication.Client.InvokeMethod*"></a>
   <h4 id="VoltRpc_Communication_Client_InvokeMethod_System_String_System_Object___" data-uid="VoltRpc.Communication.Client.InvokeMethod(System.String,System.Object[])">InvokeMethod(String, Object[])</h4>
@@ -547,8 +686,13 @@
 </td>
       </tr>
       <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.missingmethodexception">MissingMethodException</a></td>
+        <td><p>Thrown if the method name doesn't exist on either the client or host</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="VoltRpc.Types.NoTypeReaderWriterException.html">NoTypeReaderWriterException</a></td>
-        <td><p>Thrown if the return type or parameter types doesn't have a <a class="xref" href="VoltRpc.Types.ITypeReadWriter.html">ITypeReadWriter</a></p>
+        <td><p>Thrown if the return type or parameter types doesn't have a <span class="xref">VoltRpc.Types.ITypeReadWriter</span></p>
 </td>
       </tr>
       <tr>
@@ -558,11 +702,15 @@
       </tr>
       <tr>
         <td><a class="xref" href="VoltRpc.Communication.MethodInvokeFailedException.html">MethodInvokeFailedException</a></td>
-        <td><p>Thrown if an <see cref="!:Exception"></see> occurs while invoking a method on the host</p>
+        <td><p>Thrown if an <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a> occurs while invoking a method on the host</p>
 </td>
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
 </article>
           </div>
           
@@ -609,7 +757,7 @@
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-              Voltstro-Studios (c) 2021
+              Voltstro-Studios (c) 2021-2022
               
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">

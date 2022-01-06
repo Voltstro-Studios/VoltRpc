@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Changelog | VoltRpc Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Changelog | VoltRpc Documentation ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="changelog">Changelog</h1>
+
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<h2 id="200---2022-01-06">[2.0.0] - [2022-01-06]</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>Added better array support, arrays are handled internally and don't need a custom type reader/writer for it anymore</li>
+<li>Added default type readers for <code>DateTime</code>, <code>TimeSpan</code> and <code>Uri</code></li>
+<li>Added the ability to change a generated proxy's namespace</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>Changed <code>ConnectionFailed</code> to <code>ConnectionFailedException</code></li>
+<li>Made some exception's constructors internal</li>
+<li>Updated some exception messages</li>
+<li>Moved <code>GenerateProxyAttribute</code> to the base VoltRpc assembly (instead of it being generated)</li>
+<li>Proxy generator no longer uses Scriban anymore</li>
+<li>Generated proxies are marked with a <code>GeneratedCode</code> attribute</li>
+<li>Made some methods in <code>TypeReaderWriterManager</code> internal</li>
+<li>Made <code>TypeReaderWriterManager</code> sealed</li>
+<li>Updated the way that type read/writers are implemented, they now need to inherit from <code>TypeReadWriter&lt;T&gt;</code> and override <code>Read</code> and <code>Write</code>. They Should look like this:</li>
+</ul>
+<pre><code class="lang-csharp">using VoltRpc.IO;
+using VoltRpc.Types;
+
+public class CustomTypeReaderWriter : TypeReadWriter&lt;CustomType&gt;
+{
+    public override void Write(BufferedWriter writer, CustomType value)
+    {
+        //Write here
+    }
+
+    public override CustomType Read(BufferedReader reader)
+    {
+        return new CustomType();
+    }
+}
+</code></pre>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Fixed proxy generator not handling refs correctly</li>
+</ul>
+<h2 id="130---2021-12-30">[1.3.0] - 2021-12-30</h2>
+<h3 id="changed-1">Changed</h3>
+<ul>
+<li>Updated TCPClient's constructors</li>
+<li>Improve disposing on both the client and host</li>
+</ul>
+<h3 id="fixed-1">Fixed</h3>
+<ul>
+<li>Fix issue with disposing on TCPClient when the client has not connected before</li>
+<li>Don't repeatedly call listener.Stop() when the connection cap has been reached in TCPHost</li>
+</ul>
+<h2 id="122---2021-12-28">[1.2.2] - 2021-12-28</h2>
+<h3 id="added-1">Added</h3>
+<ul>
+<li>Added Length property to buffers</li>
+</ul>
+<h3 id="changed-2">Changed</h3>
+<ul>
+<li>Made position in buffers public</li>
+<li>Made Flush and Reset in buffered writer public</li>
+</ul>
+<h2 id="121---2021-12-27">[1.2.1] - 2021-12-27</h2>
+<h3 id="changed-3">Changed</h3>
+<ul>
+<li>Expose buffered reader &amp; writer's constructor</li>
+</ul>
+<h2 id="120---2021-11-13">[1.2.0] - 2021-11-13</h2>
+<h3 id="changed-4">Changed</h3>
+<ul>
+<li>Drop support for .NET 5, add .NET 6</li>
+<li>Update trimming support</li>
+<li>Improve TCP's client connect</li>
+<li>Handle isConnectedInternal completly internally</li>
+<li>Use Scriban for code generation</li>
+<li>Check if a member is a method</li>
+<li>Target Microsoft.CodeAnalysis.CSharp version 3.9.0 for projects that use an older compiler (e.g Unity)</li>
+</ul>
+<h2 id="111---2021-08-07">[1.1.1] - 2021-08-07</h2>
+<h3 id="fixed-2">Fixed</h3>
+<ul>
+<li>Fixed TCPClient not setting IsConnected</li>
+</ul>
+<h2 id="110---2021-08-07">[1.1.0] - 2021-08-07</h2>
+<h3 id="added-2">Added</h3>
+<ul>
+<li>Added Host.ConnectionCount</li>
+<li>Added Host.MaxConnectionsCount</li>
+<li>Added Host.IsRunning</li>
+</ul>
+<h3 id="changed-5">Changed</h3>
+<ul>
+<li>BREAKING: Renamed Host.ReaderWriterManager to TypeReaderWriterManager to match the client's name</li>
+</ul>
+<h3 id="fixed-3">Fixed</h3>
+<ul>
+<li>Client.InvokeMethod will check if the client is connected</li>
+</ul>
+<h2 id="100---2021-08-01">[1.0.0] - 2021-08-01</h2>
+<ul>
+<li>Initial Release</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/CHANGELOG.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              Voltstro-Studios (c) 2021-2022
+              
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

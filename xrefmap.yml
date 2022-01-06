@@ -26,11 +26,11 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.Client
   nameWithType: Client.Client
-- uid: VoltRpc.Communication.Client.AddService(Type)
+- uid: VoltRpc.Communication.Client.AddService(System.Type)
   name: AddService(Type)
-  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_AddService_Type_
-  commentId: M:VoltRpc.Communication.Client.AddService(Type)
-  fullName: VoltRpc.Communication.Client.AddService(Type)
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_AddService_System_Type_
+  commentId: M:VoltRpc.Communication.Client.AddService(System.Type)
+  fullName: VoltRpc.Communication.Client.AddService(System.Type)
   nameWithType: Client.AddService(Type)
 - uid: VoltRpc.Communication.Client.AddService*
   name: AddService
@@ -119,11 +119,11 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.HasDisposed
   nameWithType: Client.HasDisposed
-- uid: VoltRpc.Communication.Client.Initialize(Stream,Stream)
+- uid: VoltRpc.Communication.Client.Initialize(System.IO.Stream,System.IO.Stream)
   name: Initialize(Stream, Stream)
-  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_Stream_Stream_
-  commentId: M:VoltRpc.Communication.Client.Initialize(Stream,Stream)
-  fullName: VoltRpc.Communication.Client.Initialize(Stream, Stream)
+  href: api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_Initialize_System_IO_Stream_System_IO_Stream_
+  commentId: M:VoltRpc.Communication.Client.Initialize(System.IO.Stream,System.IO.Stream)
+  fullName: VoltRpc.Communication.Client.Initialize(System.IO.Stream, System.IO.Stream)
   nameWithType: Client.Initialize(Stream, Stream)
 - uid: VoltRpc.Communication.Client.Initialize(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)
   name: Initialize(BufferedReader, BufferedWriter)
@@ -180,31 +180,31 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Client.TypeReaderWriterManager
   nameWithType: Client.TypeReaderWriterManager
-- uid: VoltRpc.Communication.ConnectionFailed
-  name: ConnectionFailed
-  href: api/VoltRpc.Communication.ConnectionFailed.html
-  commentId: T:VoltRpc.Communication.ConnectionFailed
-  fullName: VoltRpc.Communication.ConnectionFailed
-  nameWithType: ConnectionFailed
-- uid: VoltRpc.Communication.ConnectionFailed.#ctor(System.String)
-  name: ConnectionFailed(String)
-  href: api/VoltRpc.Communication.ConnectionFailed.html#VoltRpc_Communication_ConnectionFailed__ctor_System_String_
-  commentId: M:VoltRpc.Communication.ConnectionFailed.#ctor(System.String)
-  fullName: VoltRpc.Communication.ConnectionFailed.ConnectionFailed(System.String)
-  nameWithType: ConnectionFailed.ConnectionFailed(String)
-- uid: VoltRpc.Communication.ConnectionFailed.#ctor(System.String,Exception)
-  name: ConnectionFailed(String, Exception)
-  href: api/VoltRpc.Communication.ConnectionFailed.html#VoltRpc_Communication_ConnectionFailed__ctor_System_String_Exception_
-  commentId: M:VoltRpc.Communication.ConnectionFailed.#ctor(System.String,Exception)
-  fullName: VoltRpc.Communication.ConnectionFailed.ConnectionFailed(System.String, Exception)
-  nameWithType: ConnectionFailed.ConnectionFailed(String, Exception)
-- uid: VoltRpc.Communication.ConnectionFailed.#ctor*
-  name: ConnectionFailed
-  href: api/VoltRpc.Communication.ConnectionFailed.html#VoltRpc_Communication_ConnectionFailed__ctor_
-  commentId: Overload:VoltRpc.Communication.ConnectionFailed.#ctor
+- uid: VoltRpc.Communication.ConnectionFailedException
+  name: ConnectionFailedException
+  href: api/VoltRpc.Communication.ConnectionFailedException.html
+  commentId: T:VoltRpc.Communication.ConnectionFailedException
+  fullName: VoltRpc.Communication.ConnectionFailedException
+  nameWithType: ConnectionFailedException
+- uid: VoltRpc.Communication.ConnectionFailedException.#ctor(System.String)
+  name: ConnectionFailedException(String)
+  href: api/VoltRpc.Communication.ConnectionFailedException.html#VoltRpc_Communication_ConnectionFailedException__ctor_System_String_
+  commentId: M:VoltRpc.Communication.ConnectionFailedException.#ctor(System.String)
+  fullName: VoltRpc.Communication.ConnectionFailedException.ConnectionFailedException(System.String)
+  nameWithType: ConnectionFailedException.ConnectionFailedException(String)
+- uid: VoltRpc.Communication.ConnectionFailedException.#ctor(System.String,System.Exception)
+  name: ConnectionFailedException(String, Exception)
+  href: api/VoltRpc.Communication.ConnectionFailedException.html#VoltRpc_Communication_ConnectionFailedException__ctor_System_String_System_Exception_
+  commentId: M:VoltRpc.Communication.ConnectionFailedException.#ctor(System.String,System.Exception)
+  fullName: VoltRpc.Communication.ConnectionFailedException.ConnectionFailedException(System.String, System.Exception)
+  nameWithType: ConnectionFailedException.ConnectionFailedException(String, Exception)
+- uid: VoltRpc.Communication.ConnectionFailedException.#ctor*
+  name: ConnectionFailedException
+  href: api/VoltRpc.Communication.ConnectionFailedException.html#VoltRpc_Communication_ConnectionFailedException__ctor_
+  commentId: Overload:VoltRpc.Communication.ConnectionFailedException.#ctor
   isSpec: "True"
-  fullName: VoltRpc.Communication.ConnectionFailed.ConnectionFailed
-  nameWithType: ConnectionFailed.ConnectionFailed
+  fullName: VoltRpc.Communication.ConnectionFailedException.ConnectionFailedException
+  nameWithType: ConnectionFailedException.ConnectionFailedException
 - uid: VoltRpc.Communication.Host
   name: Host
   href: api/VoltRpc.Communication.Host.html
@@ -224,11 +224,11 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.Host
   nameWithType: Host.Host
-- uid: VoltRpc.Communication.Host.AddService(Type,System.Object)
+- uid: VoltRpc.Communication.Host.AddService(System.Type,System.Object)
   name: AddService(Type, Object)
-  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_AddService_Type_System_Object_
-  commentId: M:VoltRpc.Communication.Host.AddService(Type,System.Object)
-  fullName: VoltRpc.Communication.Host.AddService(Type, System.Object)
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_AddService_System_Type_System_Object_
+  commentId: M:VoltRpc.Communication.Host.AddService(System.Type,System.Object)
+  fullName: VoltRpc.Communication.Host.AddService(System.Type, System.Object)
   nameWithType: Host.AddService(Type, Object)
 - uid: VoltRpc.Communication.Host.AddService*
   name: AddService
@@ -355,11 +355,11 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.Host.MaxConnectionsCount
   nameWithType: Host.MaxConnectionsCount
-- uid: VoltRpc.Communication.Host.ProcessRequest(Stream,Stream)
+- uid: VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream,System.IO.Stream)
   name: ProcessRequest(Stream, Stream)
-  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_Stream_Stream_
-  commentId: M:VoltRpc.Communication.Host.ProcessRequest(Stream,Stream)
-  fullName: VoltRpc.Communication.Host.ProcessRequest(Stream, Stream)
+  href: api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_ProcessRequest_System_IO_Stream_System_IO_Stream_
+  commentId: M:VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream,System.IO.Stream)
+  fullName: VoltRpc.Communication.Host.ProcessRequest(System.IO.Stream, System.IO.Stream)
   nameWithType: Host.ProcessRequest(Stream, Stream)
 - uid: VoltRpc.Communication.Host.ProcessRequest(VoltRpc.IO.BufferedReader,VoltRpc.IO.BufferedWriter)
   name: ProcessRequest(BufferedReader, BufferedWriter)
@@ -460,19 +460,6 @@ references:
   commentId: T:VoltRpc.Communication.MethodInvokeFailedException
   fullName: VoltRpc.Communication.MethodInvokeFailedException
   nameWithType: MethodInvokeFailedException
-- uid: VoltRpc.Communication.MethodInvokeFailedException.#ctor(System.String,System.String,System.String,System.String)
-  name: MethodInvokeFailedException(String, String, String, String)
-  href: api/VoltRpc.Communication.MethodInvokeFailedException.html#VoltRpc_Communication_MethodInvokeFailedException__ctor_System_String_System_String_System_String_System_String_
-  commentId: M:VoltRpc.Communication.MethodInvokeFailedException.#ctor(System.String,System.String,System.String,System.String)
-  fullName: VoltRpc.Communication.MethodInvokeFailedException.MethodInvokeFailedException(System.String, System.String, System.String, System.String)
-  nameWithType: MethodInvokeFailedException.MethodInvokeFailedException(String, String, String, String)
-- uid: VoltRpc.Communication.MethodInvokeFailedException.#ctor*
-  name: MethodInvokeFailedException
-  href: api/VoltRpc.Communication.MethodInvokeFailedException.html#VoltRpc_Communication_MethodInvokeFailedException__ctor_
-  commentId: Overload:VoltRpc.Communication.MethodInvokeFailedException.#ctor
-  isSpec: "True"
-  fullName: VoltRpc.Communication.MethodInvokeFailedException.MethodInvokeFailedException
-  nameWithType: MethodInvokeFailedException.MethodInvokeFailedException
 - uid: VoltRpc.Communication.MethodInvokeFailedException.StackTrace
   name: StackTrace
   href: api/VoltRpc.Communication.MethodInvokeFailedException.html#VoltRpc_Communication_MethodInvokeFailedException_StackTrace
@@ -492,19 +479,6 @@ references:
   commentId: T:VoltRpc.Communication.NotConnectedException
   fullName: VoltRpc.Communication.NotConnectedException
   nameWithType: NotConnectedException
-- uid: VoltRpc.Communication.NotConnectedException.#ctor(System.String)
-  name: NotConnectedException(String)
-  href: api/VoltRpc.Communication.NotConnectedException.html#VoltRpc_Communication_NotConnectedException__ctor_System_String_
-  commentId: M:VoltRpc.Communication.NotConnectedException.#ctor(System.String)
-  fullName: VoltRpc.Communication.NotConnectedException.NotConnectedException(System.String)
-  nameWithType: NotConnectedException.NotConnectedException(String)
-- uid: VoltRpc.Communication.NotConnectedException.#ctor*
-  name: NotConnectedException
-  href: api/VoltRpc.Communication.NotConnectedException.html#VoltRpc_Communication_NotConnectedException__ctor_
-  commentId: Overload:VoltRpc.Communication.NotConnectedException.#ctor
-  isSpec: "True"
-  fullName: VoltRpc.Communication.NotConnectedException.NotConnectedException
-  nameWithType: NotConnectedException.NotConnectedException
 - uid: VoltRpc.Communication.Pipes
   name: VoltRpc.Communication.Pipes
   href: api/VoltRpc.Communication.Pipes.html
@@ -630,29 +604,29 @@ references:
   commentId: T:VoltRpc.Communication.TCP.TCPClient
   fullName: VoltRpc.Communication.TCP.TCPClient
   nameWithType: TCPClient
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint)
   name: TCPClient(IPEndPoint)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint)
   nameWithType: TCPClient.TCPClient(IPEndPoint)
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32)
   name: TCPClient(IPEndPoint, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint, System.Int32)
   nameWithType: TCPClient.TCPClient(IPEndPoint, Int32)
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
   name: TCPClient(IPEndPoint, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint, System.Int32, System.Int32)
   nameWithType: TCPClient.TCPClient(IPEndPoint, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
   name: TCPClient(IPEndPoint, Int32, Int32, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_IPEndPoint_System_Int32_System_Int32_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(IPEndPoint, System.Int32, System.Int32, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPClient.html#VoltRpc_Communication_TCP_TCPClient__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPClient.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPClient.TCPClient(System.Net.IPEndPoint, System.Int32, System.Int32, System.Int32, System.Int32)
   nameWithType: TCPClient.TCPClient(IPEndPoint, Int32, Int32, Int32, Int32)
 - uid: VoltRpc.Communication.TCP.TCPClient.#ctor*
   name: TCPClient
@@ -711,35 +685,35 @@ references:
   commentId: T:VoltRpc.Communication.TCP.TCPHost
   fullName: VoltRpc.Communication.TCP.TCPHost
   nameWithType: TCPHost
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, Int32, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_System_Int32_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,System.Int32,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, System.Int32, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_System_Int32_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,System.Int32,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, System.Int32, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, Int32, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger)
   name: TCPHost(IPEndPoint, ILogger)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, VoltRpc.Logging.ILogger)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, VoltRpc.Logging.ILogger)
   nameWithType: TCPHost.TCPHost(IPEndPoint, ILogger)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, ILogger, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, ILogger, Int32, Int32)
-- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
+- uid: VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
   name: TCPHost(IPEndPoint, ILogger, Int32, Int32, Int32)
-  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_
-  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
-  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32, System.Int32)
+  href: api/VoltRpc.Communication.TCP.TCPHost.html#VoltRpc_Communication_TCP_TCPHost__ctor_System_Net_IPEndPoint_VoltRpc_Logging_ILogger_System_Int32_System_Int32_System_Int32_
+  commentId: M:VoltRpc.Communication.TCP.TCPHost.#ctor(System.Net.IPEndPoint,VoltRpc.Logging.ILogger,System.Int32,System.Int32,System.Int32)
+  fullName: VoltRpc.Communication.TCP.TCPHost.TCPHost(System.Net.IPEndPoint, VoltRpc.Logging.ILogger, System.Int32, System.Int32, System.Int32)
   nameWithType: TCPHost.TCPHost(IPEndPoint, ILogger, Int32, Int32, Int32)
 - uid: VoltRpc.Communication.TCP.TCPHost.#ctor*
   name: TCPHost
@@ -798,11 +772,11 @@ references:
   commentId: T:VoltRpc.IO.BufferedReader
   fullName: VoltRpc.IO.BufferedReader
   nameWithType: BufferedReader
-- uid: VoltRpc.IO.BufferedReader.#ctor(Stream,System.Int32)
+- uid: VoltRpc.IO.BufferedReader.#ctor(System.IO.Stream,System.Int32)
   name: BufferedReader(Stream, Int32)
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader__ctor_Stream_System_Int32_
-  commentId: M:VoltRpc.IO.BufferedReader.#ctor(Stream,System.Int32)
-  fullName: VoltRpc.IO.BufferedReader.BufferedReader(Stream, System.Int32)
+  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader__ctor_System_IO_Stream_System_Int32_
+  commentId: M:VoltRpc.IO.BufferedReader.#ctor(System.IO.Stream,System.Int32)
+  fullName: VoltRpc.IO.BufferedReader.BufferedReader(System.IO.Stream, System.Int32)
   nameWithType: BufferedReader.BufferedReader(Stream, Int32)
 - uid: VoltRpc.IO.BufferedReader.#ctor*
   name: BufferedReader
@@ -1070,11 +1044,11 @@ references:
   commentId: T:VoltRpc.IO.BufferedWriter
   fullName: VoltRpc.IO.BufferedWriter
   nameWithType: BufferedWriter
-- uid: VoltRpc.IO.BufferedWriter.#ctor(Stream,System.Int32)
+- uid: VoltRpc.IO.BufferedWriter.#ctor(System.IO.Stream,System.Int32)
   name: BufferedWriter(Stream, Int32)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter__ctor_Stream_System_Int32_
-  commentId: M:VoltRpc.IO.BufferedWriter.#ctor(Stream,System.Int32)
-  fullName: VoltRpc.IO.BufferedWriter.BufferedWriter(Stream, System.Int32)
+  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter__ctor_System_IO_Stream_System_Int32_
+  commentId: M:VoltRpc.IO.BufferedWriter.#ctor(System.IO.Stream,System.Int32)
+  fullName: VoltRpc.IO.BufferedWriter.BufferedWriter(System.IO.Stream, System.Int32)
   nameWithType: BufferedWriter.BufferedWriter(Stream, Int32)
 - uid: VoltRpc.IO.BufferedWriter.#ctor*
   name: BufferedWriter
@@ -1633,44 +1607,63 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Logging.NullLogger.Warn
   nameWithType: NullLogger.Warn
+- uid: VoltRpc.Proxy
+  name: VoltRpc.Proxy
+  href: api/VoltRpc.Proxy.html
+  commentId: N:VoltRpc.Proxy
+  fullName: VoltRpc.Proxy
+  nameWithType: VoltRpc.Proxy
+- uid: VoltRpc.Proxy.GenerateProxyAttribute
+  name: GenerateProxyAttribute
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html
+  commentId: T:VoltRpc.Proxy.GenerateProxyAttribute
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute
+  nameWithType: GenerateProxyAttribute
+- uid: VoltRpc.Proxy.GenerateProxyAttribute.#ctor
+  name: GenerateProxyAttribute()
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html#VoltRpc_Proxy_GenerateProxyAttribute__ctor
+  commentId: M:VoltRpc.Proxy.GenerateProxyAttribute.#ctor
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute.GenerateProxyAttribute()
+  nameWithType: GenerateProxyAttribute.GenerateProxyAttribute()
+- uid: VoltRpc.Proxy.GenerateProxyAttribute.#ctor*
+  name: GenerateProxyAttribute
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html#VoltRpc_Proxy_GenerateProxyAttribute__ctor_
+  commentId: Overload:VoltRpc.Proxy.GenerateProxyAttribute.#ctor
+  isSpec: "True"
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute.GenerateProxyAttribute
+  nameWithType: GenerateProxyAttribute.GenerateProxyAttribute
+- uid: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedName
+  name: GeneratedName
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html#VoltRpc_Proxy_GenerateProxyAttribute_GeneratedName
+  commentId: P:VoltRpc.Proxy.GenerateProxyAttribute.GeneratedName
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedName
+  nameWithType: GenerateProxyAttribute.GeneratedName
+- uid: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedName*
+  name: GeneratedName
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html#VoltRpc_Proxy_GenerateProxyAttribute_GeneratedName_
+  commentId: Overload:VoltRpc.Proxy.GenerateProxyAttribute.GeneratedName
+  isSpec: "True"
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedName
+  nameWithType: GenerateProxyAttribute.GeneratedName
+- uid: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedNamespace
+  name: GeneratedNamespace
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html#VoltRpc_Proxy_GenerateProxyAttribute_GeneratedNamespace
+  commentId: P:VoltRpc.Proxy.GenerateProxyAttribute.GeneratedNamespace
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedNamespace
+  nameWithType: GenerateProxyAttribute.GeneratedNamespace
+- uid: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedNamespace*
+  name: GeneratedNamespace
+  href: api/VoltRpc.Proxy.GenerateProxyAttribute.html#VoltRpc_Proxy_GenerateProxyAttribute_GeneratedNamespace_
+  commentId: Overload:VoltRpc.Proxy.GenerateProxyAttribute.GeneratedNamespace
+  isSpec: "True"
+  fullName: VoltRpc.Proxy.GenerateProxyAttribute.GeneratedNamespace
+  nameWithType: GenerateProxyAttribute.GeneratedNamespace
 - uid: VoltRpc.Types
   name: VoltRpc.Types
   href: api/VoltRpc.Types.html
   commentId: N:VoltRpc.Types
   fullName: VoltRpc.Types
   nameWithType: VoltRpc.Types
-- uid: VoltRpc.Types.ITypeReadWriter
-  name: ITypeReadWriter
-  href: api/VoltRpc.Types.ITypeReadWriter.html
-  commentId: T:VoltRpc.Types.ITypeReadWriter
-  fullName: VoltRpc.Types.ITypeReadWriter
-  nameWithType: ITypeReadWriter
-- uid: VoltRpc.Types.ITypeReadWriter.Read(VoltRpc.IO.BufferedReader)
-  name: Read(BufferedReader)
-  href: api/VoltRpc.Types.ITypeReadWriter.html#VoltRpc_Types_ITypeReadWriter_Read_VoltRpc_IO_BufferedReader_
-  commentId: M:VoltRpc.Types.ITypeReadWriter.Read(VoltRpc.IO.BufferedReader)
-  fullName: VoltRpc.Types.ITypeReadWriter.Read(VoltRpc.IO.BufferedReader)
-  nameWithType: ITypeReadWriter.Read(BufferedReader)
-- uid: VoltRpc.Types.ITypeReadWriter.Read*
-  name: Read
-  href: api/VoltRpc.Types.ITypeReadWriter.html#VoltRpc_Types_ITypeReadWriter_Read_
-  commentId: Overload:VoltRpc.Types.ITypeReadWriter.Read
-  isSpec: "True"
-  fullName: VoltRpc.Types.ITypeReadWriter.Read
-  nameWithType: ITypeReadWriter.Read
-- uid: VoltRpc.Types.ITypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Object)
-  name: Write(BufferedWriter, Object)
-  href: api/VoltRpc.Types.ITypeReadWriter.html#VoltRpc_Types_ITypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Object_
-  commentId: M:VoltRpc.Types.ITypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Object)
-  fullName: VoltRpc.Types.ITypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Object)
-  nameWithType: ITypeReadWriter.Write(BufferedWriter, Object)
-- uid: VoltRpc.Types.ITypeReadWriter.Write*
-  name: Write
-  href: api/VoltRpc.Types.ITypeReadWriter.html#VoltRpc_Types_ITypeReadWriter_Write_
-  commentId: Overload:VoltRpc.Types.ITypeReadWriter.Write
-  isSpec: "True"
-  fullName: VoltRpc.Types.ITypeReadWriter.Write
-  nameWithType: ITypeReadWriter.Write
 - uid: VoltRpc.Types.NoTypeReaderWriterException
   name: NoTypeReaderWriterException
   href: api/VoltRpc.Types.NoTypeReaderWriterException.html
@@ -1683,19 +1676,6 @@ references:
   commentId: T:VoltRpc.Types.TypeReaderWriterException
   fullName: VoltRpc.Types.TypeReaderWriterException
   nameWithType: TypeReaderWriterException
-- uid: VoltRpc.Types.TypeReaderWriterException.#ctor(System.String,System.String,System.String,System.String)
-  name: TypeReaderWriterException(String, String, String, String)
-  href: api/VoltRpc.Types.TypeReaderWriterException.html#VoltRpc_Types_TypeReaderWriterException__ctor_System_String_System_String_System_String_System_String_
-  commentId: M:VoltRpc.Types.TypeReaderWriterException.#ctor(System.String,System.String,System.String,System.String)
-  fullName: VoltRpc.Types.TypeReaderWriterException.TypeReaderWriterException(System.String, System.String, System.String, System.String)
-  nameWithType: TypeReaderWriterException.TypeReaderWriterException(String, String, String, String)
-- uid: VoltRpc.Types.TypeReaderWriterException.#ctor*
-  name: TypeReaderWriterException
-  href: api/VoltRpc.Types.TypeReaderWriterException.html#VoltRpc_Types_TypeReaderWriterException__ctor_
-  commentId: Overload:VoltRpc.Types.TypeReaderWriterException.#ctor
-  isSpec: "True"
-  fullName: VoltRpc.Types.TypeReaderWriterException.TypeReaderWriterException
-  nameWithType: TypeReaderWriterException.TypeReaderWriterException
 - uid: VoltRpc.Types.TypeReaderWriterException.StackTrace
   name: StackTrace
   href: api/VoltRpc.Types.TypeReaderWriterException.html#VoltRpc_Types_TypeReaderWriterException_StackTrace
@@ -1715,18 +1695,6 @@ references:
   commentId: T:VoltRpc.Types.TypeReaderWriterManager
   fullName: VoltRpc.Types.TypeReaderWriterManager
   nameWithType: TypeReaderWriterManager
-- uid: VoltRpc.Types.TypeReaderWriterManager.AddType(System.String,VoltRpc.Types.ITypeReadWriter)
-  name: AddType(String, ITypeReadWriter)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType_System_String_VoltRpc_Types_ITypeReadWriter_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType(System.String,VoltRpc.Types.ITypeReadWriter)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.AddType(System.String, VoltRpc.Types.ITypeReadWriter)
-  nameWithType: TypeReaderWriterManager.AddType(String, ITypeReadWriter)
-- uid: VoltRpc.Types.TypeReaderWriterManager.AddType(Type,VoltRpc.Types.ITypeReadWriter)
-  name: AddType(Type, ITypeReadWriter)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType_Type_VoltRpc_Types_ITypeReadWriter_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType(Type,VoltRpc.Types.ITypeReadWriter)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.AddType(Type, VoltRpc.Types.ITypeReadWriter)
-  nameWithType: TypeReaderWriterManager.AddType(Type, ITypeReadWriter)
 - uid: VoltRpc.Types.TypeReaderWriterManager.AddType*
   name: AddType
   href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType_
@@ -1734,40 +1702,87 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Types.TypeReaderWriterManager.AddType
   nameWithType: TypeReaderWriterManager.AddType
-- uid: VoltRpc.Types.TypeReaderWriterManager.AddType``1(VoltRpc.Types.ITypeReadWriter)
-  name: AddType<T>(ITypeReadWriter)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType__1_VoltRpc_Types_ITypeReadWriter_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType``1(VoltRpc.Types.ITypeReadWriter)
-  name.vb: AddType(Of T)(ITypeReadWriter)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.AddType<T>(VoltRpc.Types.ITypeReadWriter)
-  fullName.vb: VoltRpc.Types.TypeReaderWriterManager.AddType(Of T)(VoltRpc.Types.ITypeReadWriter)
-  nameWithType: TypeReaderWriterManager.AddType<T>(ITypeReadWriter)
-  nameWithType.vb: TypeReaderWriterManager.AddType(Of T)(ITypeReadWriter)
-- uid: VoltRpc.Types.TypeReaderWriterManager.GetType(System.String)
-  name: GetType(String)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_GetType_System_String_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.GetType(System.String)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.GetType(System.String)
-  nameWithType: TypeReaderWriterManager.GetType(String)
-- uid: VoltRpc.Types.TypeReaderWriterManager.GetType(Type)
-  name: GetType(Type)
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_GetType_Type_
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.GetType(Type)
-  fullName: VoltRpc.Types.TypeReaderWriterManager.GetType(Type)
-  nameWithType: TypeReaderWriterManager.GetType(Type)
-- uid: VoltRpc.Types.TypeReaderWriterManager.GetType*
-  name: GetType
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_GetType_
-  commentId: Overload:VoltRpc.Types.TypeReaderWriterManager.GetType
+- uid: VoltRpc.Types.TypeReaderWriterManager.AddType``1(VoltRpc.Types.TypeReadWriter{``0})
+  name: AddType<T>(TypeReadWriter<T>)
+  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_AddType__1_VoltRpc_Types_TypeReadWriter___0__
+  commentId: M:VoltRpc.Types.TypeReaderWriterManager.AddType``1(VoltRpc.Types.TypeReadWriter{``0})
+  name.vb: AddType(Of T)(TypeReadWriter(Of T))
+  fullName: VoltRpc.Types.TypeReaderWriterManager.AddType<T>(VoltRpc.Types.TypeReadWriter<T>)
+  fullName.vb: VoltRpc.Types.TypeReaderWriterManager.AddType(Of T)(VoltRpc.Types.TypeReadWriter(Of T))
+  nameWithType: TypeReaderWriterManager.AddType<T>(TypeReadWriter<T>)
+  nameWithType.vb: TypeReaderWriterManager.AddType(Of T)(TypeReadWriter(Of T))
+- uid: VoltRpc.Types.TypeReadWriter`1
+  name: TypeReadWriter<T>
+  href: api/VoltRpc.Types.TypeReadWriter-1.html
+  commentId: T:VoltRpc.Types.TypeReadWriter`1
+  name.vb: TypeReadWriter(Of T)
+  fullName: VoltRpc.Types.TypeReadWriter<T>
+  fullName.vb: VoltRpc.Types.TypeReadWriter(Of T)
+  nameWithType: TypeReadWriter<T>
+  nameWithType.vb: TypeReadWriter(Of T)
+- uid: VoltRpc.Types.TypeReadWriter`1.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Types.TypeReadWriter-1.html#VoltRpc_Types_TypeReadWriter_1_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Types.TypeReadWriter`1.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Types.TypeReadWriter<T>.Read(VoltRpc.IO.BufferedReader)
+  fullName.vb: VoltRpc.Types.TypeReadWriter(Of T).Read(VoltRpc.IO.BufferedReader)
+  nameWithType: TypeReadWriter<T>.Read(BufferedReader)
+  nameWithType.vb: TypeReadWriter(Of T).Read(BufferedReader)
+- uid: VoltRpc.Types.TypeReadWriter`1.Read*
+  name: Read
+  href: api/VoltRpc.Types.TypeReadWriter-1.html#VoltRpc_Types_TypeReadWriter_1_Read_
+  commentId: Overload:VoltRpc.Types.TypeReadWriter`1.Read
   isSpec: "True"
-  fullName: VoltRpc.Types.TypeReaderWriterManager.GetType
-  nameWithType: TypeReaderWriterManager.GetType
-- uid: VoltRpc.Types.TypeReaderWriterManager.GetType``1
-  name: GetType<T>()
-  href: api/VoltRpc.Types.TypeReaderWriterManager.html#VoltRpc_Types_TypeReaderWriterManager_GetType__1
-  commentId: M:VoltRpc.Types.TypeReaderWriterManager.GetType``1
-  name.vb: GetType(Of T)()
-  fullName: VoltRpc.Types.TypeReaderWriterManager.GetType<T>()
-  fullName.vb: VoltRpc.Types.TypeReaderWriterManager.GetType(Of T)()
-  nameWithType: TypeReaderWriterManager.GetType<T>()
-  nameWithType.vb: TypeReaderWriterManager.GetType(Of T)()
+  fullName: VoltRpc.Types.TypeReadWriter<T>.Read
+  fullName.vb: VoltRpc.Types.TypeReadWriter(Of T).Read
+  nameWithType: TypeReadWriter<T>.Read
+  nameWithType.vb: TypeReadWriter(Of T).Read
+- uid: VoltRpc.Types.TypeReadWriter`1.Write(VoltRpc.IO.BufferedWriter,`0)
+  name: Write(BufferedWriter, T)
+  href: api/VoltRpc.Types.TypeReadWriter-1.html#VoltRpc_Types_TypeReadWriter_1_Write_VoltRpc_IO_BufferedWriter__0_
+  commentId: M:VoltRpc.Types.TypeReadWriter`1.Write(VoltRpc.IO.BufferedWriter,`0)
+  fullName: VoltRpc.Types.TypeReadWriter<T>.Write(VoltRpc.IO.BufferedWriter, T)
+  fullName.vb: VoltRpc.Types.TypeReadWriter(Of T).Write(VoltRpc.IO.BufferedWriter, T)
+  nameWithType: TypeReadWriter<T>.Write(BufferedWriter, T)
+  nameWithType.vb: TypeReadWriter(Of T).Write(BufferedWriter, T)
+- uid: VoltRpc.Types.TypeReadWriter`1.Write*
+  name: Write
+  href: api/VoltRpc.Types.TypeReadWriter-1.html#VoltRpc_Types_TypeReadWriter_1_Write_
+  commentId: Overload:VoltRpc.Types.TypeReadWriter`1.Write
+  isSpec: "True"
+  fullName: VoltRpc.Types.TypeReadWriter<T>.Write
+  fullName.vb: VoltRpc.Types.TypeReadWriter(Of T).Write
+  nameWithType: TypeReadWriter<T>.Write
+  nameWithType.vb: TypeReadWriter(Of T).Write
+- uid: VoltRpc.Types.TypesHelper
+  name: TypesHelper
+  href: api/VoltRpc.Types.TypesHelper.html
+  commentId: T:VoltRpc.Types.TypesHelper
+  fullName: VoltRpc.Types.TypesHelper
+  nameWithType: TypesHelper
+- uid: VoltRpc.Types.TypesHelper.GetTypeBase(System.Type)
+  name: GetTypeBase(Type)
+  href: api/VoltRpc.Types.TypesHelper.html#VoltRpc_Types_TypesHelper_GetTypeBase_System_Type_
+  commentId: M:VoltRpc.Types.TypesHelper.GetTypeBase(System.Type)
+  fullName: VoltRpc.Types.TypesHelper.GetTypeBase(System.Type)
+  nameWithType: TypesHelper.GetTypeBase(Type)
+- uid: VoltRpc.Types.TypesHelper.GetTypeBase*
+  name: GetTypeBase
+  href: api/VoltRpc.Types.TypesHelper.html#VoltRpc_Types_TypesHelper_GetTypeBase_
+  commentId: Overload:VoltRpc.Types.TypesHelper.GetTypeBase
+  isSpec: "True"
+  fullName: VoltRpc.Types.TypesHelper.GetTypeBase
+  nameWithType: TypesHelper.GetTypeBase
+- uid: VoltRpc.Types.TypesHelper.GetTypeName(System.Type)
+  name: GetTypeName(Type)
+  href: api/VoltRpc.Types.TypesHelper.html#VoltRpc_Types_TypesHelper_GetTypeName_System_Type_
+  commentId: M:VoltRpc.Types.TypesHelper.GetTypeName(System.Type)
+  fullName: VoltRpc.Types.TypesHelper.GetTypeName(System.Type)
+  nameWithType: TypesHelper.GetTypeName(Type)
+- uid: VoltRpc.Types.TypesHelper.GetTypeName*
+  name: GetTypeName
+  href: api/VoltRpc.Types.TypesHelper.html#VoltRpc_Types_TypesHelper_GetTypeName_
+  commentId: Overload:VoltRpc.Types.TypesHelper.GetTypeName
+  isSpec: "True"
+  fullName: VoltRpc.Types.TypesHelper.GetTypeName
+  nameWithType: TypesHelper.GetTypeName

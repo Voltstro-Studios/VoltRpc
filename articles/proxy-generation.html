@@ -91,13 +91,13 @@ Hopefully as this feature gets more flushed out these issues won't occur anymore
 <pre><code class="lang-powershell">Install-Package VoltRpc.Proxy.Generator
 </code></pre>
 <h2 id="usage">Usage</h2>
-<p>The generator will generate proxies for any <code>interface</code> marked with an <code>GenerateProxy</code> attribute. By default the generator will generate classes with the name <code>&lt;InterfaceName&gt;_GeneratedProxy</code>. To override this, use the <code>GeneratedName</code> to set what the name will be.</p>
+<p>The generator will generate proxies for any <code>interface</code> marked with an <code>GenerateProxy</code> attribute. By default the generator will generate classes with the name <code>&lt;InterfaceName&gt;_GeneratedProxy</code> and with the namespace <code>VoltRpc.Proxy.Generated</code>. To override both of these, use the <code>GeneratedName</code> to set what the name should be, and <code>GeneratedNamespace</code> to set what the namespace should be.</p>
 <p>For example:</p>
 <pre><code class="lang-csharp">using VoltRpc.Proxy;
 
 namespace VoltRpcExample.Shared
 {
-    [GenerateProxy(GeneratedName = &quot;TestProxy&quot;)]
+    [GenerateProxy(GeneratedName = &quot;TestProxy&quot;, GeneratedNamespace = &quot;VoltRpcExample.Shared&quot;)]
     public interface ITest
     {
         public void Basic();
@@ -106,7 +106,7 @@ namespace VoltRpcExample.Shared
     }
 }
 </code></pre>
-<p>This would generate the proxy with the name <code>TestProxy</code>.</p>
+<p>This would generate the proxy with the name <code>TestProxy</code>, with the namespace <code>VoltRpcExample.Shared</code>.</p>
 </article>
           </div>
           
@@ -150,7 +150,7 @@ namespace VoltRpcExample.Shared
               <a href="#top">Back to top</a>
             </span>
             <div class="pull-left">
-              Voltstro-Studios (c) 2021
+              Voltstro-Studios (c) 2021-2022
               
             </div>
             <div class="toggle-mode pull-right visible-sm visible-xs">
