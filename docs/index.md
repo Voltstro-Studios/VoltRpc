@@ -65,7 +65,7 @@ For more info on these benchmarks see [Benchmarks](articles/benchmarks.md).
 
 ## License
 
-This project is licensed under the MIT license – see the [LICENSE](LICENSE.html)) page for details.
+This project is licensed under the MIT license – see the [LICENSE](LICENSE.html) page for details.
 
 ## Credits
 
