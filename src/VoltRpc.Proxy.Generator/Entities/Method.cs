@@ -26,7 +26,7 @@ internal readonly struct Method
         StringBuilder builder = new();
         builder.Append("public ");
         builder.Append(ReturnTypeFullName == null ? "void " : $"{ReturnTypeFullName} ");
-        builder.Append($"{MethodName}({(Arguments == null ? string.Empty : $"new object[] {{{string.Join(", ", Arguments)}}}")})");
+        builder.Append($"{MethodName}({(Arguments == null ? string.Empty : string.Join(", ", Arguments))})");
         builder.Append("\n");
         builder.Append("{");
         builder.Append("\n\t");
