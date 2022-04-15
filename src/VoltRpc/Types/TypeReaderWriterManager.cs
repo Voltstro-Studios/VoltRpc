@@ -6,12 +6,12 @@ using VoltRpc.Types.TypeReaderWriters;
 namespace VoltRpc.Types;
 
 /// <summary>
-///     Manger for <see cref="ITypeReadWriter" />s
+///     Manger for <see cref="TypeReadWriter{T}" />s
 /// </summary>
 public sealed class TypeReaderWriterManager
 {
     /// <summary>
-    ///     Default <see cref="ITypeReadWriter" /> to be added
+    ///     Default <see cref="TypeReadWriter{T}" /> to be added
     /// </summary>
     internal readonly Dictionary<Type, ITypeReadWriter> DefaultTypeReaderWriters =
         new()
