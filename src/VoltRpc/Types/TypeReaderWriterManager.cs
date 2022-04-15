@@ -134,6 +134,13 @@ public sealed class TypeReaderWriterManager
             //Read size
             int size = reader.ReadInt();
 
+            if (size == 0)
+            {
+                bool isNull = reader.ReadBool();
+                if (isNull)
+                    return null;
+            }
+
             //Create array
             Array array = Array.CreateInstance(type.BaseType, size);
             for (int i = 0; i < size; i++) array.SetValue(readWriter.Read(reader), i);
@@ -149,13 +156,26 @@ public sealed class TypeReaderWriterManager
         //If it is an array, write the size first
         if (type.IsArray)
         {
+            //If the array is null, we write a 0, and true for that it is null
+            if (value == null)
+            {
+                writer.WriteInt(0);
+                writer.WriteBool(true);
+                return;
+            }
+            
             Array array = (Array) value;
 
+            //Write the lenght of the array
             int length = array.Length;
             writer.WriteInt(array.Length);
 
+            //If the lenght is zero, but the object isn't null, then we write 0 and false for that the object isn't null
             if (length <= 0)
+            {
+                writer.WriteBool(false);
                 return;
+            }
 
             for (int i = 0; i < length; i++)
             {

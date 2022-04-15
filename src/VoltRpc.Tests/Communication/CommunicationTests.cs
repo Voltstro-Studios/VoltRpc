@@ -258,6 +258,40 @@ public abstract class CommunicationTests
 
         DisposeClientAndHost(client, host);
     }
+    
+    [Test]
+    public void ArrayBasicTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IArrayBasicInterface>();
+        
+        host.AddService<IArrayBasicInterface>(new ArrayBasicInterface(false));
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IArrayBasicInterface.Array", new byte[]{1, 3 ,4, 8});
+
+        DisposeClientAndHost(client, host);
+    }
+    
+    [Test]
+    public void ArrayBasicNullTest()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        client.AddService<IArrayBasicInterface>();
+        
+        host.AddService<IArrayBasicInterface>(new ArrayBasicInterface(true));
+        host.StartListening();
+        
+        client.Connect();
+        Assert.That(client.IsConnected);
+        
+        client.InvokeMethod("VoltRpc.Tests.TestObjects.Interfaces.IArrayBasicInterface.Array", new object[] {null});
+
+        DisposeClientAndHost(client, host);
+    }
 
     private static object[] GetReturnedObjects(object returnedObject, int expectedLenght)
     {
