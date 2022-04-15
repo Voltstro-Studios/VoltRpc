@@ -1,4 +1,5 @@
-﻿using System.Net;
+using System;
+using System.Net;
 using VoltRpc.Benchmarks.Core;
 using VoltRpc.Communication.TCP;
 
@@ -7,11 +8,15 @@ namespace VoltRpc.Benchmarks;
 [VoltRpcConfig]
 public class TcpBenchmark : VoltRpcBenchmark
 {
-    private const int Port = 7678;
+    private const int MinPort = 7000;
+    private const int MaxPort = 8000;
 
     public TcpBenchmark()
-        : base(new TCPClient(new IPEndPoint(IPAddress.Loopback, Port)),
-            new TCPHost(new IPEndPoint(IPAddress.Loopback, Port)))
     {
+        Random random = new();
+        int port = random.Next(MinPort, MaxPort);
+        
+        ConfigureClientAndHost(new TCPClient(new IPEndPoint(IPAddress.Loopback, port)),
+            new TCPHost(new IPEndPoint(IPAddress.Loopback, port)));
     }
 }

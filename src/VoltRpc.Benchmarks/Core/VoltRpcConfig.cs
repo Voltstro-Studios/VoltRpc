@@ -21,7 +21,8 @@ public class VoltRpcConfig : Attribute, IConfigSource
             Environment =
             {
                 Jit = Jit.Default,
-                Platform = Platform.AnyCpu
+                Platform = Platform.AnyCpu,
+                Runtime = CoreRuntime.Core60
             }
         });
         IConfig defaultConfig = DefaultConfig.Instance;

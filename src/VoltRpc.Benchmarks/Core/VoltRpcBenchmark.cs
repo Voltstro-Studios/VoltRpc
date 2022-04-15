@@ -11,18 +11,24 @@ public abstract class VoltRpcBenchmark
 {
     private const int smallArraySize = 25;
     private const int largeArraySize = 1920 * 1080 * 4;
-    private readonly Client client;
-    private readonly Host host;
+    
+    private Client client;
+    private Host host;
 
     private IBenchmarkInterface benchmarkProxy;
-    private byte[] bigArray;
+    
+    private static byte[] bigArray;
+    private static byte[] smallArray;
 
-    private byte[] smallArray;
-
-    protected VoltRpcBenchmark(Client client, Host host)
+    protected void ConfigureClientAndHost(Client configuredClient, Host configuredHost)
     {
-        this.client = client;
-        this.host = host;
+        smallArray = new byte[smallArraySize];
+        smallArray = Utils.FillByteArray(smallArray);
+        bigArray = new byte[largeArraySize];
+        bigArray = Utils.FillByteArray(bigArray);
+        
+        client = configuredClient;
+        host = configuredHost;
     }
 
     [GlobalSetup]
@@ -35,11 +41,6 @@ public abstract class VoltRpcBenchmark
         client.AddService<IBenchmarkInterface>();
         client.Connect();
         benchmarkProxy = new BenchmarkProxy(client);
-
-        smallArray = new byte[smallArraySize];
-        smallArray = Utils.FillByteArray(smallArray);
-        bigArray = new byte[largeArraySize];
-        bigArray = Utils.FillByteArray(bigArray);
     }
 
     [Benchmark]
@@ -70,7 +71,7 @@ public abstract class VoltRpcBenchmark
 
     [Benchmark]
     [ArgumentsSource(nameof(GetArray))]
-    public void ArrayParameterVoid(byte[] array, int arraySize)
+    public void ArrayParameterVoid(byte[] array)
     {
         benchmarkProxy.ArrayParameterVoid(array);
     }
@@ -83,15 +84,15 @@ public abstract class VoltRpcBenchmark
 
     [Benchmark]
     [ArgumentsSource(nameof(GetArray))]
-    public byte[] ArrayParameterReturn(byte[] array, int arraySize)
+    public byte[] ArrayParameterReturn(byte[] array)
     {
         return benchmarkProxy.ArrayParameterReturn(array);
     }
 
-    public IEnumerable<object[]> GetArray()
+    public static IEnumerable<object> GetArray()
     {
-        yield return new object[] {smallArray, smallArraySize};
-        yield return new object[] {bigArray, largeArraySize};
+        yield return smallArray;
+        yield return bigArray;
     }
 
     public IEnumerable<string> GetMessage()
