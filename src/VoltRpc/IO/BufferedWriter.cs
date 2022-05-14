@@ -28,7 +28,7 @@ public class BufferedWriter : IDisposable
 
     private readonly byte[] stringBuffer;
 
-    private byte[] buffer;
+    internal byte[] buffer;
 
     /// <summary>
     ///     Creates a new <see cref="BufferedWriter" /> instance
@@ -46,7 +46,7 @@ public class BufferedWriter : IDisposable
     /// <summary>
     ///     The current position of the buffer
     /// </summary>
-    public int Position { get; private set; }
+    public int Position { get; internal set; }
 
     /// <summary>
     ///     The length of the buffer
@@ -279,8 +279,12 @@ public class BufferedWriter : IDisposable
         Reset();
     }
 
+    /// <summary>
+    ///     Ensures the buffer's capacity is large enough to write the size
+    /// </summary>
+    /// <param name="value"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void EnsureCapacity(int value)
+    internal void EnsureCapacity(int value)
     {
         if (buffer.Length < value)
         {

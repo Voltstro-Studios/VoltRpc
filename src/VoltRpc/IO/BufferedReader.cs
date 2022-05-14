@@ -16,7 +16,7 @@ namespace VoltRpc.IO;
 /// </summary>
 public class BufferedReader : IDisposable
 {
-    private readonly byte[] buffer;
+    internal readonly byte[] buffer;
 
     private readonly UTF8Encoding encoding;
 
@@ -25,7 +25,7 @@ public class BufferedReader : IDisposable
     /// </summary>
     protected readonly Stream IncomingStream;
 
-    private int readLength;
+    internal int readLength;
 
     /// <summary>
     ///     Creates a new <see cref="BufferedReader" /> instance
@@ -42,7 +42,7 @@ public class BufferedReader : IDisposable
     /// <summary>
     ///     The current position of the buffer
     /// </summary>
-    public int Position { get; private set; }
+    public int Position { get; internal set; }
 
     /// <summary>
     ///     The length of the buffer
@@ -268,7 +268,7 @@ public class BufferedReader : IDisposable
         return encoding.GetString(data.Array, data.Offset, data.Count);
     }
 
-    private void ReadStream()
+    internal void ReadStream()
     {
         readLength = IncomingStream.Read(buffer, 0, buffer.Length);
         IncomingStreamPosition = 0;
