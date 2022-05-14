@@ -8,11 +8,11 @@ public class DualBuffers : IDisposable
 {
     private readonly MemoryStream memoryStream;
 
-    public DualBuffers()
+    public DualBuffers(int size = 1000)
     {
-        memoryStream = new MemoryStream(1000);
-        BufferedReader = new MemoryStreamBufferedReader(memoryStream);
-        BufferedWriter = new MemoryStreamBufferedWriter(memoryStream);
+        memoryStream = new MemoryStream(size);
+        BufferedReader = new MemoryStreamBufferedReader(memoryStream, size);
+        BufferedWriter = new MemoryStreamBufferedWriter(memoryStream, size);
     }
 
     public BufferedReader BufferedReader { get; }

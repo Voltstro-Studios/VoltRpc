@@ -142,4 +142,17 @@ public class BufferedReadWriterTests
         for (int i = 0; i < arraySize; i++)
             Assert.AreEqual(baseArray[i], readSegmentArray[i]);
     }
+
+    [Test]
+    public void BufferResizeTest()
+    {
+        using DualBuffers buffers = new(4);
+        Assert.AreEqual(4, buffers.BufferedWriter.Length);
+        
+        buffers.BufferedWriter.WriteInt(1);
+        Assert.AreEqual(4, buffers.BufferedWriter.Length);
+        
+        buffers.BufferedWriter.WriteInt(1);
+        Assert.AreEqual(8, buffers.BufferedWriter.Length);
+    }
 }

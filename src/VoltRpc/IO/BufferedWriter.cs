@@ -40,7 +40,7 @@ public class BufferedWriter : IDisposable
         OutputStream = output;
         encoding = new UTF8Encoding(false, true);
         stringBuffer = new byte[MaxStringLength];
-        buffer = new byte[bufferSize];
+        buffer = IoUtils.CreateBuffer(bufferSize);
     }
 
     /// <summary>
@@ -76,10 +76,21 @@ public class BufferedWriter : IDisposable
     /// <summary>
     ///     Writes a <see cref="byte" />
     /// </summary>
-    /// <param name="value"></param>
-    public void WriteByte(byte value)
+    /// <param name="value">The value to write</param>
+    /// <param name="ensureCapacity">
+    ///     Checks that capacity of the buffer is larger enough.
+    ///     This should ALWAYS be enabled, UNLESS you are doing multiple <see cref="WriteByte"/> calls.
+    ///     <para>
+    ///         If you are doing multiple <see cref="WriteByte"/> calls,
+    ///         then only do a capacity check on the first one, and set capacitySize to the total size.
+    ///     </para>
+    /// </param>
+    /// <param name="capacitySize">Capacity size of the buffer to check</param>
+    public void WriteByte(byte value, bool ensureCapacity = true, int capacitySize = 1)
     {
-        EnsureCapacity(Position + 1);
+        if(ensureCapacity)
+            EnsureCapacity(Position + capacitySize);
+        
         buffer[Position++] = value;
     }
 
@@ -120,8 +131,8 @@ public class BufferedWriter : IDisposable
     /// <param name="value"></param>
     public void WriteUShort(ushort value)
     {
-        WriteByte((byte) value);
-        WriteByte((byte) (value >> 8));
+        WriteByte((byte) value, true, 2);
+        WriteByte((byte) (value >> 8), false);
     }
 
     /// <summary>
@@ -148,10 +159,10 @@ public class BufferedWriter : IDisposable
     /// <param name="value"></param>
     public void WriteUInt(uint value)
     {
-        WriteByte((byte) value);
-        WriteByte((byte) (value >> 8));
-        WriteByte((byte) (value >> 16));
-        WriteByte((byte) (value >> 24));
+        WriteByte((byte) value, true, 4);
+        WriteByte((byte) (value >> 8), false);
+        WriteByte((byte) (value >> 16), false);
+        WriteByte((byte) (value >> 24), false);
     }
 
     /// <summary>
@@ -169,14 +180,14 @@ public class BufferedWriter : IDisposable
     /// <param name="value"></param>
     public void WriteULong(ulong value)
     {
-        WriteByte((byte) value);
-        WriteByte((byte) (value >> 8));
-        WriteByte((byte) (value >> 16));
-        WriteByte((byte) (value >> 24));
-        WriteByte((byte) (value >> 32));
-        WriteByte((byte) (value >> 40));
-        WriteByte((byte) (value >> 48));
-        WriteByte((byte) (value >> 56));
+        WriteByte((byte) value, true, 8);
+        WriteByte((byte) (value >> 8), false);
+        WriteByte((byte) (value >> 16), false);
+        WriteByte((byte) (value >> 24), false);
+        WriteByte((byte) (value >> 32), false);
+        WriteByte((byte) (value >> 40), false);
+        WriteByte((byte) (value >> 48), false);
+        WriteByte((byte) (value >> 56), false);
     }
 
     /// <summary>
@@ -274,7 +285,11 @@ public class BufferedWriter : IDisposable
         if (buffer.Length < value)
         {
             int capacity = Math.Max(value, buffer.Length * 2);
-            Array.Resize(ref buffer, capacity);
+
+            //Create new buffer and copy the contents of the old one to it
+            byte[] newBuffer = IoUtils.CreateBuffer(capacity);
+            Array.Copy(buffer, newBuffer, buffer.Length);
+            buffer = newBuffer;
         }
     }
 }

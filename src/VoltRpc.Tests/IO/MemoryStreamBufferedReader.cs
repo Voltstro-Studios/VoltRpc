@@ -5,8 +5,8 @@ namespace VoltRpc.Tests.IO;
 
 public class MemoryStreamBufferedReader : BufferedReader
 {
-    internal MemoryStreamBufferedReader(MemoryStream incoming)
-        : base(incoming)
+    internal MemoryStreamBufferedReader(MemoryStream incoming, int size)
+        : base(incoming, size)
     {
     }
 

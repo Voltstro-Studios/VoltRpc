@@ -5,7 +5,8 @@ namespace VoltRpc.Tests.IO;
 
 public class MemoryStreamBufferedWriter : BufferedWriter
 {
-    internal MemoryStreamBufferedWriter(MemoryStream output) : base(output)
+    internal MemoryStreamBufferedWriter(MemoryStream output, int size) 
+        : base(output, size)
     {
     }
 

@@ -36,7 +36,7 @@ public class BufferedReader : IDisposable
     {
         IncomingStream = incoming;
         encoding = new UTF8Encoding(false, true);
-        buffer = new byte[bufferSize];
+        buffer = IoUtils.CreateBuffer(bufferSize);
     }
 
     /// <summary>
