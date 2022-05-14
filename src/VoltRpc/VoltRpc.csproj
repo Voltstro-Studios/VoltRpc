@@ -13,6 +13,8 @@
         <PackageVersion>2.0.0</PackageVersion>
         <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <IsTrimmable>true</IsTrimmable>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">

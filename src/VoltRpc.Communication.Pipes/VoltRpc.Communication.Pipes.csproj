@@ -13,6 +13,8 @@
         <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <RootNamespace>VoltRpc.Communication.Pipes</RootNamespace>
         <IsTrimmable>true</IsTrimmable>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
