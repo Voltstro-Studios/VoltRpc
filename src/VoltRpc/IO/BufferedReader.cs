@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace VoltRpc.IO;
@@ -16,15 +17,24 @@ namespace VoltRpc.IO;
 /// </summary>
 public class BufferedReader : IDisposable
 {
-    internal readonly byte[] buffer;
-
-    internal readonly UTF8Encoding encoding;
-
     /// <summary>
     ///     The incoming <see cref="Stream" />
     /// </summary>
     protected readonly Stream IncomingStream;
+    
+    /// <summary>
+    ///     Internal access to the underlining <see cref="UTF8Encoding"/> for <see cref="string"/>s
+    /// </summary>
+    internal readonly UTF8Encoding encoding;
+    
+    /// <summary>
+    ///     Internal access to the underlining buffer
+    /// </summary>
+    internal readonly byte[] buffer;
 
+    /// <summary>
+    ///     Current read length of the underlining <see cref="Stream"/>
+    /// </summary>
     internal int readLength;
 
     /// <summary>
@@ -53,16 +63,6 @@ public class BufferedReader : IDisposable
     ///     You may need to override this if your <see cref="Stream" /> requires it
     /// </summary>
     protected virtual long IncomingStreamPosition { get; set; }
-
-    #region Destroy
-
-    /// <inheritdoc />
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-    }
-
-    #endregion
 
     /// <summary>
     ///     Reads a <see cref="byte" />
@@ -268,6 +268,11 @@ public class BufferedReader : IDisposable
         return encoding.GetString(data.Array, data.Offset, data.Count);
     }
 
+    /// <summary>
+    ///     Reads more of the underlining <see cref="Stream"/>
+    /// </summary>
+    /// <exception cref="EndOfStreamException"></exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal void ReadStream()
     {
         readLength = IncomingStream.Read(buffer, 0, buffer.Length);
@@ -277,4 +282,14 @@ public class BufferedReader : IDisposable
         if (readLength == 0)
             throw new EndOfStreamException();
     }
+    
+    #region Destroy
+
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion
 }

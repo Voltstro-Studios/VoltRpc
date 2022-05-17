@@ -24,10 +24,17 @@ public class BufferedWriter : IDisposable
     /// </summary>
     protected readonly Stream OutputStream;
 
-    private readonly byte[] stringBuffer;
-    
+    /// <summary>
+    ///     Internal access to the underlining <see cref="UTF8Encoding"/> for <see cref="string"/>s
+    /// </summary>
     internal readonly UTF8Encoding encoding;
+    
+    /// <summary>
+    ///     Internal access to the underlining buffer
+    /// </summary>
     internal byte[] buffer;
+    
+    private readonly byte[] stringBuffer;
 
     /// <summary>
     ///     Creates a new <see cref="BufferedWriter" /> instance
@@ -56,12 +63,6 @@ public class BufferedWriter : IDisposable
     ///     You may need to override this if your <see cref="Stream" /> requires it
     /// </summary>
     protected virtual long OutputStreamPosition { get; set; }
-
-    /// <inheritdoc />
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-    }
 
     /// <summary>
     ///     Reset position
@@ -295,4 +296,14 @@ public class BufferedWriter : IDisposable
             buffer = newBuffer;
         }
     }
+
+    #region Destroy
+
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion
 }
