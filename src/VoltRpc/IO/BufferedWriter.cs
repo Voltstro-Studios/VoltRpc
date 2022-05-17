@@ -18,16 +18,15 @@ public class BufferedWriter : IDisposable
     ///     Max length for a <see cref="string" />
     /// </summary>
     public const int MaxStringLength = 1024 * 32;
-
-    private readonly UTF8Encoding encoding;
-
+    
     /// <summary>
     ///     Output <see cref="Stream" />
     /// </summary>
     protected readonly Stream OutputStream;
 
     private readonly byte[] stringBuffer;
-
+    
+    internal readonly UTF8Encoding encoding;
     internal byte[] buffer;
 
     /// <summary>

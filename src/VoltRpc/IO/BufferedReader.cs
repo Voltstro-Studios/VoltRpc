@@ -18,7 +18,7 @@ public class BufferedReader : IDisposable
 {
     internal readonly byte[] buffer;
 
-    private readonly UTF8Encoding encoding;
+    internal readonly UTF8Encoding encoding;
 
     /// <summary>
     ///     The incoming <see cref="Stream" />

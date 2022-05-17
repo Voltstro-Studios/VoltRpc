@@ -30,6 +30,18 @@ public class BufferedReaderMemoryExtensionsTests
         ReadOnlySpan<byte> result = buffers.BufferedReader.ReadBytesSpanCopy(data.Length);
         CheckData(data, result);
     }
+
+    [Test]
+    public void ReadStringSpanTest()
+    {
+        using DualBuffers buffers = new();
+        string test = "Rowan SUXS";
+        buffers.BufferedWriter.WriteString(test);
+        buffers.BufferedWriter.Flush();
+
+        string result = buffers.BufferedReader.ReadStringSpan();
+        StringAssert.AreEqualIgnoringCase(test, result);
+    }
     
     private void CheckData(ReadOnlySpan<byte> expected, ReadOnlySpan<byte> data)
     {

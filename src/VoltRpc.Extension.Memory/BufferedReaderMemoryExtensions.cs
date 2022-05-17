@@ -52,4 +52,32 @@ public static class BufferedReaderMemoryExtensions
         
         return copy;
     }
+
+    /// <summary>
+    ///     Reads a <see cref="string"/>, but is using <see cref="ReadBytesSpanSlice"/> instead
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <returns></returns>
+    /// <exception cref="EndOfStreamException"></exception>
+    public static string? ReadStringSpan(this BufferedReader reader)
+    {
+        ushort size = reader.ReadUShort();
+        if (size == 0)
+            return null;
+        
+        int realSize = size - 1;
+        
+        //Make sure it's within limits to avoid allocation attacks etc.
+        if (realSize >= BufferedWriter.MaxStringLength)
+            throw new EndOfStreamException(
+                $"Read string was too long! Max size is {BufferedWriter.MaxStringLength}.");
+
+        ReadOnlySpan<byte> data = reader.ReadBytesSpanSlice(realSize);
+
+#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
+        return reader.encoding.GetString(data);
+#else
+        return reader.encoding.GetString(data.ToArray());
+#endif
+    }
 }
