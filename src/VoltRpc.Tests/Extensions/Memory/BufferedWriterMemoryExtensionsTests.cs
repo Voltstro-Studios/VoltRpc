@@ -1,6 +1,6 @@
 using System;
 using NUnit.Framework;
-using VoltRpc.Extensions.Memory;
+using VoltRpc.Extension.Memory;
 using VoltRpc.IO;
 using VoltRpc.Tests.IO;
 

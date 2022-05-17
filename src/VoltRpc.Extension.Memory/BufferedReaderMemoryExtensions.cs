@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using VoltRpc.IO;
 
-namespace VoltRpc.Extensions.Memory;
+namespace VoltRpc.Extension.Memory;
 
 /// <summary>
 ///     Provides extensions to <see cref="BufferedReader"/> 

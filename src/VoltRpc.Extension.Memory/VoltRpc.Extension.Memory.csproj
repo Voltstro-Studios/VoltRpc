@@ -12,7 +12,7 @@
         <PackageVersion>1.0.0</PackageVersion>
         <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <Nullable>enable</Nullable>
-        <RootNamespace>VoltRpc.Extensions.Memory</RootNamespace>
+        <RootNamespace>VoltRpc.Extension.Memory</RootNamespace>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <DocumentationFile>bin\Debug\$(TargetFramework)\VoltRpc.Extension.Memory.xml</DocumentationFile>
