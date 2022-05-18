@@ -3,20 +3,12 @@
     <Import Project="../Properties.props" />
     
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <Title>VoltRpc.Extension.Memory</Title>
-        <Authors>Voltstro</Authors>
-        <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
+        <RootNamespace>VoltRpc.Extension.Memory</RootNamespace>
         <Description>VoltRpc.Extension.Memory - Adds System.Memory support to VoltRpc's buffered writer/reader.</Description>
         <Version>1.0.0</Version>
         <PackageVersion>1.0.0</PackageVersion>
-        <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <Nullable>enable</Nullable>
-        <RootNamespace>VoltRpc.Extension.Memory</RootNamespace>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <DocumentationFile>bin\Debug\$(TargetFramework)\VoltRpc.Extension.Memory.xml</DocumentationFile>
-        <LangVersion>10</LangVersion>
     </PropertyGroup>
     
     <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
@@ -26,5 +18,7 @@
     <ItemGroup>
       <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
+
+    <Import Project="../Packages.props" />
     
 </Project>

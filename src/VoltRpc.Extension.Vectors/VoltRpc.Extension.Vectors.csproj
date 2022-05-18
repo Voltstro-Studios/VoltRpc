@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="../Properties.props" />
+
+    <PropertyGroup>
+        <Title>VoltRpc.Extension.Vectors</Title>
+        <RootNamespace>VoltRpc.Extension.Vectors</RootNamespace>
+        <Description>VoltRpc.Extension.Vectors - Adds System.Numerics.Vectors support to VoltRpc's buffered writer/reader, as well as type readers/writers.</Description>
+        <Version>1.0.0</Version>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
+    </ItemGroup>
+
+    <Import Project="../Packages.props" />
+
+</Project>

@@ -1,0 +1,12 @@
+<Project>
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <Authors>Voltstro</Authors>
+        <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
+        <IsTrimmable>true</IsTrimmable>
+        <DocumentationFile>bin\Debug\$(TargetFramework)\$(Title).xml</DocumentationFile>
+    </PropertyGroup>
+</Project>
