@@ -86,7 +86,7 @@ public static class Program
             Stopwatch sw = Stopwatch.StartNew();
             action();
             sw.Stop();
-            Console.WriteLine($"{testName} test #{i + 1} took: {sw.ElapsedMilliseconds}ms");
+            Console.WriteLine($"{testName} test #{i + 1} took: {sw.Elapsed.TotalMilliseconds}ms");
         }
     }
 }
