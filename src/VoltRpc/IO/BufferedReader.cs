@@ -5,8 +5,8 @@ using System.Text;
 
 namespace VoltRpc.IO;
 /*
- * Base of this code comes from Mirror's NetworkReader:
- * https://github.com/vis2k/Mirror/blob/ca4c2fd9302b1ece4240b09cc562e25bcb84407f/Assets/Mirror/Runtime/NetworkReader.cs
+ * A lot of this code comes from Mirror's NetworkReader:
+ * https://github.com/vis2k/Mirror/blob/98d7a9d7d12c4b965077d69e3eff5864bc9c79df/Assets/Mirror/Runtime/NetworkReader.cs
  *
  * Some code also comes from .NET Runtime's BufferedStream:
  * https://github.com/dotnet/runtime/blob/release/5.0/src/libraries/System.Private.CoreLib/src/System/IO/BufferedStream.cs
@@ -65,16 +65,41 @@ public class BufferedReader : IDisposable
     protected virtual long IncomingStreamPosition { get; set; }
 
     /// <summary>
+    ///     Reads a blittable type
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="EndOfStreamException"></exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal unsafe T ReadBlittable<T>()
+        where T : unmanaged
+    {
+        int size = sizeof(T);
+        
+        if(Position == readLength)
+            ReadStream();
+
+        if (Position + size > Length)
+            throw new EndOfStreamException("Read stream out of range!");
+
+        T value;
+        fixed (byte* ptr = &buffer[Position])
+        {
+            value = *(T*)ptr;
+        }
+
+        Position += size;
+        return value;
+    }
+    
+    /// <summary>
     ///     Reads a <see cref="byte" />
     /// </summary>
     /// <returns></returns>
     /// <exception cref="EndOfStreamException"></exception>
     public byte ReadByte()
     {
-        if (Position == readLength)
-            ReadStream();
-
-        return buffer[Position++];
+        return ReadBlittable<byte>();
     }
 
     /// <summary>
@@ -102,145 +127,7 @@ public class BufferedReader : IDisposable
         Position += count;
         return result;
     }
-
-    /// <summary>
-    ///     Reads a <see cref="sbyte" />
-    /// </summary>
-    /// <returns></returns>
-    public sbyte ReadSByte()
-    {
-        return (sbyte) ReadByte();
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="bool" />
-    /// </summary>
-    /// <returns></returns>
-    public bool ReadBool()
-    {
-        return ReadByte() != 0;
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="ushort" />
-    /// </summary>
-    /// <returns></returns>
-    public ushort ReadUShort()
-    {
-        ushort value = 0;
-        value |= ReadByte();
-        value |= (ushort) (ReadByte() << 8);
-        return value;
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="short" />
-    /// </summary>
-    /// <returns></returns>
-    public short ReadShort()
-    {
-        return (short) ReadUShort();
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="char" />
-    /// </summary>
-    /// <returns></returns>
-    public char ReadChar()
-    {
-        return (char) ReadUShort();
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="uint" />
-    /// </summary>
-    /// <returns></returns>
-    public uint ReadUInt()
-    {
-        uint value = 0;
-        value |= ReadByte();
-        value |= (uint) (ReadByte() << 8);
-        value |= (uint) (ReadByte() << 16);
-        value |= (uint) (ReadByte() << 24);
-        return value;
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="int" />
-    /// </summary>
-    /// <returns></returns>
-    public int ReadInt()
-    {
-        return (int) ReadUInt();
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="ulong" />
-    /// </summary>
-    /// <returns></returns>
-    public ulong ReadULong()
-    {
-        ulong value = 0;
-        value |= ReadByte();
-        value |= (ulong) ReadByte() << 8;
-        value |= (ulong) ReadByte() << 16;
-        value |= (ulong) ReadByte() << 24;
-        value |= (ulong) ReadByte() << 32;
-        value |= (ulong) ReadByte() << 40;
-        value |= (ulong) ReadByte() << 48;
-        value |= (ulong) ReadByte() << 56;
-        return value;
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="long" />
-    /// </summary>
-    /// <returns></returns>
-    public long ReadLong()
-    {
-        return (long) ReadULong();
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="float" />
-    /// </summary>
-    /// <returns></returns>
-    public float ReadFloat()
-    {
-        UIntFloat converter = new()
-        {
-            intValue = ReadUInt()
-        };
-        return converter.floatValue;
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="double" />
-    /// </summary>
-    /// <returns></returns>
-    public double ReadDouble()
-    {
-        UIntDouble converter = new()
-        {
-            longValue = ReadULong()
-        };
-        return converter.doubleValue;
-    }
-
-    /// <summary>
-    ///     Reads a <see cref="decimal" />
-    /// </summary>
-    /// <returns></returns>
-    public decimal ReadDecimal()
-    {
-        UIntDecimal converter = new()
-        {
-            longValue1 = ReadULong(),
-            longValue2 = ReadULong()
-        };
-        return converter.decimalValue;
-    }
-
+    
     /// <summary>
     ///     Reads a <see cref="string" />
     /// </summary>
@@ -249,7 +136,7 @@ public class BufferedReader : IDisposable
     public string ReadString()
     {
         //Read number of bytes
-        ushort size = ReadUShort();
+        ushort size = this.ReadUShort();
 
         //Null support
         if (size == 0)

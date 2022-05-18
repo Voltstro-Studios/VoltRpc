@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using VoltRpc.IO;
 
 namespace VoltRpc.Tests.IO;
 
