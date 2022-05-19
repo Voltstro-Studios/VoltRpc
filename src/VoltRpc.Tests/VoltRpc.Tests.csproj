@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <IsPackable>false</IsPackable>
     </PropertyGroup>
@@ -18,6 +19,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\VoltRpc.Extension.Memory\VoltRpc.Extension.Memory.csproj" />
+        <ProjectReference Include="..\VoltRpc.Extension.Vectors\VoltRpc.Extension.Vectors.csproj" />
         <ProjectReference Include="..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj" />
         <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
