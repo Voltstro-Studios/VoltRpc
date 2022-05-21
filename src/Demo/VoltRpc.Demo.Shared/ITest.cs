@@ -1,4 +1,5 @@
-﻿using VoltRpc.Proxy;
+﻿using System.Numerics;
+using VoltRpc.Proxy;
 
 namespace VoltRpc.Demo.Shared;
 
@@ -22,4 +23,6 @@ public interface ITest
     public void CustomTypeTest(CustomType customType);
 
     public CustomType CustomTypeReturnTest();
+
+    public Vector3 Vector3TypeReturnTest();
 }

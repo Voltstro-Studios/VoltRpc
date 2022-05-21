@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../Demo.props"/>
+    <Import Project="../Demo.props" />
 
     <PropertyGroup>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
@@ -8,10 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj"
-                          ReferenceOutputAssembly="false"
-                          OutputItemType="Analyzer"/>
-        <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj"/>
+        <ProjectReference Include="..\..\VoltRpc.Extension.Vectors\VoltRpc.Extension.Vectors.csproj" />
+        <ProjectReference Include="..\..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+        <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
 
 </Project>

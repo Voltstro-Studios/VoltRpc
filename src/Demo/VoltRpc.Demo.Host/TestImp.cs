@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using VoltRpc.Demo.Shared;
 
 namespace VoltRpc.Demo.Host;
@@ -63,5 +64,10 @@ public class TestImp : ITest
             Floaty = 69.420f,
             Message = "HaHa Reddit big chungus wholesome 100 keanu reeves"
         };
+    }
+
+    public Vector3 Vector3TypeReturnTest()
+    {
+        return new Vector3(2.5f, 128.32f, 76.1278f);
     }
 }

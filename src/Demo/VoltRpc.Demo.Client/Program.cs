@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Numerics;
 using VoltRpc.Communication;
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
+using VoltRpc.Extension.Vectors.Types;
 using VoltRpc.Proxy.Generated;
 
 namespace VoltRpc.Demo.Client;
@@ -22,9 +24,13 @@ public static class Program
             client = new PipesClient(parser.PipeName);
         else
             client = new TCPClient(parser.IpEndPoint);
+        
+        //Add VoltRpc.Extension.Vectors
+        client.TypeReaderWriterManager.InstallVectorsExtension();
 
-        client.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
+        client.TypeReaderWriterManager.AddType(new CustomTypeReaderWriter());
         client.AddService(typeof(ITest));
+
         try
         {
             client.Connect();
@@ -71,7 +77,12 @@ public static class Program
             CustomType customType = proxy.CustomTypeReturnTest();
             Console.WriteLine($"Got custom type with values: {customType.Floaty} {customType.Message}.");
         });
-
+        RunFunctionTest("Vector3 Type Return", () =>
+        {
+            Vector3 vector3 = proxy.Vector3TypeReturnTest();
+            Console.WriteLine($"Got vector3 type with value: {vector3}.");
+        });
+        
         Console.WriteLine("Press any key to quit...");
         Console.ReadKey();
 

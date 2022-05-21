@@ -2,6 +2,7 @@
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
+using VoltRpc.Extension.Vectors.Types;
 using VoltRpc.Logging;
 
 namespace VoltRpc.Demo.Host;
@@ -20,8 +21,11 @@ public static class Program
             host = new PipesHost(parser.PipeName, logger);
         else
             host = new TCPHost(parser.IpEndPoint, logger);
-
-        host.TypeReaderWriterManager.AddType<CustomType>(new CustomTypeReaderWriter());
+        
+        //Add VoltRpc.Extension.Vectors
+        host.TypeReaderWriterManager.InstallVectorsExtension();
+        
+        host.TypeReaderWriterManager.AddType(new CustomTypeReaderWriter());
         host.MaxConnectionsCount = 1;
 
         TestImp testImp = new();
