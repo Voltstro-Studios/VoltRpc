@@ -6,8 +6,8 @@
         <Title>VoltRpc.Communication.Pipes</Title>
         <RootNamespace>VoltRpc.Communication.Pipes</RootNamespace>
         <Description>VoltRpc.Communication.Pipes - Named Pipes communication for VoltRpc.</Description>
-        <Version>2.0.0</Version>
-        <PackageVersion>2.0.0</PackageVersion>
+        <Version>2.0.1</Version>
+        <PackageVersion>2.0.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
