@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - [2022-05-22]
+
+### Added
+
+- Added VoltRpc.Extension.Vectors, which supports most types provided by System.Numerics.Vectors
+- Added VoltRpc.Extension.Memory, which supports reading and writing `Span` and `Memory`
+- Packages will now have symbols package
+- Support null arrays
+
+### Changed
+
+- A lot of the methods in BufferedReader/Writer were changed to be extensions
+- On .NET 6 (and higher), the buffers for BufferedReader and Writer are created using `GC.AllocateArray` and are pinned.
+
+### Fixed
+
+- Fixed some XML docs referencing the wrong objects
+
 ## [2.0.0] - [2022-01-06]
 
 ### Added
