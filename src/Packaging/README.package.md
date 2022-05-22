@@ -40,7 +40,7 @@ VoltRpc - Library designed for high performance RPC communication.
 
 ### Installation
 
-VoltRpc can be installed from [NuGet](https://nuget.org/VoltRpc).
+VoltRpc can be installed from [NuGet](https://nuget.org/packages/VoltRpc).
 
 You can use the command below to install the package.
 
@@ -62,7 +62,7 @@ Install-Package VoltRpc.Proxy.Generator
 
 For a more in-depth example, see the [Overview](https://voltrpc.voltstro.dev/articles/overview) or [Setup](https://voltrpc.voltstro.dev/articles/setup).
 
-There is also a [demo project](/src/Demo) included.
+There is also a [demo project](https://github.com/Voltstro-Studios/VoltRpc/tree/master/src/Demo) included.
 
 **Shared**:
 
