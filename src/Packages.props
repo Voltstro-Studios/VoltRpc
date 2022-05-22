@@ -8,5 +8,6 @@
         <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <IsTrimmable>true</IsTrimmable>
         <DocumentationFile>bin\Debug\$(TargetFramework)\$(Title).xml</DocumentationFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 </Project>
