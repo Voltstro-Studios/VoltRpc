@@ -13,5 +13,8 @@
 - name: Types
   href: types.md
 
+- name: Extensions
+  href: extensions.md
+
 - name: Benchmarks
   href: benchmarks.md
