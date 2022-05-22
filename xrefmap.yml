@@ -760,6 +760,512 @@ references:
   isSpec: "True"
   fullName: VoltRpc.Communication.TCP.TCPHost.StartListening
   nameWithType: TCPHost.StartListening
+- uid: VoltRpc.Extension.Memory
+  name: VoltRpc.Extension.Memory
+  href: api/VoltRpc.Extension.Memory.html
+  commentId: N:VoltRpc.Extension.Memory
+  fullName: VoltRpc.Extension.Memory
+  nameWithType: VoltRpc.Extension.Memory
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions
+  name: BufferedReaderMemoryExtensions
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html
+  commentId: T:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions
+  nameWithType: BufferedReaderMemoryExtensions
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanCopy(VoltRpc.IO.BufferedReader,System.Int32)
+  name: ReadBytesSpanCopy(BufferedReader, Int32)
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedReaderMemoryExtensions_ReadBytesSpanCopy_VoltRpc_IO_BufferedReader_System_Int32_
+  commentId: M:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanCopy(VoltRpc.IO.BufferedReader,System.Int32)
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanCopy(VoltRpc.IO.BufferedReader, System.Int32)
+  nameWithType: BufferedReaderMemoryExtensions.ReadBytesSpanCopy(BufferedReader, Int32)
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanCopy*
+  name: ReadBytesSpanCopy
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedReaderMemoryExtensions_ReadBytesSpanCopy_
+  commentId: Overload:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanCopy
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanCopy
+  nameWithType: BufferedReaderMemoryExtensions.ReadBytesSpanCopy
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanSlice(VoltRpc.IO.BufferedReader,System.Int32)
+  name: ReadBytesSpanSlice(BufferedReader, Int32)
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedReaderMemoryExtensions_ReadBytesSpanSlice_VoltRpc_IO_BufferedReader_System_Int32_
+  commentId: M:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanSlice(VoltRpc.IO.BufferedReader,System.Int32)
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanSlice(VoltRpc.IO.BufferedReader, System.Int32)
+  nameWithType: BufferedReaderMemoryExtensions.ReadBytesSpanSlice(BufferedReader, Int32)
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanSlice*
+  name: ReadBytesSpanSlice
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedReaderMemoryExtensions_ReadBytesSpanSlice_
+  commentId: Overload:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanSlice
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadBytesSpanSlice
+  nameWithType: BufferedReaderMemoryExtensions.ReadBytesSpanSlice
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadStringSpan(VoltRpc.IO.BufferedReader)
+  name: ReadStringSpan(BufferedReader)
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedReaderMemoryExtensions_ReadStringSpan_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadStringSpan(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadStringSpan(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderMemoryExtensions.ReadStringSpan(BufferedReader)
+- uid: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadStringSpan*
+  name: ReadStringSpan
+  href: api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedReaderMemoryExtensions_ReadStringSpan_
+  commentId: Overload:VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadStringSpan
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.ReadStringSpan
+  nameWithType: BufferedReaderMemoryExtensions.ReadStringSpan
+- uid: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions
+  name: BufferedWriterMemoryExtensions
+  href: api/VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.html
+  commentId: T:VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions
+  fullName: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions
+  nameWithType: BufferedWriterMemoryExtensions
+- uid: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory(VoltRpc.IO.BufferedWriter,System.ReadOnlyMemory{System.Byte})
+  name: WriteBytesMemory(BufferedWriter, ReadOnlyMemory<Byte>)
+  href: api/VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedWriterMemoryExtensions_WriteBytesMemory_VoltRpc_IO_BufferedWriter_System_ReadOnlyMemory_System_Byte__
+  commentId: M:VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory(VoltRpc.IO.BufferedWriter,System.ReadOnlyMemory{System.Byte})
+  name.vb: WriteBytesMemory(BufferedWriter, ReadOnlyMemory(Of Byte))
+  fullName: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory(VoltRpc.IO.BufferedWriter, System.ReadOnlyMemory<System.Byte>)
+  fullName.vb: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory(VoltRpc.IO.BufferedWriter, System.ReadOnlyMemory(Of System.Byte))
+  nameWithType: BufferedWriterMemoryExtensions.WriteBytesMemory(BufferedWriter, ReadOnlyMemory<Byte>)
+  nameWithType.vb: BufferedWriterMemoryExtensions.WriteBytesMemory(BufferedWriter, ReadOnlyMemory(Of Byte))
+- uid: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory*
+  name: WriteBytesMemory
+  href: api/VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedWriterMemoryExtensions_WriteBytesMemory_
+  commentId: Overload:VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesMemory
+  nameWithType: BufferedWriterMemoryExtensions.WriteBytesMemory
+- uid: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan(VoltRpc.IO.BufferedWriter,System.ReadOnlySpan{System.Byte})
+  name: WriteBytesSpan(BufferedWriter, ReadOnlySpan<Byte>)
+  href: api/VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedWriterMemoryExtensions_WriteBytesSpan_VoltRpc_IO_BufferedWriter_System_ReadOnlySpan_System_Byte__
+  commentId: M:VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan(VoltRpc.IO.BufferedWriter,System.ReadOnlySpan{System.Byte})
+  name.vb: WriteBytesSpan(BufferedWriter, ReadOnlySpan(Of Byte))
+  fullName: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan(VoltRpc.IO.BufferedWriter, System.ReadOnlySpan<System.Byte>)
+  fullName.vb: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan(VoltRpc.IO.BufferedWriter, System.ReadOnlySpan(Of System.Byte))
+  nameWithType: BufferedWriterMemoryExtensions.WriteBytesSpan(BufferedWriter, ReadOnlySpan<Byte>)
+  nameWithType.vb: BufferedWriterMemoryExtensions.WriteBytesSpan(BufferedWriter, ReadOnlySpan(Of Byte))
+- uid: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan*
+  name: WriteBytesSpan
+  href: api/VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.html#VoltRpc_Extension_Memory_BufferedWriterMemoryExtensions_WriteBytesSpan_
+  commentId: Overload:VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.WriteBytesSpan
+  nameWithType: BufferedWriterMemoryExtensions.WriteBytesSpan
+- uid: VoltRpc.Extension.Vectors
+  name: VoltRpc.Extension.Vectors
+  href: api/VoltRpc.Extension.Vectors.html
+  commentId: N:VoltRpc.Extension.Vectors
+  fullName: VoltRpc.Extension.Vectors
+  nameWithType: VoltRpc.Extension.Vectors
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions
+  name: BufferedReaderVectorsExtensions
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html
+  commentId: T:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions
+  nameWithType: BufferedReaderVectorsExtensions
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix3X2(VoltRpc.IO.BufferedReader)
+  name: ReadMatrix3X2(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadMatrix3X2_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix3X2(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix3X2(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadMatrix3X2(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix3X2*
+  name: ReadMatrix3X2
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadMatrix3X2_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix3X2
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix3X2
+  nameWithType: BufferedReaderVectorsExtensions.ReadMatrix3X2
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix4X4(VoltRpc.IO.BufferedReader)
+  name: ReadMatrix4X4(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadMatrix4X4_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix4X4(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix4X4(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadMatrix4X4(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix4X4*
+  name: ReadMatrix4X4
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadMatrix4X4_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix4X4
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadMatrix4X4
+  nameWithType: BufferedReaderVectorsExtensions.ReadMatrix4X4
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadPlane(VoltRpc.IO.BufferedReader)
+  name: ReadPlane(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadPlane_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadPlane(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadPlane(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadPlane(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadPlane*
+  name: ReadPlane
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadPlane_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadPlane
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadPlane
+  nameWithType: BufferedReaderVectorsExtensions.ReadPlane
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadQuaternion(VoltRpc.IO.BufferedReader)
+  name: ReadQuaternion(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadQuaternion_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadQuaternion(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadQuaternion(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadQuaternion(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadQuaternion*
+  name: ReadQuaternion
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadQuaternion_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadQuaternion
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadQuaternion
+  nameWithType: BufferedReaderVectorsExtensions.ReadQuaternion
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector2(VoltRpc.IO.BufferedReader)
+  name: ReadVector2(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadVector2_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector2(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector2(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadVector2(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector2*
+  name: ReadVector2
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadVector2_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector2
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector2
+  nameWithType: BufferedReaderVectorsExtensions.ReadVector2
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector3(VoltRpc.IO.BufferedReader)
+  name: ReadVector3(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadVector3_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector3(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector3(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadVector3(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector3*
+  name: ReadVector3
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadVector3_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector3
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector3
+  nameWithType: BufferedReaderVectorsExtensions.ReadVector3
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector4(VoltRpc.IO.BufferedReader)
+  name: ReadVector4(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadVector4_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector4(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector4(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderVectorsExtensions.ReadVector4(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector4*
+  name: ReadVector4
+  href: api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedReaderVectorsExtensions_ReadVector4_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector4
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.ReadVector4
+  nameWithType: BufferedReaderVectorsExtensions.ReadVector4
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions
+  name: BufferedWriterVectorsExtensions
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html
+  commentId: T:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions
+  nameWithType: BufferedWriterVectorsExtensions
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix3X2(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix3x2)
+  name: WriteMatrix3X2(BufferedWriter, Matrix3x2)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteMatrix3X2_VoltRpc_IO_BufferedWriter_System_Numerics_Matrix3x2_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix3X2(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix3x2)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix3X2(VoltRpc.IO.BufferedWriter, System.Numerics.Matrix3x2)
+  nameWithType: BufferedWriterVectorsExtensions.WriteMatrix3X2(BufferedWriter, Matrix3x2)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix3X2*
+  name: WriteMatrix3X2
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteMatrix3X2_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix3X2
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix3X2
+  nameWithType: BufferedWriterVectorsExtensions.WriteMatrix3X2
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix4X4(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix4x4)
+  name: WriteMatrix4X4(BufferedWriter, Matrix4x4)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteMatrix4X4_VoltRpc_IO_BufferedWriter_System_Numerics_Matrix4x4_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix4X4(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix4x4)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix4X4(VoltRpc.IO.BufferedWriter, System.Numerics.Matrix4x4)
+  nameWithType: BufferedWriterVectorsExtensions.WriteMatrix4X4(BufferedWriter, Matrix4x4)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix4X4*
+  name: WriteMatrix4X4
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteMatrix4X4_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix4X4
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteMatrix4X4
+  nameWithType: BufferedWriterVectorsExtensions.WriteMatrix4X4
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WritePlane(VoltRpc.IO.BufferedWriter,System.Numerics.Plane)
+  name: WritePlane(BufferedWriter, Plane)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WritePlane_VoltRpc_IO_BufferedWriter_System_Numerics_Plane_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WritePlane(VoltRpc.IO.BufferedWriter,System.Numerics.Plane)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WritePlane(VoltRpc.IO.BufferedWriter, System.Numerics.Plane)
+  nameWithType: BufferedWriterVectorsExtensions.WritePlane(BufferedWriter, Plane)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WritePlane*
+  name: WritePlane
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WritePlane_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WritePlane
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WritePlane
+  nameWithType: BufferedWriterVectorsExtensions.WritePlane
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteQuaternion(VoltRpc.IO.BufferedWriter,System.Numerics.Quaternion)
+  name: WriteQuaternion(BufferedWriter, Quaternion)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteQuaternion_VoltRpc_IO_BufferedWriter_System_Numerics_Quaternion_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteQuaternion(VoltRpc.IO.BufferedWriter,System.Numerics.Quaternion)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteQuaternion(VoltRpc.IO.BufferedWriter, System.Numerics.Quaternion)
+  nameWithType: BufferedWriterVectorsExtensions.WriteQuaternion(BufferedWriter, Quaternion)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteQuaternion*
+  name: WriteQuaternion
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteQuaternion_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteQuaternion
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteQuaternion
+  nameWithType: BufferedWriterVectorsExtensions.WriteQuaternion
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector2(VoltRpc.IO.BufferedWriter,System.Numerics.Vector2)
+  name: WriteVector2(BufferedWriter, Vector2)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteVector2_VoltRpc_IO_BufferedWriter_System_Numerics_Vector2_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector2(VoltRpc.IO.BufferedWriter,System.Numerics.Vector2)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector2(VoltRpc.IO.BufferedWriter, System.Numerics.Vector2)
+  nameWithType: BufferedWriterVectorsExtensions.WriteVector2(BufferedWriter, Vector2)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector2*
+  name: WriteVector2
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteVector2_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector2
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector2
+  nameWithType: BufferedWriterVectorsExtensions.WriteVector2
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector3(VoltRpc.IO.BufferedWriter,System.Numerics.Vector3)
+  name: WriteVector3(BufferedWriter, Vector3)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteVector3_VoltRpc_IO_BufferedWriter_System_Numerics_Vector3_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector3(VoltRpc.IO.BufferedWriter,System.Numerics.Vector3)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector3(VoltRpc.IO.BufferedWriter, System.Numerics.Vector3)
+  nameWithType: BufferedWriterVectorsExtensions.WriteVector3(BufferedWriter, Vector3)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector3*
+  name: WriteVector3
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteVector3_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector3
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector3
+  nameWithType: BufferedWriterVectorsExtensions.WriteVector3
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector4(VoltRpc.IO.BufferedWriter,System.Numerics.Vector4)
+  name: WriteVector4(BufferedWriter, Vector4)
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteVector4_VoltRpc_IO_BufferedWriter_System_Numerics_Vector4_
+  commentId: M:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector4(VoltRpc.IO.BufferedWriter,System.Numerics.Vector4)
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector4(VoltRpc.IO.BufferedWriter, System.Numerics.Vector4)
+  nameWithType: BufferedWriterVectorsExtensions.WriteVector4(BufferedWriter, Vector4)
+- uid: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector4*
+  name: WriteVector4
+  href: api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html#VoltRpc_Extension_Vectors_BufferedWriterVectorsExtensions_WriteVector4_
+  commentId: Overload:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector4
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.WriteVector4
+  nameWithType: BufferedWriterVectorsExtensions.WriteVector4
+- uid: VoltRpc.Extension.Vectors.Types
+  name: VoltRpc.Extension.Vectors.Types
+  href: api/VoltRpc.Extension.Vectors.Types.html
+  commentId: N:VoltRpc.Extension.Vectors.Types
+  fullName: VoltRpc.Extension.Vectors.Types
+  nameWithType: VoltRpc.Extension.Vectors.Types
+- uid: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter
+  name: Matrix3X2TypeReadWriter
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter
+  nameWithType: Matrix3X2TypeReadWriter
+- uid: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix3X2TypeReadWriter_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  nameWithType: Matrix3X2TypeReadWriter.Read(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Read*
+  name: Read
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix3X2TypeReadWriter_Read_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Read
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Read
+  nameWithType: Matrix3X2TypeReadWriter.Read
+- uid: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix3x2)
+  name: Write(BufferedWriter, Matrix3x2)
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix3X2TypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Numerics_Matrix3x2_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix3x2)
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Numerics.Matrix3x2)
+  nameWithType: Matrix3X2TypeReadWriter.Write(BufferedWriter, Matrix3x2)
+- uid: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Write*
+  name: Write
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix3X2TypeReadWriter_Write_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Write
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix3X2TypeReadWriter.Write
+  nameWithType: Matrix3X2TypeReadWriter.Write
+- uid: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter
+  name: Matrix4X4TypeReadWriter
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter
+  nameWithType: Matrix4X4TypeReadWriter
+- uid: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix4X4TypeReadWriter_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  nameWithType: Matrix4X4TypeReadWriter.Read(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Read*
+  name: Read
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix4X4TypeReadWriter_Read_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Read
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Read
+  nameWithType: Matrix4X4TypeReadWriter.Read
+- uid: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix4x4)
+  name: Write(BufferedWriter, Matrix4x4)
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix4X4TypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Numerics_Matrix4x4_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Matrix4x4)
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Numerics.Matrix4x4)
+  nameWithType: Matrix4X4TypeReadWriter.Write(BufferedWriter, Matrix4x4)
+- uid: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Write*
+  name: Write
+  href: api/VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Matrix4X4TypeReadWriter_Write_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Write
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Matrix4X4TypeReadWriter.Write
+  nameWithType: Matrix4X4TypeReadWriter.Write
+- uid: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter
+  name: PlaneTypeReadWriter
+  href: api/VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter
+  fullName: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter
+  nameWithType: PlaneTypeReadWriter
+- uid: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_PlaneTypeReadWriter_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  nameWithType: PlaneTypeReadWriter.Read(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Read*
+  name: Read
+  href: api/VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_PlaneTypeReadWriter_Read_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Read
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Read
+  nameWithType: PlaneTypeReadWriter.Read
+- uid: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Plane)
+  name: Write(BufferedWriter, Plane)
+  href: api/VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_PlaneTypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Numerics_Plane_
+  commentId: M:VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Plane)
+  fullName: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Numerics.Plane)
+  nameWithType: PlaneTypeReadWriter.Write(BufferedWriter, Plane)
+- uid: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Write*
+  name: Write
+  href: api/VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_PlaneTypeReadWriter_Write_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Write
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.PlaneTypeReadWriter.Write
+  nameWithType: PlaneTypeReadWriter.Write
+- uid: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter
+  name: QuaternionTypeReadWriter
+  href: api/VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter
+  fullName: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter
+  nameWithType: QuaternionTypeReadWriter
+- uid: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_QuaternionTypeReadWriter_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  nameWithType: QuaternionTypeReadWriter.Read(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Read*
+  name: Read
+  href: api/VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_QuaternionTypeReadWriter_Read_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Read
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Read
+  nameWithType: QuaternionTypeReadWriter.Read
+- uid: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Quaternion)
+  name: Write(BufferedWriter, Quaternion)
+  href: api/VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_QuaternionTypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Numerics_Quaternion_
+  commentId: M:VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Quaternion)
+  fullName: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Numerics.Quaternion)
+  nameWithType: QuaternionTypeReadWriter.Write(BufferedWriter, Quaternion)
+- uid: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Write*
+  name: Write
+  href: api/VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.html#VoltRpc_Extension_Vectors_Types_QuaternionTypeReadWriter_Write_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Write
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.QuaternionTypeReadWriter.Write
+  nameWithType: QuaternionTypeReadWriter.Write
+- uid: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter
+  name: Vector2TypeReadWriter
+  href: api/VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter
+  fullName: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter
+  nameWithType: Vector2TypeReadWriter
+- uid: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector2TypeReadWriter_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  nameWithType: Vector2TypeReadWriter.Read(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Read*
+  name: Read
+  href: api/VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector2TypeReadWriter_Read_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Read
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Read
+  nameWithType: Vector2TypeReadWriter.Read
+- uid: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Vector2)
+  name: Write(BufferedWriter, Vector2)
+  href: api/VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector2TypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Numerics_Vector2_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Vector2)
+  fullName: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Numerics.Vector2)
+  nameWithType: Vector2TypeReadWriter.Write(BufferedWriter, Vector2)
+- uid: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Write*
+  name: Write
+  href: api/VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector2TypeReadWriter_Write_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Write
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Vector2TypeReadWriter.Write
+  nameWithType: Vector2TypeReadWriter.Write
+- uid: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter
+  name: Vector3TypeReadWriter
+  href: api/VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter
+  fullName: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter
+  nameWithType: Vector3TypeReadWriter
+- uid: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  name: Read(BufferedReader)
+  href: api/VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector3TypeReadWriter_Read_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Read(VoltRpc.IO.BufferedReader)
+  nameWithType: Vector3TypeReadWriter.Read(BufferedReader)
+- uid: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Read*
+  name: Read
+  href: api/VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector3TypeReadWriter_Read_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Read
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Read
+  nameWithType: Vector3TypeReadWriter.Read
+- uid: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Vector3)
+  name: Write(BufferedWriter, Vector3)
+  href: api/VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector3TypeReadWriter_Write_VoltRpc_IO_BufferedWriter_System_Numerics_Vector3_
+  commentId: M:VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Write(VoltRpc.IO.BufferedWriter,System.Numerics.Vector3)
+  fullName: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Write(VoltRpc.IO.BufferedWriter, System.Numerics.Vector3)
+  nameWithType: Vector3TypeReadWriter.Write(BufferedWriter, Vector3)
+- uid: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Write*
+  name: Write
+  href: api/VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.html#VoltRpc_Extension_Vectors_Types_Vector3TypeReadWriter_Write_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Write
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.Vector3TypeReadWriter.Write
+  nameWithType: Vector3TypeReadWriter.Write
+- uid: VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes
+  name: VectorsExtensionTypes
+  href: api/VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.html
+  commentId: T:VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes
+  fullName: VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes
+  nameWithType: VectorsExtensionTypes
+- uid: VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.InstallVectorsExtension(VoltRpc.Types.TypeReaderWriterManager)
+  name: InstallVectorsExtension(TypeReaderWriterManager)
+  href: api/VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.html#VoltRpc_Extension_Vectors_Types_VectorsExtensionTypes_InstallVectorsExtension_VoltRpc_Types_TypeReaderWriterManager_
+  commentId: M:VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.InstallVectorsExtension(VoltRpc.Types.TypeReaderWriterManager)
+  fullName: VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.InstallVectorsExtension(VoltRpc.Types.TypeReaderWriterManager)
+  nameWithType: VectorsExtensionTypes.InstallVectorsExtension(TypeReaderWriterManager)
+- uid: VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.InstallVectorsExtension*
+  name: InstallVectorsExtension
+  href: api/VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.html#VoltRpc_Extension_Vectors_Types_VectorsExtensionTypes_InstallVectorsExtension_
+  commentId: Overload:VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.InstallVectorsExtension
+  isSpec: "True"
+  fullName: VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.InstallVectorsExtension
+  nameWithType: VectorsExtensionTypes.InstallVectorsExtension
 - uid: VoltRpc.IO
   name: VoltRpc.IO
   href: api/VoltRpc.IO.html
@@ -843,19 +1349,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedReader.Position
   nameWithType: BufferedReader.Position
-- uid: VoltRpc.IO.BufferedReader.ReadBool
-  name: ReadBool()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadBool
-  commentId: M:VoltRpc.IO.BufferedReader.ReadBool
-  fullName: VoltRpc.IO.BufferedReader.ReadBool()
-  nameWithType: BufferedReader.ReadBool()
-- uid: VoltRpc.IO.BufferedReader.ReadBool*
-  name: ReadBool
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadBool_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadBool
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadBool
-  nameWithType: BufferedReader.ReadBool
 - uid: VoltRpc.IO.BufferedReader.ReadByte
   name: ReadByte()
   href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadByte
@@ -882,110 +1375,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedReader.ReadBytesSegment
   nameWithType: BufferedReader.ReadBytesSegment
-- uid: VoltRpc.IO.BufferedReader.ReadChar
-  name: ReadChar()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadChar
-  commentId: M:VoltRpc.IO.BufferedReader.ReadChar
-  fullName: VoltRpc.IO.BufferedReader.ReadChar()
-  nameWithType: BufferedReader.ReadChar()
-- uid: VoltRpc.IO.BufferedReader.ReadChar*
-  name: ReadChar
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadChar_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadChar
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadChar
-  nameWithType: BufferedReader.ReadChar
-- uid: VoltRpc.IO.BufferedReader.ReadDecimal
-  name: ReadDecimal()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadDecimal
-  commentId: M:VoltRpc.IO.BufferedReader.ReadDecimal
-  fullName: VoltRpc.IO.BufferedReader.ReadDecimal()
-  nameWithType: BufferedReader.ReadDecimal()
-- uid: VoltRpc.IO.BufferedReader.ReadDecimal*
-  name: ReadDecimal
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadDecimal_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadDecimal
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadDecimal
-  nameWithType: BufferedReader.ReadDecimal
-- uid: VoltRpc.IO.BufferedReader.ReadDouble
-  name: ReadDouble()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadDouble
-  commentId: M:VoltRpc.IO.BufferedReader.ReadDouble
-  fullName: VoltRpc.IO.BufferedReader.ReadDouble()
-  nameWithType: BufferedReader.ReadDouble()
-- uid: VoltRpc.IO.BufferedReader.ReadDouble*
-  name: ReadDouble
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadDouble_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadDouble
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadDouble
-  nameWithType: BufferedReader.ReadDouble
-- uid: VoltRpc.IO.BufferedReader.ReadFloat
-  name: ReadFloat()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadFloat
-  commentId: M:VoltRpc.IO.BufferedReader.ReadFloat
-  fullName: VoltRpc.IO.BufferedReader.ReadFloat()
-  nameWithType: BufferedReader.ReadFloat()
-- uid: VoltRpc.IO.BufferedReader.ReadFloat*
-  name: ReadFloat
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadFloat_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadFloat
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadFloat
-  nameWithType: BufferedReader.ReadFloat
-- uid: VoltRpc.IO.BufferedReader.ReadInt
-  name: ReadInt()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadInt
-  commentId: M:VoltRpc.IO.BufferedReader.ReadInt
-  fullName: VoltRpc.IO.BufferedReader.ReadInt()
-  nameWithType: BufferedReader.ReadInt()
-- uid: VoltRpc.IO.BufferedReader.ReadInt*
-  name: ReadInt
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadInt_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadInt
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadInt
-  nameWithType: BufferedReader.ReadInt
-- uid: VoltRpc.IO.BufferedReader.ReadLong
-  name: ReadLong()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadLong
-  commentId: M:VoltRpc.IO.BufferedReader.ReadLong
-  fullName: VoltRpc.IO.BufferedReader.ReadLong()
-  nameWithType: BufferedReader.ReadLong()
-- uid: VoltRpc.IO.BufferedReader.ReadLong*
-  name: ReadLong
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadLong_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadLong
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadLong
-  nameWithType: BufferedReader.ReadLong
-- uid: VoltRpc.IO.BufferedReader.ReadSByte
-  name: ReadSByte()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadSByte
-  commentId: M:VoltRpc.IO.BufferedReader.ReadSByte
-  fullName: VoltRpc.IO.BufferedReader.ReadSByte()
-  nameWithType: BufferedReader.ReadSByte()
-- uid: VoltRpc.IO.BufferedReader.ReadSByte*
-  name: ReadSByte
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadSByte_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadSByte
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadSByte
-  nameWithType: BufferedReader.ReadSByte
-- uid: VoltRpc.IO.BufferedReader.ReadShort
-  name: ReadShort()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadShort
-  commentId: M:VoltRpc.IO.BufferedReader.ReadShort
-  fullName: VoltRpc.IO.BufferedReader.ReadShort()
-  nameWithType: BufferedReader.ReadShort()
-- uid: VoltRpc.IO.BufferedReader.ReadShort*
-  name: ReadShort
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadShort_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadShort
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadShort
-  nameWithType: BufferedReader.ReadShort
 - uid: VoltRpc.IO.BufferedReader.ReadString
   name: ReadString()
   href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadString
@@ -999,45 +1388,168 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedReader.ReadString
   nameWithType: BufferedReader.ReadString
-- uid: VoltRpc.IO.BufferedReader.ReadUInt
-  name: ReadUInt()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadUInt
-  commentId: M:VoltRpc.IO.BufferedReader.ReadUInt
-  fullName: VoltRpc.IO.BufferedReader.ReadUInt()
-  nameWithType: BufferedReader.ReadUInt()
-- uid: VoltRpc.IO.BufferedReader.ReadUInt*
+- uid: VoltRpc.IO.BufferedReaderExtensions
+  name: BufferedReaderExtensions
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html
+  commentId: T:VoltRpc.IO.BufferedReaderExtensions
+  fullName: VoltRpc.IO.BufferedReaderExtensions
+  nameWithType: BufferedReaderExtensions
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadBool(VoltRpc.IO.BufferedReader)
+  name: ReadBool(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadBool_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadBool(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadBool(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadBool(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadBool*
+  name: ReadBool
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadBool_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadBool
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadBool
+  nameWithType: BufferedReaderExtensions.ReadBool
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadChar(VoltRpc.IO.BufferedReader)
+  name: ReadChar(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadChar_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadChar(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadChar(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadChar(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadChar*
+  name: ReadChar
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadChar_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadChar
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadChar
+  nameWithType: BufferedReaderExtensions.ReadChar
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadDecimal(VoltRpc.IO.BufferedReader)
+  name: ReadDecimal(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadDecimal_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadDecimal(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadDecimal(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadDecimal(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadDecimal*
+  name: ReadDecimal
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadDecimal_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadDecimal
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadDecimal
+  nameWithType: BufferedReaderExtensions.ReadDecimal
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadDouble(VoltRpc.IO.BufferedReader)
+  name: ReadDouble(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadDouble_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadDouble(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadDouble(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadDouble(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadDouble*
+  name: ReadDouble
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadDouble_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadDouble
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadDouble
+  nameWithType: BufferedReaderExtensions.ReadDouble
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadFloat(VoltRpc.IO.BufferedReader)
+  name: ReadFloat(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadFloat_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadFloat(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadFloat(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadFloat(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadFloat*
+  name: ReadFloat
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadFloat_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadFloat
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadFloat
+  nameWithType: BufferedReaderExtensions.ReadFloat
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadInt(VoltRpc.IO.BufferedReader)
+  name: ReadInt(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadInt_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadInt(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadInt(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadInt(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadInt*
+  name: ReadInt
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadInt_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadInt
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadInt
+  nameWithType: BufferedReaderExtensions.ReadInt
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadLong(VoltRpc.IO.BufferedReader)
+  name: ReadLong(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadLong_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadLong(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadLong(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadLong(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadLong*
+  name: ReadLong
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadLong_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadLong
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadLong
+  nameWithType: BufferedReaderExtensions.ReadLong
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadSByte(VoltRpc.IO.BufferedReader)
+  name: ReadSByte(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadSByte_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadSByte(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadSByte(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadSByte(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadSByte*
+  name: ReadSByte
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadSByte_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadSByte
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadSByte
+  nameWithType: BufferedReaderExtensions.ReadSByte
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadShort(VoltRpc.IO.BufferedReader)
+  name: ReadShort(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadShort_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadShort(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadShort(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadShort(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadShort*
+  name: ReadShort
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadShort_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadShort
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadShort
+  nameWithType: BufferedReaderExtensions.ReadShort
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadUInt(VoltRpc.IO.BufferedReader)
+  name: ReadUInt(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadUInt_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadUInt(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadUInt(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadUInt(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadUInt*
   name: ReadUInt
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadUInt_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadUInt
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadUInt_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadUInt
   isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadUInt
-  nameWithType: BufferedReader.ReadUInt
-- uid: VoltRpc.IO.BufferedReader.ReadULong
-  name: ReadULong()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadULong
-  commentId: M:VoltRpc.IO.BufferedReader.ReadULong
-  fullName: VoltRpc.IO.BufferedReader.ReadULong()
-  nameWithType: BufferedReader.ReadULong()
-- uid: VoltRpc.IO.BufferedReader.ReadULong*
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadUInt
+  nameWithType: BufferedReaderExtensions.ReadUInt
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadULong(VoltRpc.IO.BufferedReader)
+  name: ReadULong(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadULong_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadULong(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadULong(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadULong(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadULong*
   name: ReadULong
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadULong_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadULong
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadULong_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadULong
   isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadULong
-  nameWithType: BufferedReader.ReadULong
-- uid: VoltRpc.IO.BufferedReader.ReadUShort
-  name: ReadUShort()
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadUShort
-  commentId: M:VoltRpc.IO.BufferedReader.ReadUShort
-  fullName: VoltRpc.IO.BufferedReader.ReadUShort()
-  nameWithType: BufferedReader.ReadUShort()
-- uid: VoltRpc.IO.BufferedReader.ReadUShort*
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadULong
+  nameWithType: BufferedReaderExtensions.ReadULong
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadUShort(VoltRpc.IO.BufferedReader)
+  name: ReadUShort(BufferedReader)
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadUShort_VoltRpc_IO_BufferedReader_
+  commentId: M:VoltRpc.IO.BufferedReaderExtensions.ReadUShort(VoltRpc.IO.BufferedReader)
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadUShort(VoltRpc.IO.BufferedReader)
+  nameWithType: BufferedReaderExtensions.ReadUShort(BufferedReader)
+- uid: VoltRpc.IO.BufferedReaderExtensions.ReadUShort*
   name: ReadUShort
-  href: api/VoltRpc.IO.BufferedReader.html#VoltRpc_IO_BufferedReader_ReadUShort_
-  commentId: Overload:VoltRpc.IO.BufferedReader.ReadUShort
+  href: api/VoltRpc.IO.BufferedReaderExtensions.html#VoltRpc_IO_BufferedReaderExtensions_ReadUShort_
+  commentId: Overload:VoltRpc.IO.BufferedReaderExtensions.ReadUShort
   isSpec: "True"
-  fullName: VoltRpc.IO.BufferedReader.ReadUShort
-  nameWithType: BufferedReader.ReadUShort
+  fullName: VoltRpc.IO.BufferedReaderExtensions.ReadUShort
+  nameWithType: BufferedReaderExtensions.ReadUShort
 - uid: VoltRpc.IO.BufferedWriter
   name: BufferedWriter
   href: api/VoltRpc.IO.BufferedWriter.html
@@ -1147,19 +1659,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedWriter.Reset
   nameWithType: BufferedWriter.Reset
-- uid: VoltRpc.IO.BufferedWriter.WriteBool(System.Boolean)
-  name: WriteBool(Boolean)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteBool_System_Boolean_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteBool(System.Boolean)
-  fullName: VoltRpc.IO.BufferedWriter.WriteBool(System.Boolean)
-  nameWithType: BufferedWriter.WriteBool(Boolean)
-- uid: VoltRpc.IO.BufferedWriter.WriteBool*
-  name: WriteBool
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteBool_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteBool
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteBool
-  nameWithType: BufferedWriter.WriteBool
 - uid: VoltRpc.IO.BufferedWriter.WriteByte(System.Byte)
   name: WriteByte(Byte)
   href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteByte_System_Byte_
@@ -1189,110 +1688,6 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedWriter.WriteBytes
   nameWithType: BufferedWriter.WriteBytes
-- uid: VoltRpc.IO.BufferedWriter.WriteChar(System.Char)
-  name: WriteChar(Char)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteChar_System_Char_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteChar(System.Char)
-  fullName: VoltRpc.IO.BufferedWriter.WriteChar(System.Char)
-  nameWithType: BufferedWriter.WriteChar(Char)
-- uid: VoltRpc.IO.BufferedWriter.WriteChar*
-  name: WriteChar
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteChar_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteChar
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteChar
-  nameWithType: BufferedWriter.WriteChar
-- uid: VoltRpc.IO.BufferedWriter.WriteDecimal(System.Decimal)
-  name: WriteDecimal(Decimal)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteDecimal_System_Decimal_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteDecimal(System.Decimal)
-  fullName: VoltRpc.IO.BufferedWriter.WriteDecimal(System.Decimal)
-  nameWithType: BufferedWriter.WriteDecimal(Decimal)
-- uid: VoltRpc.IO.BufferedWriter.WriteDecimal*
-  name: WriteDecimal
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteDecimal_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteDecimal
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteDecimal
-  nameWithType: BufferedWriter.WriteDecimal
-- uid: VoltRpc.IO.BufferedWriter.WriteDouble(System.Double)
-  name: WriteDouble(Double)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteDouble_System_Double_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteDouble(System.Double)
-  fullName: VoltRpc.IO.BufferedWriter.WriteDouble(System.Double)
-  nameWithType: BufferedWriter.WriteDouble(Double)
-- uid: VoltRpc.IO.BufferedWriter.WriteDouble*
-  name: WriteDouble
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteDouble_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteDouble
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteDouble
-  nameWithType: BufferedWriter.WriteDouble
-- uid: VoltRpc.IO.BufferedWriter.WriteFloat(System.Single)
-  name: WriteFloat(Single)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteFloat_System_Single_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteFloat(System.Single)
-  fullName: VoltRpc.IO.BufferedWriter.WriteFloat(System.Single)
-  nameWithType: BufferedWriter.WriteFloat(Single)
-- uid: VoltRpc.IO.BufferedWriter.WriteFloat*
-  name: WriteFloat
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteFloat_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteFloat
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteFloat
-  nameWithType: BufferedWriter.WriteFloat
-- uid: VoltRpc.IO.BufferedWriter.WriteInt(System.Int32)
-  name: WriteInt(Int32)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteInt_System_Int32_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteInt(System.Int32)
-  fullName: VoltRpc.IO.BufferedWriter.WriteInt(System.Int32)
-  nameWithType: BufferedWriter.WriteInt(Int32)
-- uid: VoltRpc.IO.BufferedWriter.WriteInt*
-  name: WriteInt
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteInt_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteInt
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteInt
-  nameWithType: BufferedWriter.WriteInt
-- uid: VoltRpc.IO.BufferedWriter.WriteLong(System.Int64)
-  name: WriteLong(Int64)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteLong_System_Int64_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteLong(System.Int64)
-  fullName: VoltRpc.IO.BufferedWriter.WriteLong(System.Int64)
-  nameWithType: BufferedWriter.WriteLong(Int64)
-- uid: VoltRpc.IO.BufferedWriter.WriteLong*
-  name: WriteLong
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteLong_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteLong
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteLong
-  nameWithType: BufferedWriter.WriteLong
-- uid: VoltRpc.IO.BufferedWriter.WriteSByte(System.SByte)
-  name: WriteSByte(SByte)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteSByte_System_SByte_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteSByte(System.SByte)
-  fullName: VoltRpc.IO.BufferedWriter.WriteSByte(System.SByte)
-  nameWithType: BufferedWriter.WriteSByte(SByte)
-- uid: VoltRpc.IO.BufferedWriter.WriteSByte*
-  name: WriteSByte
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteSByte_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteSByte
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteSByte
-  nameWithType: BufferedWriter.WriteSByte
-- uid: VoltRpc.IO.BufferedWriter.WriteShort(System.Int16)
-  name: WriteShort(Int16)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteShort_System_Int16_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteShort(System.Int16)
-  fullName: VoltRpc.IO.BufferedWriter.WriteShort(System.Int16)
-  nameWithType: BufferedWriter.WriteShort(Int16)
-- uid: VoltRpc.IO.BufferedWriter.WriteShort*
-  name: WriteShort
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteShort_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteShort
-  isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteShort
-  nameWithType: BufferedWriter.WriteShort
 - uid: VoltRpc.IO.BufferedWriter.WriteString(System.String)
   name: WriteString(String)
   href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteString_System_String_
@@ -1306,45 +1701,168 @@ references:
   isSpec: "True"
   fullName: VoltRpc.IO.BufferedWriter.WriteString
   nameWithType: BufferedWriter.WriteString
-- uid: VoltRpc.IO.BufferedWriter.WriteUInt(System.UInt32)
-  name: WriteUInt(UInt32)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteUInt_System_UInt32_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteUInt(System.UInt32)
-  fullName: VoltRpc.IO.BufferedWriter.WriteUInt(System.UInt32)
-  nameWithType: BufferedWriter.WriteUInt(UInt32)
-- uid: VoltRpc.IO.BufferedWriter.WriteUInt*
+- uid: VoltRpc.IO.BufferedWriterExtensions
+  name: BufferedWriterExtensions
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html
+  commentId: T:VoltRpc.IO.BufferedWriterExtensions
+  fullName: VoltRpc.IO.BufferedWriterExtensions
+  nameWithType: BufferedWriterExtensions
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteBool(VoltRpc.IO.BufferedWriter,System.Boolean)
+  name: WriteBool(BufferedWriter, Boolean)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteBool_VoltRpc_IO_BufferedWriter_System_Boolean_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteBool(VoltRpc.IO.BufferedWriter,System.Boolean)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteBool(VoltRpc.IO.BufferedWriter, System.Boolean)
+  nameWithType: BufferedWriterExtensions.WriteBool(BufferedWriter, Boolean)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteBool*
+  name: WriteBool
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteBool_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteBool
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteBool
+  nameWithType: BufferedWriterExtensions.WriteBool
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteChar(VoltRpc.IO.BufferedWriter,System.Char)
+  name: WriteChar(BufferedWriter, Char)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteChar_VoltRpc_IO_BufferedWriter_System_Char_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteChar(VoltRpc.IO.BufferedWriter,System.Char)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteChar(VoltRpc.IO.BufferedWriter, System.Char)
+  nameWithType: BufferedWriterExtensions.WriteChar(BufferedWriter, Char)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteChar*
+  name: WriteChar
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteChar_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteChar
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteChar
+  nameWithType: BufferedWriterExtensions.WriteChar
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteDecimal(VoltRpc.IO.BufferedWriter,System.Decimal)
+  name: WriteDecimal(BufferedWriter, Decimal)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteDecimal_VoltRpc_IO_BufferedWriter_System_Decimal_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteDecimal(VoltRpc.IO.BufferedWriter,System.Decimal)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteDecimal(VoltRpc.IO.BufferedWriter, System.Decimal)
+  nameWithType: BufferedWriterExtensions.WriteDecimal(BufferedWriter, Decimal)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteDecimal*
+  name: WriteDecimal
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteDecimal_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteDecimal
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteDecimal
+  nameWithType: BufferedWriterExtensions.WriteDecimal
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteDouble(VoltRpc.IO.BufferedWriter,System.Double)
+  name: WriteDouble(BufferedWriter, Double)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteDouble_VoltRpc_IO_BufferedWriter_System_Double_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteDouble(VoltRpc.IO.BufferedWriter,System.Double)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteDouble(VoltRpc.IO.BufferedWriter, System.Double)
+  nameWithType: BufferedWriterExtensions.WriteDouble(BufferedWriter, Double)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteDouble*
+  name: WriteDouble
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteDouble_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteDouble
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteDouble
+  nameWithType: BufferedWriterExtensions.WriteDouble
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteFloat(VoltRpc.IO.BufferedWriter,System.Single)
+  name: WriteFloat(BufferedWriter, Single)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteFloat_VoltRpc_IO_BufferedWriter_System_Single_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteFloat(VoltRpc.IO.BufferedWriter,System.Single)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteFloat(VoltRpc.IO.BufferedWriter, System.Single)
+  nameWithType: BufferedWriterExtensions.WriteFloat(BufferedWriter, Single)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteFloat*
+  name: WriteFloat
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteFloat_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteFloat
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteFloat
+  nameWithType: BufferedWriterExtensions.WriteFloat
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteInt(VoltRpc.IO.BufferedWriter,System.Int32)
+  name: WriteInt(BufferedWriter, Int32)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteInt_VoltRpc_IO_BufferedWriter_System_Int32_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteInt(VoltRpc.IO.BufferedWriter,System.Int32)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteInt(VoltRpc.IO.BufferedWriter, System.Int32)
+  nameWithType: BufferedWriterExtensions.WriteInt(BufferedWriter, Int32)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteInt*
+  name: WriteInt
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteInt_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteInt
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteInt
+  nameWithType: BufferedWriterExtensions.WriteInt
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteLong(VoltRpc.IO.BufferedWriter,System.Int64)
+  name: WriteLong(BufferedWriter, Int64)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteLong_VoltRpc_IO_BufferedWriter_System_Int64_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteLong(VoltRpc.IO.BufferedWriter,System.Int64)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteLong(VoltRpc.IO.BufferedWriter, System.Int64)
+  nameWithType: BufferedWriterExtensions.WriteLong(BufferedWriter, Int64)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteLong*
+  name: WriteLong
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteLong_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteLong
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteLong
+  nameWithType: BufferedWriterExtensions.WriteLong
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteSByte(VoltRpc.IO.BufferedWriter,System.SByte)
+  name: WriteSByte(BufferedWriter, SByte)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteSByte_VoltRpc_IO_BufferedWriter_System_SByte_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteSByte(VoltRpc.IO.BufferedWriter,System.SByte)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteSByte(VoltRpc.IO.BufferedWriter, System.SByte)
+  nameWithType: BufferedWriterExtensions.WriteSByte(BufferedWriter, SByte)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteSByte*
+  name: WriteSByte
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteSByte_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteSByte
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteSByte
+  nameWithType: BufferedWriterExtensions.WriteSByte
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteShort(VoltRpc.IO.BufferedWriter,System.Int16)
+  name: WriteShort(BufferedWriter, Int16)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteShort_VoltRpc_IO_BufferedWriter_System_Int16_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteShort(VoltRpc.IO.BufferedWriter,System.Int16)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteShort(VoltRpc.IO.BufferedWriter, System.Int16)
+  nameWithType: BufferedWriterExtensions.WriteShort(BufferedWriter, Int16)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteShort*
+  name: WriteShort
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteShort_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteShort
+  isSpec: "True"
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteShort
+  nameWithType: BufferedWriterExtensions.WriteShort
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteUInt(VoltRpc.IO.BufferedWriter,System.UInt32)
+  name: WriteUInt(BufferedWriter, UInt32)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteUInt_VoltRpc_IO_BufferedWriter_System_UInt32_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteUInt(VoltRpc.IO.BufferedWriter,System.UInt32)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteUInt(VoltRpc.IO.BufferedWriter, System.UInt32)
+  nameWithType: BufferedWriterExtensions.WriteUInt(BufferedWriter, UInt32)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteUInt*
   name: WriteUInt
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteUInt_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteUInt
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteUInt_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteUInt
   isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteUInt
-  nameWithType: BufferedWriter.WriteUInt
-- uid: VoltRpc.IO.BufferedWriter.WriteULong(System.UInt64)
-  name: WriteULong(UInt64)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteULong_System_UInt64_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteULong(System.UInt64)
-  fullName: VoltRpc.IO.BufferedWriter.WriteULong(System.UInt64)
-  nameWithType: BufferedWriter.WriteULong(UInt64)
-- uid: VoltRpc.IO.BufferedWriter.WriteULong*
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteUInt
+  nameWithType: BufferedWriterExtensions.WriteUInt
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteULong(VoltRpc.IO.BufferedWriter,System.UInt64)
+  name: WriteULong(BufferedWriter, UInt64)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteULong_VoltRpc_IO_BufferedWriter_System_UInt64_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteULong(VoltRpc.IO.BufferedWriter,System.UInt64)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteULong(VoltRpc.IO.BufferedWriter, System.UInt64)
+  nameWithType: BufferedWriterExtensions.WriteULong(BufferedWriter, UInt64)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteULong*
   name: WriteULong
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteULong_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteULong
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteULong_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteULong
   isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteULong
-  nameWithType: BufferedWriter.WriteULong
-- uid: VoltRpc.IO.BufferedWriter.WriteUShort(System.UInt16)
-  name: WriteUShort(UInt16)
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteUShort_System_UInt16_
-  commentId: M:VoltRpc.IO.BufferedWriter.WriteUShort(System.UInt16)
-  fullName: VoltRpc.IO.BufferedWriter.WriteUShort(System.UInt16)
-  nameWithType: BufferedWriter.WriteUShort(UInt16)
-- uid: VoltRpc.IO.BufferedWriter.WriteUShort*
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteULong
+  nameWithType: BufferedWriterExtensions.WriteULong
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteUShort(VoltRpc.IO.BufferedWriter,System.UInt16)
+  name: WriteUShort(BufferedWriter, UInt16)
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteUShort_VoltRpc_IO_BufferedWriter_System_UInt16_
+  commentId: M:VoltRpc.IO.BufferedWriterExtensions.WriteUShort(VoltRpc.IO.BufferedWriter,System.UInt16)
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteUShort(VoltRpc.IO.BufferedWriter, System.UInt16)
+  nameWithType: BufferedWriterExtensions.WriteUShort(BufferedWriter, UInt16)
+- uid: VoltRpc.IO.BufferedWriterExtensions.WriteUShort*
   name: WriteUShort
-  href: api/VoltRpc.IO.BufferedWriter.html#VoltRpc_IO_BufferedWriter_WriteUShort_
-  commentId: Overload:VoltRpc.IO.BufferedWriter.WriteUShort
+  href: api/VoltRpc.IO.BufferedWriterExtensions.html#VoltRpc_IO_BufferedWriterExtensions_WriteUShort_
+  commentId: Overload:VoltRpc.IO.BufferedWriterExtensions.WriteUShort
   isSpec: "True"
-  fullName: VoltRpc.IO.BufferedWriter.WriteUShort
-  nameWithType: BufferedWriter.WriteUShort
+  fullName: VoltRpc.IO.BufferedWriterExtensions.WriteUShort
+  nameWithType: BufferedWriterExtensions.WriteUShort
 - uid: VoltRpc.Logging
   name: VoltRpc.Logging
   href: api/VoltRpc.Logging.html

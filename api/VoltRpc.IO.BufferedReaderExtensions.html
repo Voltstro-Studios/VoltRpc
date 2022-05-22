@@ -1,0 +1,771 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BufferedReaderExtensions
+   | VoltRpc Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BufferedReaderExtensions
+   | VoltRpc Documentation ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="VoltRpc.IO.BufferedReaderExtensions">
+  
+  
+  <h1 id="VoltRpc_IO_BufferedReaderExtensions" data-uid="VoltRpc.IO.BufferedReaderExtensions" class="text-break">Class BufferedReaderExtensions
+  </h1>
+  <div class="markdown level0 summary"><p>Read methods for <a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">BufferedReaderExtensions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="VoltRpc.IO.html">VoltRpc.IO</a></h6>
+  <h6><strong>Assembly</strong>: VoltRpc.dll</h6>
+  <h5 id="VoltRpc_IO_BufferedReaderExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class BufferedReaderExtensions</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadBool_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadBool(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L23">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadBool_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadBool*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadBool_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadBool(VoltRpc.IO.BufferedReader)">ReadBool(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ReadBool(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadChar_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadChar(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L50">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadChar_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadChar*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadChar_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadChar(VoltRpc.IO.BufferedReader)">ReadChar(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static char ReadChar(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.char">Char</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadDecimal_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadDecimal(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L113">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadDecimal_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadDecimal*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadDecimal_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadDecimal(VoltRpc.IO.BufferedReader)">ReadDecimal(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.decimal">Decimal</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static decimal ReadDecimal(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.decimal">Decimal</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadDouble_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadDouble(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L104">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadDouble_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadDouble*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadDouble_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadDouble(VoltRpc.IO.BufferedReader)">ReadDouble(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double ReadDouble(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadFloat_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadFloat(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L95">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadFloat_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadFloat*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadFloat_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadFloat(VoltRpc.IO.BufferedReader)">ReadFloat(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float ReadFloat(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadInt_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadInt(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L68">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadInt_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadInt*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadInt_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadInt(VoltRpc.IO.BufferedReader)">ReadInt(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ReadInt(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadLong_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadLong(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L86">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadLong_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadLong*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadLong_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadLong(VoltRpc.IO.BufferedReader)">ReadLong(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int64">Int64</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long ReadLong(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int64">Int64</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadSByte_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadSByte(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L14">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadSByte_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadSByte*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadSByte_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadSByte(VoltRpc.IO.BufferedReader)">ReadSByte(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.sbyte">SByte</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static sbyte ReadSByte(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.sbyte">SByte</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadShort_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadShort(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L41">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadShort_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadShort*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadShort_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadShort(VoltRpc.IO.BufferedReader)">ReadShort(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static short ReadShort(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadUInt_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadUInt(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L59">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadUInt_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadUInt*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadUInt_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadUInt(VoltRpc.IO.BufferedReader)">ReadUInt(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static uint ReadUInt(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadULong_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadULong(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L77">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadULong_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadULong*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadULong_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadULong(VoltRpc.IO.BufferedReader)">ReadULong(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ulong ReadULong(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint64">UInt64</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions_ReadUShort_VoltRpc_IO_BufferedReader_.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions.ReadUShort(VoltRpc.IO.BufferedReader)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L32">View Source</a>
+  </span>
+  <a id="VoltRpc_IO_BufferedReaderExtensions_ReadUShort_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadUShort*"></a>
+  <h4 id="VoltRpc_IO_BufferedReaderExtensions_ReadUShort_VoltRpc_IO_BufferedReader_" data-uid="VoltRpc.IO.BufferedReaderExtensions.ReadUShort(VoltRpc.IO.BufferedReader)">ReadUShort(BufferedReader)</h4>
+  <div class="markdown level1 summary"><p>Reads a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ushort ReadUShort(this BufferedReader reader)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VoltRpc.IO.BufferedReader.html">BufferedReader</a></td>
+        <td><span class="parametername">reader</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Voltstro-Studios/VoltRpc/new/master/apiSpec/new?filename=VoltRpc_IO_BufferedReaderExtensions.md&amp;value=---%0Auid%3A%20VoltRpc.IO.BufferedReaderExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/src/VoltRpc/IO/BufferedReaderExtensions.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+          
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+              Voltstro-Studios (c) 2021-2022
+              
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

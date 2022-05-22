@@ -5,11 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace VoltRpc.Proxy
-   | VoltRpc Documentation </title>
+    <title>Extensions | VoltRpc Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace VoltRpc.Proxy
-   | VoltRpc Documentation ">
+    <meta name="title" content="Extensions | VoltRpc Documentation ">
     <meta name="generator" content="docfx 2.59.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -77,18 +75,30 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="VoltRpc.Proxy">
-  
-  <h1 id="VoltRpc_Proxy" data-uid="VoltRpc.Proxy" class="text-break">Namespace VoltRpc.Proxy
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">Classes
-  </h3>
-      <h4><a class="xref" href="VoltRpc.Proxy.GenerateProxyAttribute.html">GenerateProxyAttribute</a></h4>
-      <section><p>Marks an interface to have a proxy generated for</p>
-</section>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="extensions">Extensions</h1>
+
+<h1 id="systemnumericsvectors-support">System.Numerics.Vectors Support</h1>
+<p>The VoltRpc.Extension.Vectors package provides support for almost all types provided by <a href="https://www.nuget.org/packages/System.Numerics.Vectors/">System.Numerics.Vectors</a>.</p>
+<p>The package can be installed by using the command:</p>
+<pre><code class="lang-powershell">Install-Package VoltRpc.Extension.Vectors
+</code></pre>
+<p>Once you have the NuGet package installed, you can use the types by using <a class="xref" href="../api/VoltRpc.Extension.Vectors.Types.VectorsExtensionTypes.html#VoltRpc_Extension_Vectors_Types_VectorsExtensionTypes_InstallVectorsExtension_VoltRpc_Types_TypeReaderWriterManager_"><code>InstallVectorsExtension()</code></a> method with the <a class="xref" href="../api/VoltRpc.Types.TypeReaderWriterManager.html">TypeReaderWriterManager</a>.</p>
+<p>So for example:</p>
+<pre><code class="lang-csharp">VoltRpc.Communication.Client client = new TCPClient(new IPEndPoint(IPAddress.Loopback, 7767));
+client.TypeReaderWriterManager.InstallVectorsExtension();
+client.AddService&lt;ITest&gt;();
+...
+</code></pre>
+<p>Both the <a class="xref" href="../api/VoltRpc.Communication.Client.html#VoltRpc_Communication_Client_TypeReaderWriterManager">client</a> and <a class="xref" href="../api/VoltRpc.Communication.Host.html#VoltRpc_Communication_Host_TypeReaderWriterManager">host</a> expose their <a class="xref" href="../api/VoltRpc.Types.TypeReaderWriterManager.html">TypeReaderWriterManager</a> using the same field names.</p>
+<p>If you wanted to, you can also manually add each type reader/writer.</p>
+<p>You can also use the types in your own <a href="types.html#custom-types">custom type readers/writers</a>, using the methods provided in <a class="xref" href="../api/VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions.html">BufferedReaderVectorsExtensions</a> and <a class="xref" href="../api/VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions.html">BufferedWriterVectorsExtensions</a>.</p>
+<h1 id="systemmemory-support">System.Memory Support</h1>
+<p>The VoltRpc.Extension.Memory provides support for Span and Memory. It ONLY adds to the <a class="xref" href="../api/VoltRpc.IO.BufferedReader.html">BufferedReader</a> and <a class="xref" href="../api/VoltRpc.IO.BufferedWriter.html">BufferedWriter</a>. It does NOT add type readers/writers! This package also provides a Span way of reading strings.</p>
+<p>The package can be installed by using the command:</p>
+<pre><code class="lang-powershell">Install-Package VoltRpc.Extension.Memory
+</code></pre>
+<p>Once you have the NuGet package installed, you can use the methods in <a class="xref" href="../api/VoltRpc.Extension.Memory.BufferedReaderMemoryExtensions.html">BufferedReaderMemoryExtensions</a> and <a class="xref" href="../api/VoltRpc.Extension.Memory.BufferedWriterMemoryExtensions.html">BufferedWriterMemoryExtensions</a> in your <a href="types.html#custom-types">custom type readers/writers</a>.</p>
 </article>
           </div>
           
@@ -96,6 +106,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Voltstro-Studios/VoltRpc/blob/master/docs/articles/extensions.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <div class="toggle-mode">
