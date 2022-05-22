@@ -11,7 +11,7 @@ VoltRpc - Library designed for high performance RPC communication.
 
 ## Features
 
-- Its fast (See the [benchmarks](#benchmarks))
+- Its fast (See the [benchmarks](https://github.com/Voltstro-Studios/VoltRpc#benchmarks))
 - Supports all built-in C# value types, including:
     - `Bool`
     - `Byte`
@@ -193,6 +193,6 @@ This project is licensed under the MIT license – see the [LICENSE.md](https://
 ## Credits
 
 - [Mirror](https://github.com/vis2k/Mirror) 
-  - [`NetworkReader.cs`](https://github.com/vis2k/Mirror/tree/50e6bb11016257c505c39380b6aa7f957bb6048e/Assets/Mirror/Runtime/NetworkReader.cs) used as a base for [`BufferedReader.cs`](/src/VoltRpc/IO/BufferedReader.cs)
-  - [`NetworkWriter.cs`](https://github.com/vis2k/Mirror/tree/50e6bb11016257c505c39380b6aa7f957bb6048e/Assets/Mirror/Runtime/NetworkWriter.cs) used as a base for [`BufferedWriter.cs`](/src/VoltRpc/IO/BufferedWriter.cs)
+  - [`NetworkReader.cs`](https://github.com/vis2k/Mirror/tree/50e6bb11016257c505c39380b6aa7f957bb6048e/Assets/Mirror/Runtime/NetworkReader.cs) used as a base for [`BufferedReader.cs`](https://github.com/Voltstro-Studios/VoltRpc/tree/master/src/VoltRpc/IO/BufferedReader.cs)
+  - [`NetworkWriter.cs`](https://github.com/vis2k/Mirror/tree/50e6bb11016257c505c39380b6aa7f957bb6048e/Assets/Mirror/Runtime/NetworkWriter.cs) used as a base for [`BufferedWriter.cs`](https://github.com/Voltstro-Studios/VoltRpc/tree/master/src/VoltRpc/IO/BufferedWriter.cs)
 - Parts of [`BufferedStream.cs`](https://github.com/dotnet/runtime/blob/release/5.0/src/libraries/System.Private.CoreLib/src/System/IO/BufferedStream.cs) from the .NET Runtime was also used in the reader. 
