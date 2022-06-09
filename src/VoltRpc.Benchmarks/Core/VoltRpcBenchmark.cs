@@ -35,7 +35,7 @@ public abstract class VoltRpcBenchmark
     public void Setup()
     {
         host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
         host.MaxConnectionsCount = 1;
 
         client.AddService<IBenchmarkInterface>();
