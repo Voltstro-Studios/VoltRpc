@@ -153,8 +153,16 @@ public abstract class Host : IDisposable
         {
             InterfaceName = serviceType.FullName,
             InterfaceObject = serviceObject,
-            ServiceMethods = ServiceHelper.GetAllServiceMethods(serviceType)
+            ServiceMethods = GetAllServiceMethods()
         });
+
+        //TODO: Go back to what we were using when this shit is fixed
+        //Recommend hack for fixing the trimming warning
+        //https://github.com/dotnet/linker/issues/2487
+#if NET6_0
+        [UnconditionalSuppressMessage("Trimming", "IL2077", Justification = "The type parameter of the parent method has the right annotation")]
+#endif
+        ServiceMethod[] GetAllServiceMethods() => ServiceHelper.GetAllServiceMethods(serviceType);
     }
 
     /// <summary>
