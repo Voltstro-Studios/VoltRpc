@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -60,6 +60,11 @@ public class BufferedReader : IDisposable
     public int Length => buffer.Length;
 
     /// <summary>
+    ///     You may need to override this if your <see cref="Stream"/> requires it
+    /// </summary>
+    protected virtual bool IncomingStreamNeedToAdjustPosition { get; } = false;
+
+    /// <summary>
     ///     You may need to override this if your <see cref="Stream" /> requires it
     /// </summary>
     protected virtual long IncomingStreamPosition { get; set; }
@@ -77,7 +82,7 @@ public class BufferedReader : IDisposable
         int size = sizeof(T);
         
         if(Position == readLength)
-            ReadStream();
+            ReadStream(size);
 
         if (Position + size > Length)
             throw new EndOfStreamException("Read stream out of range!");
@@ -111,13 +116,13 @@ public class BufferedReader : IDisposable
     public ArraySegment<byte> ReadBytesSegment(int count)
     {
         if (Position == readLength)
-            ReadStream();
+            ReadStream(count);
 
         //Check if within buffer limits
         if (Position + count > readLength)
         {
             //Attempt to read again
-            ReadStream();
+            ReadStream(count);
             if (Position + count > readLength)
                 throw new EndOfStreamException("Cannot read beyond stream!");
         }
@@ -160,12 +165,34 @@ public class BufferedReader : IDisposable
     /// </summary>
     /// <exception cref="EndOfStreamException"></exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal void ReadStream()
+    internal void ReadStream(int neededSize)
     {
-        readLength = IncomingStream.Read(buffer, 0, buffer.Length);
-        IncomingStreamPosition = 0;
-        Position = 0;
+        if (neededSize > Length)
+            throw new OverflowException("The requested size of the object is too big to fit in the current buffer size!");
 
+        int totalReadLength = 0;
+        if (IncomingStreamNeedToAdjustPosition)
+            totalReadLength += Position;
+        
+        while (neededSize != 0)
+        {
+            int readSize = IncomingStream.Read(buffer, totalReadLength, neededSize);
+            if(readSize == 0)
+                break;
+
+            neededSize -= readSize;
+            totalReadLength += readSize;
+        }
+
+        //Still not enough data
+        if (neededSize > totalReadLength)
+            throw new EndOfStreamException();
+        
+        readLength = totalReadLength;
+        
+        if(!IncomingStreamNeedToAdjustPosition)
+            Position = 0;
+        
         if (readLength == 0)
             throw new EndOfStreamException();
     }

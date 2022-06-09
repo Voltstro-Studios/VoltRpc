@@ -10,9 +10,16 @@ public class MemoryStreamBufferedReader : BufferedReader
     {
     }
 
+    protected override bool IncomingStreamNeedToAdjustPosition => true;
+
     protected override long IncomingStreamPosition
     {
         get => IncomingStream.Position;
         set => IncomingStream.Position = value;
+    }
+
+    public void SetIncomingStreamPosition(long position)
+    {
+        IncomingStreamPosition = position;
     }
 }

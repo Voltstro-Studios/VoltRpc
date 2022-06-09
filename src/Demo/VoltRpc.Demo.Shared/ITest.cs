@@ -24,5 +24,7 @@ public interface ITest
 
     public CustomType CustomTypeReturnTest();
 
+    public CustomTypeArrays CustomTypeArraysSmall();
+
     public Vector3 Vector3TypeReturnTest();
 }

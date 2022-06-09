@@ -26,6 +26,8 @@ public static class Program
         host.TypeReaderWriterManager.InstallVectorsExtension();
         
         host.TypeReaderWriterManager.AddType(new CustomTypeReaderWriter());
+        host.TypeReaderWriterManager.AddType(new CustomTypeArraysReaderWriter());
+        
         host.MaxConnectionsCount = 1;
 
         TestImp testImp = new();

@@ -21,14 +21,16 @@ public static class Program
 
         Communication.Client client;
         if (parser.PipesClient)
-            client = new PipesClient(parser.PipeName);
+            client = new PipesClient(parser.PipeName, bufferSize: 8294500);
         else
-            client = new TCPClient(parser.IpEndPoint);
+            client = new TCPClient(parser.IpEndPoint, bufferSize: 8294500);
         
         //Add VoltRpc.Extension.Vectors
         client.TypeReaderWriterManager.InstallVectorsExtension();
 
         client.TypeReaderWriterManager.AddType(new CustomTypeReaderWriter());
+        client.TypeReaderWriterManager.AddType(new CustomTypeArraysReaderWriter());
+        
         client.AddService(typeof(ITest));
 
         try
@@ -51,11 +53,12 @@ public static class Program
         }
 
         ITest proxy = new TestProxy(client);
-
+        
         RunFunctionTest("Basic", proxy.BasicTest);
         RunFunctionTest("Parm", () => proxy.ParmTest("Hello World!", 142f));
         RunFunctionTest("Return", () => Console.WriteLine($"Got Return: {proxy.ReturnTest()}"));
         RunFunctionTest("Array", () => proxy.ArrayTest(new[] {"Hello Word!", "Bruh!"}));
+        
         RunFunctionTest("Ref", () =>
         {
             string value = "Hello World!";
@@ -67,6 +70,7 @@ public static class Program
             proxy.OutTest(out string message);
             Console.WriteLine($"Got out as: {message}");
         });
+        
         RunFunctionTest("Custom Type", () => proxy.CustomTypeTest(new CustomType
         {
             Floaty = 666.6f,
@@ -77,6 +81,13 @@ public static class Program
             CustomType customType = proxy.CustomTypeReturnTest();
             Console.WriteLine($"Got custom type with values: {customType.Floaty} {customType.Message}.");
         });
+        
+        RunFunctionTest("Custom Type Array Small", () =>
+        {
+            CustomTypeArrays customTypeArray = proxy.CustomTypeArraysSmall();
+            Console.WriteLine($"Got array sizeof {customTypeArray.LargeArray.Length}");
+        });
+        
         RunFunctionTest("Vector3 Type Return", () =>
         {
             Vector3 vector3 = proxy.Vector3TypeReturnTest();

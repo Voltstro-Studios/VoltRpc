@@ -15,8 +15,17 @@ public class DualBuffers : IDisposable
         BufferedWriter = new MemoryStreamBufferedWriter(memoryStream, size);
     }
 
-    public BufferedReader BufferedReader { get; }
-    public BufferedWriter BufferedWriter { get; }
+    public MemoryStreamBufferedReader BufferedReader { get; }
+    public MemoryStreamBufferedWriter BufferedWriter { get; }
+
+    public void Flush()
+    {
+        memoryStream.Position = 0;
+        BufferedReader.Position = 0;
+        BufferedReader.readLength = 0;
+
+        BufferedWriter.Flush();
+    }
 
     public void Dispose()
     {

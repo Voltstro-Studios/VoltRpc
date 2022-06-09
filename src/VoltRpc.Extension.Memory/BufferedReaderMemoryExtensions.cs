@@ -18,13 +18,13 @@ public static class BufferedReaderMemoryExtensions
     public static ReadOnlySpan<byte> ReadBytesSpanSlice(this BufferedReader reader, int size)
     {
         if (reader.Position == reader.readLength)
-            reader.ReadStream();
+            reader.ReadStream(size);
 
         //Check if within buffer limits
         if (reader.Position + size > reader.readLength)
         {
             //Attempt to read again
-            reader.ReadStream();
+            reader.ReadStream(size);
             if (reader.Position + size > reader.readLength)
                 throw new EndOfStreamException("Cannot read beyond stream!");
         }

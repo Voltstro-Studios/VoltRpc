@@ -37,7 +37,7 @@ public class BufferedReaderMemoryExtensionsTests
         using DualBuffers buffers = new();
         string test = "Rowan SUXS";
         buffers.BufferedWriter.WriteString(test);
-        buffers.BufferedWriter.Flush();
+        buffers.Flush();
 
         string result = buffers.BufferedReader.ReadStringSpan();
         StringAssert.AreEqualIgnoringCase(test, result);

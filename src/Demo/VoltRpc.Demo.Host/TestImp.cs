@@ -6,6 +6,13 @@ namespace VoltRpc.Demo.Host;
 
 public class TestImp : ITest
 {
+    private readonly Random random;
+    
+    public TestImp()
+    {
+        random = new Random();
+    }
+    
     public void BasicTest()
     {
         Console.WriteLine("Basic Test!");
@@ -63,6 +70,16 @@ public class TestImp : ITest
         {
             Floaty = 69.420f,
             Message = "HaHa Reddit big chungus wholesome 100 keanu reeves"
+        };
+    }
+
+    public CustomTypeArrays CustomTypeArraysSmall()
+    {
+        byte[] data = new byte[1920 * 1080];
+        random.NextBytes(data);
+        return new CustomTypeArrays
+        {
+            LargeArray = data
         };
     }
 
