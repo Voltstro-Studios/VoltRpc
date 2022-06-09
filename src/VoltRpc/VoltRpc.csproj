@@ -9,6 +9,7 @@
         <Version>2.1.0</Version>
         <PackageVersion>2.1.0</PackageVersion>
         <IsTrimmable>true</IsTrimmable>
+        <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
