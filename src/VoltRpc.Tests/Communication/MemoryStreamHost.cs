@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using VoltRpc.Communication;
+﻿using VoltRpc.Communication;
 using VoltRpc.IO;
 
 namespace VoltRpc.Tests.Communication;
@@ -15,9 +14,8 @@ public class MemoryStreamHost : Host
         writer = bufferedWriter;
     }
 
-    public override Task StartListening()
+    public override void StartListening()
     {
         ProcessRequest(reader, writer);
-        return Task.CompletedTask;
     }
 }

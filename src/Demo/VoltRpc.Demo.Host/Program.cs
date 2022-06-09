@@ -32,7 +32,7 @@ public static class Program
 
         TestImp testImp = new();
         host.AddService(typeof(ITest), testImp);
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
 
         Console.WriteLine("Press any key to quit...");
         Console.ReadKey();

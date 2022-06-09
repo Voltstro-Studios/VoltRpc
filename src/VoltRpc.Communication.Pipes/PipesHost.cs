@@ -35,15 +35,10 @@ public sealed class PipesHost : Host
     }
 
     /// <inheritdoc />
-    public override Task StartListening()
+    public override void StartListening()
     {
         CheckDispose();
-        Task.Factory.StartNew(SeverLoop, TaskCreationOptions.LongRunning);
-        return Task.CompletedTask;
-    }
-
-    private void SeverLoop()
-    {
+        
         Logger.Debug("Named Pipes host now listening...");
 
         IsRunning = true;

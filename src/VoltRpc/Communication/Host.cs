@@ -96,9 +96,17 @@ public abstract class Host : IDisposable
     public bool HideStacktrace { get; set; }
 
     /// <summary>
-    ///     Starts the <see cref="Host" /> to listen for requests
+    ///     Starts listening for incoming requests
     /// </summary>
-    public abstract Task StartListening();
+    public virtual async Task StartListeningAsync()
+    {
+        await Task.Run(StartListening);
+    }
+
+    /// <summary>
+    ///     Starts listening for incoming requests
+    /// </summary>
+    public abstract void StartListening();
 
     /// <summary>
     ///     Adds a service to this <see cref="Host" />

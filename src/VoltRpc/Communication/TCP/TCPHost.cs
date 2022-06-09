@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -94,10 +93,10 @@ public sealed class TCPHost : Host
     }
 
     /// <inheritdoc />
-    public override async Task StartListening()
+    public override void StartListening()
     {
         CheckDispose();
-
+        
         IsRunning = true;
         listener.Start(ListenerBacklog);
         Logger.Debug("TCP host now listening...");
@@ -116,7 +115,7 @@ public sealed class TCPHost : Host
                 listener.Start(ListenerBacklog);
 
             Logger.Debug("TCP host is listening for a connection...");
-            TcpClient client = await listener.AcceptTcpClientAsync();
+            TcpClient client = listener.AcceptTcpClient();
             client.ReceiveTimeout = receiveTimeout;
             client.SendTimeout = sendTimeout;
 
@@ -129,10 +128,10 @@ public sealed class TCPHost : Host
         Logger.Debug("TCP host has stopped listening.");
     }
 
-    private Task HandleClient(TcpClient client)
+    private void HandleClient(TcpClient client)
     {
         //Start processing requests from the client
-        Stream stream = client.GetStream();
+        NetworkStream stream = client.GetStream();
         ProcessRequest(stream, stream);
 
         //Connection was closed
@@ -140,7 +139,6 @@ public sealed class TCPHost : Host
         client.Dispose();
         ConnectionCount--;
         Logger.Debug("Client disconnected.");
-        return Task.CompletedTask;
     }
 
     /// <inheritdoc />
