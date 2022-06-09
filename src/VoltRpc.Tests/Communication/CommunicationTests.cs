@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using NUnit.Framework;
 using VoltRpc.Communication;
 using VoltRpc.Tests.TestObjects.Interfaces;
@@ -24,7 +25,8 @@ public abstract class CommunicationTests
     public void ConnectionSuccessTest()
     {
         CreateClientAndHost(out Client client, out Host host);
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -37,7 +39,8 @@ public abstract class CommunicationTests
     {
         CreateClientAndHost(out Client client, out Host host);
         host.AddService<IBasicInterface>(new BasicExceptionObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -54,7 +57,8 @@ public abstract class CommunicationTests
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IBasicInterface>();
         
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -72,7 +76,8 @@ public abstract class CommunicationTests
         client.AddService<IBasicInterface>();
         
         host.AddService<IBasicInterface>(new BasicObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -90,7 +95,8 @@ public abstract class CommunicationTests
         client.AddService<IBasicInterface>();
         
         host.AddService<IBasicInterface>(new BasicExceptionObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -108,7 +114,8 @@ public abstract class CommunicationTests
         client.AddService<IReturnInterface>();
         
         host.AddService<IReturnInterface>(new ReturnObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -127,7 +134,8 @@ public abstract class CommunicationTests
         client.AddService<IParameterBasicInterface>();
         
         host.AddService<IParameterBasicInterface>(new ParameterObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -146,7 +154,8 @@ public abstract class CommunicationTests
         client.AddService<IRefBasicInterface>();
         
         host.AddService<IRefBasicInterface>(new RefObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -165,7 +174,8 @@ public abstract class CommunicationTests
         client.AddService<IRefReturnInterface>();
         
         host.AddService<IRefReturnInterface>(new RefReturnObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -186,7 +196,8 @@ public abstract class CommunicationTests
         client.AddService<IOutInterface>();
         
         host.AddService<IOutInterface>(new OutObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -205,7 +216,8 @@ public abstract class CommunicationTests
         client.AddService<IOutReturnInterface>();
         
         host.AddService<IOutReturnInterface>(new OutReturnObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -225,7 +237,8 @@ public abstract class CommunicationTests
         client.AddService<IRefOutInterface>();
         
         host.AddService<IRefOutInterface>(new RefOutObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -245,7 +258,8 @@ public abstract class CommunicationTests
         client.AddService<IRefOutReturnInterface>();
         
         host.AddService<IRefOutReturnInterface>(new RefOutReturnObject());
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -266,7 +280,8 @@ public abstract class CommunicationTests
         client.AddService<IArrayBasicInterface>();
         
         host.AddService<IArrayBasicInterface>(new ArrayBasicInterface(false));
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
@@ -283,7 +298,8 @@ public abstract class CommunicationTests
         client.AddService<IArrayBasicInterface>();
         
         host.AddService<IArrayBasicInterface>(new ArrayBasicInterface(true));
-        host.StartListening();
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
         
         client.Connect();
         Assert.That(client.IsConnected);
