@@ -19,5 +19,6 @@ public static class VectorsExtensionTypes
         readerWriterManager.AddType(new QuaternionTypeReadWriter());
         readerWriterManager.AddType(new Vector2TypeReadWriter());
         readerWriterManager.AddType(new Vector3TypeReadWriter());
+        readerWriterManager.AddType(new Vector4TypeReadWriter());
     }
 }

@@ -7,10 +7,15 @@ using VoltRpc.Tests.TestObjects.Objects;
 
 namespace VoltRpc.Tests.Communication;
 
+/// <summary>
+///     Base layer for communication tests
+/// </summary>
 public abstract class CommunicationTests
 {
     protected abstract void CreateClientAndHost(out Client client, out Host host);
-    
+
+    #region Connection
+
     [Test]
     public void ConnectionFailTest()
     {
@@ -52,6 +57,8 @@ public abstract class CommunicationTests
         DisposeClientAndHost(client, host);
     }
 
+    #endregion
+
     [Test]
     public void MethodMissingClientTest()
     {
@@ -88,7 +95,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void BasicVoidTest()
+    public void MethodVoidTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IBasicInterface>();
@@ -107,7 +114,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void BasicVoidExceptionTest()
+    public void MethodVoidExceptionTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IBasicInterface>();
@@ -126,7 +133,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void BasicReturnTest()
+    public void MethodReturnTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IReturnInterface>();
@@ -146,7 +153,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterTest()
+    public void MethodVoidParameterTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IParameterBasicInterface>();
@@ -166,7 +173,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterRefTest()
+    public void MethodVoidParameterRefTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IRefBasicInterface>();
@@ -186,7 +193,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterRefReturnTest()
+    public void MethodReturnParameterRefTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IRefReturnInterface>();
@@ -208,7 +215,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterOutTest()
+    public void MethodVoidParameterOutTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IOutInterface>();
@@ -228,7 +235,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterOutReturnTest()
+    public void MethodReturnParameterOutTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IOutReturnInterface>();
@@ -249,7 +256,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterRefOutTest()
+    public void MethodVoidParameterOutRefTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IRefOutInterface>();
@@ -270,7 +277,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ParameterRefOutReturnTest()
+    public void MethodReturnParameterOutRefTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IRefOutReturnInterface>();
@@ -292,7 +299,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ArrayBasicTest()
+    public void MethodVoidParameterArrayTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IArrayBasicInterface>();
@@ -310,7 +317,7 @@ public abstract class CommunicationTests
     }
     
     [Test]
-    public void ArrayBasicNullTest()
+    public void MethodVoidParameterArrayNullTest()
     {
         CreateClientAndHost(out Client client, out Host host);
         client.AddService<IArrayBasicInterface>();
