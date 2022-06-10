@@ -8,9 +8,10 @@
         <Description>VoltRpc - Library designed for high performance RPC communication.</Description>
         <Version>2.1.0</Version>
         <PackageVersion>2.1.0</PackageVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
         <IsTrimmable>true</IsTrimmable>
         <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,6 +20,10 @@
             <Pack>True</Pack>
             <PackagePath>/</PackagePath>
         </None>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.0.9" PrivateAssets="all" />
     </ItemGroup>
 
     <Import Project="../Packages.props" />

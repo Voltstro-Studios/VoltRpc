@@ -35,6 +35,24 @@ public abstract class CommunicationTests
     }
 
     [Test]
+    public void ConnectionFailVersionMissMatch()
+    {
+        CreateClientAndHost(out Client client, out Host host);
+        host.version = new Versioning.VersionInfo
+        {
+            Major = 0,
+            Minor = 1,
+            Patch = 2
+        };
+        host.StartListeningAsync().ConfigureAwait(false);
+        Thread.Sleep(100);
+
+        Assert.Throws<VersionMissMatchException>(() => client.Connect());
+        
+        DisposeClientAndHost(client, host);
+    }
+
+    [Test]
     public void MethodMissingClientTest()
     {
         CreateClientAndHost(out Client client, out Host host);

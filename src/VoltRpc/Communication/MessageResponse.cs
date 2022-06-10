@@ -9,6 +9,16 @@ public enum MessageResponse : byte
     ///     The method wasn't found
     /// </summary>
     NoMethodFound,
+    
+    /// <summary>
+    ///     Sync was all good mate!
+    /// </summary>
+    SyncRighto,
+    
+    /// <summary>
+    ///     Response when version info is a miss-match
+    /// </summary>
+    SyncVersionMissMatch,
 
     /// <summary>
     ///     The method was executed successfully

@@ -37,6 +37,11 @@ public abstract class Host : IDisposable
     /// </summary>
     internal readonly List<HostService> Services = new();
 
+    /// <summary>
+    ///     Version this host wants to be
+    /// </summary>
+    internal Versioning.VersionInfo version;
+
     private int maxConnectionsCount = 16;
 
     /// <summary>
@@ -57,6 +62,7 @@ public abstract class Host : IDisposable
         invokeLock = new object();
 
         BufferSize = bufferSize;
+        version = Versioning.Version;
     }
 
     /// <summary>
@@ -219,9 +225,39 @@ public abstract class Host : IDisposable
             throw new ArgumentNullException(nameof(reader));
         if (writer == null)
             throw new ArgumentNullException(nameof(writer));
-
+        
         bool doContinue = true;
-        do
+        
+        //Check sync info first.
+        try
+        {
+            byte major = reader.ReadByte();
+            byte minor = reader.ReadByte();
+            byte patch = reader.ReadByte();
+
+            //Version info doesn't match to ours
+            if (major != version.Major || minor != version.Minor || patch != version.Patch)
+            {
+                WriteError(writer, MessageResponse.SyncVersionMissMatch);
+                Logger.Warn("Refusing client, version info doesn't match!");
+                doContinue = false;
+            }
+            
+            Logger.Debug("Accepted client, client's sync info matches.");
+            
+            //We all good
+            writer.WriteByte((byte)MessageResponse.SyncRighto);
+            writer.Flush();
+        }
+        catch (IOException)
+        {
+            //Timeout most likely
+            Logger.Warn("Client never sent version info in time!");
+            doContinue = false;
+        }
+
+        //Now for the message loop
+        while (doContinue)
         {
             try
             {
@@ -240,8 +276,9 @@ public abstract class Host : IDisposable
             {
                 //A timeout most likely occured
                 doContinue = false;
+                Logger.Warn("Client disconnected, most likely from a timeout.");
             }
-        } while (doContinue);
+        }
 
         reader.Dispose();
         writer.Dispose();
@@ -398,6 +435,7 @@ public abstract class Host : IDisposable
         writer.WriteByte((byte) message);
         switch (message)
         {
+            case MessageResponse.SyncVersionMissMatch:
             case MessageResponse.NoMethodFound:
             case MessageResponse.ExecutedSuccessful:
             case MessageResponse.ExecuteFailNoTypeReader:

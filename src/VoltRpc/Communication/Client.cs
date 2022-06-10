@@ -26,6 +26,11 @@ public abstract class Client : IDisposable
     /// </summary>
     internal readonly Dictionary<string, ServiceMethod[]> Services;
 
+    /// <summary>
+    ///     Version this client wants to be
+    /// </summary>
+    internal Versioning.VersionInfo version;
+    
     private BufferedReader reader;
     private BufferedWriter writer;
 
@@ -43,6 +48,7 @@ public abstract class Client : IDisposable
         TypeReaderWriterManager = new TypeReaderWriterManager();
         Services = new Dictionary<string, ServiceMethod[]>();
         this.bufferSize = bufferSize;
+        version = Versioning.Version;
     }
 
     /// <summary>
@@ -145,6 +151,25 @@ public abstract class Client : IDisposable
 
         reader = bufferedRead ?? throw new ArgumentNullException(nameof(bufferedRead));
         writer = bufferedWrite ?? throw new ArgumentNullException(nameof(bufferedWrite));
+        
+        //Now to do a sync, we first provide our version number
+        writer.WriteByte(version.Major);
+        writer.WriteByte(version.Minor);
+        writer.WriteByte(version.Patch);
+        writer.Flush();
+        
+        //Get sync response
+        MessageResponse syncResponse = (MessageResponse)reader.ReadByte();
+        switch (syncResponse)
+        {
+            case MessageResponse.SyncRighto:
+                break;
+            case MessageResponse.SyncVersionMissMatch:
+                throw new VersionMissMatchException();
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
         IsConnected = true;
     }
 
