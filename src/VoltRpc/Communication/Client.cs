@@ -91,6 +91,7 @@ public abstract class Client : IDisposable
     ///     Thrown if interfaceType is not an interface, or has already been added as
     ///     a service.
     /// </exception>
+    /// <exception cref="AlreadyConnectedException">Thrown if we are already connected</exception>
 #if NET6_0_OR_GREATER
     public void AddService(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)]
@@ -100,6 +101,10 @@ public abstract class Client : IDisposable
 #endif
     {
         CheckDispose();
+
+        //Don't add services if we are already connected
+        if (IsConnected)
+            throw new AlreadyConnectedException();
 
         if (!interfaceType.IsInterface)
             throw new ArgumentOutOfRangeException(nameof(interfaceType),
@@ -152,23 +157,8 @@ public abstract class Client : IDisposable
         reader = bufferedRead ?? throw new ArgumentNullException(nameof(bufferedRead));
         writer = bufferedWrite ?? throw new ArgumentNullException(nameof(bufferedWrite));
         
-        //Now to do a sync, we first provide our version number
-        writer.WriteByte(version.Major);
-        writer.WriteByte(version.Minor);
-        writer.WriteByte(version.Patch);
-        writer.Flush();
-        
-        //Get sync response
-        MessageResponse syncResponse = (MessageResponse)reader.ReadByte();
-        switch (syncResponse)
-        {
-            case MessageResponse.SyncRighto:
-                break;
-            case MessageResponse.SyncVersionMissMatch:
-                throw new VersionMissMatchException();
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        //Do sync check
+        InvokeSyncCheck();
 
         IsConnected = true;
     }
@@ -255,15 +245,16 @@ public abstract class Client : IDisposable
         if (method.IsReturnVoid && !method.ContainsRefOrOutParameters)
             return null;
 
-        //Create out array to return out of this method with
+        //We need to create an array of objects that contain the results.
+        //If an object is returned from the method, then the first object in objectReturn will be the value of that
         int objectReturnSize = method.RefOrOutParameterCount;
         if (!method.IsReturnVoid)
             objectReturnSize++;
-
+        
         object[] objectReturn = new object[objectReturnSize];
         int currentObjectReturnIndex = 0;
 
-        //If we are a void, then we need to read the response
+        //If we are not a void, then we need to read the response first
         if (!method.IsReturnVoid)
         {
             //Get the type reader
@@ -312,6 +303,57 @@ public abstract class Client : IDisposable
                 throw new NoTypeReaderWriterException();
 
             TypeReaderWriterManager.Write(writer, typeWriter, method.Parameters[i].TypeInfo, parameter);
+        }
+    }
+
+    /// <summary>
+    ///     Does a sync check against the host
+    /// </summary>
+    private void InvokeSyncCheck()
+    {
+        //Now to do a sync, we first provide our version number
+        writer.WriteByte(version.Major);
+        writer.WriteByte(version.Minor);
+        writer.WriteByte(version.Patch);
+        
+        //Provide our services
+        //Write the services count first
+        writer.WriteUShort(checked((ushort)Services.Count));
+        foreach (KeyValuePair<string,ServiceMethod[]> service in Services)
+        {
+            //We then write the name of the service
+            writer.WriteString(service.Key);
+            
+            //Then each method
+            writer.WriteUShort(checked((ushort)service.Value.Length));
+            foreach (ServiceMethod method in service.Value)
+            {
+                //Write method name
+                writer.WriteString(method.MethodName);
+                
+                //And it's parameters
+                writer.WriteUShort(checked((ushort)method.Parameters.Length));
+                foreach (ServiceMethodParameter parameter in method.Parameters)
+                {
+                    writer.WriteString(parameter.TypeInfo.TypeName);
+                }
+            }
+        }
+        
+        writer.Flush();
+        
+        //Get sync response
+        MessageResponse syncResponse = (MessageResponse)reader.ReadByte();
+        switch (syncResponse)
+        {
+            case MessageResponse.SyncRighto:
+                break;
+            case MessageResponse.SyncVersionMissMatch:
+                throw new VersionMissMatchException();
+            case MessageResponse.SyncServiceMissMatch:
+                throw new SyncServiceMissMatchException(reader.ReadString());
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 

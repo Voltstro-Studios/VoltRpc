@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using VoltRpc.IO;
 using VoltRpc.Logging;
 using VoltRpc.Services;
 using VoltRpc.Types;
 
+#nullable enable
 namespace VoltRpc.Communication;
 
 /// <summary>
@@ -50,7 +52,7 @@ public abstract class Host : IDisposable
     /// <param name="logger">The <see cref="ILogger" /> to use</param>
     /// <param name="bufferSize">The initial size of the buffers</param>
     /// <exception cref="ArgumentOutOfRangeException">Will throw if the buffer size is less then 16</exception>
-    protected Host(ILogger logger = null, int bufferSize = DefaultBufferSize)
+    protected Host(ILogger? logger = null, int bufferSize = DefaultBufferSize)
     {
         if (bufferSize < 16)
             throw new ArgumentOutOfRangeException(nameof(bufferSize),
@@ -226,36 +228,8 @@ public abstract class Host : IDisposable
         if (writer == null)
             throw new ArgumentNullException(nameof(writer));
         
-        bool doContinue = true;
+        bool doContinue = ProcessSyncCheck(reader, writer);
         
-        //Check sync info first.
-        try
-        {
-            byte major = reader.ReadByte();
-            byte minor = reader.ReadByte();
-            byte patch = reader.ReadByte();
-
-            //Version info doesn't match to ours
-            if (major != version.Major || minor != version.Minor || patch != version.Patch)
-            {
-                WriteError(writer, MessageResponse.SyncVersionMissMatch);
-                Logger.Warn("Refusing client, version info doesn't match!");
-                doContinue = false;
-            }
-            
-            Logger.Debug("Accepted client, client's sync info matches.");
-            
-            //We all good
-            writer.WriteByte((byte)MessageResponse.SyncRighto);
-            writer.Flush();
-        }
-        catch (IOException)
-        {
-            //Timeout most likely
-            Logger.Warn("Client never sent version info in time!");
-            doContinue = false;
-        }
-
         //Now for the message loop
         while (doContinue)
         {
@@ -291,8 +265,8 @@ public abstract class Host : IDisposable
             //First, read the method
             string methodName = reader.ReadString();
 
-            object obj = null;
-            ServiceMethod method = null;
+            object? obj = null;
+            ServiceMethod? method = null;
             foreach (HostService service in Services)
             {
                 if (method != null)
@@ -317,7 +291,7 @@ public abstract class Host : IDisposable
 
             //Now we read the parameters
             int paramsCount = method.Parameters.Length;
-            object[] parameters = new object[paramsCount];
+            object?[] parameters = new object[paramsCount];
             for (int i = 0; i < paramsCount; i++)
             {
                 ServiceMethodParameter parameter = method.Parameters[i];
@@ -353,7 +327,7 @@ public abstract class Host : IDisposable
             }
 
             //Invoke the method
-            object methodReturn;
+            object? methodReturn;
             try
             {
                 methodReturn = method.MethodInfo.Invoke(obj, parameters);
@@ -428,8 +402,119 @@ public abstract class Host : IDisposable
         }
     }
 
-    private void WriteError(BufferedWriter writer, MessageResponse message, string error = null,
-        string stackTrace = null)
+    /// <summary>
+    ///     Process a sync check message
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <param name="writer"></param>
+    /// <returns>Returns true if sync message was good</returns>
+    private bool ProcessSyncCheck(BufferedReader reader, BufferedWriter writer)
+    {
+        //Check sync info first.
+        try
+        {
+            byte major = reader.ReadByte();
+            byte minor = reader.ReadByte();
+            byte patch = reader.ReadByte();
+
+            //Version info doesn't match to ours
+            if (major != version.Major || minor != version.Minor || patch != version.Patch)
+            {
+                WriteError(writer, MessageResponse.SyncVersionMissMatch);
+                Logger.Warn("Refusing client, version info doesn't match!");
+                return false;
+            }
+            
+            //Check services now
+            ushort serviceCount = reader.ReadUShort();
+            if (Services.Count != serviceCount)
+            {
+                WriteError(writer, MessageResponse.SyncServiceMissMatch, "Services count do not match!");
+                Logger.Warn("Refusing client, client's services count miss-matched from mine!");
+                return false;
+            }
+            
+            for (int i = 0; i < serviceCount; i++)
+            {
+                //Read service name
+                string serviceName = reader.ReadString();
+                HostService? service = Services.SingleOrDefault(x => x.InterfaceName == serviceName);
+                if (service == null)
+                {
+                    WriteError(writer, MessageResponse.SyncServiceMissMatch, $"Service {serviceName} doesn't exist on host!");
+                    Logger.Warn($"Refusing client, client had service {serviceName} that doesn't exist!");
+                    return false;
+                }
+
+                //Check service methods
+                ushort methodCount = reader.ReadUShort();
+                
+                //ServiceMethods can be null
+                int methodCountTrue = 0;
+                if (service.Value.ServiceMethods != null)
+                    methodCountTrue = service.Value.ServiceMethods.Length;
+                
+                if (methodCount != methodCountTrue)
+                {
+                    WriteError(writer, MessageResponse.SyncServiceMissMatch, $"Service {serviceName} method count do not match!");
+                    Logger.Warn($"Refusing client, client had {serviceName} method count that miss-matched from mine!");
+                    return false;
+                }
+
+                for (int j = 0; j < methodCount; j++)
+                {
+                    string methodName = reader.ReadString();
+                    ServiceMethod? method = service.Value.ServiceMethods!.SingleOrDefault(x => x.MethodName == methodName);
+                    if (method == null)
+                    {
+                        WriteError(writer, MessageResponse.SyncServiceMissMatch, $"The {methodName} doesn't exist as apart of {serviceName}!");
+                        Logger.Warn($"Refusing client, client had {methodName} as listed apart of {serviceName}!");
+                        return false;
+                    }
+                    
+                    //Check method parameters
+                    ushort parameterCount = reader.ReadUShort();
+                    int parameterCountTrue = 0;
+                    if (method.Parameters != null)
+                        parameterCountTrue = method.Parameters.Length;
+                    
+                    if (parameterCount != parameterCountTrue)
+                    {
+                        WriteError(writer, MessageResponse.SyncServiceMissMatch, $"The {methodName} parameter count is miss-matched!");
+                        Logger.Warn($"Refusing client, client had {methodName} parameter count that miss-matched from mine!");
+                        return false;
+                    }
+
+                    //Check parameter
+                    for (int k = 0; k < parameterCount; k++)
+                    {
+                        string parameterName = reader.ReadString();
+                        
+                        //Unlike services or methods, the order of this DOES matter
+                        if (method.Parameters![k].TypeInfo.TypeName != parameterName)
+                        {
+                            WriteError(writer, MessageResponse.SyncServiceMissMatch, $"The {methodName}'s parameter {parameterName}");
+                        }
+                    }
+                }
+            }
+            
+            //We all good
+            Logger.Debug("Accepted client, client's sync info matches.");
+            writer.WriteByte((byte)MessageResponse.SyncRighto);
+            writer.Flush();
+            return true;
+        }
+        catch (IOException)
+        {
+            //Timeout most likely
+            Logger.Warn("Client never sent version info in time!");
+            return false;
+        }
+    }
+
+    private void WriteError(BufferedWriter writer, MessageResponse message, string? error = null,
+        string? stackTrace = null)
     {
         writer.Reset();
         writer.WriteByte((byte) message);
@@ -439,6 +524,9 @@ public abstract class Host : IDisposable
             case MessageResponse.NoMethodFound:
             case MessageResponse.ExecutedSuccessful:
             case MessageResponse.ExecuteFailNoTypeReader:
+                break;
+            case MessageResponse.SyncServiceMissMatch:
+                writer.WriteString(error);
                 break;
             case MessageResponse.ExecuteTypeReadWriteFail:
             case MessageResponse.ExecuteInvokeFailException:

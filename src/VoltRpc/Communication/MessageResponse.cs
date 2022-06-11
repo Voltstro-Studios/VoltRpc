@@ -19,6 +19,11 @@ public enum MessageResponse : byte
     ///     Response when version info is a miss-match
     /// </summary>
     SyncVersionMissMatch,
+    
+    /// <summary>
+    ///     Some miss-match with services
+    /// </summary>
+    SyncServiceMissMatch,
 
     /// <summary>
     ///     The method was executed successfully
