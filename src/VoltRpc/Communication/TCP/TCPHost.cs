@@ -97,10 +97,10 @@ public sealed class TCPHost : Host
     {
         CheckDispose();
         
-        IsRunning = true;
         listener.Start(ListenerBacklog);
         Logger.Debug("TCP host now listening...");
-
+        
+        IsRunning = true;
         while (IsRunning)
         {
             if (ConnectionCount >= MaxConnectionsCount)
