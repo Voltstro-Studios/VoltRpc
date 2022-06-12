@@ -77,6 +77,23 @@ public class TCPHostClientTests
         Assert.Throws<SyncServiceMissMatchException>(() => client.Connect());
         Assert.AreEqual(false, client.IsConnected);
     }
+
+    [Test]
+    public async Task ConnectionVersionMissMatchTest()
+    {
+        using TCPHost host = new(ipEndPoint);
+        host.version = new Versioning.VersionInfo
+        {
+            Major = 0,
+            Minor = 1,
+            Patch = 2
+        };
+        await StartHost(host);
+
+        using TCPClient client = new(ipEndPoint);
+        Assert.Throws<VersionMissMatchException>(() => client.Connect());
+        Assert.AreEqual(false, client.IsConnected);
+    }
     
     /// <summary>
     ///     Basic connection test with timeout
