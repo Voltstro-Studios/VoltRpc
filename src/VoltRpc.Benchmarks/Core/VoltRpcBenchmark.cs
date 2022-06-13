@@ -9,8 +9,8 @@ namespace VoltRpc.Benchmarks.Core;
 
 public abstract class VoltRpcBenchmark
 {
-    private const int smallArraySize = 25;
-    private const int largeArraySize = 1920 * 1080 * 4;
+    public const int SmallArraySize = 25;
+    private const int LargeArraySize = 1920 * 1080 * 4;
     
     private Client client;
     private Host host;
@@ -22,10 +22,12 @@ public abstract class VoltRpcBenchmark
 
     protected void ConfigureClientAndHost(Client configuredClient, Host configuredHost)
     {
-        smallArray = new byte[smallArraySize];
-        smallArray = Utils.FillByteArray(smallArray);
-        bigArray = new byte[largeArraySize];
-        bigArray = Utils.FillByteArray(bigArray);
+        Random random = Random.Shared;
+        smallArray = new byte[SmallArraySize];
+        random.NextBytes(smallArray);
+
+        bigArray = new byte[LargeArraySize];
+        random.NextBytes(bigArray);
         
         client = configuredClient;
         host = configuredHost;

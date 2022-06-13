@@ -6,13 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BenchmarkDotNet" Version="0.13.1"/>
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj"/>
-        <ProjectReference Include="..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer"/>
-        <ProjectReference Include="..\VoltRpc\VoltRpc.csproj"/>
+        <ProjectReference Include="..\VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj" />
+        <ProjectReference Include="..\VoltRpc.Proxy.Generator\VoltRpc.Proxy.Generator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+        <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
 
 </Project>

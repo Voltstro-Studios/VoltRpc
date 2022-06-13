@@ -1,4 +1,5 @@
-﻿using VoltRpc.Benchmarks.Core;
+﻿using System;
+using VoltRpc.Benchmarks.Core;
 
 namespace VoltRpc.Benchmarks.Interface;
 
@@ -8,8 +9,8 @@ public class BenchmarkInterfaceImpl : IBenchmarkInterface
 
     public BenchmarkInterfaceImpl()
     {
-        smallArray = new byte[25];
-        smallArray = Utils.FillByteArray(smallArray);
+        smallArray = new byte[VoltRpcBenchmark.SmallArraySize];
+        Random.Shared.NextBytes(smallArray);
     }
 
     public void BasicVoid()
