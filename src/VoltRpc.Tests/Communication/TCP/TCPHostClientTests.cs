@@ -2,6 +2,7 @@ using System.Net;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using VoltRpc.Communication;
+using VoltRpc.Communication.Protocol;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Tests.TestObjects.Interfaces;
 using VoltRpc.Tests.TestObjects.Objects;
@@ -78,6 +79,9 @@ public class TCPHostClientTests
         Assert.AreEqual(false, client.IsConnected);
     }
 
+    /// <summary>
+    ///     Basic connection test but versions miss-match
+    /// </summary>
     [Test]
     public async Task ConnectionVersionMissMatchTest()
     {
@@ -104,6 +108,54 @@ public class TCPHostClientTests
         using TCPClient client = new(ipEndPoint);
         Assert.Throws<ConnectionFailedException>(() => client.Connect());
         Assert.AreEqual(false, client.IsConnected);
+    }
+
+    [Test]
+    public async Task ConnectionProtocolMissMatchExistenceTest()
+    {
+        using TCPHost host = new(ipEndPoint);
+        host.SetProtocolVersion("Test");
+        await StartHost(host);
+
+        using TCPClient client = new(ipEndPoint);
+        Assert.Throws<ProtocolException>(() => client.Connect());
+    }
+
+    [Test]
+    public async Task ConnectionProtocolMissMatchTypeTest()
+    {
+        using TCPHost host = new(ipEndPoint);
+        host.SetProtocolVersion("Test");
+        await StartHost(host);
+
+        using TCPClient client = new(ipEndPoint);
+        client.SetProtocolVersion(123);
+        Assert.Throws<ProtocolException>(() => client.Connect());
+    }
+
+    [Test]
+    public async Task ConnectionProtocolMissMatchValueTest()
+    {
+        using TCPHost host = new(ipEndPoint);
+        host.SetProtocolVersion("Test");
+        await StartHost(host);
+
+        using TCPClient client = new(ipEndPoint);
+        client.SetProtocolVersion("Rowan SUXS");
+        Assert.Throws<ProtocolException>(() => client.Connect());
+    }
+
+    [Test]
+    public async Task ConnectionProtocolTest()
+    {
+        using TCPHost host = new(ipEndPoint);
+        host.SetProtocolVersion("Test");
+        await StartHost(host);
+
+        using TCPClient client = new(ipEndPoint);
+        client.SetProtocolVersion("Test");
+        client.Connect();
+        Assert.AreEqual(true, client.IsConnected);
     }
 
     /// <summary>

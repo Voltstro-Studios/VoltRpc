@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using VoltRpc.Communication.Protocol;
 using VoltRpc.IO;
 using VoltRpc.Logging;
 using VoltRpc.Services;
@@ -454,7 +455,7 @@ public abstract class Host : IDisposable
             //Version info doesn't match to ours
             if (major != version.Major || minor != version.Minor || patch != version.Patch)
             {
-                WriteError(writer, MessageResponse.SyncVersionMissMatch, "VoltRpc version doesn't match!");
+                WriteError(writer, MessageResponse.SyncVersionMissMatch);
                 Logger.Warn("Refusing client, version info doesn't match!");
                 return false;
             }
@@ -465,7 +466,7 @@ public abstract class Host : IDisposable
             //Make sure we both agree if a protocol exists or not
             if (hasProtocol != protocolInfo.HasValue)
             {
-                WriteError(writer, MessageResponse.SyncVersionMissMatch, "Protocol status is miss-matched!");
+                WriteError(writer, MessageResponse.SyncProtocolExistenceMissMatch);
                 Logger.Warn("Refusing client, protocol status was miss-matched to ours!");
                 return false;
             }
@@ -479,7 +480,7 @@ public abstract class Host : IDisposable
                 string type = reader.ReadString();
                 if (protocol.TypeInfo.TypeName != type)
                 {
-                    WriteError(writer, MessageResponse.SyncVersionMissMatch, "Protocol value type is miss-matched!");
+                    WriteError(writer, MessageResponse.SyncProtocolTypeMissMatch);
                     Logger.Warn("Refusing client, protocol value type was miss-matched to ours!");
                     return false;
                 }
@@ -500,7 +501,7 @@ public abstract class Host : IDisposable
                     //Compare result to our protocol value
                     if (!protocolValue.Equals(result))
                     {
-                        WriteError(writer, MessageResponse.SyncServiceMissMatch, "Protocol values don't match!");
+                        WriteError(writer, MessageResponse.SyncProtocolValueMissMatch);
                         Logger.Warn($"Refusing client, protocol values was miss-matched to ours!");
                         return false;
                     }
@@ -610,9 +611,17 @@ public abstract class Host : IDisposable
         {
             case MessageResponse.NoMethodFound:
             case MessageResponse.ExecutedSuccessful:
+            case MessageResponse.SyncProtocolExistenceMissMatch:
+            case MessageResponse.SyncProtocolTypeMissMatch:
+            case MessageResponse.SyncProtocolValueMissMatch:
             case MessageResponse.TypeReadWriterFailMissing:
                 break;
             case MessageResponse.SyncVersionMissMatch:
+                //Write what version we are excepting
+                writer.WriteByte(version.Major);
+                writer.WriteByte(version.Minor);
+                writer.WriteByte(version.Patch);
+                break;
             case MessageResponse.SyncServiceMissMatch:
                 writer.WriteString(error);
                 break;

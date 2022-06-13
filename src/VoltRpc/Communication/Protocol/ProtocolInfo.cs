@@ -1,7 +1,7 @@
 using System;
 using VoltRpc.Types;
 
-namespace VoltRpc.Communication;
+namespace VoltRpc.Communication.Protocol;
 
 internal struct ProtocolInfo
 {

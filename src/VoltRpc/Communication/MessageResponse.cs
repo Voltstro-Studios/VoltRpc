@@ -21,6 +21,21 @@ public enum MessageResponse : byte
     SyncVersionMissMatch,
     
     /// <summary>
+    ///     The existence of a protocol are miss-matched
+    /// </summary>
+    SyncProtocolExistenceMissMatch,
+    
+    /// <summary>
+    ///     The <see cref="System.Type"/> of the protocol value doesn't match
+    /// </summary>
+    SyncProtocolTypeMissMatch,
+    
+    /// <summary>
+    ///     The value of the protocol don't match
+    /// </summary>
+    SyncProtocolValueMissMatch,
+    
+    /// <summary>
     ///     Some miss-match with services
     /// </summary>
     SyncServiceMissMatch,

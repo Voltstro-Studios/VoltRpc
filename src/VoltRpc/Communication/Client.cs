@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using VoltRpc.Communication.Protocol;
 using VoltRpc.IO;
 using VoltRpc.Services;
 using VoltRpc.Types;
@@ -395,14 +396,29 @@ public abstract class Client : IDisposable
         
         //Get sync response
         MessageResponse syncResponse = (MessageResponse)reader!.ReadByte();
+        
+        //TODO: We should handle both this MessageResponse check and the one in invoke method together
         switch (syncResponse)
         {
+            //Successful
             case MessageResponse.SyncRighto:
                 break;
+            
+            //Sync errors
             case MessageResponse.SyncVersionMissMatch:
-                throw new VersionMissMatchException(reader.ReadString());
+                throw new VersionMissMatchException(new Version(reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
             case MessageResponse.SyncServiceMissMatch:
                 throw new SyncServiceMissMatchException(reader.ReadString());
+            
+            //Sync protocols
+            case MessageResponse.SyncProtocolTypeMissMatch:
+                throw new ProtocolException("The protocol type the host was excepting is not the same as ours!");
+            case MessageResponse.SyncProtocolValueMissMatch:
+                throw new ProtocolException("The protocol values are miss-matched!");
+            case MessageResponse.SyncProtocolExistenceMissMatch:
+                throw new ProtocolException(protocolInfo.HasValue ? "The host has the protocol disabled!" : "The host has the protocol enabled!");
+            
+            //Type reader/writer exceptions
             case MessageResponse.TypeReadWriterFailMissing:
                 throw new NoTypeReaderWriterException();
             case MessageResponse.TypeReadWriterFail:
