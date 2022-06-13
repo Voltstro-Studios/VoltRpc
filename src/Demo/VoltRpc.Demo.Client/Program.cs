@@ -25,6 +25,8 @@ public static class Program
         else
             client = new TCPClient(parser.IpEndPoint, bufferSize: 8294500);
         
+        client.SetProtocolVersion("Demo-Protocol-1");
+        
         //Add VoltRpc.Extension.Vectors
         client.TypeReaderWriterManager.InstallVectorsExtension();
 

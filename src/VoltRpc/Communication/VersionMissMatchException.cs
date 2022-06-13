@@ -7,4 +7,8 @@ namespace VoltRpc.Communication;
 /// </summary>
 public sealed class VersionMissMatchException : Exception
 {
+    internal VersionMissMatchException(string message)
+        : base(message)
+    {
+    }
 }

@@ -24,21 +24,21 @@ public enum MessageResponse : byte
     ///     Some miss-match with services
     /// </summary>
     SyncServiceMissMatch,
+    
+    /// <summary>
+    ///     The method failed to execute due to a missing type reader/writer
+    /// </summary>
+    TypeReadWriterFailMissing,
+
+    /// <summary>
+    ///     The type reader/writer failed for some reason
+    /// </summary>
+    TypeReadWriterFail,
 
     /// <summary>
     ///     The method was executed successfully
     /// </summary>
     ExecutedSuccessful,
-
-    /// <summary>
-    ///     The method failed to execute due to a missing type reader/writer
-    /// </summary>
-    ExecuteFailNoTypeReader,
-
-    /// <summary>
-    ///     The type reader/writer failed for some reason
-    /// </summary>
-    ExecuteTypeReadWriteFail,
 
     /// <summary>
     ///     The method failed while being invoked

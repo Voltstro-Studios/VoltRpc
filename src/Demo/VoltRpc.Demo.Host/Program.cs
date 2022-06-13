@@ -22,6 +22,8 @@ public static class Program
         else
             host = new TCPHost(parser.IpEndPoint, logger);
         
+        host.SetProtocolVersion("Demo-Protocol-1");
+        
         //Add VoltRpc.Extension.Vectors
         host.TypeReaderWriterManager.InstallVectorsExtension();
         

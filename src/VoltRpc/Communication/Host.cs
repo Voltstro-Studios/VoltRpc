@@ -104,6 +104,11 @@ public abstract class Host : IDisposable
     public bool HideStacktrace { get; set; }
 
     /// <summary>
+    ///     User set protocol info
+    /// </summary>
+    private ProtocolInfo? protocolInfo;
+
+    /// <summary>
     ///     Starts listening for incoming requests
     /// </summary>
     public virtual async Task StartListeningAsync()
@@ -171,6 +176,35 @@ public abstract class Host : IDisposable
         [UnconditionalSuppressMessage("Trimming", "IL2077", Justification = "The type parameter of the parent method has the right annotation")]
 #endif
         ServiceMethod[] GetAllServiceMethods() => ServiceHelper.GetAllServiceMethods(serviceType);
+    }
+
+    /// <summary>
+    ///     Sets what protocol version to use.
+    ///     <para>Set value to null to reset back to none.</para>
+    /// </summary>
+    /// <param name="value">Value can be any object you want, as long as the <see cref="TypeReaderWriterManager"/> has a <see cref="TypeReadWriter{T}"/> for it.</param>
+    /// <exception cref="AlreadyConnectedException">Thrown if the <see cref="Client"/> is already connected to a <see cref="Host"/></exception>
+    /// <exception cref="NoTypeReaderWriterException">Thrown if the <see cref="TypeReaderWriterManager"/> doesn't have a <see cref="TypeReadWriter{T}"/> for the value <see cref="Type"/>.</exception>
+    public void SetProtocolVersion(object? value)
+    {
+        CheckDispose();
+
+        if (IsRunning)
+            throw new AlreadyRunningException();
+        
+        //If type is null, then reset protocol info
+        if (value == null)
+        {
+            protocolInfo = null;
+            return;
+        }
+
+        Type valueType = value.GetType();
+        ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(valueType);
+        if (typeReadWriter == null)
+            throw new NoTypeReaderWriterException();
+
+        protocolInfo = new ProtocolInfo(value, valueType);
     }
 
     /// <summary>
@@ -307,7 +341,7 @@ public abstract class Host : IDisposable
                 ITypeReadWriter typeRead = TypeReaderWriterManager.GetType(parameter.TypeInfo.TypeName);
                 if (typeRead == null)
                 {
-                    WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
+                    WriteError(writer, MessageResponse.TypeReadWriterFailMissing);
                     Logger.Error(
                         $"The client sent a method with a parameter type of '{parameter.TypeInfo.TypeName}' of which I don't have a type reader for some reason!");
                     return;
@@ -319,7 +353,7 @@ public abstract class Host : IDisposable
                 }
                 catch (Exception ex)
                 {
-                    WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
+                    WriteError(writer, MessageResponse.TypeReadWriterFail, ex.Message,
                         ex.InnerException?.StackTrace);
                     Logger.Error($"Error reading parameter! {ex}");
                     return;
@@ -348,7 +382,7 @@ public abstract class Host : IDisposable
                 ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(method.ReturnType.TypeName);
                 if (typeWriter == null)
                 {
-                    WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
+                    WriteError(writer, MessageResponse.TypeReadWriterFailMissing);
                     Logger.Error(
                         $"The client sent a method with a return type of '{method.ReturnType.TypeName}' of which I don't have a type reader for some reason!");
                     return;
@@ -360,7 +394,7 @@ public abstract class Host : IDisposable
                 }
                 catch (Exception ex)
                 {
-                    WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
+                    WriteError(writer, MessageResponse.TypeReadWriterFail, ex.Message,
                         ex.InnerException?.StackTrace);
                     Logger.Error($"Parsing return type of '{method.ReturnType.TypeName}' failed for some reason! {ex}");
                     return;
@@ -378,7 +412,7 @@ public abstract class Host : IDisposable
                     ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameter.TypeInfo.TypeName);
                     if (typeWriter == null)
                     {
-                        WriteError(writer, MessageResponse.ExecuteFailNoTypeReader);
+                        WriteError(writer, MessageResponse.TypeReadWriterFailMissing);
                         Logger.Error(
                             $"The client sent a method with a parameter ref/out type of '{parameter.TypeInfo.TypeName}' of which I don't have a type reader for some reason!");
                         return;
@@ -390,7 +424,7 @@ public abstract class Host : IDisposable
                     }
                     catch (Exception ex)
                     {
-                        WriteError(writer, MessageResponse.ExecuteTypeReadWriteFail, ex.Message,
+                        WriteError(writer, MessageResponse.TypeReadWriterFail, ex.Message,
                             ex.InnerException?.StackTrace);
                         Logger.Error(
                             $"Parsing return type of '{parameter.TypeInfo.TypeName}' failed for some reason! {ex}");
@@ -420,9 +454,63 @@ public abstract class Host : IDisposable
             //Version info doesn't match to ours
             if (major != version.Major || minor != version.Minor || patch != version.Patch)
             {
-                WriteError(writer, MessageResponse.SyncVersionMissMatch);
+                WriteError(writer, MessageResponse.SyncVersionMissMatch, "VoltRpc version doesn't match!");
                 Logger.Warn("Refusing client, version info doesn't match!");
                 return false;
+            }
+            
+            //Check user protocol
+            bool hasProtocol = reader.ReadBool();
+            
+            //Make sure we both agree if a protocol exists or not
+            if (hasProtocol != protocolInfo.HasValue)
+            {
+                WriteError(writer, MessageResponse.SyncVersionMissMatch, "Protocol status is miss-matched!");
+                Logger.Warn("Refusing client, protocol status was miss-matched to ours!");
+                return false;
+            }
+            
+            //We have protocol info, now check it
+            if(protocolInfo != null)
+            {
+                ProtocolInfo protocol = protocolInfo.Value;
+                
+                //Read protocol value type
+                string type = reader.ReadString();
+                if (protocol.TypeInfo.TypeName != type)
+                {
+                    WriteError(writer, MessageResponse.SyncVersionMissMatch, "Protocol value type is miss-matched!");
+                    Logger.Warn("Refusing client, protocol value type was miss-matched to ours!");
+                    return false;
+                }
+
+                ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(protocol.TypeInfo.TypeName);
+                if (typeReadWriter == null)
+                {
+                    WriteError(writer, MessageResponse.TypeReadWriterFailMissing);
+                    Logger.Error($"The client sent a protocol type of {type}, which matched mine, but I don't have the type reader/writer for!");
+                    return false;
+                }
+
+                try
+                {
+                    object result = TypeReaderWriterManager.Read(reader, typeReadWriter, protocol.TypeInfo);
+                    object protocolValue = protocol.Value;
+                    
+                    //Compare result to our protocol value
+                    if (!protocolValue.Equals(result))
+                    {
+                        WriteError(writer, MessageResponse.SyncServiceMissMatch, "Protocol values don't match!");
+                        Logger.Warn($"Refusing client, protocol values was miss-matched to ours!");
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    WriteError(writer, MessageResponse.TypeReadWriterFail, ex.Message, ex.StackTrace);
+                    Logger.Error($"Error reading protocol value! {ex}");
+                    return false;
+                }
             }
             
             //Check services now
@@ -520,15 +608,15 @@ public abstract class Host : IDisposable
         writer.WriteByte((byte) message);
         switch (message)
         {
-            case MessageResponse.SyncVersionMissMatch:
             case MessageResponse.NoMethodFound:
             case MessageResponse.ExecutedSuccessful:
-            case MessageResponse.ExecuteFailNoTypeReader:
+            case MessageResponse.TypeReadWriterFailMissing:
                 break;
+            case MessageResponse.SyncVersionMissMatch:
             case MessageResponse.SyncServiceMissMatch:
                 writer.WriteString(error);
                 break;
-            case MessageResponse.ExecuteTypeReadWriteFail:
+            case MessageResponse.TypeReadWriterFail:
             case MessageResponse.ExecuteInvokeFailException:
                 writer.WriteString(error);
                 writer.WriteString(HideStacktrace ? null : stackTrace);

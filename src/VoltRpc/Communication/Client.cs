@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -30,9 +31,11 @@ public abstract class Client : IDisposable
     ///     Version this client wants to be
     /// </summary>
     internal Versioning.VersionInfo version;
-    
-    private BufferedReader reader;
-    private BufferedWriter writer;
+
+    private ProtocolInfo? protocolInfo;
+
+    private BufferedReader? reader;
+    private BufferedWriter? writer;
 
     /// <summary>
     ///     Creates a new <see cref="Client" /> instance
@@ -119,6 +122,36 @@ public abstract class Client : IDisposable
 
         Services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods(interfaceType));
     }
+    
+    /// <summary>
+    ///     Sets what protocol version to use.
+    ///     <para>Set value to null to reset back to none.</para>
+    /// </summary>
+    /// <param name="value">Value can be any object you want, as long as the <see cref="TypeReaderWriterManager"/> has a <see cref="TypeReadWriter{T}"/> for it.</param>
+    /// <exception cref="AlreadyConnectedException">Thrown if the <see cref="Client"/> is already connected to a <see cref="Host"/></exception>
+    /// <exception cref="NoTypeReaderWriterException">Thrown if the <see cref="TypeReaderWriterManager"/> doesn't have a <see cref="TypeReadWriter{T}"/> for the value <see cref="Type"/>.</exception>
+    public void SetProtocolVersion(object? value)
+    {
+        CheckDispose();
+
+        //Can't change if we are connected
+        if (IsConnected)
+            throw new AlreadyConnectedException();
+
+        //If type is null, then reset protocol info
+        if (value == null)
+        {
+            protocolInfo = null;
+            return;
+        }
+
+        Type valueType = value.GetType();
+        ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(valueType);
+        if (typeReadWriter == null)
+            throw new NoTypeReaderWriterException();
+
+        protocolInfo = new ProtocolInfo(value, valueType);
+    }
 
     /// <summary>
     ///     Initialize streams
@@ -181,7 +214,7 @@ public abstract class Client : IDisposable
     /// <exception cref="MethodInvokeFailedException">
     ///     Thrown if an <see cref="Exception" /> occurs while invoking a method on the host
     /// </exception>
-    public object[] InvokeMethod(string methodName, params object[] parameters)
+    public object[]? InvokeMethod(string methodName, params object[] parameters)
     {
         CheckDispose();
 
@@ -189,7 +222,7 @@ public abstract class Client : IDisposable
             throw new NotConnectedException("The client is not connected!");
 
         //Get the method
-        ServiceMethod method = null;
+        ServiceMethod? method = null;
         foreach (KeyValuePair<string, ServiceMethod[]> service in Services)
         {
             if (method != null)
@@ -209,7 +242,7 @@ public abstract class Client : IDisposable
                 "That method does not exist on the client!");
 
         //Write the method name first
-        writer.WriteByte((byte) MessageType.InvokeMethod);
+        writer!.WriteByte((byte) MessageType.InvokeMethod);
         writer.WriteString(method.MethodName);
 
         //Now we need to write our parameters
@@ -218,14 +251,14 @@ public abstract class Client : IDisposable
         writer.Flush();
 
         //Get response
-        MessageResponse response = (MessageResponse) reader.ReadByte();
+        MessageResponse response = (MessageResponse) reader!.ReadByte();
         switch (response)
         {
             case MessageResponse.NoMethodFound:
                 throw new MissingMethodException("That method does not exist on the host!");
-            case MessageResponse.ExecuteFailNoTypeReader:
+            case MessageResponse.TypeReadWriterFailMissing:
                 throw new NoTypeReaderWriterException();
-            case MessageResponse.ExecuteTypeReadWriteFail:
+            case MessageResponse.TypeReadWriterFail:
             {
                 string reason = reader.ReadString();
                 string stackTrace = reader.ReadString();
@@ -312,9 +345,27 @@ public abstract class Client : IDisposable
     private void InvokeSyncCheck()
     {
         //Now to do a sync, we first provide our version number
-        writer.WriteByte(version.Major);
+        writer!.WriteByte(version.Major);
         writer.WriteByte(version.Minor);
         writer.WriteByte(version.Patch);
+        
+        //User protocol version
+        if(protocolInfo == null)
+            writer.WriteBool(false);
+        else
+        {
+            writer.WriteBool(true);
+
+            string typeFullName = protocolInfo.Value.TypeInfo.TypeName;
+            writer.WriteString(typeFullName);
+            
+            ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(typeFullName);
+            if (typeReadWriter == null)
+                throw new NoTypeReaderWriterException();
+
+            TypeReaderWriterManager.Write(writer, typeReadWriter, protocolInfo.Value.TypeInfo,
+                protocolInfo.Value.Value);
+        }
         
         //Provide our services
         //Write the services count first
@@ -343,15 +394,19 @@ public abstract class Client : IDisposable
         writer.Flush();
         
         //Get sync response
-        MessageResponse syncResponse = (MessageResponse)reader.ReadByte();
+        MessageResponse syncResponse = (MessageResponse)reader!.ReadByte();
         switch (syncResponse)
         {
             case MessageResponse.SyncRighto:
                 break;
             case MessageResponse.SyncVersionMissMatch:
-                throw new VersionMissMatchException();
+                throw new VersionMissMatchException(reader.ReadString());
             case MessageResponse.SyncServiceMissMatch:
                 throw new SyncServiceMissMatchException(reader.ReadString());
+            case MessageResponse.TypeReadWriterFailMissing:
+                throw new NoTypeReaderWriterException();
+            case MessageResponse.TypeReadWriterFail:
+                throw new TypeReaderWriterException(reader.ReadString(), reader.ReadString(), null, null);
             default:
                 throw new ArgumentOutOfRangeException();
         }
