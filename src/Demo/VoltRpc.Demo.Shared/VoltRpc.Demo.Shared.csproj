@@ -14,4 +14,8 @@
         <ProjectReference Include="..\..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Spectre.Console" Version="0.44.0" />
+    </ItemGroup>
+
 </Project>
