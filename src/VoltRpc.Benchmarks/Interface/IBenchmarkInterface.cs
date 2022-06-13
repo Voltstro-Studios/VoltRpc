@@ -1,4 +1,5 @@
-﻿using VoltRpc.Proxy;
+﻿using VoltRpc.Benchmarks.Core.FastArray;
+using VoltRpc.Proxy;
 
 namespace VoltRpc.Benchmarks.Interface;
 
@@ -18,4 +19,6 @@ public interface IBenchmarkInterface
     public byte[] ArrayReturn();
 
     public byte[] ArrayParameterReturn(byte[] array);
+
+    public FastArrayContainer ArrayFast();
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using VoltRpc.Benchmarks.Core.FastArray;
 using VoltRpc.Benchmarks.Interface;
 using VoltRpc.Communication;
 using VoltRpc.Proxy.Generated;
@@ -9,7 +10,9 @@ namespace VoltRpc.Benchmarks.Core;
 
 public abstract class VoltRpcBenchmark
 {
-    public const int SmallArraySize = 25;
+    protected const int BufferSize = 8294500;
+    
+    private const int SmallArraySize = 25;
     private const int LargeArraySize = 1920 * 1080 * 4;
     
     private Client client;
@@ -36,10 +39,12 @@ public abstract class VoltRpcBenchmark
     [GlobalSetup]
     public void Setup()
     {
-        host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl());
+        host.TypeReaderWriterManager.AddType(new FastArrayTypeReaderWriter());
+        host.AddService<IBenchmarkInterface>(new BenchmarkInterfaceImpl(smallArray, bigArray));
         host.StartListeningAsync().ConfigureAwait(false);
         host.MaxConnectionsCount = 1;
 
+        client.TypeReaderWriterManager.AddType(new FastArrayTypeReaderWriter());
         client.AddService<IBenchmarkInterface>();
         client.Connect();
         benchmarkProxy = new BenchmarkProxy(client);
@@ -89,6 +94,12 @@ public abstract class VoltRpcBenchmark
     public byte[] ArrayParameterReturn(byte[] array)
     {
         return benchmarkProxy.ArrayParameterReturn(array);
+    }
+
+    [Benchmark]
+    public void ArrayFast()
+    {
+        benchmarkProxy.ArrayFast();
     }
 
     public static IEnumerable<object> GetArray()

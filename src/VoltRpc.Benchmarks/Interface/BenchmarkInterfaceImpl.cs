@@ -1,5 +1,6 @@
 ﻿using System;
 using VoltRpc.Benchmarks.Core;
+using VoltRpc.Benchmarks.Core.FastArray;
 
 namespace VoltRpc.Benchmarks.Interface;
 
@@ -7,10 +8,15 @@ public class BenchmarkInterfaceImpl : IBenchmarkInterface
 {
     private readonly byte[] smallArray;
 
-    public BenchmarkInterfaceImpl()
+    private FastArrayContainer fastArrayContainer;
+
+    public BenchmarkInterfaceImpl(byte[] smallArray, byte[] largeArray)
     {
-        smallArray = new byte[VoltRpcBenchmark.SmallArraySize];
-        Random.Shared.NextBytes(smallArray);
+        this.smallArray = smallArray;
+        fastArrayContainer = new()
+        {
+            Data = largeArray
+        };
     }
 
     public void BasicVoid()
@@ -43,5 +49,10 @@ public class BenchmarkInterfaceImpl : IBenchmarkInterface
     public byte[] ArrayParameterReturn(byte[] array)
     {
         return array;
+    }
+
+    public FastArrayContainer ArrayFast()
+    {
+        return fastArrayContainer;
     }
 }
