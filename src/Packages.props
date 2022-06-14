@@ -11,6 +11,7 @@
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
         <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">../bin/</PackageOutputPath>
 
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
