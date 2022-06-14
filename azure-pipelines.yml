@@ -8,6 +8,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
+  submodules: true
+
 - task: UseDotNet@2
   displayName: Install .NET
   inputs:
