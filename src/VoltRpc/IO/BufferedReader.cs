@@ -57,7 +57,11 @@ public class BufferedReader : IDisposable
     /// <summary>
     ///     The length of the buffer
     /// </summary>
-    public int Length => buffer.Length;
+    public int Length
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => buffer.Length;
+    }
 
     /// <summary>
     ///     You may need to override this if your <see cref="Stream"/> requires it
