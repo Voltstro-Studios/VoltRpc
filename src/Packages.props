@@ -1,13 +1,40 @@
 <Project>
+    <!-- Packages.props contains properties used by projects that need to published as NuGet packages -->
+    
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
         <Authors>Voltstro</Authors>
+
+        <PackageProjectUrl>https://voltrpc.voltstro.dev</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageIcon>icon.png</PackageIcon>
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
+        <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
-        <IsTrimmable>true</IsTrimmable>
-        <DocumentationFile>bin\Debug\$(TargetFramework)\$(Title).xml</DocumentationFile>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../icon.png">
+            <Pack>True</Pack>
+            <PackagePath>/</PackagePath>
+        </None>
+        <None Include="../Packaging/README.package.md">
+            <Pack>True</Pack>
+            <PackagePath>README.md</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+    
 </Project>

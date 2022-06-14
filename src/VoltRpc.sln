@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Imports", "Imports", "{6ADC
 		Demo\Demo.props = Demo\Demo.props
 		Properties.props = Properties.props
 		Packages.props = Packages.props
+		PackagesLibrary.props = PackagesLibrary.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoltRpc.Communication.Pipes", "VoltRpc.Communication.Pipes\VoltRpc.Communication.Pipes.csproj", "{FCA66CEF-3D46-445C-925E-2EA476F6730B}"

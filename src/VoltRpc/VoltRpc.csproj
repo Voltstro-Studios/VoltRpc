@@ -26,6 +26,6 @@
         <PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.0.9" PrivateAssets="all" />
     </ItemGroup>
 
-    <Import Project="../Packages.props" />
+    <Import Project="../PackagesLibrary.props" />
 
 </Project>

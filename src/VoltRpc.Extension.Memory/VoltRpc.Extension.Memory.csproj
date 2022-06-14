@@ -19,6 +19,6 @@
       <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
 
-    <Import Project="../Packages.props" />
+    <Import Project="../PackagesLibrary.props" />
     
 </Project>
