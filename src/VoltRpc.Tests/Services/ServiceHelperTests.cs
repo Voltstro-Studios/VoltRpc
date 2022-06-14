@@ -1,15 +1,24 @@
 using NUnit.Framework;
 using VoltRpc.Services;
 using VoltRpc.Tests.TestObjects.Interfaces;
+using VoltRpc.Types;
 
 namespace VoltRpc.Tests.Services;
 
 public class ServiceHelperTests
 {
+    private TypeReaderWriterManager typeReaderWriterManager;
+    
+    [OneTimeSetUp]
+    public void Setup()
+    {
+        typeReaderWriterManager = new TypeReaderWriterManager();
+    }
+    
     [Test]
     public void ServiceBasicInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IBasicInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IBasicInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
@@ -19,7 +28,7 @@ public class ServiceHelperTests
     [Test]
     public void ServiceBasicMultipleInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IBasicMultipleInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IBasicMultipleInterface), typeReaderWriterManager);
         Assert.AreEqual(2, methods.Length);
 
         //Method 1
@@ -34,7 +43,7 @@ public class ServiceHelperTests
     [Test]
     public void ServiceReturnBasicInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IReturnInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IReturnInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
@@ -45,7 +54,7 @@ public class ServiceHelperTests
     [Test]
     public void ServiceReturnArrayInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IReturnArrayInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IReturnArrayInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
@@ -56,7 +65,7 @@ public class ServiceHelperTests
     [Test]
     public void ServiceParamBasicInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IParameterBasicInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IParameterBasicInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
@@ -67,7 +76,7 @@ public class ServiceHelperTests
     [Test]
     public void ServiceParamArrayInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IParameterArrayInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IParameterArrayInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
@@ -78,7 +87,7 @@ public class ServiceHelperTests
     [Test]
     public void ServiceRefBasicInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IRefBasicInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IRefBasicInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
@@ -89,12 +98,22 @@ public class ServiceHelperTests
     [Test]
     public void ServiceRefArrayInterfaceTest()
     {
-        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IRefArrayInterface));
+        ServiceMethod[] methods = ServiceHelper.GetAllServiceMethods(typeof(IRefArrayInterface), typeReaderWriterManager);
         Assert.AreEqual(1, methods.Length);
 
         ServiceMethod method = methods[0];
         CheckMethod(method, "VoltRpc.Tests.TestObjects.Interfaces.IRefArrayInterface.RefArray", true, 1, 1);
         CheckParameter(method.Parameters[0], "System.String", false, true, true);
+    }
+
+    [Test]
+    public void ServiceNoTypeReaderWriterTest()
+    {
+        //Use a type reader writer with no types
+        TypeReaderWriterManager testTypeReaderWriterManager = new(false);
+
+        Assert.Throws<NoTypeReaderWriterException>(() =>
+            ServiceHelper.GetAllServiceMethods(typeof(IParameterBasicInterface), testTypeReaderWriterManager));
     }
 
     private void CheckMethod(ServiceMethod method, string methodName, bool methodReturnVoid, int refOrOutParamCount,

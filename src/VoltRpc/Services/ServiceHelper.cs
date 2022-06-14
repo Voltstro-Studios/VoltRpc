@@ -7,13 +7,11 @@ namespace VoltRpc.Services;
 
 internal static class ServiceHelper
 {
-#if NET6_0_OR_GREATER
     public static ServiceMethod[] GetAllServiceMethods(
+#if NET6_0_OR_GREATER
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)]
-        Type type)
-#else
-        public static ServiceMethod[] GetAllServiceMethods(Type type)
 #endif
+        Type type, TypeReaderWriterManager typeReaderWriterManager)
     {
         MethodInfo[] interfaceMethods = type.GetMethods();
         ServiceMethod[] serviceMethods = new ServiceMethod[interfaceMethods.Length];
@@ -31,11 +29,17 @@ internal static class ServiceHelper
             {
                 ParameterInfo parameterInfo = methodParameters[x];
                 Type parameterType = parameterInfo.ParameterType;
+                
+                //Check to make sure the type reader/writer manager has a type reader/writer for the type
+                VoltTypeInfo voltTypeInfo = new(parameterType);
+                if (typeReaderWriterManager.GetType(voltTypeInfo.TypeName) == null)
+                    throw new NoTypeReaderWriterException($"The type reader/writer manager doesn't have a type reader/writer for {voltTypeInfo.TypeName}!");
+                
                 ServiceMethodParameter parameter = new()
                 {
                     IsOut = parameterInfo.IsOut,
                     IsRef = parameterType.IsByRef && parameterInfo.IsOut == false,
-                    TypeInfo = new VoltTypeInfo(parameterType)
+                    TypeInfo = voltTypeInfo
                 };
                 parameters[x] = parameter;
                 if (parameter.IsOut || parameter.IsRef)

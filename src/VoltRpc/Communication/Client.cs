@@ -123,7 +123,7 @@ public abstract class Client : IDisposable
             throw new ArgumentOutOfRangeException(nameof(interfaceType),
                 "interfaceType has already been added as a service!");
 
-        Services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods(interfaceType));
+        Services.Add(interfaceType.FullName, ServiceHelper.GetAllServiceMethods(interfaceType, TypeReaderWriterManager));
     }
     
     /// <summary>

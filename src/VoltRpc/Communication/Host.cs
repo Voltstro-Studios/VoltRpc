@@ -176,7 +176,7 @@ public abstract class Host : IDisposable
 #if NET6_0
         [UnconditionalSuppressMessage("Trimming", "IL2077", Justification = "The type parameter of the parent method has the right annotation")]
 #endif
-        ServiceMethod[] GetAllServiceMethods() => ServiceHelper.GetAllServiceMethods(serviceType);
+        ServiceMethod[] GetAllServiceMethods() => ServiceHelper.GetAllServiceMethods(serviceType, TypeReaderWriterManager);
     }
 
     /// <summary>
