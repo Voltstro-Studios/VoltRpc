@@ -5,7 +5,7 @@
     <PropertyGroup>
         <Title>VoltRpc</Title>
         <RootNamespace>VoltRpc</RootNamespace>
-        <Description>VoltRpc - Library designed for high performance RPC communication.</Description>
+        <Description>VoltRpc - A RPC library designed to be simple to use and fast.</Description>
         <Version>2.1.0</Version>
         <PackageVersion>2.1.0</PackageVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
