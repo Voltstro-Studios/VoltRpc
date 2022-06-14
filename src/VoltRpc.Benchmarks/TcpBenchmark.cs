@@ -16,7 +16,7 @@ public class TcpBenchmark : VoltRpcBenchmark
         Random random = new();
         int port = random.Next(MinPort, MaxPort);
         
-        ConfigureClientAndHost(new TCPClient(new IPEndPoint(IPAddress.Loopback, port), bufferSize: BufferSize),
-            new TCPHost(new IPEndPoint(IPAddress.Loopback, port), BufferSize));
+        ConfigureClientAndHost(new TCPClient(new IPEndPoint(IPAddress.Loopback, port)),
+            new TCPHost(new IPEndPoint(IPAddress.Loopback, port)));
     }
 }

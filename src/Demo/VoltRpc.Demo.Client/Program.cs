@@ -23,9 +23,9 @@ public static class Program
 
         Communication.Client client;
         if (parser.PipesClient)
-            client = new PipesClient(parser.PipeName, bufferSize: 8294500);
+            client = new PipesClient(parser.PipeName);
         else
-            client = new TCPClient(parser.IpEndPoint, bufferSize: 8294500);
+            client = new TCPClient(parser.IpEndPoint);
         
         client.SetProtocolVersion("Demo-Protocol-1");
         

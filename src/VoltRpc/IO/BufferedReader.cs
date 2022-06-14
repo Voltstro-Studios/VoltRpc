@@ -30,7 +30,7 @@ public class BufferedReader : IDisposable
     /// <summary>
     ///     Internal access to the underlining buffer
     /// </summary>
-    internal readonly byte[] buffer;
+    internal byte[] buffer;
 
     /// <summary>
     ///     Current read length of the underlining <see cref="Stream"/>
@@ -167,8 +167,9 @@ public class BufferedReader : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal void ReadStream(int neededSize)
     {
+        //Resize buffer if needed
         if (neededSize > Length)
-            throw new OverflowException("The requested size of the object is too big to fit in the current buffer size!");
+            buffer = IoUtils.CreateBuffer(Length + neededSize);
 
         int totalReadLength = 0;
         if (IncomingStreamNeedToAdjustPosition)
@@ -176,6 +177,7 @@ public class BufferedReader : IDisposable
         
         while (neededSize != 0)
         {
+            //Keep reading until there is not more data, or we have reached our needed size
             int readSize = IncomingStream.Read(buffer, totalReadLength, neededSize);
             if(readSize == 0)
                 break;
