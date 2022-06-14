@@ -1,6 +1,7 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -215,6 +216,7 @@ public abstract class Client : IDisposable
     /// <exception cref="MethodInvokeFailedException">
     ///     Thrown if an <see cref="Exception" /> occurs while invoking a method on the host
     /// </exception>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public object[]? InvokeMethod(string methodName, params object[] parameters)
     {
         CheckDispose();
