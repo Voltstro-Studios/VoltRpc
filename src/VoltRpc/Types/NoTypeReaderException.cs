@@ -7,7 +7,8 @@ namespace VoltRpc.Types;
 /// </summary>
 public class NoTypeReaderWriterException : Exception
 {
-    internal NoTypeReaderWriterException()
+    internal NoTypeReaderWriterException(string message)
+        : base(message)
     {
     }
 }

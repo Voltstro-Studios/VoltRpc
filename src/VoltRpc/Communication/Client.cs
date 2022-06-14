@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Runtime.CompilerServices;
 using VoltRpc.Communication.Protocol;
 using VoltRpc.IO;
 using VoltRpc.Services;
@@ -150,7 +151,7 @@ public abstract class Client : IDisposable
         Type valueType = value.GetType();
         ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(valueType);
         if (typeReadWriter == null)
-            throw new NoTypeReaderWriterException();
+            throw new NoTypeReaderWriterException($"The type reader/writer for {valueType} doesn't exist! You need to add it to {nameof(TypeReaderWriterManager)} first before calling {nameof(SetProtocolVersion)}.");
 
         protocolInfo = new ProtocolInfo(value, valueType);
     }
@@ -255,27 +256,7 @@ public abstract class Client : IDisposable
 
         //Get response
         MessageResponse response = (MessageResponse) reader!.ReadByte();
-        switch (response)
-        {
-            case MessageResponse.NoMethodFound:
-                throw new MissingMethodException("That method does not exist on the host!");
-            case MessageResponse.TypeReadWriterFailMissing:
-                throw new NoTypeReaderWriterException();
-            case MessageResponse.TypeReadWriterFail:
-            {
-                string reason = reader.ReadString();
-                string stackTrace = reader.ReadString();
-                throw new TypeReaderWriterException("An error occured in type reader/writer on the host!",
-                    new StackTrace().ToString(), reason, stackTrace);
-            }
-            case MessageResponse.ExecuteInvokeFailException:
-            {
-                string reason = reader.ReadString();
-                string stackTrace = reader.ReadString();
-                throw new MethodInvokeFailedException("Invoking the method threw an exception on the host!",
-                    new StackTrace().ToString(), reason, stackTrace);
-            }
-        }
+        HandleMessageResponse(response);
 
         //We can fuck off from here
         if (method.IsReturnVoid && !method.ContainsRefOrOutParameters)
@@ -296,7 +277,7 @@ public abstract class Client : IDisposable
             //Get the type reader
             ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(method.ReturnType.TypeName);
             if (typeReader == null)
-                throw new NoTypeReaderWriterException();
+                throw new NoTypeReaderWriterException($"Client doesn't have the type reader/writer for {method.ReturnType.TypeName}!");
 
             objectReturn[0] = TypeReaderWriterManager.Read(reader, typeReader, method.ReturnType);
             currentObjectReturnIndex++;
@@ -312,7 +293,7 @@ public abstract class Client : IDisposable
                 //Get the type reader
                 ITypeReadWriter typeReader = TypeReaderWriterManager.GetType(parameter.TypeInfo.TypeName);
                 if (typeReader == null)
-                    throw new NoTypeReaderWriterException();
+                    throw new NoTypeReaderWriterException($"The client doesn't have the type reader/writer for {parameter.TypeInfo.TypeName}!");
 
                 objectReturn[currentObjectReturnIndex] =
                     TypeReaderWriterManager.Read(reader, typeReader, parameter.TypeInfo);
@@ -336,7 +317,7 @@ public abstract class Client : IDisposable
             object parameter = parameters[i];
             ITypeReadWriter typeWriter = TypeReaderWriterManager.GetType(parameterTypeName);
             if (typeWriter == null)
-                throw new NoTypeReaderWriterException();
+                throw new NoTypeReaderWriterException($"The client doesn't have the type reader/writer for {parameterTypeName}!");
 
             TypeReaderWriterManager.Write(writer, typeWriter, method.Parameters[i].TypeInfo, parameter);
         }
@@ -364,7 +345,7 @@ public abstract class Client : IDisposable
             
             ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(typeFullName);
             if (typeReadWriter == null)
-                throw new NoTypeReaderWriterException();
+                throw new NoTypeReaderWriterException($"The client doesn't have the type reader/writer for {typeFullName}!");
 
             TypeReaderWriterManager.Write(writer, typeReadWriter, protocolInfo.Value.TypeInfo,
                 protocolInfo.Value.Value);
@@ -398,19 +379,40 @@ public abstract class Client : IDisposable
         
         //Get sync response
         MessageResponse syncResponse = (MessageResponse)reader!.ReadByte();
-        
-        //TODO: We should handle both this MessageResponse check and the one in invoke method together
-        switch (syncResponse)
+        HandleMessageResponse(syncResponse);
+    }
+
+    /// <summary>
+    ///     Handles a <see cref="MessageResponse"/>
+    /// </summary>
+    /// <param name="messageResponse"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [DebuggerStepThrough]
+    private void HandleMessageResponse(MessageResponse messageResponse)
+    {
+        switch (messageResponse)
         {
             //Successful
+            case MessageResponse.MethodExecutedSuccessful:
             case MessageResponse.SyncRighto:
                 break;
             
+            //Method execution errors
+            case MessageResponse.MethodNotFound:
+                throw new MissingMethodException("That method does not exist on the host!");
+            case MessageResponse.MethodExecuteFailException:
+            {
+                string reason = reader!.ReadString();
+                string stackTrace = reader.ReadString();
+                throw new MethodInvokeFailedException("Invoking the method threw an exception on the host!",
+                    new StackTrace().ToString(), reason, stackTrace);
+            }
+            
             //Sync errors
             case MessageResponse.SyncVersionMissMatch:
-                throw new VersionMissMatchException(new Version(reader.ReadByte(), reader.ReadByte(), reader.ReadByte()));
+                throw new VersionMissMatchException(new Version(reader!.ReadByte(), reader.ReadByte(), reader.ReadByte()));
             case MessageResponse.SyncServiceMissMatch:
-                throw new SyncServiceMissMatchException(reader.ReadString());
+                throw new SyncServiceMissMatchException(reader!.ReadString());
             
             //Sync protocols
             case MessageResponse.SyncProtocolTypeMissMatch:
@@ -422,9 +424,14 @@ public abstract class Client : IDisposable
             
             //Type reader/writer exceptions
             case MessageResponse.TypeReadWriterFailMissing:
-                throw new NoTypeReaderWriterException();
+                throw new NoTypeReaderWriterException("The host doesn't have the type reader/writer!");
             case MessageResponse.TypeReadWriterFail:
-                throw new TypeReaderWriterException(reader.ReadString(), reader.ReadString(), null, null);
+            {
+                string reason = reader!.ReadString();
+                string stackTrace = reader.ReadString();
+                throw new TypeReaderWriterException("An error occured in the type reader/writer on the host!",
+                    new StackTrace().ToString(), reason, stackTrace);
+            }
             default:
                 throw new ArgumentOutOfRangeException();
         }

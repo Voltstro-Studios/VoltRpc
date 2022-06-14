@@ -203,7 +203,7 @@ public abstract class Host : IDisposable
         Type valueType = value.GetType();
         ITypeReadWriter? typeReadWriter = TypeReaderWriterManager.GetType(valueType);
         if (typeReadWriter == null)
-            throw new NoTypeReaderWriterException();
+            throw new NoTypeReaderWriterException($"The type reader/writer for {valueType} doesn't exist! You need to add it to {nameof(TypeReaderWriterManager)} first before calling {nameof(SetProtocolVersion)}.");
 
         protocolInfo = new ProtocolInfo(value, valueType);
     }
@@ -319,7 +319,7 @@ public abstract class Host : IDisposable
             //No method was found
             if (method == null)
             {
-                WriteError(writer, MessageResponse.NoMethodFound);
+                WriteError(writer, MessageResponse.MethodNotFound);
                 Logger.Warn("Client sent an invalid method request.");
                 return;
             }
@@ -369,13 +369,13 @@ public abstract class Host : IDisposable
             }
             catch (Exception ex)
             {
-                WriteError(writer, MessageResponse.ExecuteInvokeFailException, ex.Message,
+                WriteError(writer, MessageResponse.MethodExecuteFailException, ex.Message,
                     ex.InnerException?.StackTrace);
                 Logger.Error($"Method invoke failed! {ex}");
                 return;
             }
 
-            writer.WriteByte((byte) MessageResponse.ExecutedSuccessful);
+            writer.WriteByte((byte) MessageResponse.MethodExecutedSuccessful);
 
             //If the method doesn't return void, write it back
             if (!method.IsReturnVoid)
@@ -609,8 +609,8 @@ public abstract class Host : IDisposable
         writer.WriteByte((byte) message);
         switch (message)
         {
-            case MessageResponse.NoMethodFound:
-            case MessageResponse.ExecutedSuccessful:
+            case MessageResponse.MethodNotFound:
+            case MessageResponse.MethodExecutedSuccessful:
             case MessageResponse.SyncProtocolExistenceMissMatch:
             case MessageResponse.SyncProtocolTypeMissMatch:
             case MessageResponse.SyncProtocolValueMissMatch:
@@ -626,7 +626,7 @@ public abstract class Host : IDisposable
                 writer.WriteString(error);
                 break;
             case MessageResponse.TypeReadWriterFail:
-            case MessageResponse.ExecuteInvokeFailException:
+            case MessageResponse.MethodExecuteFailException:
                 writer.WriteString(error);
                 writer.WriteString(HideStacktrace ? null : stackTrace);
                 break;

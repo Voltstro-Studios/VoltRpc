@@ -8,7 +8,17 @@ public enum MessageResponse : byte
     /// <summary>
     ///     The method wasn't found
     /// </summary>
-    NoMethodFound,
+    MethodNotFound,
+    
+    /// <summary>
+    ///     The method was executed successfully
+    /// </summary>
+    MethodExecutedSuccessful,
+
+    /// <summary>
+    ///     The method failed while being invoked
+    /// </summary>
+    MethodExecuteFailException,
     
     /// <summary>
     ///     Sync was all good mate!
@@ -48,15 +58,5 @@ public enum MessageResponse : byte
     /// <summary>
     ///     The type reader/writer failed for some reason
     /// </summary>
-    TypeReadWriterFail,
-
-    /// <summary>
-    ///     The method was executed successfully
-    /// </summary>
-    ExecutedSuccessful,
-
-    /// <summary>
-    ///     The method failed while being invoked
-    /// </summary>
-    ExecuteInvokeFailException
+    TypeReadWriterFail
 }
