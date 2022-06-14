@@ -28,3 +28,8 @@ steps:
   inputs:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: src/bin
+    artifactName: NuGet-Packages
