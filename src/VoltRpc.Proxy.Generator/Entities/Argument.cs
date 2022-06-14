@@ -6,7 +6,7 @@ internal readonly struct Argument
 {
     internal Argument(string argumentName, string argumentTypeFullName, bool isArray, bool isRef, bool isOut)
     {
-        ArgumentName = argumentName;
+        ArgumentName = $"@{argumentName}";
         ArgumentTypeFullName = argumentTypeFullName;
         IsArray = isArray;
         IsRef = isRef;

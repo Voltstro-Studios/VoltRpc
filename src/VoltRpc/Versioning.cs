@@ -12,7 +12,7 @@ public static class Versioning
         if(VersionSet)
             return;
 
-        Version version = System.Version.Parse(ThisAssembly.Info.InformationalVersion);
+        Version version = System.Version.Parse(ThisAssembly.Info.FileVersion);
         Version = new VersionInfo
         {
             Major = (byte)version.Major,
