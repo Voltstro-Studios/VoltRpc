@@ -11,7 +11,7 @@ public class ArgumentTests
     {
         Argument argument = new("name", "System.String", false, false, false);
         string renderedArgument = argument.ToString();
-        StringAssert.AreEqualIgnoringCase("System.String name", renderedArgument);
+        StringAssert.AreEqualIgnoringCase("System.String @name", renderedArgument);
     }
 
     [Test]
@@ -19,7 +19,7 @@ public class ArgumentTests
     {
         Argument argument = new("name", "System.String", false, true, false);
         string renderedArgument = argument.ToString();
-        StringAssert.AreEqualIgnoringCase("ref System.String name", renderedArgument);
+        StringAssert.AreEqualIgnoringCase("ref System.String @name", renderedArgument);
     }
 
     [Test]
@@ -27,7 +27,7 @@ public class ArgumentTests
     {
         Argument argument = new("name", "System.String", false, false, true);
         string renderedArgument = argument.ToString();
-        StringAssert.AreEqualIgnoringCase("out System.String name", renderedArgument);
+        StringAssert.AreEqualIgnoringCase("out System.String @name", renderedArgument);
     }
     
     [Test]
@@ -40,6 +40,6 @@ public class ArgumentTests
         };
 
         string renderedArguments = string.Join(", ", arguments);
-        StringAssert.AreEqualIgnoringCase("System.String name, System.Int32 value", renderedArguments);
+        StringAssert.AreEqualIgnoringCase("System.String @name, System.Int32 @value", renderedArguments);
     }
 }

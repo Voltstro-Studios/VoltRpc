@@ -19,7 +19,7 @@ public class MethodTests
     public void MethodArgumentTest()
     {
         const string methodOutput =
-            "public void Basic(System.Int32 value)\n{\n\tclient.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {value});\n}";
+            "public void Basic(System.Int32 @value)\n{\n\tclient.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {@value});\n}";
         Method method = new Method("VoltRpc.Tests.ITestInterface", "Basic", null, new List<Argument>
         {
             new("value", "System.Int32", false, false, false)
@@ -31,7 +31,7 @@ public class MethodTests
     public void MethodArgumentReturnTest()
     {
         const string methodOutput =
-            "public System.Int32 Basic(System.Int32 value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {value});\n\treturn (System.Int32)returnObjects[0];\n}";
+            "public System.Int32 Basic(System.Int32 @value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {@value});\n\treturn (System.Int32)returnObjects[0];\n}";
         Method method = new Method("VoltRpc.Tests.ITestInterface", "Basic", "System.Int32", new List<Argument>
         {
             new("value", "System.Int32", false, false, false)
@@ -52,7 +52,7 @@ public class MethodTests
     public void MethodOutTest()
     {
         const string methodOutput =
-            "public void Basic(out System.Int32 value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\");\n\tvalue = (System.Int32)returnObjects[0];\n}";
+            "public void Basic(out System.Int32 @value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\");\n\t@value = (System.Int32)returnObjects[0];\n}";
         Method method = new Method("VoltRpc.Tests.ITestInterface", "Basic", null, new List<Argument>
         {
             new("value", "System.Int32", false, false, true)
@@ -64,7 +64,7 @@ public class MethodTests
     public void MethodOutReturnTest()
     {
         const string methodOutput =
-            "public System.Int32 Basic(out System.Int32 value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\");\n\tvalue = (System.Int32)returnObjects[1];\n\treturn (System.Int32)returnObjects[0];\n}";
+            "public System.Int32 Basic(out System.Int32 @value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\");\n\t@value = (System.Int32)returnObjects[1];\n\treturn (System.Int32)returnObjects[0];\n}";
         Method method = new Method("VoltRpc.Tests.ITestInterface", "Basic", "System.Int32", new List<Argument>
         {
             new("value", "System.Int32", false, false, true)
@@ -76,7 +76,7 @@ public class MethodTests
     public void MethodRefTest()
     {
         const string methodOutput =
-            "public void Basic(ref System.Int32 value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {value});\n\tvalue = (System.Int32)returnObjects[0];\n}";
+            "public void Basic(ref System.Int32 @value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {@value});\n\t@value = (System.Int32)returnObjects[0];\n}";
         Method method = new Method("VoltRpc.Tests.ITestInterface", "Basic", null, new List<Argument>
         {
             new("value", "System.Int32", false, true, false)
@@ -88,7 +88,7 @@ public class MethodTests
     public void MethodRefReturnTest()
     {
         const string methodOutput =
-            "public System.Int32 Basic(ref System.Int32 value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {value});\n\tvalue = (System.Int32)returnObjects[1];\n\treturn (System.Int32)returnObjects[0];\n}";
+            "public System.Int32 Basic(ref System.Int32 @value)\n{\n\tobject[] returnObjects = client.InvokeMethod(\"VoltRpc.Tests.ITestInterface.Basic\", new object[] {@value});\n\t@value = (System.Int32)returnObjects[1];\n\treturn (System.Int32)returnObjects[0];\n}";
         Method method = new Method("VoltRpc.Tests.ITestInterface", "Basic", "System.Int32", new List<Argument>
         {
             new("value", "System.Int32", false, true, false)
