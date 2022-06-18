@@ -21,21 +21,24 @@ First, create the projects listed above, use whatever name you want, however I'd
 
 ## Installation
 
-You will need to install the [NuGet package](https://www.nuget.org/packages/VoltRpc/) to add VoltRpc to your project.
+You will need to install the [VoltRpc NuGet package](https://www.nuget.org/packages/VoltRpc/) and VoltRpc's proxy .NET source generator. More info on the generator can be [found on it's page](proxy-generation.md).
 
-You can use the command below to install the package.
+You can add the NuGet packages using your IDE's NuGet package manager, or by adding it to your project's `.csproj` file.
 
-```powershell
-Install-Package VoltRpc
+```xml
+<ItemGroup>
+    <PackageReference Include="VoltRpc" Version="3.0.0" />
+    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
+</ItemGroup>
 ```
 
 ## Shared
 
 In the shared project, create an `interface` called `ITest`. You can define whatever methods you want to use, with any return or argument <xref:System.Type> you want, as long as it's a [supported type](types.md#types).
 
-If you want to automatically generate a proxy for the `interface`, follow the [Proxy Generator Guide](proxy-generation.md) on how to use it.
+We will tell VoltRpc's proxy generator that we want a proxy for this interface (as we want to use it), so add the <xref:VoltRpc.Proxy.GenerateProxyAttribute> to it. The attribute has some settings to be changed about the generated result, for more info see he [Proxy Generator Guide](proxy-generation.md) on how to use it.
 
-In the end ou should have something that looks like this for the `interface`:
+In the end we should have something that looks like this for our `interface`:
 
 ```csharp
 using VoltRpc.Proxy;
@@ -94,7 +97,7 @@ namespace VoltRpcExample.Client
 
 On the server we use a <xref:VoltRpc.Communication.Host> to provide an interface for clients to interact with.
 
-We also need to provide an implementation of our interface that we are using.
+We also need to provide an implementation of our interface that we are using. The code in the host's implementation is what will be run when the client calls it, it will be executed on the host itself. So when the client calls `Basic()`, the host's console will print out `"Hello"`.
 
 ```csharp
 using System;

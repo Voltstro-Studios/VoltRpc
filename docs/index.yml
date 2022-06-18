@@ -75,4 +75,4 @@ highlights:
     Supports all the built-in value types, including: `Bool`, `Byte`, `Char`, `Decimal`, [etc](articles/types.md).
 - title: Simple to use
   content: |
-    The use of the VoltRpc's [proxy .NET generator](articles/proxy-generation.md) and type [readers/writers](articles/types.md) allows for ease of use.
+    The use of the VoltRpc's [proxy .NET source generator](articles/proxy-generation.md) and type [readers/writers](articles/types.md) allows for ease of use.
