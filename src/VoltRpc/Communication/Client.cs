@@ -209,7 +209,7 @@ public abstract class Client : IDisposable
     ///     Thrown if the method name doesn't exist on either the client or host
     /// </exception>
     /// <exception cref="NoTypeReaderWriterException">
-    ///     Thrown if the return type or parameter types doesn't have a <see cref="ITypeReadWriter" />
+    ///     Thrown if the return type or parameter types doesn't have a <see cref="TypeReadWriter{T}" />
     /// </exception>
     /// <exception cref="TypeReaderWriterException">
     ///     Thrown if the type reader/writer fails on the host
