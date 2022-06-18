@@ -4,7 +4,7 @@
   "globalMetadata": {
     "_appTitle": "VoltRpc",
     "_appFooter": "Copyright (c) 2022 Voltstro-Studios<br>Site built with DocFX V3",
-    "_appFooterIcon": "/assets/vs-icon.png",
+    "_appFooterIcon": "/assets/images/vs-icon.png",
     "menu_path": "menu.yml"
   },
   "dotnet": {

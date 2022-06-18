@@ -19,7 +19,7 @@ Jit=Default  Platform=AnyCpu
 
 ## Pipes Benchmark
 
-[![Pipes Benchmark](~/images/Benchmarks/PipesBenchmark.png)](~/images/Benchmarks/PipesBenchmark.png)
+[![Pipes Benchmark](~/assets/images/Benchmarks/PipesBenchmark.png)](~/assets/images/Benchmarks/PipesBenchmark.png)
 
 |               Method | array | arraySize |      message |     Mean |     Error |    StdDev |
 |--------------------- |------ |---------- |------------- |---------:|----------:|----------:|
@@ -36,7 +36,7 @@ Jit=Default  Platform=AnyCpu
 
 ## TCP Benchmark
 
-[![TCP Benchmark](~/images/Benchmarks/TCPBenchmark.png)](~/images/Benchmarks/TCPBenchmark.png)
+[![TCP Benchmark](~/assets/images/Benchmarks/TCPBenchmark.png)](~/assets/images/Benchmarks/TCPBenchmark.png)
 
 |               Method | array | arraySize |      message |     Mean |    Error |   StdDev |
 |--------------------- |------ |---------- |------------- |---------:|---------:|---------:|
