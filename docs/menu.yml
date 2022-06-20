@@ -6,3 +6,5 @@ items:
 - name: API Documentation
   href: api/VoltRpc.yml
   
+- name: Changelog
+  href: CHANGELOG.md

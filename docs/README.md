@@ -9,7 +9,7 @@ This site uses DocFX V3 beta! You will need to install that version. See [this b
 Run the following commands in the root of the `docs/` directory.
 
 ```
-docfx build
+pwsh ./build.ps1
 ```
 
 The site should be built into the `_site/` directory.
