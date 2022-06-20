@@ -20,12 +20,16 @@ Named Pipes is provided from the [VoltRpc.Communication.Pipes NuGet package](htt
 
 You can use the command below to install the package.
 
-```powershell
-Install-Package VoltRpc.Communication.Pipes
-``` 
+To install it, you can add it to your project's `csproj` like so:
+
+```xml
+<ItemGroup>
+    <PackageReference Include="VoltRpc.Communication.Pipes" Version="3.0.0" />
+</ItemGroup>
+```
 
 - Pipes uses the .NET provided <xref:System.IO.Pipes.NamedPipeServerStream> and <xref:System.IO.Pipes.NamedPipeClientStream>.  
 - It is currently the fastest communication layer as shown from the [benchmarks](benchmarks.md#pipes-benchmark).
-- Some implementations such as [Unity's mono](https://github.com/Unity-Technologies/mono/blob/unity-2021.1-mbe/mcs/class/System.Core/System.IO.Pipes/NamedPipeClientStream.cs) may just throw <xref:System.NotImplementedException> on certain platforms.
+- However, some implementations such as [Unity's mono](https://github.com/Unity-Technologies/mono/blob/unity-2021.1-mbe/mcs/class/System.Core/System.IO.Pipes/NamedPipeClientStream.cs) may just throw <xref:System.NotImplementedException> on certain platforms.
 
 It can be used with <xref:VoltRpc.Communication.Pipes.PipesClient> and <xref:VoltRpc.Communication.Pipes.PipesHost> classes.

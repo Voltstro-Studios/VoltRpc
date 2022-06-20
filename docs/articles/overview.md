@@ -33,9 +33,9 @@ As Unity's .NET source generator compatibility is a bit... ifffy, the .NET sourc
 
 Setting up VoltRpc is easy. VoltRpc has three parts; the host, the client and the proxy for the client.
 
-For this setup we will be using TCP. [Other communication layers](communication-layers.md) are available.
+Here is what a typical setup might look like.
 
-**Shared**:
+### Shared
 
 ```csharp
 using VoltRpc.Proxy;
@@ -46,13 +46,11 @@ namespace VoltRpcExample.Shared
     public interface ITest
     {
         public void Basic();
-
-        public string Hello();
     }
 }
 ```
 
-**Host**:
+### Host
 
 ```csharp
 using System;
@@ -69,12 +67,11 @@ namespace VoltRpcExample
         {
             Host host = new TCPHost(new IPEndPoint(IPAddress.Loopback, 7767));
             host.AddService<ITest>(new TestImpl());
+
+            //NOTE: StartListening() is blocking, but there is an async version of the method
             host.StartListening();
 
-            Console.WriteLine("Press any key to stop...");
-            Console.ReadKey();
-
-            host.Dispose();
+            //Do whatever...
         }
 
         public class TestImpl : ITest
@@ -83,17 +80,12 @@ namespace VoltRpcExample
             {
                 Console.WriteLine("Hello!");
             }
-
-            public string Hello()
-            {
-                return "Hello World!";
-            }
         }
     }
 }
 ```
 
-**Client**:
+### Client
 
 ```csharp
 using System;
@@ -113,16 +105,11 @@ namespace VoltRpcExample.Client
             client.Connect();
 
             ITest testProxy = new TestProxy(client);
-            testProxy.Basic();
-            Console.WriteLine($"Got from server: {testProxy.Hello()}");
 
-            Console.WriteLine("Press any key to quit...");
-            Console.ReadKey();
-
-            client.Dispose();
+            //Call any method on the host via testProxy...
         }
     }
 }
 ```
 
-For a more in-depth setup, see the [Setup](setup.md) section.
+For a more in-depth setup that expends on this one, see the [Setup](setup.md) section.

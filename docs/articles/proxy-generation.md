@@ -1,6 +1,6 @@
 # Proxy Generation
 
-For generation of proxies, a [.NET Source generator](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) is used. If you don't know what what a .NET Source generator is, they are feature in the Roslyn compiler to generate source code and include whatever code is generated in the compilation.
+For generation of proxies, a [.NET Source generator](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) is used. If you don't know what what a .NET Source generator is, they are feature in the Roslyn compiler to generate source code based of the code in your project.
 
 > [!NOTE]
 > You may need to restart your IDE when you first add the generator for it to work.<br>
@@ -11,11 +11,13 @@ For generation of proxies, a [.NET Source generator](https://devblogs.microsoft.
 
 You will need to install the [NuGet package](https://www.nuget.org/packages/VoltRpc.Proxy.Generator/) to add the generator to your project.
 
-You can use the command below to install the package.
+To install it, you can add it to your project's `csproj` like so:
 
-```powershell
-Install-Package VoltRpc.Proxy.Generator
-``` 
+```xml
+<ItemGroup>
+    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
+</ItemGroup>
+```
 
 ## Usage
 
@@ -37,4 +39,4 @@ namespace VoltRpcExample.Shared
 }
 ```
 
-This would generate the proxy with the name `TestProxy`, with the namespace `VoltRpcExample.Shared`.
+This would generate the proxy with the name set to `TestProxy`, and with the namespace set to `VoltRpcExample.Shared`.
