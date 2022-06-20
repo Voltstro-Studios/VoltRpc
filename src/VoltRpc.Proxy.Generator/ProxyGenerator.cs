@@ -93,6 +93,11 @@ public class ProxyGenerator : ISourceGenerator
 
             if (memberDeclarationSyntax is MethodDeclarationSyntax methodDeclarationSyntax)
                 generatedMethods.Add(CreateMethod(model, methodDeclarationSyntax, interfaceNamespace, interfaceName));
+            else
+            {
+                context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.NotAMethodError, Location.Create(memberDeclarationSyntax.SyntaxTree, memberDeclarationSyntax.Span)));
+                return;
+            }
         }
 
         //Do some cleanup with the methods
