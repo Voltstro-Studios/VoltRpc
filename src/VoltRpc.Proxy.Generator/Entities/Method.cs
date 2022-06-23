@@ -24,6 +24,7 @@ internal readonly struct Method
     public override string ToString()
     {
         StringBuilder builder = new();
+        builder.Append("/// <inheritdoc />\n");
         builder.Append("public ");
         builder.Append(ReturnTypeFullName == null ? "void " : $"{ReturnTypeFullName} ");
         builder.Append($"{MethodName}({(Arguments == null ? string.Empty : string.Join(", ", Arguments))})");

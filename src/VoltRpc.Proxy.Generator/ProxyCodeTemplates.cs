@@ -30,11 +30,15 @@ using VoltRpc.Communication;
 
 namespace {{0}}
 {{{{
+    /// <inheritdoc />
     [GeneratedCode(""{ThisAssembly.Info.Title}"", ""{ThisAssembly.Info.InformationalVersion}"")]
     public class {{1}} : {{2}}
     {{{{
         private readonly Client client;
 
+        /// <summary>
+        ///     Creates a new <see cref=""{{1}}""/> instance
+        /// </summary>
         public {{1}}(Client client)
         {{{{
             this.client = client;

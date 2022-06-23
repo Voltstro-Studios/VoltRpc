@@ -5,6 +5,7 @@
     <PropertyGroup>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
+        <DocumentationFile>$(OutputPath)/VoltRpc.Demo.Sahred.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
