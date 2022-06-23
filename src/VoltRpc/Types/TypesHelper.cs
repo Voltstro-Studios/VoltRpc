@@ -5,11 +5,10 @@ namespace VoltRpc.Types;
 /// <summary>
 ///     Helper methods for <see cref="Type" />s
 /// </summary>
-public static class TypesHelper
+internal static class TypesHelper
 {
     /// <summary>
     ///     Gets a <see cref="Type" />'s full name
-    ///     <para>If the <see cref="Type" /> is an array, it will get the array item's full name</para>
     /// </summary>
     /// <param name="type">The <see cref="Type" /> to get the full name from</param>
     /// <returns>Returns the fullname of the <see cref="Type" /></returns>
@@ -19,10 +18,24 @@ public static class TypesHelper
     {
         if (type == null)
             throw new ArgumentNullException(nameof(type));
-
-        type = type.GetTypeBase();
+        
         string typeFullName = type.FullName;
         return typeFullName;
+    }
+    
+    /// <summary>
+    ///     Gets a <see cref="Type"/> base, then it's name
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string GetTypeBaseName(this Type type)
+    {
+        if (type == null)
+            throw new ArgumentNullException(nameof(type));
+
+        type = type.GetTypeBase();
+        return type.GetTypeName();
     }
 
     /// <summary>

@@ -74,7 +74,7 @@ public sealed class TypeReaderWriterManager
     /// <exception cref="NullReferenceException">Thrown if the type is an array, and the base type is null.</exception>
     private void AddType(Type type, ITypeReadWriter typeReadWriter)
     {
-        AddType(type.GetTypeName(), typeReadWriter);
+        AddType(type.GetTypeBaseName(), typeReadWriter);
     }
 
     /// <summary>
