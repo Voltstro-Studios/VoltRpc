@@ -32,7 +32,8 @@ public sealed class TypeReaderWriterManager
             [typeof(ushort)] = new UShortReadWriter(),
             [typeof(Uri)] = new UriReadWriter(),
             [typeof(DateTime)] = new DateTimeReadWriter(),
-            [typeof(TimeSpan)] = new TimeSpanReadWriter()
+            [typeof(TimeSpan)] = new TimeSpanReadWriter(),
+            [typeof(Guid)] = new GuidReadWriter()
         };
 
     private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;

@@ -41,6 +41,7 @@ public class ReaderWritersTests
         new object[] { new ULongReadWriter(), ulong.MaxValue },
         new object[] { new UriReadWriter(), new Uri("https://voltstro.dev") },
         new object[] { new UShortReadWriter(), ushort.MaxValue },
+        new object[] { new GuidReadWriter(), Guid.NewGuid() },
         
         //Extensions
         new object[] { new Matrix3X2TypeReadWriter(), new Matrix3x2(14, 18, 22, 17, 18, 124) },
