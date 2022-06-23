@@ -67,6 +67,12 @@ public class TestImp : ITest
         AnsiConsole.Write(CreateRule("Method Void Parameter [[out string]]"));
         outTest = "Hello Out!";
     }
+    
+    public void GuidTest(Guid guid)
+    {
+        AnsiConsole.Write(CreateRule("Method Void Parameter [[Guid]]"));
+        AnsiConsole.WriteLine($"Got guid of: {guid.ToString()}");
+    }
 
     public void CustomTypeTest(CustomType customType)
     {

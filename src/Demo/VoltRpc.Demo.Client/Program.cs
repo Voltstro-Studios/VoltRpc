@@ -76,6 +76,8 @@ public static class Program
             AnsiConsole.WriteLine($"- Out: {message}");
         });
         
+        RunFunctionTest("Guid", () =>  proxy.GuidTest(Guid.NewGuid()));
+        
         RunFunctionTest("Custom Type", () => proxy.CustomTypeTest(new CustomType
         {
             Floaty = 666.6f,

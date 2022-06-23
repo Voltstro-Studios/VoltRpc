@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using VoltRpc.Proxy;
 
 namespace VoltRpc.Demo.Shared;
@@ -21,6 +22,8 @@ public interface ITest
     public void OutTest(out string outTest);
 
     public void CustomTypeTest(CustomType customType);
+
+    public void GuidTest(Guid guid);
 
     public CustomType CustomTypeReturnTest();
 
