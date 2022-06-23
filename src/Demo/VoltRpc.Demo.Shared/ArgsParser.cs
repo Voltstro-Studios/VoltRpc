@@ -4,16 +4,33 @@ using System.Net;
 
 namespace VoltRpc.Demo.Shared;
 
-public class ArgsParser
+/// <summary>
+///     Argument parser
+/// </summary>
+public sealed class ArgsParser
 {
     private const int DefaultPort = 8877;
 
+    /// <summary>
+    ///     Default <see cref="IpEndPoint"/> to use
+    /// </summary>
     public IPEndPoint IpEndPoint = new(IPAddress.Loopback, DefaultPort);
 
+    /// <summary>
+    ///     Default pipe name to use
+    /// </summary>
     public string PipeName = "VoltRpcPipe";
 
+    /// <summary>
+    ///     Are we using pipes?
+    /// </summary>
     public bool PipesClient;
 
+    /// <summary>
+    ///     Parses arguments
+    /// </summary>
+    /// <param name="args"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public void ParseArgs(string[] args)
     {
         if (args.Contains("-pipes"))

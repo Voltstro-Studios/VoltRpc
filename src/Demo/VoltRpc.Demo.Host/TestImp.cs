@@ -106,7 +106,7 @@ public class TestImp : ITest
         random.NextBytes(data);
         return new CustomTypeArrays
         {
-            LargeArray = data
+            Array = data
         };
     }
 

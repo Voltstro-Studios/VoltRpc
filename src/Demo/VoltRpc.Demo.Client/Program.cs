@@ -99,7 +99,7 @@ public static class Program
         RunFunctionTest("Custom Type Array Small", () =>
         {
             CustomTypeArrays customTypeArray = proxy.CustomTypeArraysSmall();
-            AnsiConsole.WriteLine($" - Custom Type Array size: {customTypeArray.LargeArray.Length}");
+            AnsiConsole.WriteLine($" - Custom Type Array size: {customTypeArray.Array.Length}");
         });
         
         RunFunctionTest("Vector3 Type Return", () =>
