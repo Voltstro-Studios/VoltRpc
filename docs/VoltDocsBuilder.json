@@ -1,9 +1,13 @@
 {
     "DocsType": "DocFx",
-    "Actions": [
+    "PreActions": [
         {
             "Program": "dotnet",
             "Arguments": "build src/VoltRpc.sln -c Release"
+        },
+        {
+            "Program": "cp",
+            "Arguments": "CHANGELOG.md docs/"
         }
     ]
 } 
