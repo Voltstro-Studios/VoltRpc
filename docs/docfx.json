@@ -15,7 +15,7 @@
       "../src/VoltRpc.Extension.Vectors/bin/Release/net6.0/VoltRpc.Extension.Vectors.dll"
     ]
   },
-  "exclude": ["README.md"],
+  "exclude": ["README.md", "VoltDocsBuilder.json"],
   "xref": [
     "https://docs.microsoft.com/en-us/dotnet/.xrefmap.json"
   ]
