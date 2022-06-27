@@ -1,3 +1,9 @@
 {
-    "DocsType": "DocFx"
+    "DocsType": "DocFx",
+    "Actions": [
+        {
+            "Program": "dotnet",
+            "Arguments": "build src/VoltRpc.sln -c Release"
+        }
+    ]
 } 
