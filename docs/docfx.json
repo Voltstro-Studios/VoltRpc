@@ -4,7 +4,7 @@
   "globalMetadata": {
     "_appTitle": "VoltRpc",
     "_appFooter": "Copyright (c) 2021-2022 Voltstro-Studios<br>Site built with DocFX V3",
-    "_appFooterIcon": "/assets/images/vs-icon.png",
+    "_appFooterIcon": "assets/images/vs-icon.png",
     "menu_path": "menu.yml"
   },
   "dotnet": {
@@ -15,7 +15,7 @@
       "../src/VoltRpc.Extension.Vectors/bin/Release/net6.0/VoltRpc.Extension.Vectors.dll"
     ]
   },
-  "exclude": ["README.md", "VoltDocsBuilder.json"],
+  "exclude": ["README.md", "VoltDocsBuilder.json", "build.ps1", ".gitignore", "obj/**/*", "_site/**/*"],
   "xref": [
     "https://docs.microsoft.com/en-us/dotnet/.xrefmap.json"
   ]
