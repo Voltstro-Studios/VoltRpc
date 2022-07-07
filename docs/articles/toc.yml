@@ -16,5 +16,8 @@
 - name: Extensions
   href: extensions.md
 
+- name: Protocol Version
+  href: protocol-version.md
+
 - name: Benchmarks
   href: benchmarks.md
