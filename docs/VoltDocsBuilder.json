@@ -8,6 +8,10 @@
         {
             "Program": "cp",
             "Arguments": "CHANGELOG.md docs/"
+        },
+        {
+            "Program": "touch",
+            "Arguments": "-r CHANGELOG.md docs/CHANGELOG.md"
         }
     ]
 } 
