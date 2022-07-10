@@ -7,11 +7,11 @@
         },
         {
             "Program": "cp",
-            "Arguments": "CHANGELOG.md docs/changelog.md"
+            "Arguments": "CHANGELOG.md docs/"
         },
         {
             "Program": "touch",
-            "Arguments": "-r CHANGELOG.md docs/changelog.md"
+            "Arguments": "-r CHANGELOG.md docs/CHANGELOG.md"
         }
     ]
 } 
