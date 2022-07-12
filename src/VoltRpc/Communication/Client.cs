@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.CompilerServices;
-using VoltRpc.Communication.Protocol;
+using VoltRpc.Communication.Syncing;
 using VoltRpc.IO;
 using VoltRpc.Services;
 using VoltRpc.Types;
@@ -15,7 +15,15 @@ using VoltRpc.Versioning;
 namespace VoltRpc.Communication;
 
 /// <summary>
-///     The <see cref="Client" /> sends messages to a <see cref="Host" />
+///     The <see cref="Client" /> is what is used to send messages to a <see cref="Host" />
+///     <para>
+///         This base <see cref="Client"/> has no implementation of actually connecting, a "communication layer"
+///         needs to be used, such as the <see cref="TCP.TCPClient"/> communication layer
+///     </para>
+///     <para>
+///         In most normal cases, you will only have to use the generated proxy layer to interact with
+///         the <see cref="Host"/>
+///     </para>
 /// </summary>
 public abstract class Client : IDisposable
 {
@@ -417,11 +425,11 @@ public abstract class Client : IDisposable
             
             //Sync protocols
             case MessageResponse.SyncProtocolTypeMissMatch:
-                throw new ProtocolException("The protocol type the host was excepting is not the same as ours!");
+                throw new ProtocolSyncException("The protocol type the host was excepting is not the same as ours!");
             case MessageResponse.SyncProtocolValueMissMatch:
-                throw new ProtocolException("The protocol values are miss-matched!");
+                throw new ProtocolSyncException("The protocol values are miss-matched!");
             case MessageResponse.SyncProtocolExistenceMissMatch:
-                throw new ProtocolException(protocolInfo.HasValue ? "The host has the protocol disabled!" : "The host has the protocol enabled!");
+                throw new ProtocolSyncException(protocolInfo.HasValue ? "The host has the protocol disabled!" : "The host has the protocol enabled!");
             
             //Type reader/writer exceptions
             case MessageResponse.TypeReadWriterFailMissing:

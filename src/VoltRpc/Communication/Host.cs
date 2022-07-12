@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using VoltRpc.Communication.Protocol;
+using VoltRpc.Communication.Syncing;
 using VoltRpc.IO;
 using VoltRpc.Logging;
 using VoltRpc.Services;
@@ -15,7 +15,11 @@ using VoltRpc.Versioning;
 namespace VoltRpc.Communication;
 
 /// <summary>
-///     The <see cref="Host" /> receives and responds to a <see cref="Client" />'s requests
+///     The <see cref="Host" /> is what receives and responds to a <see cref="Client" />'s requests
+///     <para>
+///         This base <see cref="Host"/> has no actual implementation of handling connections,
+///         a "communication layer" needs to be used for that, such as <see cref="TCP.TCPHost"/>
+///     </para>
 /// </summary>
 public abstract class Host : IDisposable
 {

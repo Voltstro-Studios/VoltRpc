@@ -2,7 +2,7 @@ using System.Net;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using VoltRpc.Communication;
-using VoltRpc.Communication.Protocol;
+using VoltRpc.Communication.Syncing;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Tests.TestObjects.Interfaces;
 using VoltRpc.Tests.TestObjects.Objects;
@@ -119,7 +119,7 @@ public class TCPHostClientTests
         await StartHost(host);
 
         using TCPClient client = new(ipEndPoint);
-        Assert.Throws<ProtocolException>(() => client.Connect());
+        Assert.Throws<ProtocolSyncException>(() => client.Connect());
     }
 
     [Test]
@@ -131,7 +131,7 @@ public class TCPHostClientTests
 
         using TCPClient client = new(ipEndPoint);
         client.SetProtocolVersion(123);
-        Assert.Throws<ProtocolException>(() => client.Connect());
+        Assert.Throws<ProtocolSyncException>(() => client.Connect());
     }
 
     [Test]
@@ -143,7 +143,7 @@ public class TCPHostClientTests
 
         using TCPClient client = new(ipEndPoint);
         client.SetProtocolVersion("Rowan SUXS");
-        Assert.Throws<ProtocolException>(() => client.Connect());
+        Assert.Throws<ProtocolSyncException>(() => client.Connect());
     }
 
     [Test]
