@@ -6,6 +6,7 @@ using VoltRpc.Communication.Protocol;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Tests.TestObjects.Interfaces;
 using VoltRpc.Tests.TestObjects.Objects;
+using VoltRpc.Versioning;
 
 namespace VoltRpc.Tests.Communication.TCP;
 
@@ -86,7 +87,7 @@ public class TCPHostClientTests
     public async Task ConnectionVersionMissMatchTest()
     {
         using TCPHost host = new(ipEndPoint);
-        host.version = new Versioning.VersionInfo
+        host.version = new LibVersion.VersionInfo
         {
             Major = 0,
             Minor = 1,

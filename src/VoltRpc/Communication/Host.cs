@@ -9,6 +9,7 @@ using VoltRpc.IO;
 using VoltRpc.Logging;
 using VoltRpc.Services;
 using VoltRpc.Types;
+using VoltRpc.Versioning;
 
 #nullable enable
 namespace VoltRpc.Communication;
@@ -43,7 +44,7 @@ public abstract class Host : IDisposable
     /// <summary>
     ///     Version this host wants to be
     /// </summary>
-    internal Versioning.VersionInfo version;
+    internal LibVersion.VersionInfo version;
 
     private int maxConnectionsCount = 16;
 
@@ -65,7 +66,7 @@ public abstract class Host : IDisposable
         invokeLock = new object();
 
         BufferSize = bufferSize;
-        version = Versioning.Version;
+        version = LibVersion.Version;
     }
 
     /// <summary>
@@ -171,7 +172,8 @@ public abstract class Host : IDisposable
         });
 
         //TODO: Go back to what we were using when this shit is fixed
-        //Recommend hack for fixing the trimming warning
+        //Issue: https://github.com/dotnet/linker/issues/2001
+        //Recommend hack for fixing the trimming warning from here
         //https://github.com/dotnet/linker/issues/2487
 #if NET6_0
         [UnconditionalSuppressMessage("Trimming", "IL2077", Justification = "The type parameter of the parent method has the right annotation")]
@@ -184,7 +186,7 @@ public abstract class Host : IDisposable
     ///     <para>Set value to null to reset back to none.</para>
     /// </summary>
     /// <param name="value">Value can be any object you want, as long as the <see cref="TypeReaderWriterManager"/> has a <see cref="TypeReadWriter{T}"/> for it.</param>
-    /// <exception cref="AlreadyConnectedException">Thrown if the <see cref="Client"/> is already connected to a <see cref="Host"/></exception>
+    /// <exception cref="AlreadyRunningException">Thrown if the <see cref="Host"/> is already running</exception>
     /// <exception cref="NoTypeReaderWriterException">Thrown if the <see cref="TypeReaderWriterManager"/> doesn't have a <see cref="TypeReadWriter{T}"/> for the value <see cref="Type"/>.</exception>
     public void SetProtocolVersion(object? value)
     {

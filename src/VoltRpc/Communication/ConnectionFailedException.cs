@@ -3,7 +3,7 @@
 namespace VoltRpc.Communication;
 
 /// <summary>
-///     An <see cref="Exception" /> related to a connection failing
+///     An <see cref="Exception" /> related to when the connection fails to connect
 /// </summary>
 public class ConnectionFailedException : Exception
 {

@@ -3,7 +3,8 @@
 namespace VoltRpc.Communication;
 
 /// <summary>
-///     Thrown when something is not connected
+///     An <see cref="Exception"/> related to when a method is attempted to be called,
+///     but the <see cref="Client"/> has not connected yet
 /// </summary>
 public class NotConnectedException : Exception
 {

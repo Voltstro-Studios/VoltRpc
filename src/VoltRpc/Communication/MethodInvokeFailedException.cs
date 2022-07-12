@@ -3,7 +3,7 @@
 namespace VoltRpc.Communication;
 
 /// <summary>
-///     <see cref="Exception" /> related to when a method fails on the host
+///     An <see cref="Exception" /> related to when a method fails on the host
 /// </summary>
 public class MethodInvokeFailedException : Exception
 {

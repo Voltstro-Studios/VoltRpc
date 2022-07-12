@@ -10,6 +10,7 @@ using VoltRpc.Communication.Protocol;
 using VoltRpc.IO;
 using VoltRpc.Services;
 using VoltRpc.Types;
+using VoltRpc.Versioning;
 
 namespace VoltRpc.Communication;
 
@@ -33,7 +34,7 @@ public abstract class Client : IDisposable
     /// <summary>
     ///     Version this client wants to be
     /// </summary>
-    internal Versioning.VersionInfo version;
+    internal LibVersion.VersionInfo version;
 
     private ProtocolInfo? protocolInfo;
 
@@ -54,7 +55,7 @@ public abstract class Client : IDisposable
         TypeReaderWriterManager = new TypeReaderWriterManager();
         Services = new Dictionary<string, ServiceMethod[]>();
         this.bufferSize = bufferSize;
-        version = Versioning.Version;
+        version = LibVersion.Version;
     }
 
     /// <summary>

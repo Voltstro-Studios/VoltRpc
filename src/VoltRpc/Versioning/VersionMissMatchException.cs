@@ -1,9 +1,10 @@
 using System;
 
-namespace VoltRpc.Communication;
+namespace VoltRpc.Versioning;
 
 /// <summary>
-/// 
+///     <see cref="Exception"/> related to when there is a version miss-match between
+///     the <see cref="VoltRpc.Communication.Host"/> and <see cref="VoltRpc.Communication.Client"/>
 /// </summary>
 public sealed class VersionMissMatchException : Exception
 {

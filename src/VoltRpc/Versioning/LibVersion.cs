@@ -1,13 +1,13 @@
 using System;
 
-namespace VoltRpc;
+namespace VoltRpc.Versioning;
 
 /// <summary>
-///     VoltRpc versioning information
+///     Contains version info on the VoltRpc library
 /// </summary>
-public static class Versioning
+public static class LibVersion
 {
-    static Versioning()
+    static LibVersion()
     {
         if(VersionSet)
             return;
@@ -39,16 +39,16 @@ public static class Versioning
         /// <summary>
         ///     Major version number
         /// </summary>
-        public byte Major { get; internal set; }
+        public byte Major { get; internal init; }
     
         /// <summary>
         ///     Minor version number
         /// </summary>
-        public byte Minor { get; internal set; }
+        public byte Minor { get; internal init; }
     
         /// <summary>
         ///     Patch version number
         /// </summary>
-        public byte Patch { get; internal set; }
+        public byte Patch { get; internal init; }
     }
 }
