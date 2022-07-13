@@ -5,7 +5,7 @@ namespace VoltRpc.Types;
 /// <summary>
 ///     <see cref="Exception" /> related to something with a type reader writer
 /// </summary>
-public class TypeReaderWriterException : Exception
+public sealed class TypeReaderWriterException : Exception
 {
     /// <summary>
     ///     Creates a new <see cref="TypeReaderWriterException" /> instance

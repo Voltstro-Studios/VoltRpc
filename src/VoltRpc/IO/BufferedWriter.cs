@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -82,6 +83,8 @@ public class BufferedWriter : IDisposable
     internal unsafe void WriteBlittable<T>(T value)
         where T : unmanaged
     {
+        CheckDispose();
+        
         int size = sizeof(T);
         
         EnsureCapacity(Position + size);
@@ -110,6 +113,8 @@ public class BufferedWriter : IDisposable
     /// <param name="count"></param>
     public void WriteBytes(byte[] bytesBuffer, int offset, int count)
     {
+        CheckDispose();
+        
         EnsureCapacity(Position + count);
         Array.ConstrainedCopy(bytesBuffer, offset, buffer, Position, count);
         Position += count;
@@ -122,6 +127,8 @@ public class BufferedWriter : IDisposable
     /// <exception cref="IndexOutOfRangeException"></exception>
     public void WriteString(string value)
     {
+        CheckDispose();
+        
         //Null support
         if (value == null)
         {
@@ -144,8 +151,10 @@ public class BufferedWriter : IDisposable
     /// <summary>
     ///     Writes the buffer to the out <see cref="Stream" />
     /// </summary>
-    public void Flush()
+    internal void Flush()
     {
+        CheckDispose();
+        
         OutputStream.Write(buffer, 0, Position);
         OutputStream.Flush();
         OutputStreamPosition = 0;
@@ -172,10 +181,45 @@ public class BufferedWriter : IDisposable
 
     #region Destroy
 
-    /// <inheritdoc />
+    /// <summary>
+    ///     Has this object been disposed
+    /// </summary>
+    public bool HasDisposed { get; private set; }
+    
+    /// <summary>
+    ///     Checks the disposal state on this object
+    /// </summary>
+    /// <exception cref="ObjectDisposedException"></exception>
+    [DebuggerStepThrough]
+    internal void CheckDispose()
+    {
+        if (HasDisposed)
+            throw new ObjectDisposedException(nameof(BufferedReader));
+    }
+
+    /// <summary>
+    ///     Destructor for this object
+    /// </summary>
+    ~BufferedWriter()
+    {
+        ReleaseResources();
+    }
+
+    /// <summary>
+    ///     Disposes of this <see cref="BufferedWriter"/> instance
+    ///     <para>This method SHOULD NOT be used! VoltRpc will dispose of this object when it is done with it!</para>
+    ///     <para>NOTE: This disposal method will NOT call <see cref="Stream.Dispose()"/> on the underlying <see cref="OutputStream"/></para>
+    /// </summary>
     public void Dispose()
     {
+        CheckDispose();
+        ReleaseResources();
         GC.SuppressFinalize(this);
+    }
+
+    private void ReleaseResources()
+    {
+        HasDisposed = true;
     }
 
     #endregion

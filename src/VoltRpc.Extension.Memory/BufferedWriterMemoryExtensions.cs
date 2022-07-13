@@ -15,6 +15,8 @@ public static class BufferedWriterMemoryExtensions
     /// <param name="value"></param>
     public static void WriteBytesSpan(this BufferedWriter writer, ReadOnlySpan<byte> value)
     {
+        writer.CheckDispose();
+        
         writer.EnsureCapacity(writer.Position + value.Length);
         
         value.CopyTo(writer.buffer);

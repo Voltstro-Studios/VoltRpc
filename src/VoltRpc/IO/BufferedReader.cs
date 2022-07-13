@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -83,6 +84,8 @@ public class BufferedReader : IDisposable
     internal unsafe T ReadBlittable<T>()
         where T : unmanaged
     {
+        CheckDispose();
+        
         int size = sizeof(T);
         
         if(Position == readLength)
@@ -119,6 +122,8 @@ public class BufferedReader : IDisposable
     /// <exception cref="EndOfStreamException"></exception>
     public ArraySegment<byte> ReadBytesSegment(int count)
     {
+        CheckDispose();
+        
         if (Position == readLength)
             ReadStream(count);
 
@@ -181,7 +186,7 @@ public class BufferedReader : IDisposable
         
         while (neededSize != 0)
         {
-            //Keep reading until there is not more data, or we have reached our needed size
+            //Keep reading until there is no more data, or we have reached our needed size
             int readSize = IncomingStream.Read(buffer, totalReadLength, neededSize);
             if(readSize == 0)
                 break;
@@ -205,10 +210,45 @@ public class BufferedReader : IDisposable
     
     #region Destroy
 
-    /// <inheritdoc />
+    /// <summary>
+    ///     Has this object been disposed
+    /// </summary>
+    public bool HasDisposed { get; private set; }
+    
+    /// <summary>
+    ///     Checks the disposal state on this object
+    /// </summary>
+    /// <exception cref="ObjectDisposedException"></exception>
+    [DebuggerStepThrough]
+    internal void CheckDispose()
+    {
+        if (HasDisposed)
+            throw new ObjectDisposedException(nameof(BufferedReader));
+    }
+
+    /// <summary>
+    ///     Destructor for this object
+    /// </summary>
+    ~BufferedReader()
+    {
+        ReleaseResources();
+    }
+
+    /// <summary>
+    ///     Disposes of this <see cref="BufferedReader"/> instance
+    ///     <para>This method SHOULD NOT be used! VoltRpc will dispose of this object when it is done with it!</para>
+    ///     <para>NOTE: This disposal method will NOT call <see cref="Stream.Dispose()"/> on the underlying <see cref="IncomingStream"/></para>
+    /// </summary>
     public void Dispose()
     {
+        CheckDispose();
+        ReleaseResources();
         GC.SuppressFinalize(this);
+    }
+
+    private void ReleaseResources()
+    {
+        HasDisposed = true;
     }
 
     #endregion

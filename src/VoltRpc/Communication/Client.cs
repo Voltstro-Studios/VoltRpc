@@ -454,9 +454,10 @@ public abstract class Client : IDisposable
     public bool HasDisposed { get; private set; }
 
     /// <summary>
-    ///     Checks if the object has been disposed
+    ///     Checks the disposal state on this object
     /// </summary>
     /// <exception cref="ObjectDisposedException"></exception>
+    [DebuggerStepThrough]
     protected void CheckDispose()
     {
         if (HasDisposed)

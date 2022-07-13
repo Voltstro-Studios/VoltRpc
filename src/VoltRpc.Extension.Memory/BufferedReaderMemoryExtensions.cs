@@ -17,6 +17,8 @@ public static class BufferedReaderMemoryExtensions
     /// <returns></returns>
     public static ReadOnlySpan<byte> ReadBytesSpanSlice(this BufferedReader reader, int size)
     {
+        reader.CheckDispose();
+        
         if (reader.Position == reader.readLength)
             reader.ReadStream(size);
 
