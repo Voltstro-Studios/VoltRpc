@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="../Properties.props"/>
+    <Import Project="../Properties.props" />
 
     <PropertyGroup>
         <Title>VoltRpc.Communication.Pipes</Title>
@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\VoltRpc\VoltRpc.csproj"/>
+        <ProjectReference Include="..\VoltRpc\VoltRpc.csproj" />
     </ItemGroup>
 
     <Import Project="../PackagesLibrary.props" />

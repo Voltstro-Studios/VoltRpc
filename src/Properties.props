@@ -6,6 +6,15 @@
         <LangVersion>10</LangVersion>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)'=='Release'Or'$(Configuration)'=='ReleaseNoPackage'">
+        <IsReleaseBuild>true</IsReleaseBuild>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="'$(IsReleaseBuild)'=='true'">
+        <OutDir>bin\Release\$(TargetFramework)</OutDir>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
