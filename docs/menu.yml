@@ -4,7 +4,7 @@ items:
   href: articles/overview.md
 
 - name: API Documentation
-  href: api/VoltRpc.yml
+  href: api/index.md
   
 - name: Changelog
-  href: CHANGELOG.md
+  href: changelog/

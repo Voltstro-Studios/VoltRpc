@@ -4,14 +4,6 @@
         {
             "Program": "dotnet",
             "Arguments": "build src/VoltRpc.sln -c ReleaseNoPackage"
-        },
-        {
-            "Program": "cp",
-            "Arguments": "CHANGELOG.md docs/"
-        },
-        {
-            "Program": "touch",
-            "Arguments": "-r CHANGELOG.md docs/CHANGELOG.md"
         }
     ]
 } 

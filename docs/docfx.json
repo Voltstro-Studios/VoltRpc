@@ -17,6 +17,13 @@
       "../src/VoltRpc.Extension.Vectors/bin/Release/net6.0/VoltRpc.Extension.Vectors.dll"
     ]
   },
+  "files": [
+    "**",
+    "../CHANGELOG.md"
+  ],
+  "additionalFiles": [
+    "../CHANGELOG.md"
+  ],
   "exclude": ["README.md", "VoltDocsBuilder.json", "build.ps1", ".gitignore", "obj/**/*", "_site/**/*"],
   "xref": [
     "https://docs.microsoft.com/en-us/dotnet/.xrefmap.json"

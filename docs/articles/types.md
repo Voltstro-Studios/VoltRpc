@@ -64,7 +64,7 @@ public class CustomTypeReadWriter : TypeReadWriter<CustomType>
 
 You can read and write any type supported by <xref:VoltRpc.IO.BufferedWriter> and <xref:VoltRpc.IO.BufferedReader>.
 
-To let the client and host know about this type, you will need to call their respected <xref:VoltRpc.Types.TypeReaderWriterManager>.AddType().
+To let the client and host know about this type, you will need to call their respected [TypeReaderWriterManager.AddType](xref:VoltRpc.Types.TypeReaderWriterManager.AddType*).
 
 For example:
 
