@@ -4,7 +4,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.1.0] - [2022-05-22]
+## [3.0.0] - 2022-08-05
+
+### Added
+
+- Added internal version checking
+    - VoltRpc hosts/clients will only work together if they are both the same version
+- Added user protocol versions
+- Added Guid type reader/writer
+- Added SourceLink to packages (for better debug symbols)
+- Added `Host.StartListeningAsync` method, which internally will call `Task.Run`
+    - Can be overridden by Host implementations if needed
+- Added missing `Vector4TypeReadWriter` from VoltRpc.Extension.Vectors
+
+### Changed
+
+- Changed `Host.StartListening` to void
+    - Use `Host.StartListeningAsync().ConfigureAwait(false)` if you want the old behavior
+- Updated package descriptions
+- BufferReader can read from the underlying stream multiple times in one go (if needed)
+- BufferReader can resize it's own buffer if need to
+- `BufferReader/Writer.Length` getter is aggressively inlined
+- `Client.InvokeMethod` was made `EditorBrowsableState.Never`
+    - This should only be used by generated proxies anyway
+- All type readers/writers for all types used in it need to be added before calling `AddService`
+- `MessageResponse` and `MessageType` are now internal
+    - You shouldn't be using theses anyway
+- Update dispose in `BufferedReader` and `BufferedWriter`
+
+### Fixed
+
+- Proxy generator will add an `@` to the start of arguments, fixing problems with certain arguments names
+- Proxy generator will give an error on Properties (as they are not supported)
+- Fixed some more XML referencing the wrong things
+
+## [2.1.0] - 2022-05-22
 
 ### Added
 
@@ -22,7 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed some XML docs referencing the wrong objects
 
-## [2.0.0] - [2022-01-06]
+## [2.0.0] - 2022-01-06
 
 ### Added
 
