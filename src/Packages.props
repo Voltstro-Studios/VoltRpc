@@ -4,12 +4,12 @@
     <PropertyGroup>
         <Authors>Voltstro</Authors>
 
-        <PackageProjectUrl>https://voltrpc.voltstro.dev</PackageProjectUrl>
+        <PackageProjectUrl>https://projects.voltstro.dev/VoltRpc/</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIcon>icon.png</PackageIcon>
         <PackageTags>IPC, RPC, TCP, Pipes, Named-Pipes, rpc-library, interprocess-communication, dotnet, csharp</PackageTags>
-        <PackageReleaseNotes>See https://voltrpc.voltstro.dev/CHANGELOG.html for details</PackageReleaseNotes>
+        <PackageReleaseNotes>See https://projects.voltstro.dev/VoltRpc/changelog/ for details</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">../bin/</PackageOutputPath>
 

@@ -4,48 +4,57 @@ Benchmarks of VoltRpc.
 
 All benchmarks were performed with this configuration:
 ``` ini
-BenchmarkDotNet=v0.13.1, OS=ubuntu 21.10
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1826 (21H2)
 Intel Core i5-10600KF CPU 4.10GHz, 1 CPU, 12 logical and 6 physical cores
-.NET SDK=6.0.100
-  [Host]     : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
-  Job-YXCTJF : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
+.NET SDK=6.0.302
+  [Host]     : .NET 6.0.7 (6.0.722.32202), X64 RyuJIT
+  Job-PJGDAZ : .NET 6.0.7 (6.0.722.32202), X64 RyuJIT
 
-Jit=Default  Platform=AnyCpu  
+Jit=Default  Platform=AnyCpu  Runtime=.NET 6.0  
 ```
 
 > [!NOTE]
 > Performance may vary depending on the system, as well what .NET version you use. <br>
-> If you want to test the performance your self, you can build the VoltRpc.Benchmarks project in RELEASE and run it.
+> If you want to test the performance your self, you can build the VoltRpc.Benchmarks project in RELEASE and run it.'
+
+> [!WARNING]
+> Currently, the in-built arrays are quite a lot slower, we are looking into fixing this in a later release.
+> For using fast arrays, see the demo's [CustomTypeArraysReaderWriter](https://github.com/Voltstro-Studios/VoltRpc/blob/946f9216560e9fa950692ef7f24f08097079e4b8/src/Demo/VoltRpc.Demo.Shared/CustomTypeArraysReaderWriter.cs).
 
 ## Pipes Benchmark
 
-[![Pipes Benchmark](~/assets/images/Benchmarks/PipesBenchmark.png)](~/assets/images/Benchmarks/PipesBenchmark.png)
+[![Pipes Benchmark Non-Array](~/assets/images/Benchmarks/PipesBenchmarkNonArray.png)](~/assets/images/Benchmarks/PipesBenchmarkNonArray.png)
 
-|               Method | array | arraySize |      message |     Mean |     Error |    StdDev |
-|--------------------- |------ |---------- |------------- |---------:|----------:|----------:|
-|            **BasicVoid** |     **?** |         **?** |            **?** | **8.540 μs** | **0.1634 μs** | **0.2125 μs** |
-|          BasicReturn |     ? |         ? |            ? | 9.488 μs | 0.1218 μs | 0.1080 μs |
-|          ArrayReturn |     ? |         ? |            ? | 9.528 μs | 0.1653 μs | 0.1546 μs |
-|   **ArrayParameterVoid** |     **?** |        **25** |            **?** | **9.233 μs** | **0.0999 μs** | **0.0885 μs** |
-| ArrayParameterReturn |     ? |        25 |            ? | 9.427 μs | 0.1529 μs | 0.1636 μs |
-|   **ArrayParameterVoid** |     **?** |   **8294400** |            **?** | **9.290 μs** | **0.1106 μs** | **0.0924 μs** |
-| ArrayParameterReturn |     ? |   8294400 |            ? | 9.631 μs | 0.1637 μs | 0.1531 μs |
-|   **BasicParameterVoid** |     **?** |         **?** | **Hello World!** | **9.358 μs** | **0.1194 μs** | **0.1116 μs** |
-| BasicParameterReturn |     ? |         ? | Hello World! | 9.891 μs | 0.1478 μs | 0.1383 μs |
+[![Pipes Benchmark Array](~/assets/images/Benchmarks/PipesBenchmarkArray.png)](~/assets/images/Benchmarks/PipesBenchmarkArray.png)
 
+|               Method |      message |         array |             Mean |          Error |         StdDev |
+|--------------------- |------------- |-------------- |-----------------:|---------------:|---------------:|
+|            **BasicVoid** |            **?** |             **?** |         **6.311 μs** |      **0.0517 μs** |      **0.0432 μs** |
+|          BasicReturn |            ? |             ? |         7.444 μs |      0.0589 μs |      0.0551 μs |
+|          ArrayReturn |            ? |             ? |        21.389 μs |      0.3943 μs |      0.6695 μs |
+|            ArrayFast |            ? |             ? |     1,579.432 μs |     10.1223 μs |      9.4684 μs |
+|   **BasicParameterVoid** | **Hello World!** |             **?** |         **7.128 μs** |      **0.0390 μs** |      **0.0346 μs** |
+| BasicParameterReturn | Hello World! |             ? |         8.287 μs |      0.0364 μs |      0.0304 μs |
+|   **ArrayParameterVoid** |            **?** |      **Byte[25]** |        **18.423 μs** |      **0.3675 μs** |      **0.6140 μs** |
+| ArrayParameterReturn |            ? |      Byte[25] |        28.647 μs |      0.5643 μs |      0.9112 μs |
+|   **ArrayParameterVoid** |            **?** | **Byte[8294400]** | **2,705,942.687 μs** | **11,965.3253 μs** | **11,192.3727 μs** |
+| ArrayParameterReturn |            ? | Byte[8294400] | 5,416,337.679 μs | 21,036.1040 μs | 18,647.9583 μs |
 
 ## TCP Benchmark
 
-[![TCP Benchmark](~/assets/images/Benchmarks/TCPBenchmark.png)](~/assets/images/Benchmarks/TCPBenchmark.png)
+[![TCP Benchmark Non-Array](~/assets/images/Benchmarks/TCPBenchmarkNonArray.png)](~/assets/images/Benchmarks/TCPBenchmarkNonArray.png)
 
-|               Method | array | arraySize |      message |     Mean |    Error |   StdDev |
-|--------------------- |------ |---------- |------------- |---------:|---------:|---------:|
-|            **BasicVoid** |     **?** |         **?** |            **?** | **23.72 μs** | **0.355 μs** | **0.332 μs** |
-|          BasicReturn |     ? |         ? |            ? | 25.02 μs | 0.421 μs | 0.394 μs |
-|          ArrayReturn |     ? |         ? |            ? | 25.28 μs | 0.322 μs | 0.301 μs |
-|   **ArrayParameterVoid** |     **?** |        **25** |            **?** | **25.20 μs** | **0.275 μs** | **0.257 μs** |
-| ArrayParameterReturn |     ? |        25 |            ? | 25.76 μs | 0.370 μs | 0.328 μs |
-|   **ArrayParameterVoid** |     **?** |   **8294400** |            **?** | **24.93 μs** | **0.236 μs** | **0.220 μs** |
-| ArrayParameterReturn |     ? |   8294400 |            ? | 25.22 μs | 0.468 μs | 0.438 μs |
-|   **BasicParameterVoid** |     **?** |         **?** | **Hello World!** | **23.53 μs** | **0.432 μs** | **0.404 μs** |
-| BasicParameterReturn |     ? |         ? | Hello World! | 25.08 μs | 0.496 μs | 0.944 μs |
+[![TCP Benchmark Array](~/assets/images/Benchmarks/TCPBenchmarkArray.png)](~/assets/images/Benchmarks/TCPBenchmarkArray.png)
+
+|               Method |      message |         array |            Mean |         Error |        StdDev |
+|--------------------- |------------- |-------------- |----------------:|--------------:|--------------:|
+|            **BasicVoid** |            **?** |             **?** |        **13.69 μs** |      **0.139 μs** |      **0.124 μs** |
+|          BasicReturn |            ? |             ? |        15.88 μs |      0.157 μs |      0.146 μs |
+|          ArrayReturn |            ? |             ? |        28.70 μs |      0.126 μs |      0.111 μs |
+|            ArrayFast |            ? |             ? |     3,213.17 μs |     35.051 μs |     32.786 μs |
+|   **BasicParameterVoid** | **Hello World!** |             **?** |        **15.52 μs** |      **0.285 μs** |      **0.267 μs** |
+| BasicParameterReturn | Hello World! |             ? |        17.17 μs |      0.167 μs |      0.156 μs |
+|   **ArrayParameterVoid** |            **?** |      **Byte[25]** |        **26.89 μs** |      **0.107 μs** |      **0.100 μs** |
+| ArrayParameterReturn |            ? |      Byte[25] |        40.42 μs |      0.426 μs |      0.398 μs |
+|   **ArrayParameterVoid** |            **?** | **Byte[8294400]** | **3,689,192.76 μs** | **13,520.734 μs** | **11,985.778 μs** |
+| ArrayParameterReturn |            ? | Byte[8294400] | 7,400,713.25 μs | 11,952.742 μs | 10,595.794 μs |
