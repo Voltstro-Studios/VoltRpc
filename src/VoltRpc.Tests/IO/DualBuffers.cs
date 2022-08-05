@@ -8,6 +8,8 @@ public class DualBuffers : IDisposable
 {
     private readonly MemoryStream memoryStream;
 
+    public bool HasDisposed { get; private set; }
+
     public DualBuffers(int size = 1000)
     {
         memoryStream = new MemoryStream(size);
@@ -33,15 +35,14 @@ public class DualBuffers : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~DualBuffers()
-    {
-        ReleaseResources();
-    }
-
     private void ReleaseResources()
     {
+        if(HasDisposed)
+            return;
+        
         BufferedReader?.Dispose();
         BufferedWriter?.Dispose();
         memoryStream?.Dispose();
+        HasDisposed = true;
     }
 }
