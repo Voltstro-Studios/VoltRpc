@@ -6,8 +6,8 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <Title>VoltRpc.Proxy.Generator</Title>
         <Description>VoltRpc.Proxy.Generator - Provides the REQUIRED .NET source generator for VoltRpc, used for generating proxy layers.</Description>
-        <Version>2.0.0</Version>
-        <PackageVersion>2.0.1</PackageVersion>
+        <Version>2.1.0</Version>
+        <PackageVersion>2.1.0</PackageVersion>
         <IncludeBuildOutput>false</IncludeBuildOutput>
     </PropertyGroup>
 

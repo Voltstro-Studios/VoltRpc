@@ -6,8 +6,8 @@
         <Title>VoltRpc.Extension.Vectors</Title>
         <RootNamespace>VoltRpc.Extension.Vectors</RootNamespace>
         <Description>VoltRpc.Extension.Vectors - Extends VoltRpc's reader and writer by supporting most System.Numerics.Vectors types. Also adds the higher-level type readers and writers.</Description>
-        <Version>1.0.0</Version>
-        <PackageVersion>1.0.0</PackageVersion>
+        <Version>1.1.0</Version>
+        <PackageVersion>1.1.0</PackageVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 

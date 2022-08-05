@@ -6,8 +6,8 @@
         <Title>VoltRpc.Communication.Pipes</Title>
         <RootNamespace>VoltRpc.Communication.Pipes</RootNamespace>
         <Description>VoltRpc.Communication.Pipes - Provides named pipes (System.IO.Pipes) communication to VoltRpc.</Description>
-        <Version>2.0.1</Version>
-        <PackageVersion>2.0.1</PackageVersion>
+        <Version>3.0.0</Version>
+        <PackageVersion>3.0.0</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
