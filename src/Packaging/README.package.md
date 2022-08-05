@@ -111,7 +111,7 @@ Intel Core i5-10600KF CPU 4.10GHz, 1 CPU, 12 logical and 6 physical cores
 Jit=Default  Platform=AnyCpu  Runtime=.NET 6.0  
 ```
 
-![Pipes Non-Array](https://github.com/Voltstro-Studios/VoltRpc/blob/master/media/PipesBenchmarkNonArrays.png?raw=true)
+![Pipes Non-Array](https://raw.githubusercontent.com/Voltstro-Studios/VoltRpc/master/media/PipesBenchmarkNonArrays.png)
 
 ![Pipes Non-Array](https://raw.githubusercontent.com/Voltstro-Studios/VoltRpc/master/media/PipesBenchmarkArrays.png)
 
