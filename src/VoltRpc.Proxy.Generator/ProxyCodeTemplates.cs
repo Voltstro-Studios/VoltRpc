@@ -20,6 +20,7 @@ public static class ProxyCodeTemplates
 
     public const string GenerateProxyAttributeOverrideName = "GeneratedName";
     public const string GenerateProxyAttributeOverrideNamespace = "GeneratedNamespace";
+    public const string GenerateProxyAttributeOverrideForcePublic = "ForcePublic";
 
     public static readonly string GenerateProxyAttributeName =
         $"{GenerateProxyAttributeNamespace}.{GenerateProxyAttributeClass}";
@@ -32,7 +33,7 @@ namespace {{0}}
 {{{{
     /// <inheritdoc />
     [GeneratedCode(""{ThisAssembly.Info.Title}"", ""{ThisAssembly.Info.InformationalVersion}"")]
-    public class {{1}} : {{2}}
+    {{4}} sealed class {{1}} : {{2}}
     {{{{
         private readonly Client client;
 

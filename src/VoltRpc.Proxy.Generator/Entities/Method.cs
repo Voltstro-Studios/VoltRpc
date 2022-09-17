@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.CodeAnalysis;
 
 namespace VoltRpc.Proxy.Generator.Entities;
 
 internal readonly struct Method
 {
-    internal Method(string interfaceFullName, string methodName, string? returnTypeFullName, List<Argument>? arguments)
+    internal Method(string interfaceFullName, string methodName, Accessibility accessibility, string? returnTypeFullName, List<Argument>? arguments)
     {
         InterfaceFullName = interfaceFullName;
         MethodName = methodName;
+        Accessibility = accessibility;
         ReturnTypeFullName = returnTypeFullName;
         Arguments = arguments;
     }
     
     private string InterfaceFullName { get; }
     private string MethodName { get; }
+    private Accessibility Accessibility { get; }
     private string? ReturnTypeFullName { get; }
     
     private List<Argument>? Arguments { get; }
@@ -25,8 +28,13 @@ internal readonly struct Method
     {
         StringBuilder builder = new();
         builder.Append("/// <inheritdoc />\n");
-        builder.Append("public ");
+        if(Accessibility == Accessibility.Public) 
+            builder.Append($"{Accessibility.AsString()} ");
+        
         builder.Append(ReturnTypeFullName == null ? "void " : $"{ReturnTypeFullName} ");
+        if (Accessibility != Accessibility.Public)
+            builder.Append($"{InterfaceFullName}.");
+        
         builder.Append($"{MethodName}({(Arguments == null ? string.Empty : string.Join(", ", Arguments))})");
         builder.Append("\n");
         builder.Append("{");

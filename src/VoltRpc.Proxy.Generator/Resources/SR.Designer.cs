@@ -56,5 +56,29 @@ namespace VoltRpc.Proxy.Generator {
                 return ResourceManager.GetString("NotAMethodDescription", resourceCulture);
             }
         }
+        
+        internal static string MethodInvalidAccessibility {
+            get {
+                return ResourceManager.GetString("MethodInvalidAccessibility", resourceCulture);
+            }
+        }
+        
+        internal static string MethodInvalidAccessibilityDescription {
+            get {
+                return ResourceManager.GetString("MethodInvalidAccessibilityDescription", resourceCulture);
+            }
+        }
+        
+        internal static string InterfaceInvalidAccessibility {
+            get {
+                return ResourceManager.GetString("InterfaceInvalidAccessibility", resourceCulture);
+            }
+        }
+        
+        internal static string InterfaceInvalidaccessibilityDescription {
+            get {
+                return ResourceManager.GetString("InterfaceInvalidaccessibilityDescription", resourceCulture);
+            }
+        }
     }
 }

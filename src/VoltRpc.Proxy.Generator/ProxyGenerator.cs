@@ -67,6 +67,17 @@ public class ProxyGenerator : ISourceGenerator
         if (interfaceSymbol == null)
             return;
 
+        //Interfaces can only be internal or public
+        Accessibility interfaceAccessibility = interfaceSymbol.DeclaredAccessibility;
+        if (interfaceAccessibility is Accessibility.Protected or Accessibility.Private or Accessibility.ProtectedAndInternal)
+        {
+            context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.InterfaceInvalidAccessibility, 
+                Location.Create(interfaceDeclaration.SyntaxTree, interfaceDeclaration.Span)));
+            
+            return;
+        }
+
+        //TODO: Check to make sure none are empty or null
         string interfaceName = $"{interfaceDeclaration.Identifier.ValueText}";
         string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
         string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
@@ -77,25 +88,41 @@ public class ProxyGenerator : ISourceGenerator
         if (!overrideName.IsNull)
             interfaceProxyName = overrideName.Value?.ToString();
 
+        //Custom proxy namespace
         string proxyNamespace = ProxyCodeTemplates.GenerateProxyGeneratedDefaultNameSpace;
         TypedConstant overrideNamespace = generateProxyData.NamedArguments
             .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideNamespace).Value;
         if (!overrideNamespace.IsNull)
             proxyNamespace = overrideNamespace.Value?.ToString();
 
+        //Forces the generated proxy to be public
+        TypedConstant forcePublicInterface = generateProxyData.NamedArguments
+            .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideForcePublic).Value;
+        if (!forcePublicInterface.IsNull)
+        {
+            bool value = forcePublicInterface.Value != null && (bool)forcePublicInterface.Value;
+            if (value)
+                interfaceAccessibility = Accessibility.Public;
+        }
+        
         //Create all of the methods
         List<Method> generatedMethods = new();
         foreach (MemberDeclarationSyntax memberDeclarationSyntax in interfaceDeclaration.Members)
         {
-            //Member needs to be public
-            if (memberDeclarationSyntax.Modifiers.All(modifer => modifer.Kind() != SyntaxKind.PublicKeyword))
-                continue;
-
             if (memberDeclarationSyntax is MethodDeclarationSyntax methodDeclarationSyntax)
-                generatedMethods.Add(CreateMethod(model, methodDeclarationSyntax, interfaceNamespace, interfaceName));
+            {
+                Method? method = CreateMethod(context, model, methodDeclarationSyntax, interfaceNamespace, interfaceName);
+                
+                //Something went wrong if it is null
+                if (method == null)
+                    return;
+
+                generatedMethods.Add(method.Value);
+            }
             else
             {
-                context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.NotAMethodError, Location.Create(memberDeclarationSyntax.SyntaxTree, memberDeclarationSyntax.Span)));
+                context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.NotAMethodError, 
+                    Location.Create(memberDeclarationSyntax.SyntaxTree, memberDeclarationSyntax.Span)));
                 return;
             }
         }
@@ -109,7 +136,12 @@ public class ProxyGenerator : ISourceGenerator
         }
 
         methods = string.Join("\n", splitMethods);
-        string code = string.Format(ProxyCodeTemplates.ProxyCodeTemplate, proxyNamespace, interfaceProxyName, $"{interfaceNamespace}.{interfaceName}", methods);
+        string code = string.Format(ProxyCodeTemplates.ProxyCodeTemplate,
+            proxyNamespace,
+            interfaceProxyName,
+            $"{interfaceNamespace}.{interfaceName}",
+            methods,
+            interfaceAccessibility.AsString());
 
         //Add the source
         context.AddSource(interfaceProxyName, code);
@@ -118,18 +150,30 @@ public class ProxyGenerator : ISourceGenerator
     /// <summary>
     ///     Creates source for a <see cref="MethodDeclarationSyntax" />
     /// </summary>
+    /// <param name="context"></param>
     /// <param name="model"></param>
     /// <param name="methodSyntax"></param>
     /// <param name="interfaceNamespace"></param>
     /// <param name="interfaceName"></param>
     /// <returns></returns>
-    private Method CreateMethod(SemanticModel model, MethodDeclarationSyntax methodSyntax, string interfaceNamespace,
+    private Method? CreateMethod(GeneratorExecutionContext context, SemanticModel model, MethodDeclarationSyntax methodSyntax, string interfaceNamespace,
         string interfaceName)
     {
         //Get info about the method first
         IMethodSymbol methodSymbol = model.GetDeclaredSymbol(methodSyntax);
         if (methodSymbol == null)
-            return new Method();
+            return null;
+
+        Accessibility methodAccessibility = methodSymbol.DeclaredAccessibility;
+        
+        //We only support methods that are public or internal
+        if (methodAccessibility is Accessibility.Protected or Accessibility.ProtectedAndInternal)
+        {
+            context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.InvalidMethodAccessibility, 
+                Location.Create(methodSyntax.SyntaxTree, methodSyntax.Span)));
+            
+            return null;
+        }
 
         List<Argument> arguments = new();
 
@@ -154,7 +198,7 @@ public class ProxyGenerator : ISourceGenerator
             arguments.Add(argument);
         }
 
-        Method method = new($"{interfaceNamespace}.{interfaceName}", methodSyntax.Identifier.ValueText, methodSymbol.ReturnsVoid ? null : methodSymbol.ReturnType.ToString(), arguments);
+        Method method = new($"{interfaceNamespace}.{interfaceName}", methodSyntax.Identifier.ValueText, methodAccessibility, methodSymbol.ReturnsVoid ? null : methodSymbol.ReturnType.ToString(), arguments);
 
         return method;
     }

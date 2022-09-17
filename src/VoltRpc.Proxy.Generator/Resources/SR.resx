@@ -24,4 +24,16 @@
     <data name="NotAMethodDescription" xml:space="preserve">
         <value>Member is not a method! If you really feel like Properties are needed, then open up an issue: https://github.com/Voltstro-Studios/VoltRpc/issues</value>
     </data>
+    <data name="MethodInvalidAccessibility" xml:space="preserve">
+        <value>Method has invalid accessibility!</value>
+    </data>
+    <data name="MethodInvalidAccessibilityDescription" xml:space="preserve">
+        <value>Methods cannot be private or protected. Methods can only be public or internal.</value>
+    </data>
+    <data name="InterfaceInvalidAccessibility" xml:space="preserve">
+        <value>Interface has invalid accessibility!</value>
+    </data>
+    <data name="InterfaceInvalidaccessibilityDescription" xml:space="preserve">
+        <value>Interfaces cannot be private or protected. Interfaces can only be public or internal.</value>
+    </data>
 </root>

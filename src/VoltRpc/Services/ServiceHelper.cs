@@ -13,7 +13,7 @@ internal static class ServiceHelper
 #endif
         Type type, TypeReaderWriterManager typeReaderWriterManager)
     {
-        MethodInfo[] interfaceMethods = type.GetMethods();
+        MethodInfo[] interfaceMethods = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         ServiceMethod[] serviceMethods = new ServiceMethod[interfaceMethods.Length];
 
         for (int i = 0; i < interfaceMethods.Length; i++)

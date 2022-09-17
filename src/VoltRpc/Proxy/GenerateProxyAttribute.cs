@@ -31,4 +31,12 @@ public sealed class GenerateProxyAttribute : Attribute
     ///     </para>
     /// </summary>
     public string GeneratedNamespace { get; set; }
+    
+    /// <summary>
+    ///     Forces the generated proxy to be public
+    ///     <para>
+    ///         By default, the generated proxy visibility will be the same as the interfaces
+    ///     </para>
+    /// </summary>
+    public bool ForcePublic { get; set; }
 }
