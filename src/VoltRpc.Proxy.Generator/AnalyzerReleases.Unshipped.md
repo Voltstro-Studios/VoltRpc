@@ -7,3 +7,5 @@ Rule ID | Category | Severity | Notes
 --------|----------|----------|--------------------
 VRPC02  |  Proxy   |  Error   | Method has invalid accessibility!
 VRPC03  |  Proxy   |  Error   | Interface has invalid accessibility!
+VRPC04  |  Proxy   |  Error   | Proxy name is blank!
+VRPC05  |  Proxy   |  Error   | Proxy namespace is blank!

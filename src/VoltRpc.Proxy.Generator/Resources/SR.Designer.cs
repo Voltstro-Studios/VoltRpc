@@ -80,5 +80,29 @@ namespace VoltRpc.Proxy.Generator {
                 return ResourceManager.GetString("InterfaceInvalidaccessibilityDescription", resourceCulture);
             }
         }
+        
+        internal static string ProxyNameBlank {
+            get {
+                return ResourceManager.GetString("ProxyNameBlank", resourceCulture);
+            }
+        }
+        
+        internal static string ProxyNameBlankDescription {
+            get {
+                return ResourceManager.GetString("ProxyNameBlankDescription", resourceCulture);
+            }
+        }
+        
+        internal static string ProxyNamespaceBlank {
+            get {
+                return ResourceManager.GetString("ProxyNamespaceBlank", resourceCulture);
+            }
+        }
+        
+        internal static string ProxyNamespaceBlankDescription {
+            get {
+                return ResourceManager.GetString("ProxyNamespaceBlankDescription", resourceCulture);
+            }
+        }
     }
 }

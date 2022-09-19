@@ -36,4 +36,16 @@
     <data name="InterfaceInvalidaccessibilityDescription" xml:space="preserve">
         <value>Interfaces cannot be private or protected. Interfaces can only be public or internal.</value>
     </data>
+    <data name="ProxyNameBlank" xml:space="preserve">
+        <value>Proxy name is blank!</value>
+    </data>
+    <data name="ProxyNameBlankDescription" xml:space="preserve">
+        <value>Proxy name cannot be blank. To use default naming, set name to null.</value>
+    </data>
+    <data name="ProxyNamespaceBlank" xml:space="preserve">
+        <value>Proxy namespace is blank!</value>
+    </data>
+    <data name="ProxyNamespaceBlankDescription" xml:space="preserve">
+        <value>Proxy namespace cannot be blank. To use default namespace, set namespace to null.</value>
+    </data>
 </root>

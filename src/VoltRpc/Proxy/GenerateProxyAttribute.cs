@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 
 namespace VoltRpc.Proxy;
@@ -22,7 +23,7 @@ public sealed class GenerateProxyAttribute : Attribute
     ///     </para>
     /// </summary>
     // ReSharper disable once UnusedAutoPropertyAccessor.Global
-    public string GeneratedName { get; set; }
+    public string? GeneratedName { get; set; }
     
     /// <summary>
     ///     What namespace to use for the generated proxy.
@@ -30,7 +31,7 @@ public sealed class GenerateProxyAttribute : Attribute
     ///         By default, the generated proxy namespace will be VoltRpc.Proxy.Generated.
     ///     </para>
     /// </summary>
-    public string GeneratedNamespace { get; set; }
+    public string? GeneratedNamespace { get; set; }
     
     /// <summary>
     ///     Forces the generated proxy to be public

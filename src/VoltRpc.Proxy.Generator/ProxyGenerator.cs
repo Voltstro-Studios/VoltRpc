@@ -76,8 +76,7 @@ public class ProxyGenerator : ISourceGenerator
             
             return;
         }
-
-        //TODO: Check to make sure none are empty or null
+        
         string interfaceName = $"{interfaceDeclaration.Identifier.ValueText}";
         string interfaceNamespace = interfaceSymbol.ContainingNamespace.ToString();
         string interfaceProxyName = $"{interfaceName}_GeneratedProxy";
@@ -86,14 +85,34 @@ public class ProxyGenerator : ISourceGenerator
         TypedConstant overrideName = generateProxyData.NamedArguments
             .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideName).Value;
         if (!overrideName.IsNull)
+        {
             interfaceProxyName = overrideName.Value?.ToString();
+            
+            //Make sure is not blank or whitespace
+            if (string.IsNullOrWhiteSpace(interfaceProxyName))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.ProxyNameBlank, 
+                    Location.Create(interfaceDeclaration.SyntaxTree, interfaceDeclaration.Span)));
+                return;
+            }
+        }
 
         //Custom proxy namespace
         string proxyNamespace = ProxyCodeTemplates.GenerateProxyGeneratedDefaultNameSpace;
         TypedConstant overrideNamespace = generateProxyData.NamedArguments
             .SingleOrDefault(x => x.Key == ProxyCodeTemplates.GenerateProxyAttributeOverrideNamespace).Value;
         if (!overrideNamespace.IsNull)
+        {
             proxyNamespace = overrideNamespace.Value?.ToString();
+
+            //Make sure namespace is not blank or whitespace
+            if (string.IsNullOrWhiteSpace(proxyNamespace))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(DiagnosticHelper.ProxyNamespaceBlank, 
+                    Location.Create(interfaceDeclaration.SyntaxTree, interfaceDeclaration.Span)));
+                return;
+            }
+        }
 
         //Forces the generated proxy to be public
         TypedConstant forcePublicInterface = generateProxyData.NamedArguments
