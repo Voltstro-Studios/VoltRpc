@@ -1,0 +1,26 @@
+templates:
+  - /media/liam/Data/Projects/2022/docfx/templates/default/dist/
+defaultLocale: en-AU
+hostName: projects.voltstro.dev
+basePath: VoltRpc
+globalMetadata:
+  _appTitle: VoltRpc
+  _appFooter: Copyright (c) 2021-2023 Voltstro-Studios
+  _appFooterIcon: assets/images/vs-icon.png
+  menu_path: /VoltRpc/menu.json
+dotnet:
+  assemblies:
+    - '../src/VoltRpc/bin/Release/net6.0/VoltRpc.dll'
+    - '../src/VoltRpc.Communication.Pipes/bin/Release/net6.0/VoltRpc.Communication.Pipes.dll'
+    - '../src/VoltRpc.Extension.Memory/bin/Release/net6.0/VoltRpc.Extension.Memory.dll'
+    - '../src/VoltRpc.Extension.Vectors/bin/Release/net6.0/VoltRpc.Extension.Vectors.dll'
+files:
+  - '**'
+  - '../CHANGELOG.md'
+exclude:
+  - 'README.md'
+  - '.gitignore'
+  - 'obj/**/*'
+  - '_site/**/*'
+xref:
+  - https://docs.microsoft.com/en-us/dotnet/.xrefmap.json

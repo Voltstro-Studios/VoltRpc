@@ -2,7 +2,7 @@
 
 For generation of proxies, a [.NET Source generator](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) is used. If you don't know what what a .NET Source generator is, they are feature in the Roslyn compiler to generate source code based of the code in your project.
 
-> [!NOTE]
+> [!INFO]
 > You may need to restart your IDE when you first add the generator for it to work.<br>
 > Sometimes the IDE will also just shit it self (particularly Rider) and refuse to acknowledge any generated code, causing the intellisense to mark anything generated as an error. Compiling will be fine tho.
 > Hopefully as this feature gets more flushed out these issues won't occur anymore.

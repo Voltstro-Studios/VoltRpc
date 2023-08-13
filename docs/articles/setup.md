@@ -16,12 +16,12 @@ When using VoltRpc, you will usually have three projects:
 
 First, create the projects listed above, use whatever name you want, however I'd recommend something like `<ProjectName>.Client`.
 
-> [!NOTE]
+> [!INFO]
 > For this setup we will be using TCP. [Other communication layers](communication-layers.md) are available.
 
 ## Installation
 
-You will need to install the [VoltRpc NuGet package](https://www.nuget.org/packages/VoltRpc/) and VoltRpc's proxy .NET source generator. More info on the generator can be [found on it's page](proxy-generation.md).
+You will need to install both the [VoltRpc package](https://www.nuget.org/packages/VoltRpc), and the [VoltRpc.Proxy.Generator package](https://www.nuget.org/packages/VoltRpc.Proxy.Generator) from NuGet. More info on the generator can be [found on it's page](proxy-generation.md).
 
 You can add the NuGet packages using your IDE's NuGet package manager, or by adding it to your project's `.csproj` file.
 
@@ -31,6 +31,12 @@ You can add the NuGet packages using your IDE's NuGet package manager, or by add
     <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
 </ItemGroup>
 ```
+
+### Unity
+
+If you want to use VoltRpc with Unity, then install it using [xoofx](https://github.com/xoofx)'s [UnityNuGet](https://github.com/xoofx/UnityNuGet#unitynuget-) project. The packages are called `org.nuget.voltrpc`.
+
+As Unity's .NET source generator compatibility is a bit... ifffy, the .NET source generator package has NOT been added to it.
 
 ### Shared
 

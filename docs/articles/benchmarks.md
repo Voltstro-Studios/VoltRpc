@@ -13,7 +13,7 @@ Intel Core i5-10600KF CPU 4.10GHz, 1 CPU, 12 logical and 6 physical cores
 Jit=Default  Platform=AnyCpu  Runtime=.NET 6.0  
 ```
 
-> [!NOTE]
+> [!INFO]
 > Performance may vary depending on the system, as well what .NET version you use. <br>
 > If you want to test the performance your self, you can build the VoltRpc.Benchmarks project in RELEASE and run it.'
 

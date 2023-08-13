@@ -5,7 +5,7 @@ hero:
     An RPC library which is designed to be both simple to use and fast.
   actions:
   - name: Get Started
-    href: articles/overview.md
+    href: articles/index.md
 
 quickstart:
 - title: Install VoltRpc
