@@ -12,7 +12,7 @@ public static class LibVersion
         if(VersionSet)
             return;
 
-        Version version = System.Version.Parse(ThisAssembly.Info.FileVersion);
+        Version version = System.Version.Parse(ThisAssembly.AssemblyVersion);
         Version = new VersionInfo
         {
             Major = (byte)version.Major,

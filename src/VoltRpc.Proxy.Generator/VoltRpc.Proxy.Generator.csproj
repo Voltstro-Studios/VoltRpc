@@ -6,7 +6,6 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <Title>VoltRpc.Proxy.Generator</Title>
         <Description>VoltRpc.Proxy.Generator - Provides the REQUIRED .NET source generator for VoltRpc, used for generating proxy layers.</Description>
-        <Version>2.2.0</Version>
         <PackageVersion>2.2.0</PackageVersion>
         <IncludeBuildOutput>false</IncludeBuildOutput>
     </PropertyGroup>
@@ -17,7 +16,10 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" PrivateAssets="all" />
-        <PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.0.9" PrivateAssets="all" />
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

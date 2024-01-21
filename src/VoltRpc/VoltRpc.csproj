@@ -6,7 +6,6 @@
         <Title>VoltRpc</Title>
         <RootNamespace>VoltRpc</RootNamespace>
         <Description>VoltRpc - A RPC library designed to be simple to use and fast.</Description>
-        <Version>3.1.0</Version>
         <PackageVersion>3.1.0</PackageVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
@@ -23,7 +22,10 @@
     </ItemGroup>
     
     <ItemGroup>
-        <PackageReference Include="ThisAssembly.AssemblyInfo" Version="1.0.9" PrivateAssets="all" />
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <Import Project="../PackagesLibrary.props" />
