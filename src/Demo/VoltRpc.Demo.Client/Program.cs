@@ -7,7 +7,6 @@ using VoltRpc.Communication;
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
-using VoltRpc.Extension.Vectors.Types;
 using VoltRpc.Proxy.Generated;
 
 namespace VoltRpc.Demo.Client;
@@ -28,9 +27,6 @@ public static class Program
             client = new TCPClient(parser.IpEndPoint);
         
         client.SetProtocolVersion("Demo-Protocol-1");
-        
-        //Add VoltRpc.Extension.Vectors
-        client.TypeReaderWriterManager.InstallVectorsExtension();
 
         client.TypeReaderWriterManager.AddType(new CustomTypeReaderWriter());
         client.TypeReaderWriterManager.AddType(new CustomTypeArraysReaderWriter());

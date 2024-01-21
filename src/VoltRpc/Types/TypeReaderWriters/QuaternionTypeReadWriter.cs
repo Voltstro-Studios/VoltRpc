@@ -1,8 +1,7 @@
 using System.Numerics;
 using VoltRpc.IO;
-using VoltRpc.Types;
 
-namespace VoltRpc.Extension.Vectors.Types;
+namespace VoltRpc.Types.TypeReaderWriters;
 
 /// <summary>
 ///     <see cref="TypeReadWriter{T}"/> for a <see cref="Quaternion"/>

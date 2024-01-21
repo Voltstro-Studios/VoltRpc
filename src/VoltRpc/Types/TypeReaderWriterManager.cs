@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using VoltRpc.IO;
 using VoltRpc.Types.TypeReaderWriters;
 
@@ -16,6 +17,7 @@ public sealed class TypeReaderWriterManager
     internal readonly Dictionary<Type, ITypeReadWriter> DefaultTypeReaderWriters =
         new()
         {
+            //Base Types
             [typeof(bool)] = new BoolReadWriter(),
             [typeof(byte)] = new ByteReadWriter(),
             [typeof(char)] = new CharReadWriter(),
@@ -33,7 +35,17 @@ public sealed class TypeReaderWriterManager
             [typeof(Uri)] = new UriReadWriter(),
             [typeof(DateTime)] = new DateTimeReadWriter(),
             [typeof(TimeSpan)] = new TimeSpanReadWriter(),
-            [typeof(Guid)] = new GuidReadWriter()
+            [typeof(Guid)] = new GuidReadWriter(),
+            
+            [typeof(Matrix3x2)] = new Matrix3X2TypeReadWriter(),
+            [typeof(Matrix4x4)] = new Matrix4X4TypeReadWriter(),
+            
+            [typeof(Plane)] = new PlaneTypeReadWriter(),
+            [typeof(Quaternion)] = new QuaternionTypeReadWriter(),
+            
+            [typeof(Vector2)] = new Vector2TypeReadWriter(),
+            [typeof(Vector3)] = new Vector3TypeReadWriter(),
+            [typeof(Vector4)] = new Vector4TypeReadWriter(),
         };
 
     private readonly Dictionary<string, ITypeReadWriter> typeReadersWriters;

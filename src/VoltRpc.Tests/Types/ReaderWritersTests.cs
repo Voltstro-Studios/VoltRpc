@@ -1,7 +1,6 @@
 using System;
 using System.Numerics;
 using NUnit.Framework;
-using VoltRpc.Extension.Vectors.Types;
 using VoltRpc.Tests.IO;
 using VoltRpc.Types;
 using VoltRpc.Types.TypeReaderWriters;

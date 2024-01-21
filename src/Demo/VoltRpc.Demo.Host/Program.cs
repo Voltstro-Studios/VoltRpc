@@ -3,7 +3,6 @@ using Spectre.Console;
 using VoltRpc.Communication.Pipes;
 using VoltRpc.Communication.TCP;
 using VoltRpc.Demo.Shared;
-using VoltRpc.Extension.Vectors.Types;
 using VoltRpc.Logging;
 
 namespace VoltRpc.Demo.Host;
@@ -30,9 +29,6 @@ public static class Program
                     host = new TCPHost(parser.IpEndPoint, logger);
         
                 host.SetProtocolVersion("Demo-Protocol-1");
-        
-                //Add VoltRpc.Extension.Vectors
-                host.TypeReaderWriterManager.InstallVectorsExtension();
         
                 host.TypeReaderWriterManager.AddType(new CustomTypeReaderWriter());
                 host.TypeReaderWriterManager.AddType(new CustomTypeArraysReaderWriter());
