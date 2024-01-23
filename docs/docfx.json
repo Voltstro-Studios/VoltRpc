@@ -1,31 +1,70 @@
 {
-  "template": "https://gitlab.com/Voltstro-Studios/doctools/volt-docfxv3-theme-package",
-  "defaultLocale": "en-au",
-  "hostName": "projects.voltstro.dev",
-  "basePath": "VoltRpc",
-  "globalMetadata": {
-    "_appTitle": "VoltRpc",
-    "_appFooter": "Copyright (c) 2021-2022 Voltstro-Studios<br>Site built with DocFX V3",
-    "_appFooterIcon": "assets/images/vs-icon.png",
-    "menu_path": "menu.yml"
-  },
-  "dotnet": {
-    "assemblies": [
-      "../src/VoltRpc/bin/Release/net6.0/VoltRpc.dll",
-      "../src/VoltRpc.Communication.Pipes/bin/Release/net6.0/VoltRpc.Communication.Pipes.dll",
-      "../src/VoltRpc.Extension.Memory/bin/Release/net6.0/VoltRpc.Extension.Memory.dll",
-      "../src/VoltRpc.Extension.Vectors/bin/Release/net6.0/VoltRpc.Extension.Vectors.dll"
-    ]
-  },
-  "files": [
-    "**",
-    "../CHANGELOG.md"
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": [
+            "**.csproj"
+          ],
+          "exclude": [
+            "_site/**",
+            "obj/**",
+            "Demo/**",
+            "VoltRpc.Tests/**",
+            "VoltRpc.Benchmarks/**",
+            "VoltRpc.Proxy.Generator/**"
+          ]
+        }
+      ],
+      "dest": "api",
+      "properties": {
+        "TargetFramework": "net8.0"
+      }
+    }
   ],
-  "additionalFiles": [
-    "../CHANGELOG.md"
-  ],
-  "exclude": ["README.md", "VoltDocsBuilder.json", "build.ps1", ".gitignore", "obj/**/*", "_site/**/*"],
-  "xref": [
-    "https://docs.microsoft.com/en-us/dotnet/.xrefmap.json"
-  ]
+  "build": {
+    "globalMetadata": {
+      "_appName": "VoltRpc",
+      "_appTitle": "VoltRpc"
+    },
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      },
+      {
+        "src": "../",
+        "files": [
+          "CHANGELOG.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+          "files": [
+              "assets/**/*"
+          ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          "apidoc/**.md"
+        ],
+        "exclude": [
+          "obj/**",
+          "_site/**"
+        ]
+      }
+    ],
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ],
+    "dest": "_site"
+  }
 }

@@ -1,9 +1,0 @@
-{
-    "DocsType": "DocFx",
-    "PreActions": [
-        {
-            "Program": "dotnet",
-            "Arguments": "build src/VoltRpc.sln -c ReleaseNoPackage"
-        }
-    ]
-} 
