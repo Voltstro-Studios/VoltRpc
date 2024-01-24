@@ -23,9 +23,9 @@ Jit=Default  Platform=AnyCpu  Runtime=.NET 6.0
 
 ## Pipes Benchmark
 
-[![Pipes Benchmark Non-Array](~/assets/images/Benchmarks/PipesBenchmarkNonArray.png)](~/assets/images/Benchmarks/PipesBenchmarkNonArray.png)
+![Pipes Benchmark Non-Array](~/assets/images/Benchmarks/PipesBenchmarkNonArray.png)
 
-[![Pipes Benchmark Array](~/assets/images/Benchmarks/PipesBenchmarkArray.png)](~/assets/images/Benchmarks/PipesBenchmarkArray.png)
+![Pipes Benchmark Array](~/assets/images/Benchmarks/PipesBenchmarkArray.png)
 
 |               Method |      message |         array |             Mean |          Error |         StdDev |
 |--------------------- |------------- |-------------- |-----------------:|---------------:|---------------:|
@@ -42,9 +42,9 @@ Jit=Default  Platform=AnyCpu  Runtime=.NET 6.0
 
 ## TCP Benchmark
 
-[![TCP Benchmark Non-Array](~/assets/images/Benchmarks/TCPBenchmarkNonArray.png)](~/assets/images/Benchmarks/TCPBenchmarkNonArray.png)
+![TCP Benchmark Non-Array](~/assets/images/Benchmarks/TCPBenchmarkNonArray.png)
 
-[![TCP Benchmark Array](~/assets/images/Benchmarks/TCPBenchmarkArray.png)](~/assets/images/Benchmarks/TCPBenchmarkArray.png)
+![TCP Benchmark Array](~/assets/images/Benchmarks/TCPBenchmarkArray.png)
 
 |               Method |      message |         array |            Mean |         Error |        StdDev |
 |--------------------- |------------- |-------------- |----------------:|--------------:|--------------:|
