@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2024-03-24
+
+### Changed
+
+- Add support for .NET 8
+- Drop support for .netstandard2.0
+- Migrated Extensions into Core VoltRpc
+  - Extension Package is no longer needed.
+    - Old usages will need to be updated, such as removing usages of `InstallVectorsExtension()`
+    - Read/Write methods are now in BufferedReader/WriterExtensions
+- (Internal) Replace ThisAssembly with Nerdbank.GitVersioning 
+
 ## [3.1.0] - 2022-09-20
 
 ### Added
