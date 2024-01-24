@@ -22,7 +22,7 @@ public class VoltRpcConfig : Attribute, IConfigSource
             {
                 Jit = Jit.Default,
                 Platform = Platform.AnyCpu,
-                Runtime = CoreRuntime.Core60
+                Runtime = CoreRuntime.Core80
             }
         });
         IConfig defaultConfig = DefaultConfig.Instance;

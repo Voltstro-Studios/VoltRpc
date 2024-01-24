@@ -6,7 +6,7 @@ namespace VoltRpc.Types.TypeReaderWriters;
 /// <summary>
 ///     <see cref="TypeReadWriter{T}"/> for a <see cref="Vector4"/>
 /// </summary>
-public sealed class Vector4TypeReadWriter : TypeReadWriter<Vector4>
+internal sealed class Vector4TypeReadWriter : TypeReadWriter<Vector4>
 {
     /// <inheritdoc />
     public override void Write(BufferedWriter writer, Vector4 value)

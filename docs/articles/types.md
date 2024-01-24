@@ -19,6 +19,13 @@ The default provided types include:
 - [`DateTime`](xref:System.DateTime)
 - [`TimeSpan`](xref:System.TimeSpan)
 - [`Uri`](xref:System.Uri)
+- [`Vector2`](xref:System.Numerics.Vector2)
+- [`Vector3`](xref:System.Numerics.Vector3)
+- [`Vector4`](xref:System.Numerics.Vector4)
+- [`Quaternion`](xref:System.Numerics.Quaternion)
+- [`Plane`](xref:System.Numerics.Plane)
+- [`Matrix3x2`](xref:System.Numerics.Matrix3x2)
+- [`Matrix4x4`](xref:System.Numerics.Matrix4x4)
 
 VoltRpc will automatically handle arrays for any type.
 

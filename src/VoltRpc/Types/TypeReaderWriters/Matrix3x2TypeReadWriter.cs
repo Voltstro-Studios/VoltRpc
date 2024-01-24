@@ -6,7 +6,7 @@ namespace VoltRpc.Types.TypeReaderWriters;
 /// <summary>
 ///     <see cref="TypeReadWriter{T}"/> for a <see cref="Matrix3x2"/>
 /// </summary>
-public sealed class Matrix3X2TypeReadWriter : TypeReadWriter<Matrix3x2>
+internal sealed class Matrix3X2TypeReadWriter : TypeReadWriter<Matrix3x2>
 {
     /// <inheritdoc />
     public override void Write(BufferedWriter writer, Matrix3x2 value)

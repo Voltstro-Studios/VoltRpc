@@ -15,7 +15,7 @@ To install it, you can add it to your project's `csproj` like so:
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
+    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.3.0" />
 </ItemGroup>
 ```
 

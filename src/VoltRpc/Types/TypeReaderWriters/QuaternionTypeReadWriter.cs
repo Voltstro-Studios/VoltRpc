@@ -6,7 +6,7 @@ namespace VoltRpc.Types.TypeReaderWriters;
 /// <summary>
 ///     <see cref="TypeReadWriter{T}"/> for a <see cref="Quaternion"/>
 /// </summary>
-public sealed class QuaternionTypeReadWriter : TypeReadWriter<Quaternion>
+internal sealed class QuaternionTypeReadWriter : TypeReadWriter<Quaternion>
 {
     /// <inheritdoc />
     public override void Write(BufferedWriter writer, Quaternion value)

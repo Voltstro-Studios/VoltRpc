@@ -15,11 +15,11 @@ VoltRpc is a [remote procedure call](https://en.wikipedia.org/wiki/Remote_proced
 
 This means you can call a C# method on a remote target (such as a separate process) using C# code.
 
-VoltRpc's lowest .NET target is `netstandard2.0`, so you can use any [.NET implementation](https://docs.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0#select-net-standard-version) that implements it.
+VoltRpc's lowest .NET target is `netstandard2.1`, so you can use any [.NET implementation](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-1#select-net-standard-version) that implements it.
 
 ## Why Another RPC library?
 
-VolrRpc has the goal of being easy to use, fast and lightweight. Other RPC libraries usually included A LOT more features, at the cost of being more heavy and slower. If you only need simple solution, VoltRpc will fullfil that need.
+VoltRpc has the goal of being easy to use, fast and lightweight. Other RPC libraries usually included A LOT more features, at the cost of being more heavy and slower. If you only need simple solution, VoltRpc will fullfil that need.
 
 ## Support
 

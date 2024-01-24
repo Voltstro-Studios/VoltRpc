@@ -1,5 +1,10 @@
 # Extensions
 
+> [!WARNING]
+> As of VoltRpc 3.2.0, these extensions are now built into VoltRpc!
+>
+> Only use the packages if you are on an older version of VoltRpc and need Vector and/or memory support.
+
 VoltRpc has some first-party extensions for it. These are usually for extending the <xref:System.Type> capability of <xref:VoltRpc.IO.BufferedWriter> and <xref:VoltRpc.IO.BufferedReader> as well as providing <xref:VoltRpc.Types.TypeReadWriter`1> for usage by a <xref:VoltRpc.Types.TypeReaderWriterManager>.
 
 # System.Numerics.Vectors Support

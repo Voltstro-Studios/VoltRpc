@@ -6,7 +6,7 @@ namespace VoltRpc.Types.TypeReaderWriters;
 /// <summary>
 ///     <see cref="TypeReadWriter{T}"/> for a <see cref="Plane"/>
 /// </summary>
-public sealed class PlaneTypeReadWriter : TypeReadWriter<Plane>
+internal sealed class PlaneTypeReadWriter : TypeReadWriter<Plane>
 {
     /// <inheritdoc />
     public override void Write(BufferedWriter writer, Plane value)
