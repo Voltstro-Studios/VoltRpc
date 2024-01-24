@@ -29,7 +29,7 @@ The default provided types include:
 
 VoltRpc will automatically handle arrays for any type.
 
-# Custom Types
+## Custom Types
 
 Custom types can be implemented using a <xref:VoltRpc.Types.TypeReadWriter`1>.
 

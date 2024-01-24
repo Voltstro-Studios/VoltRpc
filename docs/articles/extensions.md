@@ -7,7 +7,7 @@
 
 VoltRpc has some first-party extensions for it. These are usually for extending the <xref:System.Type> capability of <xref:VoltRpc.IO.BufferedWriter> and <xref:VoltRpc.IO.BufferedReader> as well as providing <xref:VoltRpc.Types.TypeReadWriter`1> for usage by a <xref:VoltRpc.Types.TypeReaderWriterManager>.
 
-# System.Numerics.Vectors Support
+## System.Numerics.Vectors Support
 
 The VoltRpc.Extension.Vectors package provides support for almost all types provided by [System.Numerics.Vectors](https://www.nuget.org/packages/System.Numerics.Vectors/).
 
@@ -36,7 +36,7 @@ If you wanted to, you can also manually add each type reader/writer.
 
 You can also use the types in your own [custom type readers/writers](types.md#custom-types), using the methods provided in <xref:VoltRpc.Extension.Vectors.BufferedReaderVectorsExtensions> and <xref:VoltRpc.Extension.Vectors.BufferedWriterVectorsExtensions>.
 
-# System.Memory Support
+## System.Memory Support
 
 The VoltRpc.Extension.Memory provides support for Span and Memory. It ONLY adds to the <xref:VoltRpc.IO.BufferedReader> and <xref:VoltRpc.IO.BufferedWriter>. It does NOT add type readers/writers! This package also provides a Span way of reading strings.
 
