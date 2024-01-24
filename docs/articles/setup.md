@@ -27,8 +27,8 @@ You can add the NuGet packages using your IDE's NuGet package manager, or by add
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="VoltRpc" Version="3.0.0" />
-    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
+    <PackageReference Include="VoltRpc" Version="3.2.0" />
+    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.3.0" />
 </ItemGroup>
 ```
 

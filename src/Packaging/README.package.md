@@ -45,8 +45,8 @@ VoltRpc can be installed from [NuGet](https://nuget.org/packages/VoltRpc). You w
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="VoltRpc" Version="3.0.0" />
-    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
+    <PackageReference Include="VoltRpc" Version="3.2.0" />
+    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.3.0" />
 </ItemGroup>
 ```
 

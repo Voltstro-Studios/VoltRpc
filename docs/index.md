@@ -17,8 +17,8 @@ Add to your project's `csproj`:
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="VoltRpc" Version="3.0.0" />
-    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.1.0" />
+    <PackageReference Include="VoltRpc" Version="3.2.0" />
+    <PackageReference Include="VoltRpc.Proxy.Generator" Version="2.2.0" />
 </ItemGroup>
 ```
 
