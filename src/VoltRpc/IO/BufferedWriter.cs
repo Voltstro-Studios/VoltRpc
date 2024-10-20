@@ -18,7 +18,7 @@ public class BufferedWriter : IDisposable
     /// <summary>
     ///     Max length for a <see cref="string" />
     /// </summary>
-    public const int MaxStringLength = 1024 * 32;
+    public const int MaxStringLength = ushort.MaxValue;
     
     /// <summary>
     ///     Output <see cref="Stream" />
@@ -34,8 +34,6 @@ public class BufferedWriter : IDisposable
     ///     Internal access to the underlining buffer
     /// </summary>
     internal byte[] buffer;
-    
-    private readonly byte[] stringBuffer;
 
     /// <summary>
     ///     Creates a new <see cref="BufferedWriter" /> instance
@@ -46,7 +44,6 @@ public class BufferedWriter : IDisposable
     {
         OutputStream = output;
         encoding = new UTF8Encoding(false, true);
-        stringBuffer = new byte[MaxStringLength];
         buffer = IoUtils.CreateBuffer(bufferSize);
     }
 
@@ -137,15 +134,18 @@ public class BufferedWriter : IDisposable
         }
 
         //Write to string buffer
-        int size = encoding.GetBytes(value, 0, value.Length, stringBuffer, 0);
+        int maxSize = encoding.GetMaxByteCount(value.Length);
+        EnsureCapacity(Position + maxSize);
+        
+        int written = encoding.GetBytes(value, 0, value.Length, buffer, Position + 2);
 
         //Check if within max size
-        if (size >= MaxStringLength)
+        if (written >= MaxStringLength)
             throw new IndexOutOfRangeException($"Cannot write string larger then {MaxStringLength}!");
 
         //Write size and bytes
-        this.WriteUShort(checked((ushort) (size + 1)));
-        WriteBytes(stringBuffer, 0, size);
+        this.WriteUShort(checked((ushort) (written + 1)));
+        Position += written;
     }
 
     /// <summary>
