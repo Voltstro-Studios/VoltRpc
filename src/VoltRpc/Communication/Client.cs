@@ -109,7 +109,7 @@ public abstract class Client : IDisposable
     /// <exception cref="AlreadyConnectedException">Thrown if we are already connected</exception>
 #if NET6_0_OR_GREATER
     public void AddService(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)]
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods | DynamicallyAccessedMemberTypes.PublicMethods)]
         Type interfaceType)
 #else
         public void AddService(Type interfaceType)

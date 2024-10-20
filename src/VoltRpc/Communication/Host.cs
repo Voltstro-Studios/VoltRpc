@@ -153,7 +153,7 @@ public abstract class Host : IDisposable
     /// <exception cref="ArgumentException">Thrown if the service has already been added</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if serviceType is not an interface</exception>
 #if NET6_0_OR_GREATER
-    public void AddService([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type serviceType,
+    public void AddService([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods | DynamicallyAccessedMemberTypes.PublicMethods)] Type serviceType,
 #else
         public void AddService(Type serviceType,
 #endif

@@ -9,7 +9,7 @@ internal static class ServiceHelper
 {
     public static ServiceMethod[] GetAllServiceMethods(
 #if NET6_0_OR_GREATER
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)]
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.NonPublicMethods | DynamicallyAccessedMemberTypes.PublicMethods)]
 #endif
         Type type, TypeReaderWriterManager typeReaderWriterManager)
     {

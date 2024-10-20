@@ -6,7 +6,6 @@
         <Title>VoltRpc</Title>
         <RootNamespace>VoltRpc</RootNamespace>
         <Description>VoltRpc - A RPC library designed to be simple to use and fast.</Description>
-        <PackageVersion>3.1.0</PackageVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <IsTrimmable>true</IsTrimmable>
